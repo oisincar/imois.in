@@ -25,7 +25,7 @@ SITE_URL = "https://imois.in/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://imois.in/"
 BLOG_EMAIL = "oisincar@gmail.com"
-BLOG_DESCRIPTION = "A home for my random programming/maths projects."  # (translatable)
+BLOG_DESCRIPTION = "A home for my random programming & maths projects."  # (translatable)
 
 # Nikola is multilingual!
 #
@@ -187,52 +187,6 @@ THEME_COLOR = '#5670d4'
 # }
 
 USE_BUNDLES = True
-
-
-
-# GLOBAL_CONTEXT = {
-#         "mdl__version": "1.3.0",
-#         "mdl__color_scheme": "indigo-pink",
-#         "mdl__roboto_font": False,
-#         "mdl__late_load_css": False,
-#         "mdl__cachebusting": "1",
-#         "mdl__fixed_header": False,
-#         "mdl__fixed_drawer": False,
-#         "mdl__no_drawer_button": False,
-#         "mdl__no_desktop_drawer_button": False,
-#         "mdl__multiple_header": False,
-#         "mdl__header_scroll": False,
-#         "mdl__header_waterfall": False,
-#         "mdl__header_waterfall_hide_top": False,
-#         "mdl__header_transparent": False,
-#         "mdl__header_seamed": False,
-#         "mdl__footer": "",
-#         "mdl__navigation_large_screen_only": False,
-#         "mdl__drawer_small_screen_only": False,
-#         "mdl__custom_css": False,
-#         "mdl__custom_js": False,
-#         "drawer_title": "",
-#         "drawer_logo_url": "",
-#         "drawer_show_title": "",
-#         "drawer_description": "",
-#         "drawer_note": "",
-#         "title_row_middle": False,
-#         "navigation_row_middle": False,
-#         "breadcrumb_separator": ">",
-#         "post_type": {
-#             "text": "format_align_justify",
-#         },
-#         "top_nav_header": False,
-#         "more_button_header": [
-#             ("/mobile/", "Mobile Site", "Mobile"),
-#         ],
-#         "image_plugin": "colorbox",
-#     }
-
-
-
-
-
 
 
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
@@ -427,17 +381,20 @@ COMPILERS = {
 # }
 
 # Set special titles for tag pages. The default is "Posts about TAG".
-# TAG_TITLES = {
-#    DEFAULT_LANG: {
-#        "blogging": "Meta-posts about blogging",
-#        "open source": "Posts about open source software"
-#    },
-# }
+TAG_TITLES = {
+   DEFAULT_LANG: {
+       "programming": "Programming & Software",
+       "animation": "[Coding] animations!",
+       "gamedev": "Game Development",
+       "machine learning": "Posts on Machine Learning.",
+       "math": "Bits of math & more theoritical stuff",
+   },
+}
 
 # If you do not want to display a tag publicly, you can mark it as hidden.
 # The tag will not be displayed on the tag list page and posts.
 # Tag pages will still be generated.
-HIDDEN_TAGS = ['mathjax']
+# HIDDEN_TAGS = ['mathjax']
 
 # Only include tags on the tag list/overview page if there are at least
 # TAGLIST_MINIMUM_POSTS number of posts or more with every tag. Every tag
@@ -1389,7 +1346,12 @@ WARN_ABOUT_TAG_METADATA = False
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
-GLOBAL_CONTEXT = {}
+# GLOBAL_CONTEXT = {}
+GLOBAL_CONTEXT = {
+    'email': 'oisincar@gmail.com',
+    # 'twitter': 'lotabout',
+    'github': 'oisincar',
+}
 
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be
