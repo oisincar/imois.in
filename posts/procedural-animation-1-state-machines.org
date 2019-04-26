@@ -1,0 +1,117 @@
+#+BEGIN_COMMENT
+.. title: Procedural Animation 1: State Machines
+.. slug: procedural-animation-1-state-machines
+.. date: 2019-04-26 00:00:48 UTC+01:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+
+#+END_COMMENT
+
+* Intro
+This is the first in a 3 part series on procedural animation, all taken from a talk
+I gave in January of 2019. The posts gain in complexity, and I've tried to make
+the animations interactive where possible!
+
+- This first post justifies and covers a general mentality I have for working on
+  procedural animations, and applies it to a simple example.
+- The second post gives a more powerful and harder tool - talking about function
+  shapes, and how you can build more complex behavour by combining simple movements.
+- The third and final post covers inverse kinematics, and generally how to
+  approximate solutions much harder problems using gradient descent.
+
+* Differences vs traditional animation.
+- Advantages:
+  - Greater (infinite?) variety.
+    Simulate large numbers easily.
+  - Can react to player/ world better.
+  - When done well: More realistic.
+#+REVEAL: split
+- Disadvantages:
+  - Loss of control. Can be harder to tweak.
+  - Hard to get very charachterful movement. Can look robotic
+    (Unless that's intentional...)
+  - Edges cases can be a bit more dramatic...
+
+* State, Update & Apply
+This is the core of how I approach these animations. I find it's helpful to try
+and break down the system into 3 parts - State, Update, and Apply.
+
+- Useful way of thinking about procedural animation.
+- State:
+  - Some variables
+  - All we need to know to draw a frame
+
+- Update:
+  - Changes (only) state variables
+
+- Apply:
+  - Draw/ move stuff according to state.
+
+Each part can be thought about separately, and by moving the state into a clear
+separate variable it becomes much easier to debug and reason about. Animations
+won't go out of sync, and it becomes much easier to debug as you can just reload
+the state again.
+
+* Example: Light
+State machines are one of the simplest forms of procedural animation. The idea
+is there is a single 'state' that determines what we draw, and also a set of
+rules for why/ when we change state.
+
+Don't underestimate them though, state machines form the backbone of much of AI
+in games and other systems.
+
+# Lightswitch anim
+#+BEGIN_EXPORT html
+<span class="align_all">
+    <canvas id="lightswitch" class="light_border" width="400" height="300">
+        Your browser doesn't support html5 canvas :c.
+    </canvas>
+</span>
+
+<script src="/assets/js/procedural_animation/LightSwitch.js"></script>
+#+END_EXPORT
+
+Here, our state is just if we're currently on or off, and our update rules are
+just a probability. At each frame we draw a random number, and if that number is
+large enough we change state. This gives us a flickering behavour that doesn't
+just flash, but still feels very unpredictable and chaotic.
+
+#+BEGIN_SRC plantuml :file ../images/light_state.png :exports results
+(Light OFF) --> (Light OFF) : "0.93"
+(Light OFF) --> (Light ON) : "0.07"
+(Light ON) --> (Light ON) : "0.98"
+(Light ON) --> (Light OFF) : "0.02"
+#+END_SRC
+
+These numbers seem to perform reasonably well, we have a $93\%$ chance
+
+#+RESULTS:
+# [[file:../images/light_state.png]]
+
+[[img-url:/images/light_state.png]]
+
+How to code?
+#+BEGIN_SRC c++
+// STATE
+bool _on = false;
+
+void Update(float dt) {
+    // UPDATE:
+    if (_on && Random.value > 0.98) {
+        _on = false;
+    }
+    else if (!_on && Random.value > 0.93) {
+        _on = true;
+    }
+
+    // APPLY:
+    if (_on) {
+        // Draw here!!
+    }
+}
+#+END_SRC
+
+TODO: Let people tweak the percentages ^ & justify effort vs other methods.
