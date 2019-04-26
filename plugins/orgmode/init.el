@@ -4,8 +4,11 @@
 ;; Requires org-mode v8.x
 
 (require 'package)
-(setq package-load-list '((htmlize t)))
+;; (setq package-load-list '((htmlize t)))
 (package-initialize)
+
+(add-to-list 'load-path "~/.emacs.d/.local/packages/elpa/htmlize-20180923.1829")
+(require 'htmlize)
 
 (require 'org)
 (require 'ox-html)

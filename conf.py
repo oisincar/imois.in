@@ -152,7 +152,12 @@ NAVIGATION_ALT_LINKS = {
 }
 
 # Name of the theme to use.
-THEME = "bootblog4"
+# THEME = "bootblog4"
+# THEME = "mdl"
+THEME = "bnw"
+
+CODE_COLOR_SCHEME = "manni"
+# CODE_COLOR_SCHEME = "default"
 
 # Primary color of your theme. This will be used to customize your theme.
 # Must be a HEX value.
@@ -163,23 +168,72 @@ THEME_COLOR = '#5670d4'
 # bootblog4 supports: featured_large featured_small featured_on_mobile
 #                     featured_large_image_on_mobile featured_strip_html sidebar
 # bootstrap4 supports: navbar_light (defaults to False)
-THEME_CONFIG = {
-    DEFAULT_LANG: {
-        # Show the latest featured post in a large box, with the previewimage as its background.
-        'featured_large': False,
-        # Show the first (remaining) two featured posts in small boxes.
-        'featured_small': False,
-        # Show featured posts on mobile.
-        'featured_on_mobile': True,
-        # Show image in `featured_large` on mobile.
-        # `featured_small` displays them only on desktop.
-        'featured_large_image_on_mobile': True,
-        # Strip HTML from featured post text.
-        'featured_strip_html': False,
-        # Contents of the sidebar, If empty, the sidebar is not displayed.
-        'sidebar': ''
-    }
-}
+# THEME_CONFIG = {
+#     DEFAULT_LANG: {
+#         # Show the latest featured post in a large box, with the previewimage as its background.
+#         'featured_large': False,
+#         # Show the first (remaining) two featured posts in small boxes.
+#         'featured_small': False,
+#         # Show featured posts on mobile.
+#         'featured_on_mobile': True,
+#         # Show image in `featured_large` on mobile.
+#         # `featured_small` displays them only on desktop.
+#         'featured_large_image_on_mobile': True,
+#         # Strip HTML from featured post text.
+#         'featured_strip_html': False,
+#         # Contents of the sidebar, If empty, the sidebar is not displayed.
+#         'sidebar': ''
+#     }
+# }
+
+USE_BUNDLES = True
+
+
+
+# GLOBAL_CONTEXT = {
+#         "mdl__version": "1.3.0",
+#         "mdl__color_scheme": "indigo-pink",
+#         "mdl__roboto_font": False,
+#         "mdl__late_load_css": False,
+#         "mdl__cachebusting": "1",
+#         "mdl__fixed_header": False,
+#         "mdl__fixed_drawer": False,
+#         "mdl__no_drawer_button": False,
+#         "mdl__no_desktop_drawer_button": False,
+#         "mdl__multiple_header": False,
+#         "mdl__header_scroll": False,
+#         "mdl__header_waterfall": False,
+#         "mdl__header_waterfall_hide_top": False,
+#         "mdl__header_transparent": False,
+#         "mdl__header_seamed": False,
+#         "mdl__footer": "",
+#         "mdl__navigation_large_screen_only": False,
+#         "mdl__drawer_small_screen_only": False,
+#         "mdl__custom_css": False,
+#         "mdl__custom_js": False,
+#         "drawer_title": "",
+#         "drawer_logo_url": "",
+#         "drawer_show_title": "",
+#         "drawer_description": "",
+#         "drawer_note": "",
+#         "title_row_middle": False,
+#         "navigation_row_middle": False,
+#         "breadcrumb_separator": ">",
+#         "post_type": {
+#             "text": "format_align_justify",
+#         },
+#         "top_nav_header": False,
+#         "more_button_header": [
+#             ("/mobile/", "Mobile Site", "Mobile"),
+#         ],
+#         "image_plugin": "colorbox",
+#     }
+
+
+
+
+
+
 
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
 # (translatable)
