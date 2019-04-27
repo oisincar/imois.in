@@ -20,7 +20,7 @@ BLOG_AUTHOR = "Oisin Carroll"  # (translatable)
 BLOG_TITLE = "im_oisin"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://imois.in/"
+SITE_URL = "/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://imois.in/"
@@ -156,12 +156,13 @@ NAVIGATION_ALT_LINKS = {
 # THEME = "mdl"
 THEME = "bnw"
 
-CODE_COLOR_SCHEME = "manni"
+# CODE_COLOR_SCHEME = "manni"
 # CODE_COLOR_SCHEME = "default"
+CODE_COLOR_SCHEME = "friendly"
 
 # Primary color of your theme. This will be used to customize your theme.
 # Must be a HEX value.
-THEME_COLOR = '#5670d4'
+# THEME_COLOR = '#5670d4'
 
 # Theme configuration. Fully theme-dependent. (translatable)
 # Examples below are for bootblog4.
