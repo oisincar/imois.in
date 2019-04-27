@@ -1,0 +1,69 @@
+#+BEGIN_COMMENT
+.. title: Procedural Animation 2: Functions
+.. slug: procedural-animation-2-functions
+.. date: 2019-04-27 00:00:48 UTC+01:00
+.. tags: animation, programming, gamedev
+.. category:
+.. link:
+.. has_math: true
+.. description: Building complex movement from simple components.
+.. type: text
+#+END_COMMENT
+
+* Bouncing ball
+#+BEGIN_EXPORT html
+<script src="../assets/js/procedural_animation/BouncingBalls.js"></script>
+<div class="figure">
+    <canvas id="balls0" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 1:</span> Bouncing balls</p>
+</div>
+<script> new BouncingBalls('balls0', 0, 1); </script>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div class="figure">
+    <canvas id="balls1" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 2:</span> Bouncing balls</p>
+</div>
+<script> new BouncingBalls('balls1', 1, 1); </script>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div class="figure">
+    <canvas id="balls2" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 3:</span> Bouncing balls</p>
+</div>
+<script> new BouncingBalls('balls2', 2, 1); </script>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div class="figure">
+    <canvas id="balls3" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 4:</span> Bouncing balls</p>
+</div>
+<script> new BouncingBalls('balls3', 3, 1); </script>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div class="figure">
+    <canvas id="balls4" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 5:</span> Bouncing balls</p>
+</div>
+<script> new BouncingBalls('balls4', 4, 1); </script>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div class="figure">
+    <canvas id="balls5" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 6:</span> Bouncing balls</p>
+</div>
+<script> new BouncingBalls('balls5', 5, 1); </script>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div class="figure">
+    <canvas id="balls6" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 7:</span> Bouncing balls</p>
+</div>
+<script> new BouncingBalls('balls6', 6, 10); </script>
+#+END_EXPORT
