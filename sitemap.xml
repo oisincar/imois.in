@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2019-04-26T02:02:00Z</lastmod>
+  <lastmod>2019-04-27T01:12:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2019-04-27T01:05:00Z</lastmod>
+  <lastmod>2019-04-27T01:45:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
@@ -42,7 +42,15 @@
   <lastmod>2019-04-26T01:06:00Z</lastmod>
  </url>
  <url>
+  <loc>https://imois.in/posts/procedural-animation-1-functions/</loc>
+  <lastmod>2019-04-27T01:45:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://imois.in/posts/procedural-animation-1-state-machines/</loc>
   <lastmod>2019-04-26T01:46:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/procedural-animation-2-functions/</loc>
+  <lastmod>2019-04-27T01:51:00Z</lastmod>
  </url>
 </urlset>

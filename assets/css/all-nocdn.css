@@ -648,8 +648,130 @@ table.codetable { width: 100%;} td.linenos {text-align: right; width: 4em;}
 /* Make figures/ captions look better */
 .figure {
     text-align: center;
+    background: #f0f0f0;
+    border: 1px solid #7194b8;
+    padding: 10px;
+    width: min-content;
+    margin: 0 auto;
 }
 .figure > p {
     margin: 0px;
+    line-height: 1.2rem;
+    font-size: 1rem;
+    font-style: italic;
+    color: #475678;
+}
+.figure-number {
+    font-weight: bold;
+}
+
+
+/* Stuff taken procedural animation talk. Sliders, borders etc. */
+
+.light_border {
+  /* border: 3px solid #ccc5b6 */
+  /* margin-bottom: 10px; */
+}
+
+/* .align_all { */
+/*   display: flex; */
+/*   justify-content: center; */
+/*   align-items: center; */
+/* } */
+
+.slider_row {
+  display: block;
+  font-size: 13px !important;
+  padding-bottom: 10px !important;
+}
+
+.slider_label {
+  display: inline-block;
+  min-width: 130px;
+  text-align: right;
+  /* font-size: smaller; */
+  font-size: 13px !important;
+  font-weight: bold;
+  color: #4c8ab2;
+}
+
+.flat-slider {
+  display: inline-block;
+  width: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.slider_text {
+  border:0;
+  font-size: 13px !important;
+  text-align: left;
+  font-weight:bold;
+  display:inline-block;
+  font-size: smaller;
+  min-width: 40px;
+  color: #4c8ab2;
+}
+
+
+/* Flat slider */
+
+.flat-slider.ui-corner-all,
+.flat-slider .ui-corner-all {
+  border-radius: 0;
+}
+
+.flat-slider.ui-slider {
+  border: 0;
+  background: #6d777a;
+  border-radius: 7px;
+}
+
+.flat-slider.ui-slider-horizontal {
+  height: 6px;
+}
+
+.flat-slider.ui-slider-vertical {
+  height: 15em;
+  width: 6px;
+}
+
+.flat-slider .ui-slider-handle {
+  width: 20px;
+  height: 20px;
+  background: #ef6461;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.flat-slider.ui-slider-horizontal .ui-slider-handle {
+  top: 50%;
+  margin-top: -10px;
+}
+
+.flat-slider.ui-slider-vertical .ui-slider-handle {
+  left: 50%;
+  margin-left: -10px;
+}
+
+.flat-slider .ui-slider-handle:hover {
+  opacity: .8;
+}
+
+.flat-slider .ui-slider-range {
+  border: 0;
+  border-radius: 7;
+  background: #f99;
+}
+
+.flat-slider.ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 6px;
+}
+
+.flat-slider.ui-slider-vertical .ui-slider-range {
+  left: 0;
+  width: 6px;
 }
 

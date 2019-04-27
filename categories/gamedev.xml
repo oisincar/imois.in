@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>im_oisin (Game Development)</title><link>https://imois.in/</link><description></description><atom:link type="application/rss+xml" href="https://imois.in/categories/gamedev.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Apr 2019 01:05:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgc57df0b" class="outline-2"&gt;
-&lt;h2 id="orgc57df0b"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc57df0b"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>im_oisin (Game Development)</title><link>https://imois.in/</link><description></description><atom:link type="application/rss+xml" href="https://imois.in/categories/gamedev.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Apr 2019 02:28:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org0d80914" class="outline-2"&gt;
+&lt;h2 id="org0d80914"&gt;Bouncing ball&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0d80914"&gt;
+&lt;script src="https://imois.in/assets/js/procedural_animation/BouncingBalls.js"&gt;&lt;/script&gt;&lt;div class="figure"&gt;
+    &lt;canvas id="balls0" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls0', 0, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+    &lt;canvas id="balls1" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 2:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls1', 1, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+    &lt;canvas id="balls2" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 3:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls2', 2, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+    &lt;canvas id="balls3" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 4:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls3', 3, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+    &lt;canvas id="balls4" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 5:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls4', 4, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+    &lt;canvas id="balls5" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 6:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls5', 5, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+    &lt;canvas id="balls6" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 7:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls6', 6, 10); &lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Fri, 26 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7d571af" class="outline-2"&gt;
+&lt;h2 id="org7d571af"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7d571af"&gt;
 &lt;p&gt;
 This is the first in a 3 part series on procedural animation, all taken from a talk
 I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
@@ -19,9 +45,9 @@ approximate solutions much harder problems using gradient descent.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0bac0d8" class="outline-2"&gt;
-&lt;h2 id="org0bac0d8"&gt;Differences vs traditional animation.&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0bac0d8"&gt;
+&lt;div id="outline-container-orgaa09f1c" class="outline-2"&gt;
+&lt;h2 id="orgaa09f1c"&gt;Differences vs traditional animation.&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgaa09f1c"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Advantages:
 &lt;ul class="org-ul"&gt;
@@ -44,9 +70,9 @@ Simulate large numbers easily.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0f39046" class="outline-2"&gt;
-&lt;h2 id="org0f39046"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0f39046"&gt;
+&lt;div id="outline-container-org687f7f0" class="outline-2"&gt;
+&lt;h2 id="org687f7f0"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org687f7f0"&gt;
 &lt;p&gt;
 This is the core of how I approach these animations. I find it's helpful to try
 and break down the system into 3 parts - State, Update, and Apply. These
@@ -89,9 +115,9 @@ Anyway… Lets look at an example!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2bd8555" class="outline-2"&gt;
-&lt;h2 id="org2bd8555"&gt;Example: Light&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2bd8555"&gt;
+&lt;div id="outline-container-orgb8ba2c0" class="outline-2"&gt;
+&lt;h2 id="orgb8ba2c0"&gt;Example: Light&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb8ba2c0"&gt;
 &lt;p&gt;
 State machines are one of the simplest forms of procedural animation. The idea
 is there is a single 'state' we're in, and also a set of
@@ -105,7 +131,7 @@ Here we've just got a light, our &lt;b&gt;State&lt;/b&gt; is one of: { &lt;b&gt;
 &lt;/p&gt;
 
 &lt;div class="figure"&gt;
-    &lt;canvas id="lightswitch" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Randomly flickering light animation&lt;/p&gt;
+    &lt;canvas id="lightswitch" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Randomly flickering light.&lt;/p&gt;
 &lt;/div&gt;
 &lt;script src="https://imois.in/assets/js/procedural_animation/LightSwitch.js"&gt;&lt;/script&gt;&lt;p&gt;
 The second part of State, Update, Apply: &lt;b&gt;Update&lt;/b&gt;, is also simple. We randomly

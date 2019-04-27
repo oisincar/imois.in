@@ -24,7 +24,8 @@ class Ball {
 }
 class BouncingBalls {
 
-    constructor(id, num_balls, demo_num) {
+    constructor(id, demo_num, num_balls) {
+        console.log("HELLOSONETUH");
         var canvas = document.getElementById(id);
         this.ctx = canvas.getContext('2d');
         this.w = canvas.width;
