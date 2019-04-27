@@ -32,6 +32,7 @@ You will need to install emacs and org-mode (v8.x or greater).
 
 from __future__ import unicode_literals
 import io
+import lxml
 import os
 from os.path import abspath, dirname, join
 import subprocess
@@ -75,6 +76,11 @@ class CompileOrgmode(PageCompiler):
             with io.open(dest, 'r', encoding='utf-8') as inf:
                 output, shortcode_deps = self.site.apply_shortcodes(
                     inf.read(), extra_context={'post': post})
+
+            # Add ../ to urls!
+            output = self.adjust_pretty_urls(output)
+
+
             with io.open(dest, 'w', encoding='utf-8') as outf:
                 outf.write(output)
             if post is None:
@@ -114,3 +120,17 @@ class CompileOrgmode(PageCompiler):
                 fd.write(content)
             else:
                 fd.write('Write your post here.')
+
+    def adjust_pretty_urls(self, html):
+        # if self.site.config.get('ORG_PRETTY_URL_ADJUST', None) is None:
+        #     return html
+    
+        parser = lxml.html.HTMLParser(remove_blank_text=True)
+        doc = lxml.html.document_fromstring(html, parser)
+    
+        def adjust_pretty_url(url):
+            return '../%s' % url
+    
+        doc.rewrite_links(adjust_pretty_url, resolve_base_href=False)
+        html = lxml.html.tostring(doc, encoding='utf8', method='html', pretty_print=True, doctype='<!DOCTYPE html>')
+        return html.decode('utf-8')
