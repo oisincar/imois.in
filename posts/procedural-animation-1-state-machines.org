@@ -70,7 +70,7 @@ Here we've just got a light, our *State* is one of: { *On*, *Off* }.
 #+BEGIN_EXPORT html
 <div class="figure">
     <canvas id="lightswitch" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
-    <p><span class="figure-number">Anim 1:</span> Randomly flickering light animation</p>
+    <p><span class="figure-number">Anim 1:</span> Randomly flickering light.</p>
 </div>
 <script src="../assets/js/procedural_animation/LightSwitch.js"></script>
 #+END_EXPORT
@@ -83,6 +83,7 @@ We can view the state and the transitions as a graph, where the arrows denote
 probabilities.
 
 #+BEGIN_SRC plantuml :file ../images/light_state.png :exports results
+skinparam backgroundcolor transparent
 (Light OFF) --> (Light OFF) : "0.93"
 (Light OFF) --> (Light ON) : "0.07"
 (Light ON) --> (Light ON) : "0.98"
