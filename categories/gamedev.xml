@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Game Development)</title><link>https://imois.in/</link><description></description><atom:link rel="self" type="application/rss+xml" href="https://imois.in/categories/gamedev.xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Apr 2019 00:28:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org97aa938" class="outline-2"&gt;
+&lt;h2 id="org97aa938"&gt;Tests&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org97aa938"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org74f9314" class="outline-2"&gt;
+&lt;h2 id="org74f9314"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org74f9314"&gt;
+&lt;p&gt;
+This is the first in a 3 part series on procedural animation, all taken from a talk
+I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
+the animations interactive where possible!
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;This first post justifies and covers a general mentality I have for working on
+procedural animations, and applies it to a simple example.&lt;/li&gt;
+&lt;li&gt;The second post gives a more powerful and harder tool - talking about function
+shapes, and how you can build more complex behavour by combining simple movements.&lt;/li&gt;
+&lt;li&gt;The third and final post covers inverse kinematics, and generally how to
+approximate solutions much harder problems using gradient descent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8bd3e89" class="outline-2"&gt;
+&lt;h2 id="org8bd3e89"&gt;Differences vs traditional animation.&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8bd3e89"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Advantages:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Greater (infinite?) variety.
+Simulate large numbers easily.&lt;/li&gt;
+&lt;li&gt;Can react to player/ world better.&lt;/li&gt;
+&lt;li&gt;When done well: More realistic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;Disadvantages:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Loss of control. Can be harder to tweak.&lt;/li&gt;
+&lt;li&gt;Hard to get very charachterful movement. Can look robotic
+(Unless that's intentional…)&lt;/li&gt;
+&lt;li&gt;When it breaks it often breaks hard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5dc334b" class="outline-2"&gt;
+&lt;h2 id="org5dc334b"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5dc334b"&gt;
+&lt;p&gt;
+This is the core of how I approach these animations. I find it's helpful to try
+and break down the system into 3 parts - State, Update, and Apply. These
+systems can very easily become hard to tweak and work with, and this is just one
+tool that might help with that.
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;
+&lt;b&gt;State&lt;/b&gt;:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;One or more variables, no logic.&lt;/li&gt;
+&lt;li&gt;All we need to know to draw a frame&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;b&gt;Update&lt;/b&gt;:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Changes (only) state variables on each frame or update cycle.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;b&gt;Apply&lt;/b&gt;:
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Move and/or draw stuff according to state.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+Each part can be thought about separately, and by moving the state into a clear
+separate variable the system becomes much easier to reason about. Animations
+won't go out of sync, and it's to debug as you can just view and edit the state directly.
+&lt;/p&gt;
+
+&lt;p&gt;
+Anyway… Lets look at an example!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc56a9ee" class="outline-2"&gt;
+&lt;h2 id="orgc56a9ee"&gt;Example: Light&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc56a9ee"&gt;
+&lt;p&gt;
+State machines are one of the simplest forms of procedural animation. The idea
+is there is a single 'state' we're in, and also a set of
+rules for why/ when we change state. State machines are often used in game AI -
+where states might be { &lt;b&gt;Defend&lt;/b&gt;, &lt;b&gt;Rush&lt;/b&gt;, &lt;b&gt;Flank&lt;/b&gt; }, or for a charachter: { &lt;b&gt;Falling&lt;/b&gt;,
+&lt;b&gt;Walking&lt;/b&gt;, &lt;b&gt;Sprinting&lt;/b&gt;, &lt;b&gt;Attacking&lt;/b&gt; }.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here we've just got a light, our &lt;b&gt;State&lt;/b&gt; is one of: { &lt;b&gt;On&lt;/b&gt;, &lt;b&gt;Off&lt;/b&gt; }.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;canvas id="lightswitch" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Randomly flickering light animation&lt;/p&gt;
+&lt;/div&gt;
+&lt;script src="https://imois.in/assets/js/procedural_animation/LightSwitch.js"&gt;&lt;/script&gt;&lt;p&gt;
+The second part of State, Update, Apply: &lt;b&gt;Update&lt;/b&gt;, is also simple. We randomly
+choose to either stay in the current state or move to the other. I found
+a \(98\%\) chance to stay &lt;b&gt;On&lt;/b&gt; and a \(93\%\) chance to stay &lt;b&gt;Off&lt;/b&gt; works decently.
+&lt;/p&gt;
+
+&lt;p&gt;
+We can view the state and the transitions as a graph, where the arrows denote
+probabilities.
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/light_state.png" alt="light_state.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Light state diagram&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+And finally, our Apply section simply determines if we should draw a circle that
+frame, or leave the frame blank.
+&lt;/p&gt;
+
+&lt;p&gt;
+Overall, our code looks like this…
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// STATE&lt;/span&gt;
+&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// UPDATE:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.98&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.93&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// APPLY:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="c1"&gt;// Draw here!!&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Tune in next time for some more interesting examples!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-1-state-machines/</guid><pubDate>Thu, 25 Apr 2019 23:00:48 GMT</pubDate></item></channel></rss>

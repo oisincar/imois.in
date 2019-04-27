@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <sitemap>
+  <loc>https://imois.in/categories/animation-programming.xml</loc>
+  <lastmod>2019-04-26T18:36:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/categories/animation.xml</loc>
+  <lastmod>2019-04-26T20:20:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/categories/cat_animation-programming.xml</loc>
+  <lastmod>2019-04-26T18:55:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/categories/gamedev.xml</loc>
+  <lastmod>2019-04-26T20:20:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/categories/mathjax.xml</loc>
+  <lastmod>2019-04-26T18:55:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/categories/programming.xml</loc>
+  <lastmod>2019-04-26T20:20:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/galleries/rss.xml</loc>
+  <lastmod>2019-04-26T20:22:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/rss.xml</loc>
+  <lastmod>2019-04-26T20:20:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://imois.in/sitemap.xml</loc>
+  <lastmod>2019-04-26T20:22:00Z</lastmod>
+ </sitemap>
+</sitemapindex>

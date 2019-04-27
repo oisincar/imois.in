@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="How to make a simple flickering light!">
+<meta name="viewport" content="width=device-width">
+<title>Procedural Animation 1: State Machines | im_oisin</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://imois.in/posts/procedural-animation-1-state-machines/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Oisin Carroll">
+<meta property="og:site_name" content="im_oisin">
+<meta property="og:title" content="Procedural Animation 1: State Machines">
+<meta property="og:url" content="https://imois.in/posts/procedural-animation-1-state-machines/">
+<meta property="og:description" content="How to make a simple flickering light!">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-04-26T00:00:48+01:00">
+<meta property="article:tag" content="animation">
+<meta property="article:tag" content="gamedev">
+<meta property="article:tag" content="programming">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://imois.in/" title="im_oisin" rel="home">
+                im_oisin
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Procedural Animation 1: State Machines
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2019-04-26T00:00:48+01:00">2019/04/26</time>
+	    
+
+	    
+          |  
+        <a href="index.org" id="sourcelink">Source</a>
+
+	  </div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/animation/" rel="tag">animation</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/gamedev/" rel="tag">gamedev</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/programming/" rel="tag">programming</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-org97aa938" class="outline-2">
+<h2 id="org97aa938">Tests</h2>
+<div class="outline-text-2" id="text-org97aa938">
+</div>
+</div>
+
+
+<div id="outline-container-org74f9314" class="outline-2">
+<h2 id="org74f9314">Intro</h2>
+<div class="outline-text-2" id="text-org74f9314">
+<p>
+This is the first in a 3 part series on procedural animation, all taken from a talk
+I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
+the animations interactive where possible!
+</p>
+
+<ul class="org-ul">
+<li>This first post justifies and covers a general mentality I have for working on
+procedural animations, and applies it to a simple example.</li>
+<li>The second post gives a more powerful and harder tool - talking about function
+shapes, and how you can build more complex behavour by combining simple movements.</li>
+<li>The third and final post covers inverse kinematics, and generally how to
+approximate solutions much harder problems using gradient descent.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8bd3e89" class="outline-2">
+<h2 id="org8bd3e89">Differences vs traditional animation.</h2>
+<div class="outline-text-2" id="text-org8bd3e89">
+<ul class="org-ul">
+<li>Advantages:
+<ul class="org-ul">
+<li>Greater (infinite?) variety.
+Simulate large numbers easily.</li>
+<li>Can react to player/ world better.</li>
+<li>When done well: More realistic.</li>
+</ul>
+</li>
+
+<li>Disadvantages:
+<ul class="org-ul">
+<li>Loss of control. Can be harder to tweak.</li>
+<li>Hard to get very charachterful movement. Can look robotic
+(Unless that's intentional…)</li>
+<li>When it breaks it often breaks hard.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5dc334b" class="outline-2">
+<h2 id="org5dc334b">State, Update &amp; Apply</h2>
+<div class="outline-text-2" id="text-org5dc334b">
+<p>
+This is the core of how I approach these animations. I find it's helpful to try
+and break down the system into 3 parts - State, Update, and Apply. These
+systems can very easily become hard to tweak and work with, and this is just one
+tool that might help with that.
+</p>
+
+<ul class="org-ul">
+<li>
+<b>State</b>:
+<ul class="org-ul">
+<li>One or more variables, no logic.</li>
+<li>All we need to know to draw a frame</li>
+</ul>
+</li>
+
+<li>
+<b>Update</b>:
+<ul class="org-ul">
+<li>Changes (only) state variables on each frame or update cycle.</li>
+</ul>
+</li>
+
+<li>
+<b>Apply</b>:
+<ul class="org-ul">
+<li>Move and/or draw stuff according to state.</li>
+</ul>
+</li>
+</ul>
+<p>
+Each part can be thought about separately, and by moving the state into a clear
+separate variable the system becomes much easier to reason about. Animations
+won't go out of sync, and it's to debug as you can just view and edit the state directly.
+</p>
+
+<p>
+Anyway… Lets look at an example!
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc56a9ee" class="outline-2">
+<h2 id="orgc56a9ee">Example: Light</h2>
+<div class="outline-text-2" id="text-orgc56a9ee">
+<p>
+State machines are one of the simplest forms of procedural animation. The idea
+is there is a single 'state' we're in, and also a set of
+rules for why/ when we change state. State machines are often used in game AI -
+where states might be { <b>Defend</b>, <b>Rush</b>, <b>Flank</b> }, or for a charachter: { <b>Falling</b>,
+<b>Walking</b>, <b>Sprinting</b>, <b>Attacking</b> }.
+</p>
+
+<p>
+Here we've just got a light, our <b>State</b> is one of: { <b>On</b>, <b>Off</b> }.
+</p>
+
+<div class="figure">
+    <canvas id="lightswitch" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 1:</span> Randomly flickering light animation</p>
+</div>
+<script src="../../assets/js/procedural_animation/LightSwitch.js"></script><p>
+The second part of State, Update, Apply: <b>Update</b>, is also simple. We randomly
+choose to either stay in the current state or move to the other. I found
+a \(98\%\) chance to stay <b>On</b> and a \(93\%\) chance to stay <b>Off</b> works decently.
+</p>
+
+<p>
+We can view the state and the transitions as a graph, where the arrows denote
+probabilities.
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/light_state.png" alt="light_state.png"></p>
+<p><span class="figure-number">Figure 1: </span>Light state diagram</p>
+</div>
+
+<p>
+And finally, our Apply section simply determines if we should draw a circle that
+frame, or leave the frame blank.
+</p>
+
+<p>
+Overall, our code looks like this…
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// STATE</span>
+<span class="kt">bool</span> <span class="n">_on</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">Update</span><span class="p">(</span><span class="kt">float</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// UPDATE:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_on</span> <span class="o">&amp;&amp;</span> <span class="n">Random</span><span class="p">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mf">0.98</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">_on</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">_on</span> <span class="o">&amp;&amp;</span> <span class="n">Random</span><span class="p">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mf">0.93</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">_on</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// APPLY:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_on</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// Draw here!!</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+Tune in next time for some more interesting examples!
+</p>
+</div>
+</div>
+
+            
+        
+        <div data-title="Procedural Animation 1: State Machines" id="isso-thread"></div>
+        <script src="http://localhost:8080/js/embed.min.js" data-isso="http://localhost:8080/" data-isso-lang="en"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+        </script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+                <div class="social-entry">
+                    <a href="mailto:oisincar@gmail.com" target="_blank">
+                        <i class="fa fa-envelope-o"></i>
+                    </a>
+                </div>
+
+
+                <div class="social-entry">
+                    <a href="https://github.com/oisincar" target="_blank">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </div>
+
+                <div class="social-entry">
+                    <a href="../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2019         <a href="mailto:oisincar@gmail.com">Oisin Carroll</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Sitemap: https://imois.in/sitemapindex.xml
+
+User-Agent: *
+Host: imois.in
