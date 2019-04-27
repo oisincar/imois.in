@@ -10,17 +10,6 @@
 .. type: text
 #+END_COMMENT
 
-* Tests
-
-
-# \begin{equation}
-# x=\sqrt{b}
-# \end{equation}
-
-# If $a^2=b$ and \( b=2 \), then the solution must be
-# either $$ a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
-
-
 * Intro
 This is the first in a 3 part series on procedural animation, all taken from a talk
 I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
