@@ -10,39 +10,304 @@
 .. type: text
 #+END_COMMENT
 
+#+BEGIN_SRC python :session :results file
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+
+path = "../images/procedural_anim/"
+
+def savePlt(filename):
+    plt.savefig(path + filename)
+    return path+filename # return this to org-mode
+#+END_SRC
+
+#+RESULTS:
+
+* Intro
+In this second section, I wanted to talk about functions... And how to take simple
+movements and build more complex animations from them. Be warned: /Here be graphs/.
+
+We'll be using the idea of *State*, *Update*, *Apply* from [[./procedural-animation-1-state-machines/][Part 1]] here too. If
+you haven't read that, you might want to start there!
+[./procedural-animation-1-state-machines/][Part 1]] here too. If
+
+And finally, all of the animations are running in javascript canvas, so you can open the
+source code in the inspector or find it on [[https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation][my github for the site!]]
+
 * Bouncing ball
+
+How to make this?
+
 #+BEGIN_EXPORT html
 <script src="../assets/js/procedural_animation/BouncingBalls.js"></script>
 <div class="figure">
     <canvas id="balls0" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
-    <p><span class="figure-number">Anim 1:</span> Bouncing balls</p>
+    <p><span class="figure-number">Anim 1:</span> Moving the ball</p>
 </div>
 <script> new BouncingBalls('balls0', 0, 1); </script>
 #+END_EXPORT
 
+For the *State*, we can just have a single number that varies from 0 to 1:
+The percentage through the animation we are so far.
+
+This means our *Update* can turn the elapsed time into a percentage value and
+add it to the *State*.
+
+And our *Apply* can move the ball based on the state variables, and draw it. For
+this, we only need to change the y coordinate:
+
+y = state*k, where k a scaling value for how far the ball moves.
+
+
+In code this looks like:
+#+BEGIN_SRC c++
+// CONFIG:
+// 'scale in time', length of animation
+const float _duration = 5.0f;
+// 'scale in space', distance ball moves
+const float _dist = 40.0f;
+// 'offset in space'
+const Vector2 _offset = new Vector2(..);
+
+// STATE:
+float _animationPerc = 0;
+
+void Update(float dt) { // dt is the change in time.
+    // UPDATE state:
+    _animationPerc = (_animationPerc + dt/_duration) % 1;
+    // 1_|
+    //   | /| /| /| /|....
+    // 0_|/ |/ |/ |/ |
+
+    // APPLY
+    ball.y = _offset.y + _animationPerc * _dist;
+}
+#+END_SRC
+
+The update line can be a bit confusing, but might make more sense when split up a bit more.
+#+BEGIN_SRC c++
+    _animationPerc = (_animationPerc + dt/_duration) % 1;
+
+    // Equilivent to (all of):
+    // The change in how far we are through the animation.
+    float dPerc = dt / _duration;
+    // Added to _animationPerc
+    _animationPerc += dPerc;
+    // And wrap back to 0 if we're > 1;
+    if (_animationPerc >= 1)
+        _animationPerc -= 1;
+#+END_SRC
+
+We're working out how much further we are through the animation (```dPerc```)
+which is our change it time divided by the duration of the animation. Say our
+animation is 2 seconds long, and 1 second just elapsed... We're now half-way
+further through than before.
+
+It might be helpful to think of the shape this variable (or all variables) make over time. A
+lot of these animations can be thought of as the *Apply* function reshaping the *State* variables.
+
+
+#+begin_src python :session :results file :exports results
+fig=plt.figure(figsize=(6,2))
+t = np.arange(0, 4.5, step=0.01)
+plt.plot(t, np.mod(t,1))
+
+plt.xlabel("elapsed time (_duration)")
+plt.ylabel("_animationPerc")
+
+plt.xticks(np.arange(5), [str(x) + "*d" for x in range(5)])
+
+fig.tight_layout()
+savePlt("animation_perc.png")
+#+end_src
+
+#+CAPTION: The shape of _animationPerc over time, where d is the duration of the animation, makes a sawtooth shape.
+#+RESULTS:
+[[file:../images/procedural_anim/animation_perc.png]]
+
+
+In this example, our *Apply* function just scales the *State* by _dist. This is
+then the y offset of the ball for that frame, as shown in the animation above.
+
+#+begin_src python :session :results file :exports results
+fig=plt.figure(figsize=(6,4))
+t = np.arange(0, 4.5, step=0.01)
+y = np.mod(t,1)
+plt.plot(t, y)
+plt.plot(t, y*40)
+
+plt.xlabel("elapsed time (_duration)")
+plt.ylabel("Blue: _animationPerc, Orange: Ball offset (in pixels)")
+
+plt.xticks(np.arange(5), [str(x) + "*d" for x in range(5)])
+
+fig.tight_layout()
+savePlt("animation_apply1.png")
+#+end_src
+#+CAPTION: Here, the input *State* (Blue), is scaled to give the ball's positional offset by the *Apply* function (Orange).
+#+RESULTS:
+[[file:../images/procedural_anim/animation_apply1.png]]
+
+
+* Different Applications (heh)
+By just changing the *Apply* function here, we can get a variety of different
+movements. We can think of these movements as transformations of the origional
+*State* graph, since this is the only input.
+
+First lets move the ball up and down in wave like this...
+
 #+BEGIN_EXPORT html
 <div class="figure">
     <canvas id="balls1" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
-    <p><span class="figure-number">Anim 2:</span> Bouncing balls</p>
+    <p><span class="figure-number">Anim 2:</span> Wavey ball</p>
 </div>
 <script> new BouncingBalls('balls1', 1, 1); </script>
 #+END_EXPORT
 
-#+BEGIN_EXPORT html
-<div class="figure">
-    <canvas id="balls2" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
-    <p><span class="figure-number">Anim 3:</span> Bouncing balls</p>
-</div>
-<script> new BouncingBalls('balls2', 2, 1); </script>
-#+END_EXPORT
+Here, since $sin(x)$ has a period of $2*\pi$, we need to scale our state
+variable by that so it loops properly.
+
+#+begin_src python :session :results file :exports results
+fig=plt.figure(figsize=(6,3))
+t = np.arange(0, 4.5, step=0.01)
+y = np.mod(t,1)
+plt.plot(t, y)
+plt.plot(t, np.sin(2*y*np.pi))
+
+plt.xlabel("elapsed time (_duration)")
+
+plt.xticks(np.arange(5), [str(x) + "*d" for x in range(5)])
+plt.yticks([])
+
+fig.tight_layout()
+savePlt("animation_apply1.png")
+#+end_src
+#+CAPTION: Our state (Blue) compared to the wavey output of the ball (Orange) (Not to scale).
+#+RESULTS:
+[[file:../images/procedural_anim/animation_apply1.png]]
+
+In code, this is as easy as:
+#+BEGIN_SRC c++
+// APPLY
+ball.y = sin(2 * Math.PI * _animationPerc);
+#+END_SRC
+
+By doing this to both the x and y axis at the same time, offset by a bit, we can get a circle!
 
 #+BEGIN_EXPORT html
 <div class="figure">
-    <canvas id="balls3" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
-    <p><span class="figure-number">Anim 4:</span> Bouncing balls</p>
+    <canvas id="balls2" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+    <p><span class="figure-number">Anim 3:</span> Circles</p>
 </div>
-<script> new BouncingBalls('balls3', 3, 1); </script>
+<script> new BouncingBalls('balls2', 2, 1); </script>
 #+END_EXPORT
+Which, again, in code is just:
+#+BEGIN_SRC c++
+// APPLY
+ball.x = sin(2 * Math.PI * _animationPerc);
+ball.y = cos(2 * Math.PI * _animationPerc);
+// NOTE Equilivent to: ball.y = sin(2 * Math.PI * _animationPerc + Math.PI);
+#+END_SRC
+
+This idea can be taken much further, and leads to some really cool movements!
+The [[https://en.wikipedia.org/wiki/Lissajous_curve][Lissajous Curves]] are created when you scale the x and y parts differently in
+a way very similar to above ^. That's a whole different blog post though!
+
+#+CAPTION: The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.
+#+ATTR_HTML: :width 400px
+[[../images/procedural_anim/1lissajous.gif]]
+
+* Zigzag
+This is a slighly harder example for the idea of manipulating function shapes.
+
+# #+BEGIN_EXPORT html
+# <div class="figure">
+#     <canvas id="balls3" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
+#     <p><span class="figure-number">Anim 4:</span> Bouncing balls</p>
+# </div>
+# <script> new BouncingBalls('balls3', 3, 1); </script>
+# #+END_EXPORT
+
+We start off with our input shape as before... And keeping in mind our goal output shape (to get
+the animation above).
+#+begin_src python :session :results file :exports results
+fig=plt.figure(figsize=(6,2))
+t = np.arange(0, 4.5, step=0.01)
+y = np.mod(t,1)
+plt.plot(t, y)
+plt.plot(t, np.abs(2*y-1))
+
+#plt.xlabel("elapsed time (_duration)")
+#plt.ylabel("Blue: _animationPerc, Orange: Ball offset (in pixels)")
+
+plt.xticks(np.arange(5), [str(x) + "*d" for x in range(5)])
+plt.yticks([])
+
+fig.tight_layout()
+savePlt("zigzag0.png")
+#+end_src
+#+CAPTION: Input _animationPerc (Blue), compared to the shape we need (Orange).
+#+RESULTS:
+[[file:../images/procedural_anim/zigzag0.png]]
+
+We can perform several steps to transform it into the right shape... Scaling it
+up by 2 and moving it down by 1 (Orange). Then we can take the absolute value of
+this (Green).
+#+begin_src python :session :results file :exports results
+fig=plt.figure(figsize=(6,3))
+t = np.arange(0, 4.5, step=0.01)
+y = np.mod(t,1)
+plt.plot(t, y)
+#plt.plot(t, y*2)
+plt.plot(t, y*2-1)
+plt.plot(t, np.abs(y*2-1))
+
+plt.xlabel("elapsed time (_duration)")
+
+plt.xticks(np.arange(5), [str(x) + "*d" for x in range(5)])
+plt.yticks([])
+
+fig.tight_layout()
+savePlt("zigzag1.png")
+#+end_src
+#+CAPTION: Input (Blue), scaled & transformed (Orange), result (Green)
+#+RESULTS:
+[[file:../images/procedural_anim/zigzag1.png]]
+
+#+BEGIN_SRC c++
+// APPLY
+float zigzag = Mathf.Abs(2*_animationPerc - 1);
+ball.y = zigzag * _dist;
+#+END_SRC
+* Bouncing balls
+In order to create a realistic bounce, we have to first construct the right
+shape function again. Without delving into the physics of it, we're looking for
+a Parabola: Some function of $t^2$.
+
+#+begin_src python :session :results file :exports results
+fig=plt.figure(figsize=(6,2))
+t = np.arange(0, 4.5, step=0.01)
+y = np.mod(t,1)
+plt.plot(t, y)
+zigzag = np.abs(y*2-1)
+plt.plot(t, 1 - zigzag*zigzag)
+
+plt.xlabel("elapsed time (_duration)")
+plt.ylabel("Blue: _animationPerc, Orange: Ball offset (in pixels)")
+
+plt.xticks(np.arange(5), [str(x) + "*d" for x in range(5)])
+
+fig.tight_layout()
+savePlt("bounce0.png")
+#+end_src
+#+CAPTION: Input (Blue), vs bounce shape (Orange)
+#+RESULTS:
+[[file:../images/procedural_anim/bounce0.png]]
+
+Interestingly, we can get this shape from our zigzag before, by applying an
+extra transformation: 1-zigzag^2.
 
 #+BEGIN_EXPORT html
 <div class="figure">
@@ -52,6 +317,43 @@
 <script> new BouncingBalls('balls4', 4, 1); </script>
 #+END_EXPORT
 
+#+BEGIN_SRC c++
+// APPLY
+float zigzag = Mathf.Abs(2*_animationPerc - 1);
+ball.y = (1-zigzag*zigzag) * _dist;
+#+END_SRC
+
+* More Ideas
+We can clamp zigzag so it's 1 for some time, which means
+the ball will sit on the ground for a bit... By animating the scaling too, maybe this could
+be an animation for a slime NPC?
+
+#+begin_src python :session :results file :exports results
+fig=plt.figure(figsize=(6,2))
+t = np.arange(0, 4.5, step=0.01)
+y = np.mod(t,1)
+zigzag = np.abs(y*2-1)
+clip = np.clip(zigzag/0.8, 0, 1)
+
+plt.plot(t, zigzag)
+plt.plot(t, clip)
+plt.plot(t, 1 - clip*clip)
+
+#plt.xlabel("elapsed time (_duration)")
+#plt.ylabel("Blue: _animationPerc, Orange: Ball offset (in pixels)")
+
+plt.xticks(np.arange(5), [str(x) + "*d" for x in range(5)])
+plt.yticks([])
+
+fig.tight_layout()
+savePlt("bounce1.png")
+#+end_src
+#+CAPTION: Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).
+#+RESULTS:
+[[file:../images/procedural_anim/bounce1.png]]
+
+And how it looks animated...
+
 #+BEGIN_EXPORT html
 <div class="figure">
     <canvas id="balls5" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
@@ -60,6 +362,9 @@
 <script> new BouncingBalls('balls5', 5, 1); </script>
 #+END_EXPORT
 
+And also we can have loads of balls by just adding an offset for the *State*
+value to each one! With some polish this could maybe make a kind of snake creature for a game...
+
 #+BEGIN_EXPORT html
 <div class="figure">
     <canvas id="balls6" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas>
@@ -67,3 +372,11 @@
 </div>
 <script> new BouncingBalls('balls6', 6, 10); </script>
 #+END_EXPORT
+
+* Other applications
+While here, I've only done animations by moving things, it's also possible to
+animate rotations, shaders, skeletons, and more with exactly the same ideas.
+
+Tune in for part 3 when I'll cover a more complicated idea: Using
+gradient descent for solving constraints in procedural animation (but with fun
+interactive animations!!).
