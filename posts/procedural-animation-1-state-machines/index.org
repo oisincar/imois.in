@@ -17,10 +17,13 @@ the animations interactive where possible!
 
 - This first post justifies and covers a general mentality I have for working on
   procedural animations, and applies it to a simple example.
-- The second post gives a more powerful and harder tool - talking about function
+- [[./procedural-animation-2-functions/][The second post]] gives a more powerful and harder tool - talking about function
   shapes, and how you can build more complex behavour by combining simple movements.
-- The third and final post covers inverse kinematics, and generally how to
+- The third and final post (coming soon) covers inverse kinematics, and generally how to
   approximate solutions much harder problems using gradient descent.
+
+All of the animations are running in javascript canvas, so you can open the
+source code in the inspector or find it on [[https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation][my github for the site!]]
 
 * Differences vs traditional animation.
 - Advantages:
@@ -82,7 +85,7 @@ a $98\%$ chance to stay *On* and a $93\%$ chance to stay *Off* works decently.
 We can view the state and the transitions as a graph, where the arrows denote
 probabilities.
 
-#+BEGIN_SRC plantuml :file ../images/light_state.png :exports results
+#+BEGIN_SRC plantuml :file ../images/procedural_anim/light_state.png :exports results
 skinparam backgroundcolor transparent
 (Light OFF) --> (Light OFF) : "0.93"
 (Light OFF) --> (Light ON) : "0.07"
@@ -91,7 +94,7 @@ skinparam backgroundcolor transparent
 #+END_SRC
 #+CAPTION: Light state diagram
 #+RESULTS:
-[[file:../images/light_state.png]]
+[[file:../images/procedural_anim/light_state.png]]
 
 And finally, our Apply section simply determines if we should draw a circle that
 frame, or leave the frame blank.

@@ -89,33 +89,322 @@
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org0d80914" class="outline-2">
-<h2 id="org0d80914">Bouncing ball</h2>
-<div class="outline-text-2" id="text-org0d80914">
+        <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'Agg'</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">"../images/procedural_anim/"</span>
+
+<span class="k">def</span> <span class="nf">savePlt</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span><span class="o">+</span><span class="n">filename</span> <span class="c1"># return this to org-mode</span>
+</pre></div>
+
+<div id="outline-container-org23d75ce" class="outline-2">
+<h2 id="org23d75ce">Intro</h2>
+<div class="outline-text-2" id="text-org23d75ce">
+<p>
+In this second section, I wanted to talk about functions… And how to take simple
+movements and build more complex animations from them. Be warned: <i>Here be graphs</i>.
+</p>
+
+<p>
+We'll be using the idea of <b>State</b>, <b>Update</b>, <b>Apply</b> from <a href="../procedural-animation-1-state-machines/">Part 1</a> here too. If
+you haven't read that, you might want to start there!
+[./procedural-animation-1-state-machines/][Part 1]] here too. If
+</p>
+
+<p>
+And finally, all of the animations are running in javascript canvas, so you can open the
+source code in the inspector or find it on <a href="../https:/github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation">my github for the site!</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8cd428e" class="outline-2">
+<h2 id="org8cd428e">Bouncing ball</h2>
+<div class="outline-text-2" id="text-org8cd428e">
+<p>
+How to make this?
+</p>
+
 <script src="../../assets/js/procedural_animation/BouncingBalls.js"></script><div class="figure">
-    <canvas id="balls0" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 1:</span> Bouncing balls</p>
+    <canvas id="balls0" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 1:</span> Moving the ball</p>
 </div>
-<script> new BouncingBalls('balls0', 0, 1); </script><div class="figure">
-    <canvas id="balls1" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 2:</span> Bouncing balls</p>
+<script> new BouncingBalls('balls0', 0, 1); </script><p>
+For the <b>State</b>, we can just have a single number that varies from 0 to 1:
+The percentage through the animation we are so far.
+</p>
+
+<p>
+This means our <b>Update</b> can turn the elapsed time into a percentage value and
+add it to the <b>State</b>.
+</p>
+
+<p>
+And our <b>Apply</b> can move the ball based on the state variables, and draw it. For
+this, we only need to change the y coordinate:
+</p>
+
+<p>
+y = state*k, where k a scaling value for how far the ball moves.
+</p>
+
+
+<p>
+In code this looks like:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// CONFIG:</span>
+<span class="c1">// 'scale in time', length of animation</span>
+<span class="k">const</span> <span class="kt">float</span> <span class="n">_duration</span> <span class="o">=</span> <span class="mf">5.0f</span><span class="p">;</span>
+<span class="c1">// 'scale in space', distance ball moves</span>
+<span class="k">const</span> <span class="kt">float</span> <span class="n">_dist</span> <span class="o">=</span> <span class="mf">40.0f</span><span class="p">;</span>
+<span class="c1">// 'offset in space'</span>
+<span class="k">const</span> <span class="n">Vector2</span> <span class="n">_offset</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(..);</span>
+
+<span class="c1">// STATE:</span>
+<span class="kt">float</span> <span class="n">_animationPerc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">Update</span><span class="p">(</span><span class="kt">float</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// dt is the change in time.</span>
+    <span class="c1">// UPDATE state:</span>
+    <span class="n">_animationPerc</span> <span class="o">=</span> <span class="p">(</span><span class="n">_animationPerc</span> <span class="o">+</span> <span class="n">dt</span><span class="o">/</span><span class="n">_duration</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// 1_|</span>
+    <span class="c1">//   | /| /| /| /|....</span>
+    <span class="c1">// 0_|/ |/ |/ |/ |</span>
+
+    <span class="c1">// APPLY</span>
+    <span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">_offset</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">_animationPerc</span> <span class="o">*</span> <span class="n">_dist</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+The update line can be a bit confusing, but might make more sense when split up a bit more.
+</p>
+<div class="highlight"><pre><span></span><span class="n">_animationPerc</span> <span class="o">=</span> <span class="p">(</span><span class="n">_animationPerc</span> <span class="o">+</span> <span class="n">dt</span><span class="o">/</span><span class="n">_duration</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// Equilivent to (all of):</span>
+<span class="c1">// The change in how far we are through the animation.</span>
+<span class="kt">float</span> <span class="n">dPerc</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">/</span> <span class="n">_duration</span><span class="p">;</span>
+<span class="c1">// Added to _animationPerc</span>
+<span class="n">_animationPerc</span> <span class="o">+=</span> <span class="n">dPerc</span><span class="p">;</span>
+<span class="c1">// And wrap back to 0 if we're &gt; 1;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">_animationPerc</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">_animationPerc</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+
+<p>
+We're working out how much further we are through the animation (```dPerc```)
+which is our change it time divided by the duration of the animation. Say our
+animation is 2 seconds long, and 1 second just elapsed… We're now half-way
+further through than before.
+</p>
+
+<p>
+It might be helpful to think of the shape this variable (or all variables) make over time. A
+lot of these animations can be thought of as the <b>Apply</b> function reshaping the <b>State</b> variables.
+</p>
+
+
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/animation_perc.png" alt="animation_perc.png"></p>
+<p><span class="figure-number">Figure 1: </span>The shape of _animationPerc over time, where d is the duration of the animation, makes a sawtooth shape.</p>
 </div>
-<script> new BouncingBalls('balls1', 1, 1); </script><div class="figure">
-    <canvas id="balls2" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 3:</span> Bouncing balls</p>
+
+
+<p>
+In this example, our <b>Apply</b> function just scales the <b>State</b> by _dist. This is
+then the y offset of the ball for that frame, as shown in the animation above.
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"></p>
+<p><span class="figure-number">Figure 2: </span>Here, the input <b>State</b> (Blue), is scaled to give the ball's positional offset by the <b>Apply</b> function (Orange).</p>
 </div>
-<script> new BouncingBalls('balls2', 2, 1); </script><div class="figure">
-    <canvas id="balls3" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 4:</span> Bouncing balls</p>
 </div>
-<script> new BouncingBalls('balls3', 3, 1); </script><div class="figure">
+</div>
+
+
+<div id="outline-container-org5f17833" class="outline-2">
+<h2 id="org5f17833">Different Applications (heh)</h2>
+<div class="outline-text-2" id="text-org5f17833">
+<p>
+By just changing the <b>Apply</b> function here, we can get a variety of different
+movements. We can think of these movements as transformations of the origional
+<b>State</b> graph, since this is the only input.
+</p>
+
+<p>
+First lets move the ball up and down in wave like this…
+</p>
+
+<div class="figure">
+    <canvas id="balls1" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 2:</span> Wavey ball</p>
+</div>
+<script> new BouncingBalls('balls1', 1, 1); </script><p>
+Here, since \(sin(x)\) has a period of \(2*\pi\), we need to scale our state
+variable by that so it loops properly.
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"></p>
+<p><span class="figure-number">Figure 3: </span>Our state (Blue) compared to the wavey output of the ball (Orange) (Not to scale).</p>
+</div>
+
+<p>
+In code, this is as easy as:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="n">PI</span> <span class="o">*</span> <span class="n">_animationPerc</span><span class="p">);</span>
+</pre></div>
+
+<p>
+By doing this to both the x and y axis at the same time, offset by a bit, we can get a circle!
+</p>
+
+<div class="figure">
+    <canvas id="balls2" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 3:</span> Circles</p>
+</div>
+<script> new BouncingBalls('balls2', 2, 1); </script><p>
+Which, again, in code is just:
+</p>
+<div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
+<span class="n">ball</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="n">PI</span> <span class="o">*</span> <span class="n">_animationPerc</span><span class="p">);</span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="n">PI</span> <span class="o">*</span> <span class="n">_animationPerc</span><span class="p">);</span>
+<span class="c1">// NOTE Equilivent to: ball.y = sin(2 * Math.PI * _animationPerc + Math.PI);</span>
+</pre></div>
+
+<p>
+This idea can be taken much further, and leads to some really cool movements!
+The <a href="../https:/en.wikipedia.org/wiki/Lissajous_curve">Lissajous Curves</a> are created when you scale the x and y parts differently in
+a way very similar to above ^. That's a whole different blog post though!
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/1lissajous.gif" alt="1lissajous.gif" width="400px"></p>
+<p><span class="figure-number">Figure 4: </span>The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org43c85ba" class="outline-2">
+<h2 id="org43c85ba">Zigzag</h2>
+<div class="outline-text-2" id="text-org43c85ba">
+<p>
+This is a slighly harder example for the idea of manipulating function shapes.
+</p>
+
+<p>
+We start off with our input shape as before… And keeping in mind our goal output shape (to get
+the animation above).
+</p>
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/zigzag0.png" alt="zigzag0.png"></p>
+<p><span class="figure-number">Figure 5: </span>Input _animationPerc (Blue), compared to the shape we need (Orange).</p>
+</div>
+
+<p>
+We can perform several steps to transform it into the right shape… Scaling it
+up by 2 and moving it down by 1 (Orange). Then we can take the absolute value of
+this (Green).
+</p>
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/zigzag1.png" alt="zigzag1.png"></p>
+<p><span class="figure-number">Figure 6: </span>Input (Blue), scaled &amp; transformed (Orange), result (Green)</p>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
+<span class="kt">float</span> <span class="n">zigzag</span> <span class="o">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">_animationPerc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">zigzag</span> <span class="o">*</span> <span class="n">_dist</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div id="outline-container-org21b2ef9" class="outline-2">
+<h2 id="org21b2ef9">Bouncing balls</h2>
+<div class="outline-text-2" id="text-org21b2ef9">
+<p>
+In order to create a realistic bounce, we have to first construct the right
+shape function again. Without delving into the physics of it, we're looking for
+a Parabola: Some function of \(t^2\).
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/bounce0.png" alt="bounce0.png"></p>
+<p><span class="figure-number">Figure 7: </span>Input (Blue), vs bounce shape (Orange)</p>
+</div>
+
+<p>
+Interestingly, we can get this shape from our zigzag before, by applying an
+extra transformation: 1-zigzag<sup>2</sup>.
+</p>
+
+<div class="figure">
     <canvas id="balls4" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 5:</span> Bouncing balls</p>
 </div>
-<script> new BouncingBalls('balls4', 4, 1); </script><div class="figure">
+<script> new BouncingBalls('balls4', 4, 1); </script><div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
+<span class="kt">float</span> <span class="n">zigzag</span> <span class="o">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">_animationPerc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">zigzag</span><span class="o">*</span><span class="n">zigzag</span><span class="p">)</span> <span class="o">*</span> <span class="n">_dist</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org42aee83" class="outline-2">
+<h2 id="org42aee83">More Ideas</h2>
+<div class="outline-text-2" id="text-org42aee83">
+<p>
+We can clamp zigzag so it's 1 for some time, which means
+the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
+be an animation for a slime NPC?
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/procedural_anim/bounce1.png" alt="bounce1.png"></p>
+<p><span class="figure-number">Figure 8: </span>Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).</p>
+</div>
+
+<p>
+And how it looks animated…
+</p>
+
+<div class="figure">
     <canvas id="balls5" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 6:</span> Bouncing balls</p>
 </div>
-<script> new BouncingBalls('balls5', 5, 1); </script><div class="figure">
+<script> new BouncingBalls('balls5', 5, 1); </script><p>
+And also we can have loads of balls by just adding an offset for the <b>State</b>
+value to each one! With some polish this could maybe make a kind of snake creature for a game…
+</p>
+
+<div class="figure">
     <canvas id="balls6" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 7:</span> Bouncing balls</p>
 </div>
 <script> new BouncingBalls('balls6', 6, 10); </script>
 </div>
 </div>
+
+<div id="outline-container-org44304fd" class="outline-2">
+<h2 id="org44304fd">Other applications</h2>
+<div class="outline-text-2" id="text-org44304fd">
+<p>
+While here, I've only done animations by moving things, it's also possible to
+animate rotations, shaders, skeletons, and more with exactly the same ideas.
+</p>
+
+<p>
+Tune in for part 3 when I'll cover a more complicated idea: Using
+gradient descent for solving constraints in procedural animation (but with fun
+interactive animations!!).
+</p>
+</div>
+</div>
+
             
         
         <div data-title="Procedural Animation 2: Functions" id="isso-thread"></div>

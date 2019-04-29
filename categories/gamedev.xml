@@ -1,33 +1,322 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>im_oisin (Game Development)</title><link>https://imois.in/</link><description></description><atom:link type="application/rss+xml" href="https://imois.in/categories/gamedev.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Apr 2019 02:28:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org0d80914" class="outline-2"&gt;
-&lt;h2 id="org0d80914"&gt;Bouncing ball&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0d80914"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>im_oisin (Game Development)</title><link>https://imois.in/</link><description></description><atom:link type="application/rss+xml" href="https://imois.in/categories/gamedev.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 28 Apr 2019 22:32:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt;
+&lt;span class="n"&gt;matplotlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Agg'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"../images/procedural_anim/"&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;savePlt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;savefig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="c1"&gt;# return this to org-mode&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div id="outline-container-org23d75ce" class="outline-2"&gt;
+&lt;h2 id="org23d75ce"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org23d75ce"&gt;
+&lt;p&gt;
+In this second section, I wanted to talk about functions… And how to take simple
+movements and build more complex animations from them. Be warned: &lt;i&gt;Here be graphs&lt;/i&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+We'll be using the idea of &lt;b&gt;State&lt;/b&gt;, &lt;b&gt;Update&lt;/b&gt;, &lt;b&gt;Apply&lt;/b&gt; from &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt; here too. If
+you haven't read that, you might want to start there!
+[./procedural-animation-1-state-machines/][Part 1]] here too. If
+&lt;/p&gt;
+
+&lt;p&gt;
+And finally, all of the animations are running in javascript canvas, so you can open the
+source code in the inspector or find it on &lt;a href="https://imois.in/posts/https:/github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8cd428e" class="outline-2"&gt;
+&lt;h2 id="org8cd428e"&gt;Bouncing ball&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8cd428e"&gt;
+&lt;p&gt;
+How to make this?
+&lt;/p&gt;
+
 &lt;script src="https://imois.in/assets/js/procedural_animation/BouncingBalls.js"&gt;&lt;/script&gt;&lt;div class="figure"&gt;
-    &lt;canvas id="balls0" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+    &lt;canvas id="balls0" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Moving the ball&lt;/p&gt;
 &lt;/div&gt;
-&lt;script&gt; new BouncingBalls('balls0', 0, 1); &lt;/script&gt;&lt;div class="figure"&gt;
-    &lt;canvas id="balls1" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 2:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+&lt;script&gt; new BouncingBalls('balls0', 0, 1); &lt;/script&gt;&lt;p&gt;
+For the &lt;b&gt;State&lt;/b&gt;, we can just have a single number that varies from 0 to 1:
+The percentage through the animation we are so far.
+&lt;/p&gt;
+
+&lt;p&gt;
+This means our &lt;b&gt;Update&lt;/b&gt; can turn the elapsed time into a percentage value and
+add it to the &lt;b&gt;State&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+And our &lt;b&gt;Apply&lt;/b&gt; can move the ball based on the state variables, and draw it. For
+this, we only need to change the y coordinate:
+&lt;/p&gt;
+
+&lt;p&gt;
+y = state*k, where k a scaling value for how far the ball moves.
+&lt;/p&gt;
+
+
+&lt;p&gt;
+In code this looks like:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// CONFIG:&lt;/span&gt;
+&lt;span class="c1"&gt;// 'scale in time', length of animation&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;_duration&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;5.0f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;// 'scale in space', distance ball moves&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;40.0f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;// 'offset in space'&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;_offset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(..);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// STATE:&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// dt is the change in time.&lt;/span&gt;
+    &lt;span class="c1"&gt;// UPDATE state:&lt;/span&gt;
+    &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="c1"&gt;// 1_|&lt;/span&gt;
+    &lt;span class="c1"&gt;//   | /| /| /| /|....&lt;/span&gt;
+    &lt;span class="c1"&gt;// 0_|/ |/ |/ |/ |&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// APPLY&lt;/span&gt;
+    &lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_offset&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+The update line can be a bit confusing, but might make more sense when split up a bit more.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Equilivent to (all of):&lt;/span&gt;
+&lt;span class="c1"&gt;// The change in how far we are through the animation.&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;dPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;// Added to _animationPerc&lt;/span&gt;
+&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;dPerc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;// And wrap back to 0 if we're &amp;gt; 1;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+We're working out how much further we are through the animation (```dPerc```)
+which is our change it time divided by the duration of the animation. Say our
+animation is 2 seconds long, and 1 second just elapsed… We're now half-way
+further through than before.
+&lt;/p&gt;
+
+&lt;p&gt;
+It might be helpful to think of the shape this variable (or all variables) make over time. A
+lot of these animations can be thought of as the &lt;b&gt;Apply&lt;/b&gt; function reshaping the &lt;b&gt;State&lt;/b&gt; variables.
+&lt;/p&gt;
+
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/animation_perc.png" alt="animation_perc.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The shape of _animationPerc over time, where d is the duration of the animation, makes a sawtooth shape.&lt;/p&gt;
 &lt;/div&gt;
-&lt;script&gt; new BouncingBalls('balls1', 1, 1); &lt;/script&gt;&lt;div class="figure"&gt;
-    &lt;canvas id="balls2" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 3:&lt;/span&gt; Bouncing balls&lt;/p&gt;
+
+
+&lt;p&gt;
+In this example, our &lt;b&gt;Apply&lt;/b&gt; function just scales the &lt;b&gt;State&lt;/b&gt; by _dist. This is
+then the y offset of the ball for that frame, as shown in the animation above.
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;Here, the input &lt;b&gt;State&lt;/b&gt; (Blue), is scaled to give the ball's positional offset by the &lt;b&gt;Apply&lt;/b&gt; function (Orange).&lt;/p&gt;
 &lt;/div&gt;
-&lt;script&gt; new BouncingBalls('balls2', 2, 1); &lt;/script&gt;&lt;div class="figure"&gt;
-    &lt;canvas id="balls3" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 4:&lt;/span&gt; Bouncing balls&lt;/p&gt;
 &lt;/div&gt;
-&lt;script&gt; new BouncingBalls('balls3', 3, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org5f17833" class="outline-2"&gt;
+&lt;h2 id="org5f17833"&gt;Different Applications (heh)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5f17833"&gt;
+&lt;p&gt;
+By just changing the &lt;b&gt;Apply&lt;/b&gt; function here, we can get a variety of different
+movements. We can think of these movements as transformations of the origional
+&lt;b&gt;State&lt;/b&gt; graph, since this is the only input.
+&lt;/p&gt;
+
+&lt;p&gt;
+First lets move the ball up and down in wave like this…
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;canvas id="balls1" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 2:&lt;/span&gt; Wavey ball&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls1', 1, 1); &lt;/script&gt;&lt;p&gt;
+Here, since \(sin(x)\) has a period of \(2*\pi\), we need to scale our state
+variable by that so it loops properly.
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;Our state (Blue) compared to the wavey output of the ball (Orange) (Not to scale).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+In code, this is as easy as:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+By doing this to both the x and y axis at the same time, offset by a bit, we can get a circle!
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;canvas id="balls2" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 3:&lt;/span&gt; Circles&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt; new BouncingBalls('balls2', 2, 1); &lt;/script&gt;&lt;p&gt;
+Which, again, in code is just:
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;// NOTE Equilivent to: ball.y = sin(2 * Math.PI * _animationPerc + Math.PI);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+This idea can be taken much further, and leads to some really cool movements!
+The &lt;a href="https://imois.in/posts/https:/en.wikipedia.org/wiki/Lissajous_curve"&gt;Lissajous Curves&lt;/a&gt; are created when you scale the x and y parts differently in
+a way very similar to above ^. That's a whole different blog post though!
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/1lissajous.gif" alt="1lissajous.gif" width="400px"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org43c85ba" class="outline-2"&gt;
+&lt;h2 id="org43c85ba"&gt;Zigzag&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org43c85ba"&gt;
+&lt;p&gt;
+This is a slighly harder example for the idea of manipulating function shapes.
+&lt;/p&gt;
+
+&lt;p&gt;
+We start off with our input shape as before… And keeping in mind our goal output shape (to get
+the animation above).
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/zigzag0.png" alt="zigzag0.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 5: &lt;/span&gt;Input _animationPerc (Blue), compared to the shape we need (Orange).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+We can perform several steps to transform it into the right shape… Scaling it
+up by 2 and moving it down by 1 (Orange). Then we can take the absolute value of
+this (Green).
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/zigzag1.png" alt="zigzag1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;Input (Blue), scaled &amp;amp; transformed (Orange), result (Green)&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;zigzag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mathf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;zigzag&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org21b2ef9" class="outline-2"&gt;
+&lt;h2 id="org21b2ef9"&gt;Bouncing balls&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org21b2ef9"&gt;
+&lt;p&gt;
+In order to create a realistic bounce, we have to first construct the right
+shape function again. Without delving into the physics of it, we're looking for
+a Parabola: Some function of \(t^2\).
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/bounce0.png" alt="bounce0.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 7: &lt;/span&gt;Input (Blue), vs bounce shape (Orange)&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Interestingly, we can get this shape from our zigzag before, by applying an
+extra transformation: 1-zigzag&lt;sup&gt;2&lt;/sup&gt;.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
     &lt;canvas id="balls4" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 5:&lt;/span&gt; Bouncing balls&lt;/p&gt;
 &lt;/div&gt;
-&lt;script&gt; new BouncingBalls('balls4', 4, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+&lt;script&gt; new BouncingBalls('balls4', 4, 1); &lt;/script&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;zigzag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mathf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org42aee83" class="outline-2"&gt;
+&lt;h2 id="org42aee83"&gt;More Ideas&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org42aee83"&gt;
+&lt;p&gt;
+We can clamp zigzag so it's 1 for some time, which means
+the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
+be an animation for a slime NPC?
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/bounce1.png" alt="bounce1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 8: &lt;/span&gt;Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+And how it looks animated…
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
     &lt;canvas id="balls5" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 6:&lt;/span&gt; Bouncing balls&lt;/p&gt;
 &lt;/div&gt;
-&lt;script&gt; new BouncingBalls('balls5', 5, 1); &lt;/script&gt;&lt;div class="figure"&gt;
+&lt;script&gt; new BouncingBalls('balls5', 5, 1); &lt;/script&gt;&lt;p&gt;
+And also we can have loads of balls by just adding an offset for the &lt;b&gt;State&lt;/b&gt;
+value to each one! With some polish this could maybe make a kind of snake creature for a game…
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
     &lt;canvas id="balls6" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 7:&lt;/span&gt; Bouncing balls&lt;/p&gt;
 &lt;/div&gt;
 &lt;script&gt; new BouncingBalls('balls6', 6, 10); &lt;/script&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Fri, 26 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7d571af" class="outline-2"&gt;
-&lt;h2 id="org7d571af"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7d571af"&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org44304fd" class="outline-2"&gt;
+&lt;h2 id="org44304fd"&gt;Other applications&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org44304fd"&gt;
+&lt;p&gt;
+While here, I've only done animations by moving things, it's also possible to
+animate rotations, shaders, skeletons, and more with exactly the same ideas.
+&lt;/p&gt;
+
+&lt;p&gt;
+Tune in for part 3 when I'll cover a more complicated idea: Using
+gradient descent for solving constraints in procedural animation (but with fun
+interactive animations!!).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Fri, 26 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgbb83b1c" class="outline-2"&gt;
+&lt;h2 id="orgbb83b1c"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbb83b1c"&gt;
 &lt;p&gt;
 This is the first in a 3 part series on procedural animation, all taken from a talk
 I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
@@ -37,17 +326,22 @@ the animations interactive where possible!
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;This first post justifies and covers a general mentality I have for working on
 procedural animations, and applies it to a simple example.&lt;/li&gt;
-&lt;li&gt;The second post gives a more powerful and harder tool - talking about function
+&lt;li&gt;
+&lt;a href="https://imois.in/posts/procedural-animation-2-functions/"&gt;The second post&lt;/a&gt; gives a more powerful and harder tool - talking about function
 shapes, and how you can build more complex behavour by combining simple movements.&lt;/li&gt;
-&lt;li&gt;The third and final post covers inverse kinematics, and generally how to
+&lt;li&gt;The third and final post (coming soon) covers inverse kinematics, and generally how to
 approximate solutions much harder problems using gradient descent.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;
+All of the animations are running in javascript canvas, so you can open the
+source code in the inspector or find it on &lt;a href="https://imois.in/posts/https:/github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
+&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgaa09f1c" class="outline-2"&gt;
-&lt;h2 id="orgaa09f1c"&gt;Differences vs traditional animation.&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgaa09f1c"&gt;
+&lt;div id="outline-container-org6bfc7c0" class="outline-2"&gt;
+&lt;h2 id="org6bfc7c0"&gt;Differences vs traditional animation.&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6bfc7c0"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Advantages:
 &lt;ul class="org-ul"&gt;
@@ -70,9 +364,9 @@ Simulate large numbers easily.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org687f7f0" class="outline-2"&gt;
-&lt;h2 id="org687f7f0"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org687f7f0"&gt;
+&lt;div id="outline-container-org07993b6" class="outline-2"&gt;
+&lt;h2 id="org07993b6"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org07993b6"&gt;
 &lt;p&gt;
 This is the core of how I approach these animations. I find it's helpful to try
 and break down the system into 3 parts - State, Update, and Apply. These
@@ -115,9 +409,9 @@ Anyway… Lets look at an example!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb8ba2c0" class="outline-2"&gt;
-&lt;h2 id="orgb8ba2c0"&gt;Example: Light&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb8ba2c0"&gt;
+&lt;div id="outline-container-org264d289" class="outline-2"&gt;
+&lt;h2 id="org264d289"&gt;Example: Light&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org264d289"&gt;
 &lt;p&gt;
 State machines are one of the simplest forms of procedural animation. The idea
 is there is a single 'state' we're in, and also a set of
@@ -146,7 +440,7 @@ probabilities.
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://imois.in/images/light_state.png" alt="light_state.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/light_state.png" alt="light_state.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Light state diagram&lt;/p&gt;
 &lt;/div&gt;
 
