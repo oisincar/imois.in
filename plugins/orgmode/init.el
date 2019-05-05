@@ -127,3 +127,13 @@ specified location."
     (org-macro-replace-all nikola-macro-templates)
     (org-html-export-as-html nil nil t t)
     (write-file outfile nil)))
+
+;; Config for inline-js blocks, which are executed to wrap em in script tags.
+(add-to-list 'org-src-lang-modes '("inline-js" . javascript)) ;; js2 if you're fancy
+(defvar org-babel-default-header-args:inline-js
+  '((:results . "html")
+    (:exports . "results")))
+(defun org-babel-execute:inline-js (body _params)
+  (format "<script type=\"text/javascript\">\n%s\n</script>" body))
+
+(setq org-confirm-babel-evaluate nil)
