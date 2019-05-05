@@ -5,16 +5,17 @@
 <meta name="description" content="Building complex movement from simple components.">
 <meta name="viewport" content="width=device-width">
 <title>Procedural Animation 2: Functions | im_oisin</title>
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://imois.in/posts/procedural-animation-2-functions/">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Oisin Carroll">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
 <meta property="og:title" content="Procedural Animation 2: Functions">
 <meta property="og:url" content="https://imois.in/posts/procedural-animation-2-functions/">
 <meta property="og:description" content="Building complex movement from simple components.">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2019-04-27T00:00:48+01:00">
+<meta property="article:published_time" content="2019-04-28T00:00:48+01:00">
 <meta property="article:tag" content="animation">
 <meta property="article:tag" content="gamedev">
 <meta property="article:tag" content="programming">
@@ -63,7 +64,7 @@
       <div class="container">
 	<div class="meta clearfix">
 	  <div class="authordate">
-	    <time class="timeago" datetime="2019-04-27T00:00:48+01:00">2019/04/27</time>
+	    <time class="timeago" datetime="2019-04-28T00:00:48+01:00">2019/04/28</time>
 	    
 
 	    
@@ -89,21 +90,9 @@
 
     <div id="post-main" class="main">
         <div class="container">
-        <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'Agg'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="n">path</span> <span class="o">=</span> <span class="s2">"../images/procedural_anim/"</span>
-
-<span class="k">def</span> <span class="nf">savePlt</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">path</span><span class="o">+</span><span class="n">filename</span> <span class="c1"># return this to org-mode</span>
-</pre></div>
-
-<div id="outline-container-org23d75ce" class="outline-2">
-<h2 id="org23d75ce">Intro</h2>
-<div class="outline-text-2" id="text-org23d75ce">
+        <div id="outline-container-org8ca987b" class="outline-2">
+<h2 id="org8ca987b">Intro</h2>
+<div class="outline-text-2" id="text-org8ca987b">
 <p>
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: <i>Here be graphs</i>.
@@ -122,9 +111,9 @@ source code in the inspector or find it on <a href="../https:/github.com/oisinca
 </div>
 </div>
 
-<div id="outline-container-org8cd428e" class="outline-2">
-<h2 id="org8cd428e">Bouncing ball</h2>
-<div class="outline-text-2" id="text-org8cd428e">
+<div id="outline-container-orge6b7a83" class="outline-2">
+<h2 id="orge6b7a83">Bouncing ball</h2>
+<div class="outline-text-2" id="text-orge6b7a83">
 <p>
 How to make this?
 </p>
@@ -227,9 +216,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 </div>
 
 
-<div id="outline-container-org5f17833" class="outline-2">
-<h2 id="org5f17833">Different Applications (heh)</h2>
-<div class="outline-text-2" id="text-org5f17833">
+<div id="outline-container-org53cfa07" class="outline-2">
+<h2 id="org53cfa07">Different Applications (heh)</h2>
+<div class="outline-text-2" id="text-org53cfa07">
 <p>
 By just changing the <b>Apply</b> function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -291,9 +280,9 @@ a way very similar to above ^. That's a whole different blog post though!
 </div>
 </div>
 
-<div id="outline-container-org43c85ba" class="outline-2">
-<h2 id="org43c85ba">Zigzag</h2>
-<div class="outline-text-2" id="text-org43c85ba">
+<div id="outline-container-org8a48cff" class="outline-2">
+<h2 id="org8a48cff">Zigzag</h2>
+<div class="outline-text-2" id="text-org8a48cff">
 <p>
 This is a slighly harder example for the idea of manipulating function shapes.
 </p>
@@ -325,9 +314,9 @@ this (Green).
 </pre></div>
 </div>
 </div>
-<div id="outline-container-org21b2ef9" class="outline-2">
-<h2 id="org21b2ef9">Bouncing balls</h2>
-<div class="outline-text-2" id="text-org21b2ef9">
+<div id="outline-container-org20d92d8" class="outline-2">
+<h2 id="org20d92d8">Bouncing balls</h2>
+<div class="outline-text-2" id="text-org20d92d8">
 <p>
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -355,9 +344,9 @@ extra transformation: 1-zigzag<sup>2</sup>.
 </div>
 </div>
 
-<div id="outline-container-org42aee83" class="outline-2">
-<h2 id="org42aee83">More Ideas</h2>
-<div class="outline-text-2" id="text-org42aee83">
+<div id="outline-container-org99e192d" class="outline-2">
+<h2 id="org99e192d">More Ideas</h2>
+<div class="outline-text-2" id="text-org99e192d">
 <p>
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -389,9 +378,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 </div>
 </div>
 
-<div id="outline-container-org44304fd" class="outline-2">
-<h2 id="org44304fd">Other applications</h2>
-<div class="outline-text-2" id="text-org44304fd">
+<div id="outline-container-org567db22" class="outline-2">
+<h2 id="org567db22">Other applications</h2>
+<div class="outline-text-2" id="text-org567db22">
 <p>
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.

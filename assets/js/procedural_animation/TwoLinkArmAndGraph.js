@@ -23,6 +23,8 @@ class TwoLinkArmAndGraph {
         armC.addArm(arm);
 
         this.arm = arm;
+
+        // Create graph and bind arm to it.
         this.graph = new DistanceGraph(document.getElementById('mygraph'),
                                        arm.getAngle(0),
                                        arm.getAngle(1),

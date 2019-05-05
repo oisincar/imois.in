@@ -1,19 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link type="application/rss+xml" href="https://imois.in/categories/programming.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 28 Apr 2019 22:32:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt;
-&lt;span class="n"&gt;matplotlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Agg'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link rel="self" href="https://imois.in/categories/programming.xml" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 05 May 2019 03:26:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orga5f6ea5" class="outline-2"&gt;
+&lt;h2 id="orga5f6ea5"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga5f6ea5"&gt;
+&lt;script src="http://visjs.org/dist/vis.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;p&gt;
+In this second section, we'll cover how to solve harder problems that don't
+necessarily have a single solution, or ones that have solutions that can't be
+written as an equation of known variables.
+&lt;/p&gt;
 
-&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"../images/procedural_anim/"&lt;/span&gt;
+&lt;p&gt;
+We'll be using the idea of &lt;b&gt;State&lt;/b&gt;, &lt;b&gt;Update&lt;/b&gt;, &lt;b&gt;Apply&lt;/b&gt; from &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt; here too. If
+you haven't read that, you might want to start there!
+&lt;/p&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;savePlt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;savefig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="c1"&gt;# return this to org-mode&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+You might also want to check out &lt;a href="https://imois.in/posts/procedural-animation-2-functions"&gt;Part 2&lt;/a&gt;, where we went over how to build up more
+complex movement by combining functions of state.
+&lt;/p&gt;
 
-&lt;div id="outline-container-org23d75ce" class="outline-2"&gt;
-&lt;h2 id="org23d75ce"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org23d75ce"&gt;
+&lt;p&gt;
+And finally, all of the (interactive!) animations here are running in javascript canvas, so you can open the
+source code in the inspector or find it on &lt;a href="https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgab4a00d" class="outline-2"&gt;
+&lt;h2 id="orgab4a00d"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgab4a00d"&gt;
+&lt;p&gt;
+These tenticles/ arms/ vines might make a fun enemy or background in a game, but
+also demonstrate an idea that can be used to solve all kinds of problems! The
+same idea (gradient descent) is the backbone of all modern AI… And all you
+need to understand it is a basic knowledge of derivitives.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="intro-demo-arms" class="light_border" width="400" height="300"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Reaching arms with 20 and 100 segments. Drag to move the ball!&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+class GradientDescentLongChain {
+
+    constructor(id) {
+        var self = this;
+
+        var armC = new ArmCanvas(
+            document.getElementById(id),
+            function(){self.finished = false;});
+
+        this.arm = new Arm(20, 300, -250);
+        this.arm2 = new Arm(100, 100, -50);
+
+        armC.addArm(this.arm);
+        armC.addArm(this.arm2);
+
+        // Double arm length
+        this.arm._lengths = this.arm._lengths.map(function(x) { return x*1.7; });
+        this.arm2._angles = this.arm2._angles.map(function(x) { return 0; });
+
+        var doUpdate = true;
+        if (doUpdate)
+            setInterval(function() { self.update(); }, self.interval);
+    }
+
+    improve(arm) {
+        // var grads = this.arm.calculateCurrentGradients();
+        var grads = arm.calculateCurrentGradientsSq();
+
+        // Update arm angles!
+        for (var i = 0; i &lt; grads.length; i++) {
+            arm.changeAngle(i, -grads[i]*0.00001);
+        }
+
+        // If we're now close enough, don't update til we have to again.
+        if (arm.getCurrentError() &lt; 0.05) {
+            return true;
+        }
+        return false;
+    }
+
+    update() {
+        // Only do stuff if we're not already at the target.
+        if (!this.finished) {
+            // Finished if both arms are finished
+            var a1 = this.improve(this.arm);
+            var a2 = this.improve(this.arm2);
+            this.finished = a1 &amp;&amp; a2;
+        }
+    }
+}
+
+var b = new GradientDescentLongChain('intro-demo-arms');
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org71f3e00" class="outline-2"&gt;
+&lt;h2 id="org71f3e00"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org71f3e00"&gt;
+&lt;p&gt;
+Generally, (and according to google) kinematics is a branch of mechanics that
+deals with the features or properties of the motion of an object. It's often
+refered to as the "Geometry of Motion". For charachter animation, we usually
+deal with Kinematics of Simple Chains - or limbs…
+&lt;/p&gt;
+
+&lt;p&gt;
+For a given arm, &lt;b&gt;Forward Kinematics&lt;/b&gt; is working out where the hand (or end) is
+in space given the angles between the shoulder, and upper and lower arms. The
+opposite of this, called &lt;b&gt;Inverse Kinematics&lt;/b&gt; (IK), is where you have a fixed
+target point and instead want to choose the same angles so the hand is as close
+to it as possible.
+&lt;/p&gt;
+
+&lt;dl class="org-dl"&gt;
+&lt;dt&gt;&lt;b&gt;Forward Kinematics:&lt;/b&gt;&lt;/dt&gt;
+&lt;dd&gt;Your upper arm is at \(\alpha\) to your torso, and your
+upper arm is \(\beta\) to your lower arm, where is your hand?&lt;/dd&gt;
+
+&lt;dt&gt;&lt;b&gt;Inverse Kinematics:&lt;/b&gt;&lt;/dt&gt;
+&lt;dd&gt;You want to reach for a ball infront of you, what
+angles should you have at your shoulder and elbow?&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;
+We're going to look at the second one. Inverse Kinematics are used for all kinds
+of charachter animation, robotics, and predicting people's location in VR. It'd
+be pretty useful to have a way to solve it!
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;span class="align_all"&gt;
+        &lt;div&gt;
+            &lt;!-- Arm --&gt;
+            &lt;canvas id="twolinkarmandgraph" class="light_border" width="400" height="300"&gt;
+                Your browser doesn't support html5 canvas :c.
+            &lt;/canvas&gt;&lt;!-- Sliders --&gt;&lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Shoulder Angle (a)&lt;/span&gt;
+                &lt;span id="ang1" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="ang1val" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+
+            &lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Elbow Angle (b)&lt;/span&gt;
+                &lt;span id="ang2" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="ang2val" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/span&gt;
+    &lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; The problem: Trying to reach for the ball by changing the angles of both joints. How can we find these angles?&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+{
+    function UpdateGraph() {}
+    // Create an arm in that space
+    var armC = new ArmCanvas(document.getElementById('twolinkarmandgraph'), UpdateGraph);
+    armC.targetX = 27;
+    armC.targetY = 13;
+
+    var arm = new Arm(2);
+    armC.addArm(arm);
+
+    this.arm = arm;
+
+    // slider
+    $("#ang1").slider({
+        min: 0,
+        max: 180,
+        values: [arm.getAngle(0)],
+        slide: function(event, ui) {
+            $("#ang1val").text(ui.values[0] + "°")
+            arm.setAngle(0, ui.values[0]);
+        }
+    });
+    $("#ang1val").text(arm.getAngle(0) + "°");
+
+    $("#ang2").slider({
+        min: -160,
+        max: 160,
+        values: [arm.getAngle(1)],
+        slide: function(event, ui) {
+            $("#ang2val").text(ui.values[0] + "°");
+            arm.setAngle(1, ui.values[0]);
+        }
+    });
+    $("#ang2val").text(arm.getAngle(1) + "°");
+}
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org59a88fd" class="outline-2"&gt;
+&lt;h2 id="org59a88fd"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org59a88fd"&gt;
+&lt;p&gt;
+For the 2D case, and when there's two joints in the arm, there are (usually) two solutions - an
+'elbows up' position, and an 'elbows down' one.
+&lt;/p&gt;
+
+&lt;p&gt;
+Unfortunately if the target is
+too far away there is no way to reach, and similarly if the upper and lower
+arms are different lengths, then there's also no solution.
+&lt;/p&gt;
+
+&lt;p&gt;
+It's possible to work out these two angles with coordinate geometry or a bit of
+trig, as long as you have the lengths of both arm segments and the target
+location. However, as there's a million other gamedev sites, robotics courses,
+and random medium posts, I'll won't explain it here again. It is a fun problem
+though! I'd recommend giving it a go - it's hard to spot but doesn't require any
+hard maths.
+&lt;/p&gt;
+
+&lt;p&gt;
+TODO: Link src…
+&lt;/p&gt;
+
+&lt;p&gt;
+It's also worth noting problems and limbs in 3D can be solved using the same 2D algorithm
+with one trick: An 'elbow target'. We add a point that, given the choice, the
+elbow will be as near to as possible. This (interestingly) causes all 5 points: Shoulder, Elbow,
+Hand, Hand Target, and Elbow Target to all lie in the same plane. We can take
+the plane defined by the fixed points: Shoulder, Hand Target, and Elbow Target
+and solve the problem in 2d on that plane. This is how a lot of kinematics in
+games is done.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5008e07" class="outline-2"&gt;
+&lt;h2 id="org5008e07"&gt;Harder problems?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5008e07"&gt;
+&lt;p&gt;
+It's not possible to solve harder problems using the same idea however, if you
+add an extra segment to the arm there suddenly isn't a way to find solutions.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Sun, 05 May 2019 00:00:50 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ca987b" class="outline-2"&gt;
+&lt;h2 id="org8ca987b"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8ca987b"&gt;
 &lt;p&gt;
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: &lt;i&gt;Here be graphs&lt;/i&gt;.
@@ -32,9 +261,9 @@ source code in the inspector or find it on &lt;a href="https://imois.in/posts/ht
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8cd428e" class="outline-2"&gt;
-&lt;h2 id="org8cd428e"&gt;Bouncing ball&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8cd428e"&gt;
+&lt;div id="outline-container-orge6b7a83" class="outline-2"&gt;
+&lt;h2 id="orge6b7a83"&gt;Bouncing ball&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge6b7a83"&gt;
 &lt;p&gt;
 How to make this?
 &lt;/p&gt;
@@ -137,9 +366,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org5f17833" class="outline-2"&gt;
-&lt;h2 id="org5f17833"&gt;Different Applications (heh)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5f17833"&gt;
+&lt;div id="outline-container-org53cfa07" class="outline-2"&gt;
+&lt;h2 id="org53cfa07"&gt;Different Applications (heh)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org53cfa07"&gt;
 &lt;p&gt;
 By just changing the &lt;b&gt;Apply&lt;/b&gt; function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -201,9 +430,9 @@ a way very similar to above ^. That's a whole different blog post though!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org43c85ba" class="outline-2"&gt;
-&lt;h2 id="org43c85ba"&gt;Zigzag&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org43c85ba"&gt;
+&lt;div id="outline-container-org8a48cff" class="outline-2"&gt;
+&lt;h2 id="org8a48cff"&gt;Zigzag&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8a48cff"&gt;
 &lt;p&gt;
 This is a slighly harder example for the idea of manipulating function shapes.
 &lt;/p&gt;
@@ -235,9 +464,9 @@ this (Green).
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org21b2ef9" class="outline-2"&gt;
-&lt;h2 id="org21b2ef9"&gt;Bouncing balls&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org21b2ef9"&gt;
+&lt;div id="outline-container-org20d92d8" class="outline-2"&gt;
+&lt;h2 id="org20d92d8"&gt;Bouncing balls&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org20d92d8"&gt;
 &lt;p&gt;
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -265,9 +494,9 @@ extra transformation: 1-zigzag&lt;sup&gt;2&lt;/sup&gt;.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org42aee83" class="outline-2"&gt;
-&lt;h2 id="org42aee83"&gt;More Ideas&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org42aee83"&gt;
+&lt;div id="outline-container-org99e192d" class="outline-2"&gt;
+&lt;h2 id="org99e192d"&gt;More Ideas&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org99e192d"&gt;
 &lt;p&gt;
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -299,9 +528,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org44304fd" class="outline-2"&gt;
-&lt;h2 id="org44304fd"&gt;Other applications&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org44304fd"&gt;
+&lt;div id="outline-container-org567db22" class="outline-2"&gt;
+&lt;h2 id="org567db22"&gt;Other applications&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org567db22"&gt;
 &lt;p&gt;
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.
@@ -314,7 +543,7 @@ interactive animations!!).
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Fri, 26 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgbb83b1c" class="outline-2"&gt;
+</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Sat, 27 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgbb83b1c" class="outline-2"&gt;
 &lt;h2 id="orgbb83b1c"&gt;Intro&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgbb83b1c"&gt;
 &lt;p&gt;
