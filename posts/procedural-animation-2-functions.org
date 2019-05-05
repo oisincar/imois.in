@@ -1,7 +1,7 @@
 #+BEGIN_COMMENT
 .. title: Procedural Animation 2: Functions
 .. slug: procedural-animation-2-functions
-.. date: 2019-04-27 00:00:48 UTC+01:00
+.. date: 2019-04-28 00:00:48 UTC+01:00
 .. tags: animation, programming, gamedev
 .. category:
 .. link:
@@ -10,7 +10,7 @@
 .. type: text
 #+END_COMMENT
 
-#+BEGIN_SRC python :session :results file
+#+BEGIN_SRC python :session :results file :exports none
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
