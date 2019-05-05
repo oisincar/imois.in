@@ -26,8 +26,6 @@ lang="${lang}">
     %endif
     <meta name="viewport" content="width=device-width">
     <title>${title|striphtml} | ${blog_title|striphtml}</title>
-
-    ${html_stylesheets()}
     ${html_feedlinks()}
     %if permalink:
       <link rel="canonical" href="${abs_link(permalink)}">
@@ -58,6 +56,7 @@ lang="${lang}">
     %endif
 
     ${extra_head_data}
+    ${html_stylesheets()}
 </%def>
 
 <%def name="html_stylesheets()">
