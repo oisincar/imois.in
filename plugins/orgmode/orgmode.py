@@ -129,7 +129,10 @@ class CompileOrgmode(PageCompiler):
         doc = lxml.html.document_fromstring(html, parser)
     
         def adjust_pretty_url(url):
-            return '../%s' % url
+            if url.startswith('http'):
+                return url
+            else:
+                return '../%s' % url
     
         doc.rewrite_links(adjust_pretty_url, resolve_base_href=False)
         html = lxml.html.tostring(doc, encoding='utf8', method='html', pretty_print=True, doctype='<!DOCTYPE html>')
