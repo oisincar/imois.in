@@ -131,3 +131,10 @@
   left: 0;
   width: 6px;
 }
+
+.org-center {
+  text-align: center;
+}
+.org-center p {
+  margin-top: -20px;
+}
