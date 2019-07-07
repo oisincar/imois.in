@@ -64,7 +64,7 @@ Anyway... Lets look at an example!
 State machines are one of the simplest forms of procedural animation. The idea
 is there is a single 'state' we're in, and also a set of
 rules for why/ when we change state. State machines are often used in game AI -
-where states might be { *Defend*, *Rush*, *Flank* }, or for a charachter: { *Falling*,
+where states might be { *Defend*, *Rush*, *Flank* }, or for a character: { *Falling*,
 *Walking*, *Sprinting*, *Attacking* }.
 
 Here we've just got a light, our *State* is one of: { *On*, *Off* }.

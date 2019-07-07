@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link rel="self" type="application/rss+xml" href="https://imois.in/rss.xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 07 May 2019 02:08:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgf7acc25" class="outline-2"&gt;
-&lt;h2 id="orgf7acc25"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf7acc25"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 07 Jul 2019 22:11:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7e66151" class="outline-2"&gt;
+&lt;h2 id="org7e66151"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7e66151"&gt;
 &lt;p&gt;
 At EJC last year (2018), I came across Jack Boyce's siteswap questions, which
 can be found &lt;a href="http://www.juggling.org/help/siteswap/tests/test-boyce.html"&gt;HERE!&lt;/a&gt; I'd highly recommend giving them a go. They start off doable,
@@ -22,9 +22,9 @@ it up and posting it now… 9 months later.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org761a9c9" class="outline-2"&gt;
-&lt;h2 id="org761a9c9"&gt;q1&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org761a9c9"&gt;
+&lt;div id="outline-container-orgb6ef169" class="outline-2"&gt;
+&lt;h2 id="orgb6ef169"&gt;q1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb6ef169"&gt;
 &lt;p&gt;
 &lt;i&gt;I am juggling \(868671\) with clubs (yeah, right).  How many do I have?&lt;/i&gt;
 &lt;/p&gt;
@@ -43,9 +43,9 @@ Answer: 6
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf5bb255" class="outline-2"&gt;
-&lt;h2 id="orgf5bb255"&gt;q2&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf5bb255"&gt;
+&lt;div id="outline-container-org1f3a068" class="outline-2"&gt;
+&lt;h2 id="org1f3a068"&gt;q2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1f3a068"&gt;
 &lt;p&gt;
 &lt;i&gt;I have a bowling ball that I can only throw as a site swap '\(3\)' throw. Which&lt;/i&gt;
 &lt;i&gt;of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:&lt;/i&gt;
@@ -68,9 +68,9 @@ This is only c).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgda2252c" class="outline-2"&gt;
-&lt;h2 id="orgda2252c"&gt;q3&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgda2252c"&gt;
+&lt;div id="outline-container-org38deda5" class="outline-2"&gt;
+&lt;h2 id="org38deda5"&gt;q3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org38deda5"&gt;
 &lt;p&gt;
 &lt;i&gt;You are doing a 4 ball fountain and decide you want to switch into&lt;/i&gt;
 &lt;i&gt;741, an excited state site swap.  You can't just start throwing:&lt;/i&gt;
@@ -104,9 +104,9 @@ away from the base state.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgee7350b" class="outline-2"&gt;
-&lt;h2 id="orgee7350b"&gt;q4&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgee7350b"&gt;
+&lt;div id="outline-container-org05b9752" class="outline-2"&gt;
+&lt;h2 id="org05b9752"&gt;q4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org05b9752"&gt;
 &lt;p&gt;
 &lt;i&gt;You want to get back into the fountain, from 741.  What is the&lt;/i&gt;
 &lt;i&gt;shortest connecting (ending) sequence in this direction?&lt;/i&gt;
@@ -126,9 +126,9 @@ into and out of any siteswap must be, itself, a valid (ground state) pattern.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga1cd3b3" class="outline-2"&gt;
-&lt;h2 id="orga1cd3b3"&gt;q5&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga1cd3b3"&gt;
+&lt;div id="outline-container-orga509070" class="outline-2"&gt;
+&lt;h2 id="orga509070"&gt;q5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga509070"&gt;
 &lt;p&gt;
 &lt;i&gt;Go from the 4 ball fountain to 714.  What are the shortest&lt;/i&gt;
 &lt;i&gt;connecting sequences (both directions)?&lt;/i&gt;
@@ -172,9 +172,9 @@ will work because \(552\) and \(642\) are valid siteswaps.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgb89e13f" class="outline-2"&gt;
-&lt;h2 id="orgb89e13f"&gt;q6&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb89e13f"&gt;
+&lt;div id="outline-container-orgaeb2c34" class="outline-2"&gt;
+&lt;h2 id="orgaeb2c34"&gt;q6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgaeb2c34"&gt;
 &lt;p&gt;
 &lt;i&gt;You are already doing \(741\) and want to switch directly into \(714\).&lt;/i&gt;
 &lt;i&gt;What is the shortest sequence for doing so?  [You could just&lt;/i&gt;
@@ -195,9 +195,9 @@ an extra \(5\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9fb63cf" class="outline-2"&gt;
-&lt;h2 id="org9fb63cf"&gt;q7&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9fb63cf"&gt;
+&lt;div id="outline-container-org4f51a0c" class="outline-2"&gt;
+&lt;h2 id="org4f51a0c"&gt;q7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4f51a0c"&gt;
 &lt;p&gt;
 &lt;i&gt;Is the trick \(66671777161\) simple?  If not, which portion of the&lt;/i&gt;
 &lt;i&gt;pattern can be repeated within the larger trick?&lt;/i&gt;
@@ -263,9 +263,9 @@ Then, we can get the tables for both siteswaps we're interested in.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9d9ca02" class="outline-3"&gt;
-&lt;h3 id="org9d9ca02"&gt;66671777161&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org9d9ca02"&gt;
+&lt;div id="outline-container-org613677c" class="outline-3"&gt;
+&lt;h3 id="org613677c"&gt;66671777161&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org613677c"&gt;
 &lt;p&gt;
 Here, there are two states that occur more than once. I've marked the pairs here
 as a and b. This means you can juggle the patterns between the As (I.e. 6671,
@@ -288,9 +288,9 @@ and 7771616), and Bs (717771, and 61666)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org465e2e9" class="outline-3"&gt;
-&lt;h3 id="org465e2e9"&gt;6316131&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org465e2e9"&gt;
+&lt;div id="outline-container-org5c8b178" class="outline-3"&gt;
+&lt;h3 id="org5c8b178"&gt;6316131&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5c8b178"&gt;
 &lt;p&gt;
 Here, this siteswap has no duplicated states, and is therefore prime.
 &lt;/p&gt;
@@ -319,7 +319,7 @@ resulting graphs are shown below.
 
 &lt;div class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss1.png" alt="ss1.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Siteswap map for 66671777161. We can see the two states we found before in the nodes with 2 input and output edges.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Siteswap map for 66671777161. We can see the two states we found (labeled A and B) before in the nodes with 2 input and output edges.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -340,9 +340,9 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0b7e970" class="outline-2"&gt;
-&lt;h2 id="org0b7e970"&gt;q8&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0b7e970"&gt;
+&lt;div id="outline-container-org6a488c6" class="outline-2"&gt;
+&lt;h2 id="org6a488c6"&gt;q8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6a488c6"&gt;
 &lt;p&gt;
 &lt;i&gt;There is 1 ground state 5 ball trick of length 1 (5), 2 of length 2&lt;/i&gt;
 &lt;i&gt;(55, 64), 6 of length 3 (555, 564, 645, 663, 744, 753), 24 of length&lt;/i&gt;
@@ -382,7 +382,7 @@ the following 5 because they already have arrows connecting to them.
 &lt;/div&gt;
 
 &lt;p&gt;
-Here, in red, are the possible throws from \(a\). \(a \in {5,6,7,8}\). It can be seen that b, c, and d,
+Here, in red, are the possible throws from \(a\). \(a \in \{5,6,7,8\}\). It can be seen that b, c, and d,
 can also throw to these same 4 positions. However, only one can throw to each.
 We need to choose an ordering for these 4 throws to land. The number of ways to
 order 4 objects is 4!. By this logic, we can see how it'll be \(l!\) for any number
@@ -391,9 +391,9 @@ of throws (until we start getting 0s… See next q).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4cf3bb2" class="outline-2"&gt;
-&lt;h2 id="org4cf3bb2"&gt;q9&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4cf3bb2"&gt;
+&lt;div id="outline-container-orgb5df378" class="outline-2"&gt;
+&lt;h2 id="orgb5df378"&gt;q9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb5df378"&gt;
 &lt;p&gt;
 &lt;i&gt;There are not 7! = 5040 ground state 5 ball patterns of length 7,&lt;/i&gt;
 &lt;i&gt;as the above pattern would suggest (the actual number is around&lt;/i&gt;
@@ -480,9 +480,9 @@ So with this in mind, we can calculate the total number of siteswaps of length
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf9409ba" class="outline-3"&gt;
-&lt;h3 id="orgf9409ba"&gt;Arrow permutations:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf9409ba"&gt;
+&lt;div id="outline-container-org0616af9" class="outline-3"&gt;
+&lt;h3 id="org0616af9"&gt;Arrow permutations:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0616af9"&gt;
 &lt;p&gt;
 To work out the permutations of length l, we can use the method we had before.
 We go through the catches, and work out where the throw could've come from. Now
@@ -531,9 +531,9 @@ Since we already know how many ground state siteswaps there are for \(l &amp;lt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfbf935a" class="outline-3"&gt;
-&lt;h3 id="orgfbf935a"&gt;Gap insertion&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgfbf935a"&gt;
+&lt;div id="outline-container-org88637b2" class="outline-3"&gt;
+&lt;h3 id="org88637b2"&gt;Gap insertion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org88637b2"&gt;
 &lt;p&gt;
 Given a siteswap of length \(l\) with no gaps, we're looking to insert them so as
 to end up with one of length \(L, L &amp;gt;= l\).
@@ -553,9 +553,9 @@ number of balls.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org05fe5d2" class="outline-3"&gt;
-&lt;h3 id="org05fe5d2"&gt;Putting it all together:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org05fe5d2"&gt;
+&lt;div id="outline-container-orge8fd573" class="outline-3"&gt;
+&lt;h3 id="orge8fd573"&gt;Putting it all together:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge8fd573"&gt;
 &lt;p&gt;
 Lets insert what we have into the equation.
 &lt;/p&gt;
@@ -595,9 +595,9 @@ length 7 there are:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgea06759" class="outline-3"&gt;
-&lt;h3 id="orgea06759"&gt;Simplify&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgea06759"&gt;
+&lt;div id="outline-container-org595b16c" class="outline-3"&gt;
+&lt;h3 id="org595b16c"&gt;Simplify&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org595b16c"&gt;
 &lt;p&gt;
 We can simplify this formula a lot further! First taking \(n!\) out side the sum.
 &lt;/p&gt;
@@ -655,248 +655,7 @@ Which… FINALLY gives us the the answer! Phew!
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orga5f6ea5" class="outline-2"&gt;
-&lt;h2 id="orga5f6ea5"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga5f6ea5"&gt;
-&lt;script src="http://visjs.org/dist/vis.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;p&gt;
-In this second section, we'll cover how to solve harder problems that don't
-necessarily have a single solution, or ones that have solutions that can't be
-written as an equation of known variables.
-&lt;/p&gt;
-
-&lt;p&gt;
-We'll be using the idea of &lt;b&gt;State&lt;/b&gt;, &lt;b&gt;Update&lt;/b&gt;, &lt;b&gt;Apply&lt;/b&gt; from &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt; here too. If
-you haven't read that, you might want to start there!
-&lt;/p&gt;
-
-&lt;p&gt;
-You might also want to check out &lt;a href="https://imois.in/posts/procedural-animation-2-functions"&gt;Part 2&lt;/a&gt;, where we went over how to build up more
-complex movement by combining functions of state.
-&lt;/p&gt;
-
-&lt;p&gt;
-And finally, all of the (interactive!) animations here are running in javascript canvas, so you can open the
-source code in the inspector or find it on &lt;a href="https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgab4a00d" class="outline-2"&gt;
-&lt;h2 id="orgab4a00d"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgab4a00d"&gt;
-&lt;p&gt;
-These tenticles/ arms/ vines might make a fun enemy or background in a game, but
-also demonstrate an idea that can be used to solve all kinds of problems! The
-same idea (gradient descent) is the backbone of all modern AI… And all you
-need to understand it is a basic knowledge of derivitives.
-&lt;/p&gt;
-
-&lt;div class="figure"&gt;
-    &lt;!-- Arm --&gt;
-    &lt;canvas id="intro-demo-arms" class="light_border" width="400" height="300"&gt;
-        Your browser doesn't support html5 canvas :c.
-    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Reaching arms with 20 and 100 segments. Drag to move the ball!&lt;/p&gt;
-&lt;/div&gt;
-&lt;script type="text/javascript"&gt;
-class GradientDescentLongChain {
-
-    constructor(id) {
-        var self = this;
-
-        var armC = new ArmCanvas(
-            document.getElementById(id),
-            function(){self.finished = false;});
-
-        this.arm = new Arm(20, 300, -250);
-        this.arm2 = new Arm(100, 100, -50);
-
-        armC.addArm(this.arm);
-        armC.addArm(this.arm2);
-
-        // Double arm length
-        this.arm._lengths = this.arm._lengths.map(function(x) { return x*1.7; });
-        this.arm2._angles = this.arm2._angles.map(function(x) { return 0; });
-
-        var doUpdate = true;
-        if (doUpdate)
-            setInterval(function() { self.update(); }, self.interval);
-    }
-
-    improve(arm) {
-        // var grads = this.arm.calculateCurrentGradients();
-        var grads = arm.calculateCurrentGradientsSq();
-
-        // Update arm angles!
-        for (var i = 0; i &lt; grads.length; i++) {
-            arm.changeAngle(i, -grads[i]*0.00001);
-        }
-
-        // If we're now close enough, don't update til we have to again.
-        if (arm.getCurrentError() &lt; 0.05) {
-            return true;
-        }
-        return false;
-    }
-
-    update() {
-        // Only do stuff if we're not already at the target.
-        if (!this.finished) {
-            // Finished if both arms are finished
-            var a1 = this.improve(this.arm);
-            var a2 = this.improve(this.arm2);
-            this.finished = a1 &amp;&amp; a2;
-        }
-    }
-}
-
-var b = new GradientDescentLongChain('intro-demo-arms');
-&lt;/script&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org71f3e00" class="outline-2"&gt;
-&lt;h2 id="org71f3e00"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org71f3e00"&gt;
-&lt;p&gt;
-Generally, (and according to google) kinematics is a branch of mechanics that
-deals with the features or properties of the motion of an object. It's often
-refered to as the "Geometry of Motion". For charachter animation, we usually
-deal with Kinematics of Simple Chains - or limbs…
-&lt;/p&gt;
-
-&lt;p&gt;
-For a given arm, &lt;b&gt;Forward Kinematics&lt;/b&gt; is working out where the hand (or end) is
-in space given the angles between the shoulder, and upper and lower arms. The
-opposite of this, called &lt;b&gt;Inverse Kinematics&lt;/b&gt; (IK), is where you have a fixed
-target point and instead want to choose the same angles so the hand is as close
-to it as possible.
-&lt;/p&gt;
-
-&lt;dl class="org-dl"&gt;
-&lt;dt&gt;&lt;b&gt;Forward Kinematics:&lt;/b&gt;&lt;/dt&gt;
-&lt;dd&gt;Your upper arm is at \(\alpha\) to your torso, and your
-upper arm is \(\beta\) to your lower arm, where is your hand?&lt;/dd&gt;
-
-&lt;dt&gt;&lt;b&gt;Inverse Kinematics:&lt;/b&gt;&lt;/dt&gt;
-&lt;dd&gt;You want to reach for a ball infront of you, what
-angles should you have at your shoulder and elbow?&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;
-We're going to look at the second one. Inverse Kinematics are used for all kinds
-of charachter animation, robotics, and predicting people's location in VR. It'd
-be pretty useful to have a way to solve it!
-&lt;/p&gt;
-
-&lt;div class="figure"&gt;
-    &lt;span class="align_all"&gt;
-        &lt;div&gt;
-            &lt;!-- Arm --&gt;
-            &lt;canvas id="twolinkarmandgraph" class="light_border" width="400" height="300"&gt;
-                Your browser doesn't support html5 canvas :c.
-            &lt;/canvas&gt;&lt;!-- Sliders --&gt;&lt;span class="slider_row"&gt;
-                &lt;span class="slider_label"&gt;Shoulder Angle (a)&lt;/span&gt;
-                &lt;span id="ang1" class="flat-slider"&gt;&lt;/span&gt;
-                &lt;span type="text" id="ang1val" class="slider_text"&gt;&lt;/span&gt;
-            &lt;/span&gt;
-
-            &lt;span class="slider_row"&gt;
-                &lt;span class="slider_label"&gt;Elbow Angle (b)&lt;/span&gt;
-                &lt;span id="ang2" class="flat-slider"&gt;&lt;/span&gt;
-                &lt;span type="text" id="ang2val" class="slider_text"&gt;&lt;/span&gt;
-            &lt;/span&gt;
-        &lt;/div&gt;
-    &lt;/span&gt;
-    &lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; The problem: Trying to reach for the ball by changing the angles of both joints. How can we find these angles?&lt;/p&gt;
-&lt;/div&gt;
-&lt;script type="text/javascript"&gt;
-{
-    function UpdateGraph() {}
-    // Create an arm in that space
-    var armC = new ArmCanvas(document.getElementById('twolinkarmandgraph'), UpdateGraph);
-    armC.targetX = 27;
-    armC.targetY = 13;
-
-    var arm = new Arm(2);
-    armC.addArm(arm);
-
-    this.arm = arm;
-
-    // slider
-    $("#ang1").slider({
-        min: 0,
-        max: 180,
-        values: [arm.getAngle(0)],
-        slide: function(event, ui) {
-            $("#ang1val").text(ui.values[0] + "°")
-            arm.setAngle(0, ui.values[0]);
-        }
-    });
-    $("#ang1val").text(arm.getAngle(0) + "°");
-
-    $("#ang2").slider({
-        min: -160,
-        max: 160,
-        values: [arm.getAngle(1)],
-        slide: function(event, ui) {
-            $("#ang2val").text(ui.values[0] + "°");
-            arm.setAngle(1, ui.values[0]);
-        }
-    });
-    $("#ang2val").text(arm.getAngle(1) + "°");
-}
-&lt;/script&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org59a88fd" class="outline-2"&gt;
-&lt;h2 id="org59a88fd"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org59a88fd"&gt;
-&lt;p&gt;
-For the 2D case, and when there's two joints in the arm, there are (usually) two solutions - an
-'elbows up' position, and an 'elbows down' one.
-&lt;/p&gt;
-
-&lt;p&gt;
-Unfortunately if the target is
-too far away there is no way to reach, and similarly if the upper and lower
-arms are different lengths, then there's also no solution.
-&lt;/p&gt;
-
-&lt;p&gt;
-It's possible to work out these two angles with coordinate geometry or a bit of
-trig, as long as you have the lengths of both arm segments and the target
-location. However, as there's a million other gamedev sites, robotics courses,
-and random medium posts, I'll won't explain it here again. It is a fun problem
-though! I'd recommend giving it a go - it's hard to spot but doesn't require any
-hard maths.
-&lt;/p&gt;
-
-&lt;p&gt;
-TODO: Link src…
-&lt;/p&gt;
-
-&lt;p&gt;
-It's also worth noting problems and limbs in 3D can be solved using the same 2D algorithm
-with one trick: An 'elbow target'. We add a point that, given the choice, the
-elbow will be as near to as possible. This (interestingly) causes all 5 points: Shoulder, Elbow,
-Hand, Hand Target, and Elbow Target to all lie in the same plane. We can take
-the plane defined by the fixed points: Shoulder, Hand Target, and Elbow Target
-and solve the problem in 2d on that plane. This is how a lot of kinematics in
-games is done.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5008e07" class="outline-2"&gt;
-&lt;h2 id="org5008e07"&gt;Harder problems?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5008e07"&gt;
-&lt;p&gt;
-It's not possible to solve harder problems using the same idea however, if you
-add an extra segment to the arm there suddenly isn't a way to find solutions.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Sun, 05 May 2019 00:00:50 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ca987b" class="outline-2"&gt;
+</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ca987b" class="outline-2"&gt;
 &lt;h2 id="org8ca987b"&gt;Intro&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org8ca987b"&gt;
 &lt;p&gt;
@@ -1199,9 +958,9 @@ interactive animations!!).
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Sat, 27 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgbb83b1c" class="outline-2"&gt;
-&lt;h2 id="orgbb83b1c"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbb83b1c"&gt;
+</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Sat, 27 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8444c54" class="outline-2"&gt;
+&lt;h2 id="org8444c54"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8444c54"&gt;
 &lt;p&gt;
 This is the first in a 3 part series on procedural animation, all taken from a talk
 I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
@@ -1219,14 +978,14 @@ approximate solutions much harder problems using gradient descent.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;
 All of the animations are running in javascript canvas, so you can open the
-source code in the inspector or find it on &lt;a href="https://imois.in/posts/https:/github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
+source code in the inspector or find it on &lt;a href="https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6bfc7c0" class="outline-2"&gt;
-&lt;h2 id="org6bfc7c0"&gt;Differences vs traditional animation.&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6bfc7c0"&gt;
+&lt;div id="outline-container-org4c7a2d2" class="outline-2"&gt;
+&lt;h2 id="org4c7a2d2"&gt;Differences vs traditional animation.&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4c7a2d2"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Advantages:
 &lt;ul class="org-ul"&gt;
@@ -1249,9 +1008,9 @@ Simulate large numbers easily.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org07993b6" class="outline-2"&gt;
-&lt;h2 id="org07993b6"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org07993b6"&gt;
+&lt;div id="outline-container-orgffa46c7" class="outline-2"&gt;
+&lt;h2 id="orgffa46c7"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgffa46c7"&gt;
 &lt;p&gt;
 This is the core of how I approach these animations. I find it's helpful to try
 and break down the system into 3 parts - State, Update, and Apply. These
@@ -1294,14 +1053,14 @@ Anyway… Lets look at an example!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org264d289" class="outline-2"&gt;
-&lt;h2 id="org264d289"&gt;Example: Light&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org264d289"&gt;
+&lt;div id="outline-container-org34b5c21" class="outline-2"&gt;
+&lt;h2 id="org34b5c21"&gt;Example: Light&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org34b5c21"&gt;
 &lt;p&gt;
 State machines are one of the simplest forms of procedural animation. The idea
 is there is a single 'state' we're in, and also a set of
 rules for why/ when we change state. State machines are often used in game AI -
-where states might be { &lt;b&gt;Defend&lt;/b&gt;, &lt;b&gt;Rush&lt;/b&gt;, &lt;b&gt;Flank&lt;/b&gt; }, or for a charachter: { &lt;b&gt;Falling&lt;/b&gt;,
+where states might be { &lt;b&gt;Defend&lt;/b&gt;, &lt;b&gt;Rush&lt;/b&gt;, &lt;b&gt;Flank&lt;/b&gt; }, or for a character: { &lt;b&gt;Falling&lt;/b&gt;,
 &lt;b&gt;Walking&lt;/b&gt;, &lt;b&gt;Sprinting&lt;/b&gt;, &lt;b&gt;Attacking&lt;/b&gt; }.
 &lt;/p&gt;
 
