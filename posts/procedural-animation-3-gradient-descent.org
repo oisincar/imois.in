@@ -1,8 +1,9 @@
 #+BEGIN_COMMENT
 .. title: Procedural Animation 3: Gradient Descent
 .. slug: procedural-animation-3-gradient-descent
-.. date: 2019-05-05 00:00:50 UTC+00:00
+.. date: 2019-07-07 00:00:50 UTC+00:00
 .. tags: animation, programming, gamedev, math
+.. status: draft
 .. category:
 .. link:
 .. has_math: true
@@ -60,7 +61,7 @@ need to understand it is a basic knowledge of derivitives.
     <canvas id="intro-demo-arms" class="light_border" width="400" height="300">
         Your browser doesn't support html5 canvas :c.
     </canvas>
-    <p><span class="figure-number">Anim 1:</span> Reaching arms with 20 and 100 segments. Drag to move the ball!</p>
+    <p><span class="figure-number">Anim 1:</span> Reaching arms with 20 and 100 segments. Click & Drag to move the ball!</p>
 </div>
 #+END_EXPORT
 #+BEGIN_SRC inline-js
@@ -208,20 +209,16 @@ be pretty useful to have a way to solve it!
 For the 2D case, and when there's two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
 
-Unfortunately if the target is
-too far away there is no way to reach, and similarly if the upper and lower
-arms are different lengths, then there's also no solution.
+Of course, there are cases where there are no solution. If the ball is out of
+reach, for example.
 
 It's possible to work out these two angles with coordinate geometry or a bit of
 trig, as long as you have the lengths of both arm segments and the target
 location. However, as there's a million other gamedev sites, robotics courses,
-and random medium posts, I'll won't explain it here again. It is a fun problem
-though! I'd recommend giving it a go - it's hard to spot but doesn't require any
-hard maths.
+and random medium posts, so I'll won't explain it here again. It is a fun problem
+though - I'd recommend giving it a go!
 
-TODO: Link src...
-
-It's also worth noting problems and limbs in 3D can be solved using the same 2D algorithm
+It's also worth noting problems and limbs in 3D can be solved using the same 2D algorithm/equation
 with one trick: An 'elbow target'. We add a point that, given the choice, the
 elbow will be as near to as possible. This (interestingly) causes all 5 points: Shoulder, Elbow,
 Hand, Hand Target, and Elbow Target to all lie in the same plane. We can take
@@ -232,3 +229,9 @@ games is done.
 * Harder problems?
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions.
+
+This is what I wanted to write about... How can you find approximate or fast
+solutions to a problem that's much harder to solve exactly, or find 'organic'
+solutions to some problem that has a lot of possible solutions.
+
+The idea is that

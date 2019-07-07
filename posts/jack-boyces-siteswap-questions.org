@@ -6,7 +6,7 @@
 .. category: 
 .. link:
 .. has_math: true
-.. description: Solutions to a set of juggling notation/maths problems set by jugglinglab creator Jack Boyce
+.. description: Solutions to a set of juggling notation/maths problems set by jugglinglab creator Jack Boyce.
 .. type: text
 #+END_COMMENT
 
@@ -250,7 +250,7 @@ digraph foo {
 }
 @enduml
 #+END_SRC
-#+CAPTION: Siteswap map for 66671777161. We can see the two states we found before in the nodes with 2 input and output edges.
+#+CAPTION: Siteswap map for 66671777161. We can see the two states we found (labeled A and B) before in the nodes with 2 input and output edges.
 #+RESULTS:
 [[file:../images/siteswap_qs/ss1.png]]
 
@@ -397,7 +397,7 @@ digraph foo {
 #+RESULTS:
 [[file:../images/siteswap_qs/q8_2.png]]
 
-Here, in red, are the possible throws from $a$. $a \in {5,6,7,8}$. It can be seen that b, c, and d,
+Here, in red, are the possible throws from $a$. $a \in \{5,6,7,8\}$. It can be seen that b, c, and d,
 can also throw to these same 4 positions. However, only one can throw to each.
 We need to choose an ordering for these 4 throws to land. The number of ways to
 order 4 objects is 4!. By this logic, we can see how it'll be $l!$ for any number
