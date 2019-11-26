@@ -19,7 +19,7 @@ class DistanceGraph {
             keepAspectRatio: true,
             verticalRatio: 0.2,
 
-            axisColor: '#e8e9eb',
+            // axisColor: '#e8e9eb',
 
             tooltip: function (point) {
             // parameter point contains properties x, y, z
