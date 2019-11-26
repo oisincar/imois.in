@@ -87,4 +87,4 @@ class TwoLinkArmAndGraph {
     }
 }
 
-var a = new TwoLinkArmAndGraph();
+// var a = new TwoLinkArmAndGraph();

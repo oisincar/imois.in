@@ -1,5 +1,493 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 07 Jul 2019 22:11:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ca987b" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 26 Nov 2019 23:08:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org6be13d7" class="outline-2"&gt;
+&lt;h2 id="org6be13d7"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6be13d7"&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
+In this second section, we'll cover how to solve harder problems that don't
+necessarily have a single solution, or ones that have solutions that can't be
+written as an equation of known variables.
+&lt;/p&gt;
+
+&lt;p&gt;
+We'll be using the idea of &lt;b&gt;State&lt;/b&gt;, &lt;b&gt;Update&lt;/b&gt;, &lt;b&gt;Apply&lt;/b&gt; from &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt; here too. If
+you haven't read that, you might want to start there!
+&lt;/p&gt;
+
+&lt;p&gt;
+You might also want to check out &lt;a href="https://imois.in/posts/procedural-animation-2-functions"&gt;Part 2&lt;/a&gt;, where we went over how to build up more
+complex movement by combining functions of state.
+&lt;/p&gt;
+
+&lt;p&gt;
+And finally, all of the (interactive!) animations here are running in javascript canvas, so you can open the
+source code in the inspector or find it on &lt;a href="https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org92be431" class="outline-2"&gt;
+&lt;h2 id="org92be431"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org92be431"&gt;
+&lt;p&gt;
+These tenticles/ arms/ vines might make a fun enemy or background in a game, but
+also demonstrate an idea that can be used to solve all kinds of problems! The
+same idea (gradient descent) is the backbone of a huge amount of modern AI -
+used to improve Google's results, autonomous cars, and more… And all you
+need to understand it is a basic knowledge of derivitives.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="intro-demo-arms" class="light_border" width="400" height="300"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Reaching arms with 20 and 100 segments. Click &amp;amp; Drag to move the ball!&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+class GradientDescentLongChain {
+
+    constructor(id) {
+        var self = this;
+
+        var armC = new ArmCanvas(
+            document.getElementById(id),
+            function(){self.finished = false;});
+
+        this.arm = new Arm(20, 300, -250);
+        this.arm2 = new Arm(100, 100, -50);
+
+        armC.addArm(this.arm);
+        armC.addArm(this.arm2);
+
+        // Double arm length
+        this.arm._lengths = this.arm._lengths.map(function(x) { return x*1.7; });
+        this.arm2._angles = this.arm2._angles.map(function(x) { return 0; });
+
+        var doUpdate = true;
+        if (doUpdate)
+            setInterval(function() { self.update(); }, self.interval);
+    }
+
+    improve(arm) {
+        // var grads = this.arm.calculateCurrentGradients();
+        var grads = arm.calculateCurrentGradientsSq();
+
+        // Update arm angles!
+        for (var i = 0; i &lt; grads.length; i++) {
+            arm.changeAngle(i, -grads[i]*0.00001);
+        }
+
+        // If we're now close enough, don't update til we have to again.
+        if (arm.getCurrentError() &lt; 0.05) {
+            return true;
+        }
+        return false;
+    }
+
+    update() {
+        // Only do stuff if we're not already at the target.
+        if (!this.finished) {
+            // Finished if both arms are finished
+            var a1 = this.improve(this.arm);
+            var a2 = this.improve(this.arm2);
+            this.finished = a1 &amp;&amp; a2;
+        }
+    }
+}
+
+var b = new GradientDescentLongChain('intro-demo-arms');
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgae8a1c4" class="outline-2"&gt;
+&lt;h2 id="orgae8a1c4"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgae8a1c4"&gt;
+&lt;p&gt;
+Generally, (and according to google) kinematics is a branch of mechanics that
+deals with the features or properties of the motion of an object. It's often
+refered to as the "Geometry of Motion". For charachter animation, we usually
+deal with Kinematics of Simple Chains - or limbs…
+&lt;/p&gt;
+
+&lt;p&gt;
+For a given arm, &lt;b&gt;Forward Kinematics&lt;/b&gt; is working out where the hand (or end) is
+in space given the angles between the shoulder, and upper and lower arms. The
+opposite of this, called &lt;b&gt;Inverse Kinematics&lt;/b&gt; (IK), is where you have a fixed
+target point and instead want to choose the same angles so the hand is as close
+to it as possible.
+&lt;/p&gt;
+
+&lt;dl class="org-dl"&gt;
+&lt;dt&gt;&lt;b&gt;Forward Kinematics:&lt;/b&gt;&lt;/dt&gt;
+&lt;dd&gt;Your upper arm is at \(\alpha\) to your torso, and your
+upper arm is \(\beta\) to your lower arm, where is your hand?&lt;/dd&gt;
+
+&lt;dt&gt;&lt;b&gt;Inverse Kinematics:&lt;/b&gt;&lt;/dt&gt;
+&lt;dd&gt;You want to reach for a ball infront of you, what
+angles should you have at your shoulder and elbow?&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;
+We're going to look at the second one. Inverse Kinematics are used for all kinds
+of charachter animation, robotics, and predicting people's location in VR. It'd
+be pretty useful to have a way to solve it!
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;span class="align_all"&gt;
+        &lt;div&gt;
+            &lt;!-- Arm --&gt;
+            &lt;canvas id="twolinkarmandgraph_smp" class="light_border" width="400" height="300"&gt;
+                Your browser doesn't support html5 canvas :c.
+            &lt;/canvas&gt;&lt;!-- Sliders --&gt;&lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Shoulder Angle (α)&lt;/span&gt;
+                &lt;span id="ang1_smp" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="ang1val_smp" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+
+            &lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Elbow Angle (β)&lt;/span&gt;
+                &lt;span id="ang2_smp" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="ang2val_smp" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/span&gt;
+    &lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; The problem: Trying to reach for the ball by changing the angles of both joints. How can we find these angles?&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+{
+    function UpdateGraph() {}
+    // Create an arm in that space
+    var armC = new ArmCanvas(document.getElementById('twolinkarmandgraph_smp'), UpdateGraph);
+    armC.targetX = 27;
+    armC.targetY = 13;
+
+    var arm = new Arm(2);
+    armC.addArm(arm);
+
+    this.arm = arm;
+
+    // slider
+    $("#ang1_smp").slider({
+        min: 0,
+        max: 180,
+        values: [arm.getAngle(0)],
+        slide: function(event, ui) {
+            $("#ang1val_smp").text(ui.values[0] + "°")
+            arm.setAngle(0, ui.values[0]);
+        }
+    });
+    $("#ang1val_smp").text(arm.getAngle(0) + "°");
+
+    $("#ang2_smp").slider({
+        min: -160,
+        max: 160,
+        values: [arm.getAngle(1)],
+        slide: function(event, ui) {
+            $("#ang2val_smp").text(ui.values[0] + "°");
+            arm.setAngle(1, ui.values[0]);
+        }
+    });
+    $("#ang2val_smp").text(arm.getAngle(1) + "°");
+}
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9643a75" class="outline-2"&gt;
+&lt;h2 id="org9643a75"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9643a75"&gt;
+&lt;p&gt;
+For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
+'elbows up' position, and an 'elbows down' one.
+&lt;/p&gt;
+
+&lt;p&gt;
+Of course, there are cases where there are no solution. If the ball is out of
+reach, for example.
+&lt;/p&gt;
+
+&lt;p&gt;
+It's possible to work out these two angles with coordinate geometry or a bit of
+trig, as long as you have the lengths of both arm segments and the target
+location. However, as there's a million other gamedev sites, robotics courses,
+and random medium posts, so I'll won't explain it here again. It is a fun problem
+though - I'd recommend giving it a go!
+&lt;/p&gt;
+
+&lt;p&gt;
+It's also worth noting problems and limbs in 3D can be solved using the same 2D algorithm/equation
+with one trick: An 'elbow target'. We add a point that, given the choice, the
+elbow will be as near to as possible. This (interestingly) causes all 5 points: Shoulder, Elbow,
+Hand, Hand Target, and Elbow Target to all lie in the same plane. We can take
+the plane defined by the fixed points: Shoulder, Hand Target, and Elbow Target
+and solve the problem in 2d on that plane. This is how a lot of kinematics in
+games is done.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgabf4867" class="outline-2"&gt;
+&lt;h2 id="orgabf4867"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgabf4867"&gt;
+&lt;p&gt;
+It's not possible to solve harder problems using the same idea however, if you
+add an extra segment to the arm there suddenly isn't a way to find solutions
+(mostly because there are now likely infinite solutions…).
+&lt;/p&gt;
+
+&lt;p&gt;
+This is what I wanted to write about… How can you find approximate or fast
+solutions to a problem that's much harder to solve exactly, or find 'organic'
+solutions to some problem that has a lot of possible solutions.
+&lt;/p&gt;
+
+&lt;p&gt;
+Instead of trying to find a solution instantly, we take the current position of
+the arm and figure out how to improve it slightly. The solution is then
+calculated itteratively, looping over and over either until we're not getting
+any closer or we're within some distance.
+&lt;/p&gt;
+
+&lt;p&gt;
+Because we're only 3 dimensional creatures… The solution is easiest to
+describe for arms with 2 joints… But the maths works for any number of joints.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd98ccbc" class="outline-2"&gt;
+&lt;h2 id="orgd98ccbc"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd98ccbc"&gt;
+&lt;p&gt;
+First, we need to work out where the end of our arm is… We write the angle at
+the shouder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
+arm is \(l1\), and forearm is \(l2\). I take the shoulder to be at \((0,0)\)
+&lt;/p&gt;
+
+&lt;p&gt;
+To do this, we can split it into 2 parts. The position of the elbow will be at:
+&lt;/p&gt;
+
+\begin{align*}
+Elbow_x &amp;amp; = l1 * sin(\alpha) \\
+Elbow_y &amp;amp; = l1 * cos(\alpha)
+\end{align*}
+
+&lt;p&gt;
+Then, similarly, we can work out the position of the hand relative to the elbow.
+This is a little harder to see, but we can take the angle of the arm relative to
+the ground (\(\beta - \alpha\)) and use the same trig formula.
+&lt;/p&gt;
+
+\begin{align*}
+Hand_x - Elbow_x &amp;amp; = l2 * sin(\beta - \alpha) \\
+Hand_y - Elbow_y &amp;amp; = l2 * cos(\beta - \alpha)
+\end{align*}
+
+&lt;p&gt;
+Then the position of the hand is simply the sum.
+&lt;/p&gt;
+
+\begin{align*}
+Hand_x &amp;amp; = l1 * sin(\alpha) + l2 * sin(\beta - \alpha) \\
+Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
+\end{align*}
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga962146" class="outline-2"&gt;
+&lt;h2 id="orga962146"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga962146"&gt;
+&lt;p&gt;
+In order to perform gradient descent, we need a formula for the error we're
+trying to reduce. This is the distance from our hand to our target. Ideally, we
+want this distance to be 0, which'd mean our hand is exactly on the target.
+&lt;/p&gt;
+
+&lt;p&gt;
+The distance in x and y can be written from the above. Here \(|x|\) means the
+absolute value of x, or the non-negative value of x.
+&lt;/p&gt;
+
+\begin{align*}
+Dist_x &amp;amp; = | Target_x - (l1 * sin(\alpha) + l2 * sin(\beta - \alpha)) | \\
+Dist_y &amp;amp; = | Target_y - (l1 * cos(\alpha) + l2 * cos(\beta - \alpha)) |
+\end{align*}
+
+&lt;p&gt;
+Then using pythagoras the distance is:
+&lt;/p&gt;
+
+\begin{align*}
+Dist = \sqrt{Dist_x^2 - Dist_y^2}
+\end{align*}
+
+&lt;p&gt;
+We can look at this distance for any value of \(\alpha\) and \(\beta\). If we plot
+\(\alpha\) and \(\beta\) on the x and y coordinates of a graph, and the
+corrisponding distance the arm is from the target the z (vertical) axis, we can
+view the distance as a shape.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;span class="align_all"&gt;
+        &lt;div&gt;
+            &lt;!-- Arm --&gt;
+            &lt;canvas id="twolinkarmandgraph" class="light_border" width="600" height="300"&gt;
+                Your browser doesn't support html5 canvas :c.
+            &lt;/canvas&gt;&lt;!-- Sliders --&gt;&lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Shoulder Angle (α)&lt;/span&gt;
+                &lt;span id="ang1" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="ang1val" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+
+            &lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Elbow Angle (β)&lt;/span&gt;
+                &lt;span id="ang2" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="ang2val" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+
+            &lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Upper Arm Len&lt;/span&gt;
+                &lt;span id="l1" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="l1val" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+
+            &lt;span class="slider_row"&gt;
+                &lt;span class="slider_label"&gt;Forearm Len&lt;/span&gt;
+                &lt;span id="l2" class="flat-slider"&gt;&lt;/span&gt;
+                &lt;span type="text" id="l2val" class="slider_text"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+
+        &lt;/div&gt;
+        &lt;div id="mygraph"&gt;&lt;/div&gt;
+    &lt;/span&gt;
+    &lt;script&gt; var a = new TwoLinkArmAndGraph(); &lt;/script&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 2:&lt;/span&gt; The distance function for any of the shoulder and elbow angles.
+    On the graph: Click to pan, scroll wheel to zoom, and mouse over to see the distance/angles at any point. Try messing around
+    with the angles and arm lengths, or move the target ball!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Each point on the surface corrisponds to some shoulder and elbow angles, and the
+height (or colour) there corrisponds to the distance those angles put the hand
+from the target. As you change the angles of the arms, you can see the graph
+translate - the center of it shows the current elbow and shoulder angles.
+&lt;/p&gt;
+
+&lt;p&gt;
+You can make some neat patterns by tweaking the arm lengths and target position.
+Try putting the ball on the base of the arm…
+&lt;/p&gt;
+
+&lt;p&gt;
+Our goal will be effectively to try and find the lowest point on this surface -
+the angles there will bring our arm closest to our target ball.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org31cb781" class="outline-2"&gt;
+&lt;h2 id="org31cb781"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org31cb781"&gt;
+&lt;p&gt;
+Without going too much into the nitty gritty, we can use the derivitive of this
+distance function to improve our errors.
+&lt;/p&gt;
+
+&lt;p&gt;
+Write the distance as a function corrisponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
+&lt;/p&gt;
+
+&lt;p&gt;
+Then we can consider the partial derivitive with respect to the angles.
+&lt;/p&gt;
+
+\begin{align*}
+\frac{\partial Dist}{\partial \alpha}
+\end{align*}
+
+&lt;p&gt;
+This works out to a single value, and can be read/ thought of as 'how does the
+distance to the target change when
+I change α by a very small amount'.
+&lt;/p&gt;
+
+&lt;p&gt;
+For example if \(\frac{\partial Dist}{\partial \alpha}\) is positive, then
+increasing \(\alpha\) will bring increase the distance. Decreasing \(\alpha\) then brings
+hand towards the target. If the derivitive is negative, we
+should instead increase \(\alpha\) by a small amount to improve our hand position.
+This can be written as:
+&lt;/p&gt;
+
+\begin{align*}
+\alpha := \alpha - k * \frac{\partial Dist}{\partial \alpha}
+\end{align*}
+
+&lt;p&gt;
+Here k is a small value, in the animations I have it set to 0.0001. This means
+each update loop we update alpha to move the hand a little closer.
+&lt;/p&gt;
+
+&lt;p&gt;
+The maths is exactly the same for the elbow position:
+&lt;/p&gt;
+
+\begin{align*}
+\beta := \beta - k* \frac{\partial Dist}{\partial \beta}
+\end{align*}
+
+&lt;p&gt;
+And for any number of limbs.
+&lt;/p&gt;
+
+&lt;p&gt;
+This method of improving is called 'gradient descent', because if we look at the
+surface, each time we update we travel down the surface until we reach the bottom.
+&lt;/p&gt;
+
+&lt;p&gt;
+The demos just perform this update once per frame, but it's easy to completely
+solve the system by running for more itterations.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd2ae806" class="outline-2"&gt;
+&lt;h2 id="orgd2ae806"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd2ae806"&gt;
+&lt;p&gt;
+It might help to look through the source code for the animations (embedded into
+this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,
+the code's CC0!
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's a bonus of what happens when you accidentally make 3 arms compete for who
+renders at the same time…
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="twolinkgrad_arm_canvas_broken" class="light_border" width="500" height="400"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;script&gt;
+      new GradientDescent2Link('twolinkgrad_arm_canvas_broken', 2);
+      new GradientDescent2Link('twolinkgrad_arm_canvas_broken', 4);
+      new GradientDescent2Link('twolinkgrad_arm_canvas_broken', 15);
+    &lt;/script&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 3:&lt;/span&gt; Glitchy movement, could be a neat effect for a Stranger Things monster..?&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Anyway, I hope this helped! Gradient descent is a very powerful tool for solving
+any kind of problem if you're able to express it in a certain way. For more
+procedural animation stuff, you might be interested in &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt; where I looked at
+some core ideas and a light animation, or &lt;a href="https://imois.in/posts/procedural-animation-2-functions"&gt;Part 2&lt;/a&gt; with some more fancy function
+ideas and shapes.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ca987b" class="outline-2"&gt;
 &lt;h2 id="org8ca987b"&gt;Intro&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org8ca987b"&gt;
 &lt;p&gt;
