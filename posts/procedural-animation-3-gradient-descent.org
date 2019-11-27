@@ -261,11 +261,11 @@ Elbow_y & = l1 * cos(\alpha)
 
 Then, similarly, we can work out the position of the hand relative to the elbow.
 This is a little harder to see, but we can take the angle of the arm relative to
-the ground ($\beta - \alpha$) and use the same trig formula.
+the ground ($\alpha + \beta$) and use the same trig formula.
 
 \begin{align*}
-Hand_x - Elbow_x & = l2 * sin(\beta - \alpha) \\
-Hand_y - Elbow_y & = l2 * cos(\beta - \alpha)
+Hand_x - Elbow_x & = l2 * sin(\alpha + \beta) \\
+Hand_y - Elbow_y & = l2 * cos(\alpha + \beta)
 \end{align*}
 
 Then the position of the hand is simply the sum.
@@ -284,8 +284,8 @@ The distance in x and y can be written from the above. Here $|x|$ means the
 absolute value of x, or the non-negative value of x.
 
 \begin{align*}
-Dist_x & = | Target_x - (l1 * sin(\alpha) + l2 * sin(\beta - \alpha)) | \\
-Dist_y & = | Target_y - (l1 * cos(\alpha) + l2 * cos(\beta - \alpha)) |
+Dist_x & = | Target_x - (l1 * sin(\alpha) + l2 * sin(\alpha + \beta)) | \\
+Dist_y & = | Target_y - (l1 * cos(\alpha) + l2 * cos(\alpha + \beta)) |
 \end{align*}
 
 Then using pythagoras the distance is:
@@ -356,10 +356,8 @@ Our goal will be effectively to try and find the lowest point on this surface -
 the angles there will bring our arm closest to our target ball.
 
 * Gradient Descent
-Without going too much into the nitty gritty, we can use the derivitive of this
-distance function to improve our errors.
-
-Write the distance as a function corrisponding to $\alpha$ and $\beta$ as $Dist(\alpha, \beta)$.
+We can use the derivitive of this distance function to improve our errors.
+First, write the distance corrisponding to $\alpha$ and $\beta$ as $Dist(\alpha, \beta)$.
 
 Then we can consider the partial derivitive with respect to the angles.
 
@@ -368,8 +366,7 @@ Then we can consider the partial derivitive with respect to the angles.
 \end{align*}
 
 This works out to a single value, and can be read/ thought of as 'how does the
-distance to the target change when
-I change \alpha by a very small amount'.
+distance to the target change when I change $\alpha$ by a very small amount'.
 
 For example if $\frac{\partial Dist}{\partial \alpha}$ is positive, then
 increasing $\alpha$ will bring increase the distance. Decreasing $\alpha$ then brings
