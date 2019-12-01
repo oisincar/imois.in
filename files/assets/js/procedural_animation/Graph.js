@@ -3,7 +3,7 @@ class DistanceGraph {
     constructor(container, a1, a2, l1, l2, tx, ty) {
         // specify options
         var options = {
-            width: '600px',
+            width: 'inherit',
             height: '500px',
             xLabel: 'Shoulder',
             yLabel: 'Elbow',
@@ -46,6 +46,11 @@ class DistanceGraph {
         var data = this.genData(a1, a2, l1, l2, tx, ty);
 
         this._graph = new vis.Graph3d(container, data, options);
+
+        window.onresize = function() {
+            var x = window.innerWidth * 0.8;
+            $('.graph-div').height(x+"px");
+        };
     }
 
     // Distance to the goal with angles a and b, lengths l1, l2, and target tx, ty.

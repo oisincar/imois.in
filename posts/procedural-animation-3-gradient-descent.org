@@ -34,17 +34,21 @@ def savePlt(filename):
 <script src="../assets/js/procedural_animation/Graph.js"></script>
 <script src="../assets/js/procedural_animation/GradientDescent2Link.js"></script>
 <script src="../assets/js/procedural_animation/TwoLinkArmAndGraph.js"></script>
+
+<script src="jquery.ui.touch-punch.min.js"></script>
 #+END_EXPORT
 
 #+REVEAL_EXTRA_CSS: https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css
 # #+REVEAL_EXTRA_CSS: ./style.css
 
-In this second section, we'll cover how to solve harder problems that don't
+In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
 written as an equation of known variables.
 
-We'll be using the idea of *State*, *Update*, *Apply* from [[./procedural-animation-1-state-machines/][Part 1]] here too. If
-you haven't read that, you might want to start there!
+If you haven't read [[./procedural-animation-1-state-machines/][Part 1]], we covered some simple state machines and some
+general ideas on how I try to approach these kind of problems.
+# We'll be using the idea of *State*, *Update*, *Apply* from [[./procedural-animation-1-state-machines/][Part 1]] here too. If
+# you haven't read that, you might want to start there!
 
 You might also want to check out [[./procedural-animation-2-functions][Part 2]], where we went over how to build up more
 complex movement by combining functions of state.
@@ -62,7 +66,7 @@ need to understand it is a basic knowledge of derivitives.
 #+BEGIN_EXPORT html
 <div class="figure">
     <!-- Arm -->
-    <canvas id="intro-demo-arms" class="light_border" width="400" height="300">
+    <canvas id="intro-demo-arms" class="light_border" width="400" height="300" style="max-width: 85vw;">
         Your browser doesn't support html5 canvas :c.
     </canvas>
     <p><span class="figure-number">Anim 1:</span> Reaching arms with 20 and 100 segments. Click & Drag to move the ball!</p>
@@ -150,7 +154,7 @@ be pretty useful to have a way to solve it!
     <span class="align_all">
         <div>
             <!-- Arm -->
-            <canvas id="twolinkarmandgraph_smp" class="light_border" width="400" height="300">
+            <canvas id="twolinkarmandgraph_smp" class="light_border" width="400" height="300" style="max-width: 85vw;">
                 Your browser doesn't support html5 canvas :c.
             </canvas>
 
@@ -305,7 +309,7 @@ view the distance as a shape.
     <span class="align_all">
         <div>
             <!-- Arm -->
-            <canvas id="twolinkarmandgraph" class="light_border" width="600" height="300">
+            <canvas id="twolinkarmandgraph" class="light_border" width="600" height="300" style="max-width: 85vw;">
                 Your browser doesn't support html5 canvas :c.
             </canvas>
 
@@ -335,7 +339,7 @@ view the distance as a shape.
             </span>
 
         </div>
-        <div id="mygraph"></div>
+        <div id="mygraph" style="max-width: 85vw;"></div>
     </span>
     <script> var a = new TwoLinkArmAndGraph(); </script>
     <p><span class="figure-number">Anim 2:</span> The distance function for any of the shoulder and elbow angles.
@@ -406,7 +410,7 @@ renders at the same time...
 #+BEGIN_EXPORT html
 <div class="figure">
     <!-- Arm -->
-    <canvas id="twolinkgrad_arm_canvas_broken" class="light_border" width="500" height="400">
+    <canvas id="twolinkgrad_arm_canvas_broken" class="light_border" width="500" height="400" style="max-width: 85vw;">
         Your browser doesn't support html5 canvas :c.
     </canvas>
     <script>
