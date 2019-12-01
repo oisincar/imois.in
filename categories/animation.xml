@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin ([Coding] animations!)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/animation.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 27 Nov 2019 00:25:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org3357f1a" class="outline-2"&gt;
-&lt;h2 id="org3357f1a"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3357f1a"&gt;
-&lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
-In this second section, we'll cover how to solve harder problems that don't
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin ([Coding] animations!)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/animation.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 01 Dec 2019 01:55:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org3d3b6cd" class="outline-2"&gt;
+&lt;h2 id="org3d3b6cd"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3d3b6cd"&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/posts/jquery.ui.touch-punch.min.js"&gt;&lt;/script&gt;&lt;p&gt;
+In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
 written as an equation of known variables.
 &lt;/p&gt;
 
 &lt;p&gt;
-We'll be using the idea of &lt;b&gt;State&lt;/b&gt;, &lt;b&gt;Update&lt;/b&gt;, &lt;b&gt;Apply&lt;/b&gt; from &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt; here too. If
-you haven't read that, you might want to start there!
+If you haven't read &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt;, we covered some simple state machines and some
+general ideas on how I try to approach these kind of problems.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -25,9 +25,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org98a86c5" class="outline-2"&gt;
-&lt;h2 id="org98a86c5"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org98a86c5"&gt;
+&lt;div id="outline-container-orgf61ba63" class="outline-2"&gt;
+&lt;h2 id="orgf61ba63"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf61ba63"&gt;
 &lt;p&gt;
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -38,7 +38,7 @@ need to understand it is a basic knowledge of derivitives.
 
 &lt;div class="figure"&gt;
     &lt;!-- Arm --&gt;
-    &lt;canvas id="intro-demo-arms" class="light_border" width="400" height="300"&gt;
+    &lt;canvas id="intro-demo-arms" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
         Your browser doesn't support html5 canvas :c.
     &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Reaching arms with 20 and 100 segments. Click &amp;amp; Drag to move the ball!&lt;/p&gt;
 &lt;/div&gt;
@@ -99,9 +99,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1eabea0" class="outline-2"&gt;
-&lt;h2 id="org1eabea0"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1eabea0"&gt;
+&lt;div id="outline-container-org45ca79e" class="outline-2"&gt;
+&lt;h2 id="org45ca79e"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org45ca79e"&gt;
 &lt;p&gt;
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -136,7 +136,7 @@ be pretty useful to have a way to solve it!
     &lt;span class="align_all"&gt;
         &lt;div&gt;
             &lt;!-- Arm --&gt;
-            &lt;canvas id="twolinkarmandgraph_smp" class="light_border" width="400" height="300"&gt;
+            &lt;canvas id="twolinkarmandgraph_smp" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
                 Your browser doesn't support html5 canvas :c.
             &lt;/canvas&gt;&lt;!-- Sliders --&gt;&lt;span class="slider_row"&gt;
                 &lt;span class="slider_label"&gt;Shoulder Angle (α)&lt;/span&gt;
@@ -193,9 +193,9 @@ be pretty useful to have a way to solve it!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org558683c" class="outline-2"&gt;
-&lt;h2 id="org558683c"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org558683c"&gt;
+&lt;div id="outline-container-orgec989be" class="outline-2"&gt;
+&lt;h2 id="orgec989be"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgec989be"&gt;
 &lt;p&gt;
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -226,9 +226,9 @@ games is done.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org158d3cc" class="outline-2"&gt;
-&lt;h2 id="org158d3cc"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org158d3cc"&gt;
+&lt;div id="outline-container-orge55b096" class="outline-2"&gt;
+&lt;h2 id="orge55b096"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge55b096"&gt;
 &lt;p&gt;
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -255,9 +255,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgaaa2b62" class="outline-2"&gt;
-&lt;h2 id="orgaaa2b62"&gt;Forward Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgaaa2b62"&gt;
+&lt;div id="outline-container-org9fa87c3" class="outline-2"&gt;
+&lt;h2 id="org9fa87c3"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9fa87c3"&gt;
 &lt;p&gt;
 First, we need to work out where the end of our arm is… We write the angle at
 the shouder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -295,9 +295,9 @@ Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd80daa6" class="outline-2"&gt;
-&lt;h2 id="orgd80daa6"&gt;Distance function&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd80daa6"&gt;
+&lt;div id="outline-container-org937fea5" class="outline-2"&gt;
+&lt;h2 id="org937fea5"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org937fea5"&gt;
 &lt;p&gt;
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -333,7 +333,7 @@ view the distance as a shape.
     &lt;span class="align_all"&gt;
         &lt;div&gt;
             &lt;!-- Arm --&gt;
-            &lt;canvas id="twolinkarmandgraph" class="light_border" width="600" height="300"&gt;
+            &lt;canvas id="twolinkarmandgraph" class="light_border" width="600" height="300" style="max-width: 85vw;"&gt;
                 Your browser doesn't support html5 canvas :c.
             &lt;/canvas&gt;&lt;!-- Sliders --&gt;&lt;span class="slider_row"&gt;
                 &lt;span class="slider_label"&gt;Shoulder Angle (α)&lt;/span&gt;
@@ -360,7 +360,7 @@ view the distance as a shape.
             &lt;/span&gt;
 
         &lt;/div&gt;
-        &lt;div id="mygraph"&gt;&lt;/div&gt;
+        &lt;div id="mygraph" style="max-width: 85vw;"&gt;&lt;/div&gt;
     &lt;/span&gt;
     &lt;script&gt; var a = new TwoLinkArmAndGraph(); &lt;/script&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 2:&lt;/span&gt; The distance function for any of the shoulder and elbow angles.
     On the graph: Click to pan, scroll wheel to zoom, and mouse over to see the distance/angles at any point. Try messing around
@@ -386,9 +386,9 @@ the angles there will bring our arm closest to our target ball.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga26485c" class="outline-2"&gt;
-&lt;h2 id="orga26485c"&gt;Gradient Descent&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga26485c"&gt;
+&lt;div id="outline-container-orgd8f47b7" class="outline-2"&gt;
+&lt;h2 id="orgd8f47b7"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd8f47b7"&gt;
 &lt;p&gt;
 We can use the derivitive of this distance function to improve our errors.
 First, write the distance corrisponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -448,9 +448,9 @@ solve the system by running for more itterations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfd9b622" class="outline-2"&gt;
-&lt;h2 id="orgfd9b622"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgfd9b622"&gt;
+&lt;div id="outline-container-orgcac89be" class="outline-2"&gt;
+&lt;h2 id="orgcac89be"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcac89be"&gt;
 &lt;p&gt;
 It might help to look through the source code for the animations (embedded into
 this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,
@@ -464,7 +464,7 @@ renders at the same time…
 
 &lt;div class="figure"&gt;
     &lt;!-- Arm --&gt;
-    &lt;canvas id="twolinkgrad_arm_canvas_broken" class="light_border" width="500" height="400"&gt;
+    &lt;canvas id="twolinkgrad_arm_canvas_broken" class="light_border" width="500" height="400" style="max-width: 85vw;"&gt;
         Your browser doesn't support html5 canvas :c.
     &lt;/canvas&gt;&lt;script&gt;
       new GradientDescent2Link('twolinkgrad_arm_canvas_broken', 2);
