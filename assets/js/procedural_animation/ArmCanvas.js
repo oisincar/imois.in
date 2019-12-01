@@ -40,8 +40,11 @@ class ArmCanvas {
 
         canvas.addEventListener('mousemove', function(e) {
             if (isClicked) {
-                self.targetX = (e.offsetX              ) / self.sf;
-                self.targetY = (self.height - e.offsetY) / self.sf;
+                var a = getMousePos(canvas, e);
+                // self.targetX = (e.offsetX              ) / self.sf;
+                // self.targetY = (self.height - e.offsetY) / self.sf;
+                self.targetX = a.x / self.sf;
+                self.targetY = (self.height - a.y) / self.sf;
 
                 // Update the graph/ whatever else should the ball move.
                 ballmove_callback();
@@ -53,6 +56,59 @@ class ArmCanvas {
         canvas.addEventListener('mouseup', function(e) {
             isClicked = false;
         }, true);
+
+
+
+        // Touch helpers!!
+        canvas.addEventListener("touchstart", function (e) {
+            var touch = e.touches[0];
+            var mouseEvent = new MouseEvent("mousedown", {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }, false);
+        canvas.addEventListener("touchend", function (e) {
+            var mouseEvent = new MouseEvent("mouseup", {});
+            canvas.dispatchEvent(mouseEvent);
+        }, false);
+        canvas.addEventListener("touchmove", function (e) {
+            var touch = e.touches[0];
+            var mouseEvent = new MouseEvent("mousemove", {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }, false);
+        // Prevent scrolling when touching the canvas
+        document.body.addEventListener("touchstart", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+        }, false);
+        document.body.addEventListener("touchend", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+        }, false);
+        document.body.addEventListener("touchmove", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+        }, false);
+
+
+        function getMousePos(canvas, evt) {
+            var rect = canvas.getBoundingClientRect(), // abs. size of element
+                scaleX = canvas.width / rect.width,    // relationship bitmap vs. element for X
+                scaleY = canvas.height / rect.height;  // relationship bitmap vs. element for Y
+
+            return {
+                x: (evt.clientX - rect.left) * scaleX,   // scale mouse coordinates after they have
+                y: (evt.clientY - rect.top) * scaleY     // been adjusted to be relative to element
+            }
+        }
+
 
         setInterval(function() { self.draw(); }, self.interval);
     }

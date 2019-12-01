@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 01 Dec 2019 01:55:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org3d3b6cd" class="outline-2"&gt;
-&lt;h2 id="org3d3b6cd"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3d3b6cd"&gt;
-&lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/posts/jquery.ui.touch-punch.min.js"&gt;&lt;/script&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 01 Dec 2019 02:31:45 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8401593" class="outline-2"&gt;
+&lt;h2 id="org8401593"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8401593"&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
 written as an equation of known variables.
@@ -25,9 +25,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf61ba63" class="outline-2"&gt;
-&lt;h2 id="orgf61ba63"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf61ba63"&gt;
+&lt;div id="outline-container-org88eba90" class="outline-2"&gt;
+&lt;h2 id="org88eba90"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org88eba90"&gt;
 &lt;p&gt;
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -99,9 +99,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org45ca79e" class="outline-2"&gt;
-&lt;h2 id="org45ca79e"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org45ca79e"&gt;
+&lt;div id="outline-container-org07f2218" class="outline-2"&gt;
+&lt;h2 id="org07f2218"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org07f2218"&gt;
 &lt;p&gt;
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -174,7 +174,7 @@ be pretty useful to have a way to solve it!
         slide: function(event, ui) {
             $("#ang1val_smp").text(ui.values[0] + "°")
             arm.setAngle(0, ui.values[0]);
-        }
+        },
     });
     $("#ang1val_smp").text(arm.getAngle(0) + "°");
 
@@ -193,9 +193,9 @@ be pretty useful to have a way to solve it!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgec989be" class="outline-2"&gt;
-&lt;h2 id="orgec989be"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgec989be"&gt;
+&lt;div id="outline-container-org07c7cf4" class="outline-2"&gt;
+&lt;h2 id="org07c7cf4"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org07c7cf4"&gt;
 &lt;p&gt;
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -226,9 +226,9 @@ games is done.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge55b096" class="outline-2"&gt;
-&lt;h2 id="orge55b096"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge55b096"&gt;
+&lt;div id="outline-container-org2463af3" class="outline-2"&gt;
+&lt;h2 id="org2463af3"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2463af3"&gt;
 &lt;p&gt;
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -255,9 +255,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9fa87c3" class="outline-2"&gt;
-&lt;h2 id="org9fa87c3"&gt;Forward Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9fa87c3"&gt;
+&lt;div id="outline-container-orgd2cb54f" class="outline-2"&gt;
+&lt;h2 id="orgd2cb54f"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd2cb54f"&gt;
 &lt;p&gt;
 First, we need to work out where the end of our arm is… We write the angle at
 the shouder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -295,9 +295,9 @@ Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org937fea5" class="outline-2"&gt;
-&lt;h2 id="org937fea5"&gt;Distance function&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org937fea5"&gt;
+&lt;div id="outline-container-orgee7640b" class="outline-2"&gt;
+&lt;h2 id="orgee7640b"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgee7640b"&gt;
 &lt;p&gt;
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -375,8 +375,16 @@ translate - the center of it shows the current elbow and shoulder angles.
 &lt;/p&gt;
 
 &lt;p&gt;
-You can make some neat patterns by tweaking the arm lengths and target position.
-Try putting the ball on the base of the arm…
+Try tweaking lengths, then read the lowest/highest point from the graph… Then change
+the arm's angles to those and see what it looks like.
+&lt;/p&gt;
+
+&lt;p&gt;
+There's often two low points in the graph - which corrispond to the two best
+ solutions. Moving the ball far away gives only one low point - meaning there's
+ only one best solution; when the arm is pointing towards it.
+ There's also usually one worst solution (the reddest/ highest point), which
+ is where the arm is pointing away from the ball.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -386,9 +394,9 @@ the angles there will bring our arm closest to our target ball.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd8f47b7" class="outline-2"&gt;
-&lt;h2 id="orgd8f47b7"&gt;Gradient Descent&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd8f47b7"&gt;
+&lt;div id="outline-container-org6356131" class="outline-2"&gt;
+&lt;h2 id="org6356131"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6356131"&gt;
 &lt;p&gt;
 We can use the derivitive of this distance function to improve our errors.
 First, write the distance corrisponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -448,9 +456,9 @@ solve the system by running for more itterations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcac89be" class="outline-2"&gt;
-&lt;h2 id="orgcac89be"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcac89be"&gt;
+&lt;div id="outline-container-orgaa20c86" class="outline-2"&gt;
+&lt;h2 id="orgaa20c86"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgaa20c86"&gt;
 &lt;p&gt;
 It might help to look through the source code for the animations (embedded into
 this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,

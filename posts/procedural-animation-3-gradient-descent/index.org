@@ -11,6 +11,7 @@
 #+END_COMMENT
 # .. status: draft
 
+
 #+BEGIN_SRC python :session :results file :exports none
 import matplotlib
 matplotlib.use('Agg')
@@ -35,11 +36,13 @@ def savePlt(filename):
 <script src="../assets/js/procedural_animation/GradientDescent2Link.js"></script>
 <script src="../assets/js/procedural_animation/TwoLinkArmAndGraph.js"></script>
 
-<script src="jquery.ui.touch-punch.min.js"></script>
 #+END_EXPORT
+
+# <script src="jquery.ui.touch-punch.min.js"></script>
 
 #+REVEAL_EXTRA_CSS: https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css
 # #+REVEAL_EXTRA_CSS: ./style.css
+
 
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -176,41 +179,41 @@ be pretty useful to have a way to solve it!
 </div>
 #+END_EXPORT
 #+BEGIN_SRC inline-js
-{
-    function UpdateGraph() {}
-    // Create an arm in that space
-    var armC = new ArmCanvas(document.getElementById('twolinkarmandgraph_smp'), UpdateGraph);
-    armC.targetX = 27;
-    armC.targetY = 13;
+  {
+      function UpdateGraph() {}
+      // Create an arm in that space
+      var armC = new ArmCanvas(document.getElementById('twolinkarmandgraph_smp'), UpdateGraph);
+      armC.targetX = 27;
+      armC.targetY = 13;
 
-    var arm = new Arm(2);
-    armC.addArm(arm);
+      var arm = new Arm(2);
+      armC.addArm(arm);
 
-    this.arm = arm;
+      this.arm = arm;
 
-    // slider
-    $("#ang1_smp").slider({
-        min: 0,
-        max: 180,
-        values: [arm.getAngle(0)],
-        slide: function(event, ui) {
-            $("#ang1val_smp").text(ui.values[0] + "°")
-            arm.setAngle(0, ui.values[0]);
-        }
-    });
-    $("#ang1val_smp").text(arm.getAngle(0) + "°");
+      // slider
+      $("#ang1_smp").slider({
+          min: 0,
+          max: 180,
+          values: [arm.getAngle(0)],
+          slide: function(event, ui) {
+              $("#ang1val_smp").text(ui.values[0] + "°")
+              arm.setAngle(0, ui.values[0]);
+          },
+      });
+      $("#ang1val_smp").text(arm.getAngle(0) + "°");
 
-    $("#ang2_smp").slider({
-        min: -160,
-        max: 160,
-        values: [arm.getAngle(1)],
-        slide: function(event, ui) {
-            $("#ang2val_smp").text(ui.values[0] + "°");
-            arm.setAngle(1, ui.values[0]);
-        }
-    });
-    $("#ang2val_smp").text(arm.getAngle(1) + "°");
-}
+      $("#ang2_smp").slider({
+          min: -160,
+          max: 160,
+          values: [arm.getAngle(1)],
+          slide: function(event, ui) {
+              $("#ang2val_smp").text(ui.values[0] + "°");
+              arm.setAngle(1, ui.values[0]);
+          }
+      });
+      $("#ang2val_smp").text(arm.getAngle(1) + "°");
+  }
 #+END_SRC
 
 * Simple arms in 2d
@@ -353,8 +356,14 @@ height (or colour) there corrisponds to the distance those angles put the hand
 from the target. As you change the angles of the arms, you can see the graph
 translate - the center of it shows the current elbow and shoulder angles.
 
-You can make some neat patterns by tweaking the arm lengths and target position.
-Try putting the ball on the base of the arm...
+Try tweaking lengths, then read the lowest/highest point from the graph... Then change
+the arm's angles to those and see what it looks like.
+
+There's often two low points in the graph - which corrispond to the two best
+ solutions. Moving the ball far away gives only one low point - meaning there's
+ only one best solution; when the arm is pointing towards it.
+ There's also usually one worst solution (the reddest/ highest point), which
+ is where the arm is pointing away from the ball.
 
 Our goal will be effectively to try and find the lowest point on this surface -
 the angles there will bring our arm closest to our target ball.
