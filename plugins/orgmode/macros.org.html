@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.56 in css mode. -->
+<html>
+  <head>
+    <title>macros.org</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #bbc2cf;
+        background-color: #282c34;
+      }
+      .hl-line {
+        /* hl-line */
+        background-color: #21242b;
+      }
+
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="hl-line"># Macros for embedding media into org-mode posts.
+</span>
+#+MACRO: TEASER_END #+HTML: &lt;!-- TEASER_END --&gt;
+{{{TEASER_END}}}
+
+#+MACRO: gist #+HTML: &lt;script src="<a href="https://gist.github.com/$1.js">https://gist.github.com/$1.js</a>"&gt;&lt;/script&gt;
+{{{gist(2395294)}}}
+
+#+MACRO: soundcloud #+HTML: &lt;iframe width="$3" height="$2" scrolling="no" frameborder="no" src="<a href="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/$1">https://w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/$1</a>"&gt; &lt;/iframe&gt;
+{{{soundcloud(31824842,240,320)}}}
+
+#+MACRO: soundcloud_playlist #+HTML: &lt;iframe width="$3" height="$2" scrolling="no" frameborder="no" src="<a href="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/playlists/$1">https://w.soundcloud.com/player/?url=https://api.soundcloud.com/playlists/$1</a>"&gt; &lt;/iframe&gt;
+{{{soundcloud_playlist(694081,800,400)}}}
+
+#+MACRO: vimeo #+HTML: &lt;iframe src="<a href="https://player.vimeo.com/video/$1">https://player.vimeo.com/video/$1</a>" width="$3" height="$2" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt; &lt;/iframe&gt;
+{{{vimeo(85360039,240,320)}}}
+
+#+MACRO: youtube #+HTML: &lt;iframe width="$3" height="$2" src="<a href="https://www.youtube.com/embed/$1?rel=0&amp;amp;hd=1&amp;amp;wmode=transparent">https://www.youtube.com/embed/$1?rel=0&amp;amp;hd=1&amp;amp;wmode=transparent</a>"&gt;&lt;/iframe&gt;
+{{{youtube(8N_tupPBtWQ,240,320)}}}
+</pre>
+  </body>
+</html>

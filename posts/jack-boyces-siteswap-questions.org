@@ -3,7 +3,7 @@
 .. slug: jack-boyces-siteswap-questions
 .. date: 2019-05-06 19:47:08 UTC+01:00
 .. tags: juggling, math
-.. category: 
+.. category:
 .. link:
 .. has_math: true
 .. description: Solutions to a set of juggling notation/maths problems set by jugglinglab creator Jack Boyce.
@@ -470,9 +470,12 @@ digraph foo {
 }
 @enddot
 #+END_SRC
-#+CAPTION: Here, the first cascade throw after the siteswap could come from any of a-e.
+
 #+RESULTS:
 [[file:../images/siteswap_qs/q9_1.png]]
+
+#+CAPTION: Here, the first cascade throw after the siteswap could come from any of a-e.
+#+RESULTS:
 
 Here, there are a choice of 5 throws that can land at this time. For the
 following throw, there are only 4 left, and after is 3 etc. This approach leads

@@ -1,0 +1,65 @@
+#+BEGIN_COMMENT
+.. title: Properties of Lights Out: The Game.
+.. slug: the-properties-of-lights-out-the-game
+.. date: 2019-12-19 16:59:29 UTC
+.. tags: programming, gamedev, maths
+.. category:
+.. link:
+.. has_math: true
+.. description: When is a lights out board solvable or not?
+.. type: text
+#+END_COMMENT
+
+* Intro
+#+BEGIN_EXPORT html
+<script src="../assets/js/TouchUtils.js"></script>
+<script src="../assets/js/lights_out/utils.js"></script>
+<script src="../assets/js/lights_out/LightsCanvas.js"></script>
+<script src="../assets/js/lights_out/LightsOut.js"></script>
+<script src="../assets/js/lights_out/LightsOutState.js"></script>
+#+END_EXPORT
+
+_Lights Out_ is a game released by Tiger
+Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
+some not, and your task is to turn them all off. The problem is that toggling
+each light also toggles all the surrounding lights...
+
+I've made a little version of it here... The game works equally well (or does
+it!!) on different board sizes. Try to turn all 'lights' off.
+
+# TODO: Make game
+#+BEGIN_EXPORT html
+<div class="figure">
+    <!-- Arm -->
+    <canvas id="lights-out0" class="light_border" width="400" height="300" style="max-width: 85vw;">
+        Your browser doesn't support html5 canvas :c.
+    </canvas>
+</div>
+#+END_EXPORT
+
+#+BEGIN_SRC inline-js
+var g = new LightsOut(document.getElementById('lights-out0'), 5, 4);
+#+END_SRC
+
+* State
+
+#+BEGIN_EXPORT html
+<div class="figure">
+    <!-- Arm -->
+    <canvas id="lights-out-state0" class="light_border" width="400" height="300" style="max-width: 85vw;">
+        Your browser doesn't support html5 canvas :c.
+    </canvas>
+    <canvas id="lights-out-game0" class="light_border" width="400" height="300" style="max-width: 85vw;">
+        Your browser doesn't support html5 canvas :c.
+    </canvas>
+</div>
+#+END_EXPORT
+
+#+BEGIN_SRC inline-js
+var g = new LightsOutState(document.getElementById('lights-out-state0'),
+                           document.getElementById('lights-out-game0'),
+                           5, 4);
+#+END_SRC
+
+* May
+testing?
