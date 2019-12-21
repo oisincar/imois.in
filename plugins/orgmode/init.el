@@ -2,18 +2,24 @@
 
 ;; Load org-mode
 ;; Requires org-mode v8.x
-
+(add-to-list 'load-path "~/.emacs.d/.local/elpa/htmlize-20191111.2130")
 (require 'package)
-;; (setq package-load-list '((htmlize t)))
+(setq package-load-list '((htmlize t)))
 (package-initialize)
-
-(add-to-list 'load-path "~/.emacs.d/.local/packages/elpa/htmlize-20180923.1829")
-(require 'htmlize)
 
 (require 'org)
 (require 'ox-html)
 
 ;;; Custom configuration for the export.
+(add-to-list 'org-src-lang-modes '("inline-js" . javascript)) ;; js2 if you're fancy
+(defvar org-babel-default-header-args:inline-js
+  '((:results . "html")
+    (:exports . "results")))
+(defun org-babel-execute:inline-js (body _params)
+  (format "<script type=\"text/javascript\">\n%s\n</script>" body))
+
+;; Disable confirmation when compiling code
+(setq org-confirm-babel-evaluate nil)
 
 ;;; Add any custom configuration that you would like to 'conf.el'.
 (setq nikola-use-pygments t
@@ -109,7 +115,9 @@ contextual information."
           (code (org-element-property :value src-block))
           (code-html (org-html-format-code src-block info)))
       (if nikola-use-pygments
-          (pygmentize (downcase lang) (org-html-decode-plain-text code))
+          (progn
+            (unless lang (setq lang ""))
+            (pygmentize (downcase lang) (org-html-decode-plain-text code)))
         code-html))))
 
 ;; Export images with custom link type
@@ -127,13 +135,3 @@ specified location."
     (org-macro-replace-all nikola-macro-templates)
     (org-html-export-as-html nil nil t t)
     (write-file outfile nil)))
-
-;; Config for inline-js blocks, which are executed to wrap em in script tags.
-(add-to-list 'org-src-lang-modes '("inline-js" . javascript)) ;; js2 if you're fancy
-(defvar org-babel-default-header-args:inline-js
-  '((:results . "html")
-    (:exports . "results")))
-(defun org-babel-execute:inline-js (body _params)
-  (format "<script type=\"text/javascript\">\n%s\n</script>" body))
-
-(setq org-confirm-babel-evaluate nil)
