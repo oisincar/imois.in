@@ -11,24 +11,10 @@
 #+END_COMMENT
 # .. status: draft
 
-
-#+BEGIN_SRC python :session :results file :exports none
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import numpy as np
-
-path = "../images/procedural_anim/"
-
-def savePlt(filename):
-    plt.savefig(path + filename)
-    return path+filename # return this to org-mode
-#+END_SRC
-#+RESULTS:
-
 * Intro
 #+BEGIN_EXPORT html
 <script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script>
+<script src="../assets/js/TouchUtils.js"></script>
 <script src="../assets/js/procedural_animation/Global.js"></script>
 <script src="../assets/js/procedural_animation/Arm.js"></script>
 <script src="../assets/js/procedural_animation/ArmCanvas.js"></script>
@@ -64,7 +50,7 @@ These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
 same idea (gradient descent) is the backbone of a huge amount of modern AI -
 used to improve Google's results, autonomous cars, and more... And all you
-need to understand it is a basic knowledge of derivitives.
+need to understand it is a basic knowledge of derivatives.
 
 #+BEGIN_EXPORT html
 <div class="figure">

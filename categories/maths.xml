@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about maths)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/maths.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 21 Dec 2019 19:26:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org6c14189" class="outline-2"&gt;
+&lt;h2 id="org6c14189"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6c14189"&gt;
+&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/utils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOut.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOutState.js"&gt;&lt;/script&gt;&lt;p&gt;
+&lt;span class="underline"&gt;Lights Out&lt;/span&gt; is a game released by Tiger
+Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
+some not, and your task is to turn them all off. The problem is that toggling
+each light also toggles all the surrounding lights…
+&lt;/p&gt;
+
+&lt;p&gt;
+I've made a little version of it here… The game works equally well (or does
+it!!) on different board sizes. Try to turn all 'lights' off.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var g = new LightsOut(document.getElementById('lights-out0'), 5, 4);
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8808945" class="outline-2"&gt;
+&lt;h2 id="org8808945"&gt;State&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8808945"&gt;
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out-state0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;canvas id="lights-out-game0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var g = new LightsOutState(document.getElementById('lights-out-state0'),
+                           document.getElementById('lights-out-game0'),
+                           5, 4);
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org35197c3" class="outline-2"&gt;
+&lt;h2 id="org35197c3"&gt;May&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org35197c3"&gt;
+&lt;p&gt;
+testing?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>gamedev</category><category>maths</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item></channel></rss>
