@@ -87,9 +87,22 @@
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org6c14189" class="outline-2">
-<h2 id="org6c14189">Intro</h2>
-<div class="outline-text-2" id="text-org6c14189">
+        <div id="outline-container-orgf577db5" class="outline-2">
+<h2 id="orgf577db5">Intro</h2>
+<div class="outline-text-2" id="text-orgf577db5">
+<p>
+This game was sent to me by Lucy Deacon, who found it in <a href="https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&amp;hl=en_IE">Simon Tatham's Puzzles</a>
+under the name 'clickflip' around August of 2018. For the few months thereafter
+we went down the rabbithole on how to solve the game, when it's solvable, and
+wrote some fast programs and algorithms to check the properties of some very big
+boards. This post contains some of the stuff we managed to work out!
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdd6616b" class="outline-2">
+<h2 id="orgdd6616b">The Game</h2>
+<div class="outline-text-2" id="text-orgdd6616b">
 <script src="../../assets/js/TouchUtils.js"></script><script src="../../assets/js/lights_out/utils.js"></script><script src="../../assets/js/lights_out/LightsCanvas.js"></script><script src="../../assets/js/lights_out/LightsOut.js"></script><script src="../../assets/js/lights_out/LightsOutState.js"></script><p>
 <span class="underline">Lights Out</span> is a game released by Tiger
 Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
@@ -106,40 +119,470 @@ it!!) on different board sizes. Try to turn all 'lights' off.
     <!-- Arm -->
     <canvas id="lights-out0" class="light_border" width="400" height="300" style="max-width: 85vw;">
         Your browser doesn't support html5 canvas :c.
-    </canvas>
+    </canvas><p><span class="figure-number">Game 1:</span> The game of Lights-Out in it's origional size: 5x5. Click to flip the blue 'lights'! </p>
 </div>
 
 <script type="text/javascript">
-var g = new LightsOut(document.getElementById('lights-out0'), 5, 4);
-</script>
+var g = new LightsOut(document.getElementById('lights-out0'), 5, 5);
+g.randomize();
+</script><p>
+The question is… How can you solve it? Is there a way to look at a position
+and instantly know how to solve it or even if can be solved at all?
+</p>
 </div>
 </div>
 
-<div id="outline-container-org8808945" class="outline-2">
-<h2 id="org8808945">State</h2>
-<div class="outline-text-2" id="text-org8808945">
+<div id="outline-container-org2846372" class="outline-2">
+<h2 id="org2846372">Impossible boards?</h2>
+<div class="outline-text-2" id="text-org2846372">
+<p>
+First of all, not all boards are solvable. A 2x1 board, for example, will never
+let you click on only a single tile. If it starts with just one light on,
+there's never a way to turn it off!
+</p>
+<div class="figure">
+    <!-- Arm -->
+    <canvas id="lights-out2x1" class="light_border" width="400" height="300" style="max-width: 85vw;">
+        Your browser doesn't support html5 canvas :c.
+    </canvas><p><span class="figure-number">Game 2:</span> A simple 'parity' case for lights-out. </p>
+</div>
+<script type="text/javascript">
+var g = new LightsOut(document.getElementById('lights-out2x1'), 2, 1, maxwidth=300, parity=true);
+g.randomize();
+</script><p>
+All other boards in this page are solvable though… So don't worry :P
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2856bfa" class="outline-2">
+<h2 id="org2856bfa">State</h2>
+<div class="outline-text-2" id="text-org2856bfa">
+<p>
+The first thing to notice is that tapping on the same square twice is the same
+as not tapping at all, and also that the order you tap the squares doesn't make
+a difference. The solution then will never require pressing any square more than
+once - and since we don't care about order, we can store just a yes or no for
+whether we need to toggle that square.
+</p>
+
+<p>
+Here's the same game board (in blue, below), but also the solution for it; the
+red squares are the ones to tap to solve the board.
+</p>
+
 <div class="figure">
     <!-- Arm -->
     <canvas id="lights-out-state0" class="light_border" width="400" height="300" style="max-width: 85vw;">
         Your browser doesn't support html5 canvas :c.
     </canvas><canvas id="lights-out-game0" class="light_border" width="400" height="300" style="max-width: 85vw;">
         Your browser doesn't support html5 canvas :c.
-    </canvas>
+    </canvas><p><span class="figure-number">Game 3:</span> The corrisponding hidden 'state'/solution (red) for the game board (blue).</p>
 </div>
 
 <script type="text/javascript">
 var g = new LightsOutState(document.getElementById('lights-out-state0'),
                            document.getElementById('lights-out-game0'),
-                           5, 4);
+                           5, 5);
+g.randomize();
+</script><p>
+If we could work out the corresponding red board for a new unseen blue one…
+We'd be able to solve the game.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org222b0dc" class="outline-2">
+<h2 id="org222b0dc">Forward mapping</h2>
+<div class="outline-text-2" id="text-org222b0dc">
+<p>
+It's not too hard to do the reverse: I.e. take the tapped squares (red) and work out the
+corresponding board position. There's also only one mapping from this red
+'solution' board to the blue 'game' board: A light will be on if and only if
+it's surrounded by an odd number of 'taps'.
+</p>
+
+<p>
+In fact, it's possible to represent this as matrix multiplication. If the
+board is \(m \times n\), we can write the board-state as a single vector \(\vec{b}\) with \(m*n\)
+elements. Each element is 1 if the corresponding light is on and 0 otherwise.
+The taps on each square - i.e. the solution for that board can be written similarly as
+\(\vec{t}\).
+</p>
+
+<p>
+\[ \vec{b} = M\vec{t} \pmod 2 \]
+</p>
+
+<p>
+We can also consider the whole problem over a binary field - so that all
+arithmetic is carried out modulo 2 anyway.
+</p>
+
+<p>
+This matrix \(M\) is a kind of strange 'thick' diagonal matrix. For a 3x3 board it
+looks like this:
+</p>
+
+<p>
+\[
+M_{3\times3} = \begin{Bmatrix}
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\
+\end{Bmatrix}
+\]
+</p>
+
+<p>
+In order to find a solution for our board, we can find the inverse of this
+matrix (if it exists!) and solve the equation.
+</p>
+
+<p>
+\[ \vec{t} = M^{-1}\vec{b} \]
+</p>
+
+<p>
+If an inverse exists, then for that board there is exactly one solution
+corresponding to every board state - and all board states are solvable.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org472df55" class="outline-2">
+<h2 id="org472df55">Unsolvable boards?</h2>
+<div class="outline-text-2" id="text-org472df55">
+<p>
+If there is an unsolvable configuration of the board, i.e. a board state which
+has no taps that leaves all the lights off, then it must exist in the null space
+of this matrix. A board is completely solvable iff the matrix has no null space.
+</p>
+
+<p>
+Hacking out some very bad row-echelon reduction we could graph the nullity of
+these matrices for different size boards, this shows which sizes of board are
+always solvable, and which have many configurations that make them unsolvable.
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/lights_out/graph20.png" alt="graph20.png" width="500px"></p>
+<p><span class="figure-number">Figure 1: </span>What board sizes are solvable? If a boardsize is solvable completely, it's corrisponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.</p>
+</div>
+
+<p>
+We can see from this that as expected a \(1\times1\) board is always solvable, but
+interestingly a \(4\times 4\) is not. There's also interesting patterns forming
+already… It looks very regular, and there are lines forming for \(11\times n\)
+boards too.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb4bb283" class="outline-2">
+<h2 id="orgb4bb283">Nullity?</h2>
+<div class="outline-text-2" id="text-orgb4bb283">
+<p>
+It's interesting to mess around with one of the boards with maximum nullity.
+Here's a 4x4 board. It's far easier than others because if there is a solution
+at all for a position, then there are many.
+</p>
+
+<div class="figure">
+    <!-- Arm -->
+    <canvas id="lights-out4x4" class="light_border" width="400" height="300" style="max-width: 85vw;">
+        Your browser doesn't support html5 canvas :c.
+    </canvas><p><span class="figure-number">Game 4:</span> A 4x4 board has the maximum nullity, making it much easier to solve. </p>
+</div>
+
+<script type="text/javascript">
+var g = new LightsOut(document.getElementById('lights-out4x4'), 4, 4);
+g.randomize();
+</script><p>
+Similar to a rubik's cube, where flipping a single piece makes the puzzle
+unsolvable, lights-out boards of many dimensions have similar 'parity' cases.
+The nullity of the mapping matrix effectively counts these. For a \(4\times 4\)
+board, which has a nullity of 4, there are 4 pieces which are fully determined
+by the remaining 12. Also, for every solvable board, there are \(2^4 -1\)
+unsolvable ones.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7188886" class="outline-2">
+<h2 id="org7188886">'Cascading'</h2>
+<div class="outline-text-2" id="text-org7188886">
+<p>
+One (human) way of trying to solve a lights-out puzzle is to always try to
+click under any light. If you go through the board row-by-row downwards,
+and always click below any 'on' lights, you can take any game state and 'cascade'
+all remaining lights into the bottom row.
+</p>
+
+<p>
+At this point, you can click a few times in the top row, and repeat the process.
+</p>
+
+<p>
+Clicking just
+one square in the top row and cascading it to the bottom will cause some of the
+squares in the bottom row to flip. This means that each square in the top row corresponds (after
+cascade) to some subset of the bottom row being flipped. If we work out what
+these correspondences are, we have another way of solving the board.
+</p>
+
+<div class="figure">
+    <!-- Arm -->
+    <canvas id="lights-out-cascade" class="light_border" width="400" height="300" style="max-width: 85vw;">
+        Your browser doesn't support html5 canvas :c.
+    </canvas><p><span class="figure-number">Game 5:</span> An animation of cascading. Pick a random square in the top row, then 'cascade' it downwards. Eventually, this will solve the board!</p>
+</div>
+<script type="text/javascript">
+var g = new LightsOut(document.getElementById('lights-out-cascade'), 4, 6);
+
+function setupCascade(g, delay) {
+    // Add timer to perform cascade...
+    window.setInterval(function(){
+        // Find highest point under
+        var found = false;
+        var j = 1, i = 0;
+        for (j; j < g.squaresY; j++) {
+            for (i=0; i < g.squaresX; i++) {
+                // If there's a square above it, we've found where to click.
+                if (g.squares[i + (j-1)*g.squaresX] == 1) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+        }
+
+        // If we haven't found one, just click anywhere in the top row.
+        if (!found) {
+            j = 0;
+            i = Math.floor(Math.random() * g.squaresX);
+        }
+
+        // Click that square
+        g.click(i,j);
+    }, delay); // 1000ms = 1 sec
+}
+
+setupCascade(g, 1000);
+</script><p>
+Since it's possible to always reduce any board (via cascade) to having lights
+only in the bottom row, another way to ask if a boardsize is solvable if it's
+possible to reach <span class="underline">any</span> bottom row configuration by click/cascading. This is
+true because cascades commute.
+</p>
+
+<p>
+If we construct a matrix from the resulting bottom rows of all possible
+click-a-square/cascade ops, it will span all solvable bottom rows.
+Then, the boardsize will always be solvable iff that matrix has a nullity of 0.
+</p>
+
+<p>
+This is far more efficient than our previous method. Since we can equally
+perform cascading left-to-right as well as downwards the matrices we need to
+check are only
+\(min(m,n)\times min(m,n)\) rather than \(mn \times mn\) as before.
+</p>
+
+<p>
+It's interesting that a 4x4 board is always solvable in one try via cascading,
+since it's nullity spans the entire bottom row.
+</p>
+
+<div class="figure">
+    <!-- Arm -->
+    <canvas id="lights-out-cascade-big" class="light_border" width="400" height="300" style="max-width: 85vw;">
+        Your browser doesn't support html5 canvas :c.
+    </canvas><p><span class="figure-number">Game 6:</span> For fun, here's a very large game cascading. Note the patterns left in the last row. We're interested if it's possible to construct any pattern here by click/cascading any number of times. </p>
+</div>
+
+<script type="text/javascript">
+var h = new LightsOut(document.getElementById('lights-out-cascade-big'), 20, 20, maxwidth=450);
+setupCascade(h, 100);
 </script>
 </div>
 </div>
 
-<div id="outline-container-org35197c3" class="outline-2">
-<h2 id="org35197c3">May</h2>
-<div class="outline-text-2" id="text-org35197c3">
+<div id="outline-container-org62a2e20" class="outline-2">
+<h2 id="org62a2e20">Maximum nullity</h2>
+<div class="outline-text-2" id="text-org62a2e20">
 <p>
-testing?
+An interesting result from this is there is a maximum nullity for any board.
+</p>
+
+<p>
+Namely, since we can cascade any board into a single row, the nullity
+of the mapping between solution and boardstate cannot be larger than this; \(min(m,n)\).
+</p>
+
+<p>
+This can also be proven by looking at the structure of our original matrix \(M\).
+</p>
+
+<p>
+\[
+M_{3\times3} = \begin{Bmatrix}
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+{ \color{red}1 } &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; { \color{red}1 } &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; { \color{red}1 } &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; { \color{red}1 } &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; { \color{red}1 } &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; { \color{red}1 } &amp; 0 &amp; 1 &amp; 1 \\
+\end{Bmatrix}
+\]
+</p>
+
+<p>
+This diagonal (shown in red) will always run from \((0,m)\) to \((n*(m-1), mn)\),
+and can be used to construct the first \(n*(m-1)\) columns of a matrix in row-echelon
+form. The maximum nullity of this matrix therefore is \(n\). Similarly to before,
+the board can be rotated prior to constructing the matrix, and so the maximum
+nullity is \(min(m,n)\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcd85389" class="outline-2">
+<h2 id="orgcd85389">Bitops</h2>
+<div class="outline-text-2" id="text-orgcd85389">
+<p>
+In order to speed up calculating large boards, we wrote some Very Fast<sup>tm</sup> c++
+matrix code, to perform all binary field arithmetic in parallel with bitops.
+The vectors, as well as matrix rows are encoded as several unsigned
+integers, each storing 32 binary values. Multiplication can then simply be performed
+using xor. Similarly row-echelon reduction and calculation of the rank/nullity
+of each matrix can be done extremely quickly.
+</p>
+
+<p>
+The cascade operation can also be treated with bit-ops. We take
+the current highest non-zero row. This is the row we need to 'click under', so
+to speak, and denote it as the top row. We take the row below it (the middle row) and xor
+it in-place with the top row. This forms the center of the cross.
+</p>
+
+<p>
+Next, we can xor the middle row once again with the top row bitshifted once
+left, and once right (being careful to handle overlaps), forming the left/right
+arms of the cross. We can then xor the row further below (the bottom
+row) in-place with the top row, forming the base of the cross. Finally the top
+row can be set to 0s, which is effectively the top of the cross.
+</p>
+
+<p>
+This allows us to perform up to 32 'clicks' at once, in very few bit operations.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org78d2480" class="outline-2">
+<h2 id="org78d2480">Low memory cascade</h2>
+<div class="outline-text-2" id="text-org78d2480">
+<p>
+Although this cascade is fast, it requires a lot of memory. In order to generate
+the matrix for, e.g. a \(4000 \times 4000\) board, it requires 4000 boards, or the
+same board to be used 4000 times. This is getting very large!
+</p>
+
+<p>
+If we consider click-cascading only on an empty board, we only ever have 3 rows with
+non-zero entries at a time. We can perform the operation only with 3 rows,
+shuffling them around on each iteration.
+</p>
+
+<p>
+We can do better though. With the bottom row starting empty, it really just
+becomes set equal to the top row. This means we can store just 2 rows, and
+treat them as top/middle. We can perform each cascade iteration with 3 xors and
+two bitshifts for up to 32 clicks. It's also close in memory which should reduce
+cache misses.
+</p>
+
+<p>
+All in all, this sped up our program by from taking almost
+20 hours to calculate all boards up to \(512\times 512\) to just 12 seconds. It's
+6000 times faster, without parallelization. The speedup is even more significant
+vs the pre-cascading programs and our initial python/numpy code too.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c7cd85" class="outline-2">
+<h2 id="org4c7cd85">Lots of boards</h2>
+<div class="outline-text-2" id="text-org4c7cd85">
+<p>
+In order to calculate nullity for a few million boards… We could compute
+the matrices for all boards of a certain width simultaneously. Cascade once,
+grab the new bottom row for each board, copy it into a matrix, reduce it inplace
+and calculate nullity, and discard it. We can then iterate to calculate the
+nullity of a board that is \((m+1)\times n\). To parallelize, each core just takes a
+width of board and calculates the nullity of all boards of that width up to a
+maximum. This took a few days to run on a HPC cluster, even with all of our
+optimizations.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org90425c3" class="outline-2">
+<h2 id="org90425c3">Results!!</h2>
+<div class="outline-text-2" id="text-org90425c3">
+<p>
+The resulting images for different sizes.
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/lights_out/graph128.png" alt="graph128.png" width="500px"></p>
+</div>
+
+<div class="figure">
+<p><img src="../../images/lights_out/graph512.png" alt="graph512.png" width="500px"></p>
+</div>
+
+<div class="figure">
+<p><img src="../../images/lights_out/graph4096.png" alt="graph4096.png" width="500px"></p>
+</div>
+
+<p>
+Here we can see the patterns that continue even for very large boards. In the
+512x512 image, there's a faint grid forming at near powers of 2: 127 and 255.
+Above it, there's a similar line around 63. The largest size: 4096 requires
+zooming for the 'constilations' to be even visible, but they're there, with
+several big spots also scattered around.
+</p>
+
+<p>
+It's interesting that, as you move further 'out', the boards are relatively more
+solvable. The intuition is that, for a board to have a very high nullity, many
+it's click/cascade vectors must align. This becomes increasingly more unlikely to
+happen as these vectors increase in size and number.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4639e4c" class="outline-2">
+<h2 id="org4639e4c">Conclusion</h2>
+<div class="outline-text-2" id="text-org4639e4c">
+<p>
+As always, feel free to dig through the source code for this page either here or
+on <a href="https://github.com/oisincar/imois.in/tree/master/assets/js/lights_out">my Github for the site</a>! It's written in pure javascript/html canvas (apart from the english,
+that's written in english).
 </p>
 </div>
 </div>

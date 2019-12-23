@@ -17,14 +17,6 @@ class LightsCanvas {
 
         canvas.width  = squaresX * this.squareDim;
         canvas.height = squaresY * this.squareDim;
-
-        // Draw empty canvas.
-        this.randomize();
-    }
-
-    randomize() {
-        this.state = Array.from({length: this.squaresX * this.squaresY},
-                                () => Math.floor(Math.random() * 2));
     }
 
     draw(squares) {

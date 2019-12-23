@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin ([Coding] animations!)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/animation.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 21 Dec 2019 03:38:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org80ca98f" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin ([Coding] animations!)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/animation.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 21 Dec 2019 22:52:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org80ca98f" class="outline-2"&gt;
 &lt;h2 id="org80ca98f"&gt;Intro&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org80ca98f"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
@@ -490,9 +490,9 @@ ideas and shapes.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ca987b" class="outline-2"&gt;
-&lt;h2 id="org8ca987b"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8ca987b"&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgabc22f3" class="outline-2"&gt;
+&lt;h2 id="orgabc22f3"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgabc22f3"&gt;
 &lt;p&gt;
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: &lt;i&gt;Here be graphs&lt;/i&gt;.
@@ -506,14 +506,14 @@ you haven't read that, you might want to start there!
 
 &lt;p&gt;
 And finally, all of the animations are running in javascript canvas, so you can open the
-source code in the inspector or find it on &lt;a href="https://imois.in/posts/https:/github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
+source code in the inspector or find it on &lt;a href="https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge6b7a83" class="outline-2"&gt;
-&lt;h2 id="orge6b7a83"&gt;Bouncing ball&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge6b7a83"&gt;
+&lt;div id="outline-container-org78e1a6d" class="outline-2"&gt;
+&lt;h2 id="org78e1a6d"&gt;Bouncing ball&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org78e1a6d"&gt;
 &lt;p&gt;
 How to make this?
 &lt;/p&gt;
@@ -616,9 +616,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org53cfa07" class="outline-2"&gt;
-&lt;h2 id="org53cfa07"&gt;Different Applications (heh)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org53cfa07"&gt;
+&lt;div id="outline-container-org47bc850" class="outline-2"&gt;
+&lt;h2 id="org47bc850"&gt;Different Applications (heh)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org47bc850"&gt;
 &lt;p&gt;
 By just changing the &lt;b&gt;Apply&lt;/b&gt; function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -637,11 +637,9 @@ Here, since \(sin(x)\) has a period of \(2*\pi\), we need to scale our state
 variable by that so it loops properly.
 &lt;/p&gt;
 
-
-&lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;Our state (Blue) compared to the wavey output of the ball (Orange) (Not to scale).&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;
+&lt;a href="https://imois.in/posts/"&gt;&lt;/a&gt;
+&lt;/p&gt;
 
 &lt;p&gt;
 In code, this is as easy as:
@@ -668,21 +666,21 @@ Which, again, in code is just:
 
 &lt;p&gt;
 This idea can be taken much further, and leads to some really cool movements!
-The &lt;a href="https://imois.in/posts/https:/en.wikipedia.org/wiki/Lissajous_curve"&gt;Lissajous Curves&lt;/a&gt; are created when you scale the x and y parts differently in
+The &lt;a href="https://en.wikipedia.org/wiki/Lissajous_curve"&gt;Lissajous Curves&lt;/a&gt; are created when you scale the x and y parts differently in
 a way very similar to above ^. That's a whole different blog post though!
 &lt;/p&gt;
 
 
 &lt;div class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/1lissajous.gif" alt="1lissajous.gif" width="400px"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8a48cff" class="outline-2"&gt;
-&lt;h2 id="org8a48cff"&gt;Zigzag&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8a48cff"&gt;
+&lt;div id="outline-container-org783a076" class="outline-2"&gt;
+&lt;h2 id="org783a076"&gt;Zigzag&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org783a076"&gt;
 &lt;p&gt;
 This is a slighly harder example for the idea of manipulating function shapes.
 &lt;/p&gt;
@@ -694,7 +692,7 @@ the animation above).
 
 &lt;div class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/zigzag0.png" alt="zigzag0.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 5: &lt;/span&gt;Input _animationPerc (Blue), compared to the shape we need (Orange).&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;Input _animationPerc (Blue), compared to the shape we need (Orange).&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -705,7 +703,7 @@ this (Green).
 
 &lt;div class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/zigzag1.png" alt="zigzag1.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;Input (Blue), scaled &amp;amp; transformed (Orange), result (Green)&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 5: &lt;/span&gt;Input (Blue), scaled &amp;amp; transformed (Orange), result (Green)&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
@@ -714,9 +712,9 @@ this (Green).
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org20d92d8" class="outline-2"&gt;
-&lt;h2 id="org20d92d8"&gt;Bouncing balls&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org20d92d8"&gt;
+&lt;div id="outline-container-org59c91b1" class="outline-2"&gt;
+&lt;h2 id="org59c91b1"&gt;Bouncing balls&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org59c91b1"&gt;
 &lt;p&gt;
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -726,7 +724,7 @@ a Parabola: Some function of \(t^2\).
 
 &lt;div class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/bounce0.png" alt="bounce0.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 7: &lt;/span&gt;Input (Blue), vs bounce shape (Orange)&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;Input (Blue), vs bounce shape (Orange)&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -744,9 +742,9 @@ extra transformation: 1-zigzag&lt;sup&gt;2&lt;/sup&gt;.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org99e192d" class="outline-2"&gt;
-&lt;h2 id="org99e192d"&gt;More Ideas&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org99e192d"&gt;
+&lt;div id="outline-container-org9c810ea" class="outline-2"&gt;
+&lt;h2 id="org9c810ea"&gt;More Ideas&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9c810ea"&gt;
 &lt;p&gt;
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -756,7 +754,7 @@ be an animation for a slime NPC?
 
 &lt;div class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/bounce1.png" alt="bounce1.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 8: &lt;/span&gt;Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 7: &lt;/span&gt;Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -778,9 +776,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org567db22" class="outline-2"&gt;
-&lt;h2 id="org567db22"&gt;Other applications&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org567db22"&gt;
+&lt;div id="outline-container-orgc4aba38" class="outline-2"&gt;
+&lt;h2 id="orgc4aba38"&gt;Other applications&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc4aba38"&gt;
 &lt;p&gt;
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.

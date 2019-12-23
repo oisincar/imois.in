@@ -186,7 +186,7 @@ savePlt("animation_apply1.png")
 #+end_src
 #+CAPTION: Our state (Blue) compared to the wavey output of the ball (Orange) (Not to scale).
 #+RESULTS:
-[[file:../images/procedural_anim/animation_apply1.png]]
+[[file:]]
 
 In code, this is as easy as:
 #+BEGIN_SRC c++
