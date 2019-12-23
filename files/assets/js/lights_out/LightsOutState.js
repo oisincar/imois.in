@@ -47,4 +47,11 @@ class LightsOutState {
         this.stateCanvas.draw(this.state);
         this.gameCanvas.draw(squares);
     }
+
+    randomize() {
+        // Make it unlikely it's on... 1/1.3 it's off.
+        this.state = Array.from({length: this.squaresX * this.squaresY},
+                                () => Math.floor(Math.random() * 1.3));
+        this.update();
+    }
 }

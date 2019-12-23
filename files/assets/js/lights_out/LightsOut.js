@@ -1,16 +1,20 @@
 // Basic game.
 class LightsOut {
-    constructor(canvas, squaresX, squaresY) {
+    constructor(canvas, squaresX, squaresY, maxwidth=400, parity=false) {
         this.canvas = canvas;
         this.squaresX = squaresX;
         this.squaresY = squaresY;
 
+        // Flip a single tile to troll.
+        this.parity = parity;
+
         var cell_colour = "#457b9d";
 
-        this.lcanvas = new LightsCanvas(canvas, squaresX, squaresY, 400, cell_colour);
+        this.lcanvas = new LightsCanvas(canvas, squaresX, squaresY, maxwidth, cell_colour);
 
         // Store the state as a flat vector.
         this.state = new Array(squaresX*squaresY).fill(0);
+        this.squares = new Array(squaresX*squaresY).fill(0);
 
         // Magic matrix to convert from state to visual result.
         this.convertMat = generateConversionMat(squaresX, squaresY);
@@ -27,9 +31,7 @@ class LightsOut {
             var y = Math.floor(pos.y / self.lcanvas.squareDim);
 
             // Toggle state.
-            self.state[x + y*self.squaresX] ^= 1;
-            // Redraw
-            self.update();
+            self.click(x,y);
         }
         var dragF = function(pos) {}
         var clickUpF = function(pos) {}
@@ -39,8 +41,26 @@ class LightsOut {
         this.update();
     }
 
-    update() {
-        var squares = convertState(this.state, this.convertMat);
-        this.lcanvas.draw(squares);
+    click(x, y) {
+        this.state[x + y*this.squaresX] ^= 1;
+        // Redraw
+        this.update();
     }
+
+    update() {
+        this.squares = convertState(this.state, this.convertMat);
+
+        // Flip the first tile.
+        if (this.parity)
+            this.squares[0] ^= 1;
+
+        this.lcanvas.draw(this.squares);
+    }
+
+    randomize() {
+        this.state = Array.from({length: this.squaresX * this.squaresY},
+                                () => Math.floor(Math.random() * 2));
+        this.update();
+    }
+
 }
