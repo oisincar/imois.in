@@ -43,7 +43,7 @@ Answer: 6
 #+END_CENTER
 
 This is a question about orbits. A siteswap throw is thrown it's value number of
-beats later (e.g. a $6$ is thrown 6 beats later). Therafore we're looking for
+beats later (e.g. a $6$ is thrown 6 beats later). Therefore we're looking for
 siteswaps which have a $3$ every 3 beats (wrapping).
 
 This is only c).
@@ -726,7 +726,7 @@ digraph foo {
 
 As long as the pattern is going, we have $n$ places the throw could've been
 made. We go through the siteswap from left to right, picking each throw source
-in turn. Therafore, the number of possible sources remains the same - $n$.
+in turn. Therefore, the number of possible sources remains the same - $n$.
 
 From the previous question, for $n$ throws following the pattern we have one
 less choice each time, totalling $n!$.
