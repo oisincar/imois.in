@@ -87,9 +87,9 @@
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgabc22f3" class="outline-2">
-<h2 id="orgabc22f3">Intro</h2>
-<div class="outline-text-2" id="text-orgabc22f3">
+        <div id="outline-container-orgfe2d1fa" class="outline-2">
+<h2 id="orgfe2d1fa">Intro</h2>
+<div class="outline-text-2" id="text-orgfe2d1fa">
 <p>
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: <i>Here be graphs</i>.
@@ -98,7 +98,6 @@ movements and build more complex animations from them. Be warned: <i>Here be gra
 <p>
 We'll be using the idea of <b>State</b>, <b>Update</b>, <b>Apply</b> from <a href="../procedural-animation-1-state-machines/">Part 1</a> here too. If
 you haven't read that, you might want to start there!
-[./procedural-animation-1-state-machines/][Part 1]] here too. If
 </p>
 
 <p>
@@ -108,9 +107,9 @@ source code in the inspector or find it on <a href="https://github.com/oisincar/
 </div>
 </div>
 
-<div id="outline-container-org78e1a6d" class="outline-2">
-<h2 id="org78e1a6d">Bouncing ball</h2>
-<div class="outline-text-2" id="text-org78e1a6d">
+<div id="outline-container-org1f73c43" class="outline-2">
+<h2 id="org1f73c43">Bouncing ball</h2>
+<div class="outline-text-2" id="text-org1f73c43">
 <p>
 How to make this?
 </p>
@@ -213,9 +212,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 </div>
 
 
-<div id="outline-container-org47bc850" class="outline-2">
-<h2 id="org47bc850">Different Applications (heh)</h2>
-<div class="outline-text-2" id="text-org47bc850">
+<div id="outline-container-orgc2fb241" class="outline-2">
+<h2 id="orgc2fb241">Different Applications (heh)</h2>
+<div class="outline-text-2" id="text-orgc2fb241">
 <p>
 By just changing the <b>Apply</b> function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -275,9 +274,9 @@ a way very similar to above ^. That's a whole different blog post though!
 </div>
 </div>
 
-<div id="outline-container-org783a076" class="outline-2">
-<h2 id="org783a076">Zigzag</h2>
-<div class="outline-text-2" id="text-org783a076">
+<div id="outline-container-org3080da1" class="outline-2">
+<h2 id="org3080da1">Zigzag</h2>
+<div class="outline-text-2" id="text-org3080da1">
 <p>
 This is a slighly harder example for the idea of manipulating function shapes.
 </p>
@@ -309,9 +308,9 @@ this (Green).
 </pre></div>
 </div>
 </div>
-<div id="outline-container-org59c91b1" class="outline-2">
-<h2 id="org59c91b1">Bouncing balls</h2>
-<div class="outline-text-2" id="text-org59c91b1">
+<div id="outline-container-org3d2f828" class="outline-2">
+<h2 id="org3d2f828">Bouncing balls</h2>
+<div class="outline-text-2" id="text-org3d2f828">
 <p>
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -339,9 +338,9 @@ extra transformation: 1-zigzag<sup>2</sup>.
 </div>
 </div>
 
-<div id="outline-container-org9c810ea" class="outline-2">
-<h2 id="org9c810ea">More Ideas</h2>
-<div class="outline-text-2" id="text-org9c810ea">
+<div id="outline-container-orgda2883c" class="outline-2">
+<h2 id="orgda2883c">More Ideas</h2>
+<div class="outline-text-2" id="text-orgda2883c">
 <p>
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -373,9 +372,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 </div>
 </div>
 
-<div id="outline-container-orgc4aba38" class="outline-2">
-<h2 id="orgc4aba38">Other applications</h2>
-<div class="outline-text-2" id="text-orgc4aba38">
+<div id="outline-container-orgebb6aee" class="outline-2">
+<h2 id="orgebb6aee">Other applications</h2>
+<div class="outline-text-2" id="text-orgebb6aee">
 <p>
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.
@@ -391,8 +390,28 @@ interactive animations!!).
 
             
         
-        <div data-title="Procedural Animation 2: Functions" id="isso-thread"></div>
-        <script src="http://localhost:8080/js/embed.min.js" data-isso="http://localhost:8080/" data-isso-lang="en"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="imoisin",
+            disqus_url="https://imois.in/posts/procedural-animation-2-functions/",
+        disqus_title="Procedural Animation 2: Functions",
+        disqus_identifier="cache/posts/procedural-animation-2-functions.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
         MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
         </script>
 </div>

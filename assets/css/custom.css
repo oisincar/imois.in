@@ -18,6 +18,13 @@
     font-style: italic;
     color: #475678;
 }
+.figure > p > * {
+  max-width: 85vw;
+}
+.figure > canvas {
+  max-width: 85vw;
+}
+
 .figure-number {
     font-weight: bold;
 }
@@ -28,6 +35,10 @@
 .light_border {
   /* border: 3px solid #ccc5b6 */
   /* margin-bottom: 10px; */
+}
+
+.MathJax_Display {
+  overflow-x: auto;
 }
 
 /* .align_all { */

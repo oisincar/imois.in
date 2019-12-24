@@ -12,8 +12,8 @@
 
 * Intro
 This game was sent to me by Lucy Deacon (Link to be added :P), who found it in [[https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&hl=en_IE][Simon Tatham's Puzzles]]
-under the name 'clickflip' around August of 2018. For the few months thereafter
-we went down the rabbithole on how to solve the game, when it's solvable, and
+under the name 'Flip' around August of 2018. For the few months thereafter
+we went down the rabbit-hole on how to solve the game, when it's solvable, and
 wrote some fast programs and algorithms to check the properties of some very big
 boards. This post contains some of the stuff we managed to work out!
 
@@ -31,7 +31,7 @@ Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
 some not, and your task is to turn them all off. The problem is that toggling
 each light also toggles all the surrounding lights...
 
-Unfortunately, we didn't know the game had a name, much less a wikipedia
+Unfortunately, we didn't know the game had a name, much less a Wikipedia
 article, until we'd finished...
 
 I've made a little version of it here... The game works equally well (or does
@@ -43,7 +43,7 @@ it!!) on different board sizes. Try to turn all 'lights' off.
     <canvas id="lights-out0" class="light_border" width="400" height="300" style="max-width: 85vw;">
         Your browser doesn't support html5 canvas :c.
     </canvas>
-    <p><span class="figure-number">Game 1:</span> The game of Lights-Out in it's origional size: 5x5. Click to flip the blue 'lights'! </p>
+    <p><span class="figure-number">Game 1:</span> The game of Lights-Out in it's original size: 5x5. Click to flip the blue 'lights'! </p>
 </div>
 #+END_EXPORT
 
@@ -94,7 +94,7 @@ red squares are the ones to tap to solve the board.
     <canvas id="lights-out-game0" class="light_border" width="400" height="300" style="max-width: 85vw;">
         Your browser doesn't support html5 canvas :c.
     </canvas>
-    <p><span class="figure-number">Game 3:</span> The corrisponding hidden 'state'/solution (red) for the game board (blue).</p>
+    <p><span class="figure-number">Game 3:</span> The corresponding hidden 'state'/solution (red) for the game board (blue).</p>
 </div>
 #+END_EXPORT
 
@@ -159,7 +159,7 @@ Hacking out some very bad row-echelon reduction we could graph the nullity of
 these matrices for different size boards, this shows which sizes of board are
 always solvable, and which have many configurations that make them unsolvable.
 
-#+CAPTION: What board sizes are solvable? If a boardsize is solvable completely, it's corrisponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.
+#+CAPTION: What board sizes are solvable? If a boardsize is solvable completely, it's corresponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.
 #+ATTR_HTML: :width 500px
 [[../images/lights_out/graph20.png]]
 
@@ -188,7 +188,7 @@ var g = new LightsOut(document.getElementById('lights-out4x4'), 4, 4);
 g.randomize();
 #+END_SRC
 
-Similar to a rubik's cube, where flipping a single piece makes the puzzle
+Similar to a Rubik's cube, where flipping a single piece makes the puzzle
 unsolvable, lights-out boards of many dimensions have similar 'parity' cases.
 The nullity of the mapping matrix effectively counts these. For a $4\times 4$
 board, which has a nullity of 4, there are 4 pieces which are fully determined
@@ -359,7 +359,7 @@ vs the pre-cascading programs and our initial python/numpy code too.
 * Lots of boards
 In order to calculate nullity for a few million boards... We could compute
 the matrices for all boards of a certain width simultaneously. Cascade once,
-grab the new bottom row for each board, copy it into a matrix, reduce it inplace
+grab the new bottom row for each board, copy it into a matrix, reduce it in-place
 and calculate nullity, and discard it. We can then iterate to calculate the
 nullity of a board that is $(m+1)\times n$. To parallelize, each core just takes a
 width of board and calculates the nullity of all boards of that width up to a
@@ -406,7 +406,7 @@ These are all surprisingly structured! Often near 2^n-1 or 3*2^n-1 (i.e. 3071).
 ** Looping patterns?
 Since a cascade operation can be written as a matrix multiplication (if the
 board has width $m$, the resulting cascade matrix is $2m\times 2m$), we can
-consider powers of it instead of repeatingly cascading.
+consider powers of it instead of repeatedly cascading.
 
 The question becomes, what power of this matrix results in the identity matrix
 (or the same cascade matrix again)? This would mean the nullity of boards of a
@@ -414,23 +414,23 @@ certain width would form a long repeating pattern based on their height.
 
 The period of small cascade matrices; less than 40, are all about/below 8000-16000,
 but it blows up from there... The period of the cascade over a board of width 40
-is over a million itterations.
+is over one million iterations.
 
-Funnily, we both came up with this idea cooincidentally within a few minutes of eachother.
+Funnily, we both came up with this idea coincidentally within a few minutes of each other.
 
 ** Sequences
 Some board widths are surprisingly solvable/ unsolvable. We found boards of size
 ($10 \times 31n-1$) are all unsolvable (nullity of 10) to as high as we could
 calculate at the time.
 
-Several other widths are suprisingly solvable, 10 (other than above), 81, and many more.
+Several other widths are surprisingly solvable, 10 (other than above), 81, and many more.
 
 ** OEIS
 The Online Encyclopedia of Integer Sequences is a searchable database
 containing, well, integer sequences. After finishing up, we tried searching it
 for our sequence. It turns out square boards have their own entry [[https://oeis.org/A093614][here!]] This was
 the first time we knew the game by it's proper name, and found the game's
-relation to other areas of celular automatia.
+relation to other areas of cellular automata.
 
 We'd generated almost twice as far as the furthest though! The highest term in
 the OEIS sequence is 2363, while ours is ~4100.

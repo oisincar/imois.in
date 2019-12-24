@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 24 Dec 2019 00:49:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orga953f44" class="outline-2"&gt;
-&lt;h2 id="orga953f44"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga953f44"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 24 Dec 2019 20:39:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgf831e36" class="outline-2"&gt;
+&lt;h2 id="orgf831e36"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf831e36"&gt;
 &lt;p&gt;
 This game was sent to me by Lucy Deacon (Link to be added :P), who found it in &lt;a href="https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&amp;amp;hl=en_IE"&gt;Simon Tatham's Puzzles&lt;/a&gt;
-under the name 'clickflip' around August of 2018. For the few months thereafter
-we went down the rabbithole on how to solve the game, when it's solvable, and
+under the name 'Flip' around August of 2018. For the few months thereafter
+we went down the rabbit-hole on how to solve the game, when it's solvable, and
 wrote some fast programs and algorithms to check the properties of some very big
 boards. This post contains some of the stuff we managed to work out!
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5439897" class="outline-2"&gt;
-&lt;h2 id="org5439897"&gt;The Game&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5439897"&gt;
+&lt;div id="outline-container-orgb26dadd" class="outline-2"&gt;
+&lt;h2 id="orgb26dadd"&gt;The Game&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb26dadd"&gt;
 &lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/utils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOut.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOutState.js"&gt;&lt;/script&gt;&lt;p&gt;
 &lt;span class="underline"&gt;Lights Out&lt;/span&gt; is a game released by Tiger
 Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
@@ -23,7 +23,7 @@ each light also toggles all the surrounding lights…
 &lt;/p&gt;
 
 &lt;p&gt;
-Unfortunately, we didn't know the game had a name, much less a wikipedia
+Unfortunately, we didn't know the game had a name, much less a Wikipedia
 article, until we'd finished…
 &lt;/p&gt;
 
@@ -36,7 +36,7 @@ it!!) on different board sizes. Try to turn all 'lights' off.
     &lt;!-- Arm --&gt;
     &lt;canvas id="lights-out0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
         Your browser doesn't support html5 canvas :c.
-    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 1:&lt;/span&gt; The game of Lights-Out in it's origional size: 5x5. Click to flip the blue 'lights'! &lt;/p&gt;
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 1:&lt;/span&gt; The game of Lights-Out in it's original size: 5x5. Click to flip the blue 'lights'! &lt;/p&gt;
 &lt;/div&gt;
 
 &lt;script type="text/javascript"&gt;
@@ -49,9 +49,9 @@ and instantly know how to solve it or even if can be solved at all?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0bb3a9a" class="outline-2"&gt;
-&lt;h2 id="org0bb3a9a"&gt;Impossible boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0bb3a9a"&gt;
+&lt;div id="outline-container-org29b9e52" class="outline-2"&gt;
+&lt;h2 id="org29b9e52"&gt;Impossible boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org29b9e52"&gt;
 &lt;p&gt;
 First of all, not all boards are solvable. A 2x1 board, for example, will never
 let you click on only a single tile. If it starts with just one light on,
@@ -72,9 +72,9 @@ All other boards in this page are solvable though… So don't worry :P
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1da6298" class="outline-2"&gt;
-&lt;h2 id="org1da6298"&gt;State&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1da6298"&gt;
+&lt;div id="outline-container-org4ad207a" class="outline-2"&gt;
+&lt;h2 id="org4ad207a"&gt;State&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4ad207a"&gt;
 &lt;p&gt;
 The first thing to notice is that tapping on the same square twice is the same
 as not tapping at all, and also that the order you tap the squares doesn't make
@@ -94,7 +94,7 @@ red squares are the ones to tap to solve the board.
         Your browser doesn't support html5 canvas :c.
     &lt;/canvas&gt;&lt;canvas id="lights-out-game0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
         Your browser doesn't support html5 canvas :c.
-    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 3:&lt;/span&gt; The corrisponding hidden 'state'/solution (red) for the game board (blue).&lt;/p&gt;
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 3:&lt;/span&gt; The corresponding hidden 'state'/solution (red) for the game board (blue).&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;script type="text/javascript"&gt;
@@ -109,9 +109,9 @@ We'd be able to solve the game.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf65d550" class="outline-2"&gt;
-&lt;h2 id="orgf65d550"&gt;Forward mapping&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf65d550"&gt;
+&lt;div id="outline-container-org9cf34fc" class="outline-2"&gt;
+&lt;h2 id="org9cf34fc"&gt;Forward mapping&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9cf34fc"&gt;
 &lt;p&gt;
 It's not too hard to do the reverse: I.e. take the tapped squares (red) and work out the
 corresponding board position. There's also only one mapping from this red
@@ -173,9 +173,9 @@ corresponding to every board state - and all board states are solvable.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1eb67fa" class="outline-2"&gt;
-&lt;h2 id="org1eb67fa"&gt;Unsolvable boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1eb67fa"&gt;
+&lt;div id="outline-container-org953d243" class="outline-2"&gt;
+&lt;h2 id="org953d243"&gt;Unsolvable boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org953d243"&gt;
 &lt;p&gt;
 If there is an unsolvable configuration of the board, i.e. a board state which
 has no taps that leaves all the lights off, then it must exist in the null space
@@ -191,7 +191,7 @@ always solvable, and which have many configurations that make them unsolvable.
 
 &lt;div class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph20.png" alt="graph20.png" width="500px"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;What board sizes are solvable? If a boardsize is solvable completely, it's corrisponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;What board sizes are solvable? If a boardsize is solvable completely, it's corresponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -203,9 +203,9 @@ boards too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7623645" class="outline-2"&gt;
-&lt;h2 id="org7623645"&gt;Nullity?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7623645"&gt;
+&lt;div id="outline-container-org1370ae5" class="outline-2"&gt;
+&lt;h2 id="org1370ae5"&gt;Nullity?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1370ae5"&gt;
 &lt;p&gt;
 It's interesting to mess around with one of the boards with maximum nullity.
 Here's a 4x4 board. It's far easier than others because if there is a solution
@@ -223,7 +223,7 @@ at all for a position, then there are many.
 var g = new LightsOut(document.getElementById('lights-out4x4'), 4, 4);
 g.randomize();
 &lt;/script&gt;&lt;p&gt;
-Similar to a rubik's cube, where flipping a single piece makes the puzzle
+Similar to a Rubik's cube, where flipping a single piece makes the puzzle
 unsolvable, lights-out boards of many dimensions have similar 'parity' cases.
 The nullity of the mapping matrix effectively counts these. For a \(4\times 4\)
 board, which has a nullity of 4, there are 4 pieces which are fully determined
@@ -233,9 +233,9 @@ unsolvable ones.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1439261" class="outline-2"&gt;
-&lt;h2 id="org1439261"&gt;'Cascading'&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1439261"&gt;
+&lt;div id="outline-container-org39f2fa8" class="outline-2"&gt;
+&lt;h2 id="org39f2fa8"&gt;'Cascading'&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org39f2fa8"&gt;
 &lt;p&gt;
 One (human) way of trying to solve a lights-out puzzle is to always try to
 click under any light. If you go through the board row-by-row downwards,
@@ -332,9 +332,9 @@ setupCascade(h, 100);
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0371ddb" class="outline-2"&gt;
-&lt;h2 id="org0371ddb"&gt;Maximum nullity&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0371ddb"&gt;
+&lt;div id="outline-container-orgc67c5d8" class="outline-2"&gt;
+&lt;h2 id="orgc67c5d8"&gt;Maximum nullity&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc67c5d8"&gt;
 &lt;p&gt;
 An interesting result from this is there is a maximum nullity for any board.
 &lt;/p&gt;
@@ -375,9 +375,9 @@ nullity is \(min(m,n)\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org56a3732" class="outline-2"&gt;
-&lt;h2 id="org56a3732"&gt;Bitops&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org56a3732"&gt;
+&lt;div id="outline-container-orgcd0f517" class="outline-2"&gt;
+&lt;h2 id="orgcd0f517"&gt;Bitops&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcd0f517"&gt;
 &lt;p&gt;
 In order to speed up calculating large boards, we wrote some Very Fast&lt;sup&gt;tm&lt;/sup&gt; c++
 matrix code, to perform all binary field arithmetic in parallel with bitops.
@@ -408,9 +408,9 @@ This allows us to perform up to 32 'clicks' at once, in very few bit operations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0c59fcd" class="outline-2"&gt;
-&lt;h2 id="org0c59fcd"&gt;Low memory cascade&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0c59fcd"&gt;
+&lt;div id="outline-container-org625e079" class="outline-2"&gt;
+&lt;h2 id="org625e079"&gt;Low memory cascade&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org625e079"&gt;
 &lt;p&gt;
 Although this cascade is fast, it requires a lot of memory. In order to generate
 the matrix for, e.g. a \(4000 \times 4000\) board, it requires 4000 boards, or the
@@ -440,13 +440,13 @@ vs the pre-cascading programs and our initial python/numpy code too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcd78bbe" class="outline-2"&gt;
-&lt;h2 id="orgcd78bbe"&gt;Lots of boards&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcd78bbe"&gt;
+&lt;div id="outline-container-org9fa13b8" class="outline-2"&gt;
+&lt;h2 id="org9fa13b8"&gt;Lots of boards&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9fa13b8"&gt;
 &lt;p&gt;
 In order to calculate nullity for a few million boards… We could compute
 the matrices for all boards of a certain width simultaneously. Cascade once,
-grab the new bottom row for each board, copy it into a matrix, reduce it inplace
+grab the new bottom row for each board, copy it into a matrix, reduce it in-place
 and calculate nullity, and discard it. We can then iterate to calculate the
 nullity of a board that is \((m+1)\times n\). To parallelize, each core just takes a
 width of board and calculates the nullity of all boards of that width up to a
@@ -456,9 +456,9 @@ optimizations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcb038f8" class="outline-2"&gt;
-&lt;h2 id="orgcb038f8"&gt;Results!!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcb038f8"&gt;
+&lt;div id="outline-container-org8c4063e" class="outline-2"&gt;
+&lt;h2 id="org8c4063e"&gt;Results!!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8c4063e"&gt;
 &lt;p&gt;
 The resulting images for different sizes.
 &lt;/p&gt;
@@ -551,17 +551,17 @@ These are all surprisingly structured! Often near 2&lt;sup&gt;n&lt;/sup&gt;-1 or
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org816cba8" class="outline-2"&gt;
-&lt;h2 id="org816cba8"&gt;Other…&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org816cba8"&gt;
+&lt;div id="outline-container-orgdaa93d5" class="outline-2"&gt;
+&lt;h2 id="orgdaa93d5"&gt;Other…&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdaa93d5"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgcbb9ddc" class="outline-3"&gt;
-&lt;h3 id="orgcbb9ddc"&gt;Looping patterns?&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcbb9ddc"&gt;
+&lt;div id="outline-container-org4f50768" class="outline-3"&gt;
+&lt;h3 id="org4f50768"&gt;Looping patterns?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4f50768"&gt;
 &lt;p&gt;
 Since a cascade operation can be written as a matrix multiplication (if the
 board has width \(m\), the resulting cascade matrix is \(2m\times 2m\)), we can
-consider powers of it instead of repeatingly cascading.
+consider powers of it instead of repeatedly cascading.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -573,18 +573,18 @@ certain width would form a long repeating pattern based on their height.
 &lt;p&gt;
 The period of small cascade matrices; less than 40, are all about/below 8000-16000,
 but it blows up from there… The period of the cascade over a board of width 40
-is over a million itterations.
+is over one million iterations.
 &lt;/p&gt;
 
 &lt;p&gt;
-Funnily, we both came up with this idea cooincidentally within a few minutes of eachother.
+Funnily, we both came up with this idea coincidentally within a few minutes of each other.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org379a932" class="outline-3"&gt;
-&lt;h3 id="org379a932"&gt;Sequences&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org379a932"&gt;
+&lt;div id="outline-container-org7f0965e" class="outline-3"&gt;
+&lt;h3 id="org7f0965e"&gt;Sequences&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7f0965e"&gt;
 &lt;p&gt;
 Some board widths are surprisingly solvable/ unsolvable. We found boards of size
 (\(10 \times 31n-1\)) are all unsolvable (nullity of 10) to as high as we could
@@ -592,20 +592,20 @@ calculate at the time.
 &lt;/p&gt;
 
 &lt;p&gt;
-Several other widths are suprisingly solvable, 10 (other than above), 81, and many more.
+Several other widths are surprisingly solvable, 10 (other than above), 81, and many more.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5ed1387" class="outline-3"&gt;
-&lt;h3 id="org5ed1387"&gt;OEIS&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5ed1387"&gt;
+&lt;div id="outline-container-org6c93c6d" class="outline-3"&gt;
+&lt;h3 id="org6c93c6d"&gt;OEIS&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6c93c6d"&gt;
 &lt;p&gt;
 The Online Encyclopedia of Integer Sequences is a searchable database
 containing, well, integer sequences. After finishing up, we tried searching it
 for our sequence. It turns out square boards have their own entry &lt;a href="https://oeis.org/A093614"&gt;here!&lt;/a&gt; This was
 the first time we knew the game by it's proper name, and found the game's
-relation to other areas of celular automatia.
+relation to other areas of cellular automata.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -616,9 +616,9 @@ the OEIS sequence is 2363, while ours is ~4100.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdc7528e" class="outline-2"&gt;
-&lt;h2 id="orgdc7528e"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdc7528e"&gt;
+&lt;div id="outline-container-orgc6dcd4c" class="outline-2"&gt;
+&lt;h2 id="orgc6dcd4c"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc6dcd4c"&gt;
 &lt;p&gt;
 I think we both agree we haven't completely figured out as much as we'd like…
 The patterns are still somewhat a mystery, even if we've found some logic in
@@ -1123,9 +1123,9 @@ ideas and shapes.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgb9fbf5a" class="outline-2"&gt;
-&lt;h2 id="orgb9fbf5a"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb9fbf5a"&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgfa7b272" class="outline-2"&gt;
+&lt;h2 id="orgfa7b272"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfa7b272"&gt;
 &lt;p&gt;
 At EJC last year (2018), I came across Jack Boyce's siteswap questions, which
 can be found &lt;a href="http://www.juggling.org/help/siteswap/tests/test-boyce.html"&gt;HERE!&lt;/a&gt; I'd highly recommend giving them a go. They start off doable,
@@ -1146,9 +1146,9 @@ it up and posting it now… 9 months later.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2303110" class="outline-2"&gt;
-&lt;h2 id="org2303110"&gt;q1&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2303110"&gt;
+&lt;div id="outline-container-org45e4ca8" class="outline-2"&gt;
+&lt;h2 id="org45e4ca8"&gt;q1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org45e4ca8"&gt;
 &lt;p&gt;
 &lt;i&gt;I am juggling \(868671\) with clubs (yeah, right).  How many do I have?&lt;/i&gt;
 &lt;/p&gt;
@@ -1167,9 +1167,9 @@ Answer: 6
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org52eb524" class="outline-2"&gt;
-&lt;h2 id="org52eb524"&gt;q2&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org52eb524"&gt;
+&lt;div id="outline-container-org0c4fd46" class="outline-2"&gt;
+&lt;h2 id="org0c4fd46"&gt;q2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0c4fd46"&gt;
 &lt;p&gt;
 &lt;i&gt;I have a bowling ball that I can only throw as a site swap '\(3\)' throw. Which&lt;/i&gt;
 &lt;i&gt;of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:&lt;/i&gt;
@@ -1182,7 +1182,7 @@ Answer: 6
 
 &lt;p&gt;
 This is a question about orbits. A siteswap throw is thrown it's value number of
-beats later (e.g. a \(6\) is thrown 6 beats later). Therafore we're looking for
+beats later (e.g. a \(6\) is thrown 6 beats later). Therefore we're looking for
 siteswaps which have a \(3\) every 3 beats (wrapping).
 &lt;/p&gt;
 
@@ -1192,9 +1192,9 @@ This is only c).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf390eca" class="outline-2"&gt;
-&lt;h2 id="orgf390eca"&gt;q3&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf390eca"&gt;
+&lt;div id="outline-container-orgc84c76e" class="outline-2"&gt;
+&lt;h2 id="orgc84c76e"&gt;q3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc84c76e"&gt;
 &lt;p&gt;
 &lt;i&gt;You are doing a 4 ball fountain and decide you want to switch into&lt;/i&gt;
 &lt;i&gt;741, an excited state site swap.  You can't just start throwing:&lt;/i&gt;
@@ -1228,9 +1228,9 @@ away from the base state.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org89ed86c" class="outline-2"&gt;
-&lt;h2 id="org89ed86c"&gt;q4&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org89ed86c"&gt;
+&lt;div id="outline-container-org62ef2d0" class="outline-2"&gt;
+&lt;h2 id="org62ef2d0"&gt;q4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org62ef2d0"&gt;
 &lt;p&gt;
 &lt;i&gt;You want to get back into the fountain, from 741.  What is the&lt;/i&gt;
 &lt;i&gt;shortest connecting (ending) sequence in this direction?&lt;/i&gt;
@@ -1250,9 +1250,9 @@ into and out of any siteswap must be, itself, a valid (ground state) pattern.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1f62c82" class="outline-2"&gt;
-&lt;h2 id="org1f62c82"&gt;q5&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1f62c82"&gt;
+&lt;div id="outline-container-orgdf64dbd" class="outline-2"&gt;
+&lt;h2 id="orgdf64dbd"&gt;q5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdf64dbd"&gt;
 &lt;p&gt;
 &lt;i&gt;Go from the 4 ball fountain to 714.  What are the shortest&lt;/i&gt;
 &lt;i&gt;connecting sequences (both directions)?&lt;/i&gt;
@@ -1296,9 +1296,9 @@ will work because \(552\) and \(642\) are valid siteswaps.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgd3b5de9" class="outline-2"&gt;
-&lt;h2 id="orgd3b5de9"&gt;q6&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd3b5de9"&gt;
+&lt;div id="outline-container-orgab58283" class="outline-2"&gt;
+&lt;h2 id="orgab58283"&gt;q6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgab58283"&gt;
 &lt;p&gt;
 &lt;i&gt;You are already doing \(741\) and want to switch directly into \(714\).&lt;/i&gt;
 &lt;i&gt;What is the shortest sequence for doing so?  [You could just&lt;/i&gt;
@@ -1319,9 +1319,9 @@ an extra \(5\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org659ef6a" class="outline-2"&gt;
-&lt;h2 id="org659ef6a"&gt;q7&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org659ef6a"&gt;
+&lt;div id="outline-container-org2bd5154" class="outline-2"&gt;
+&lt;h2 id="org2bd5154"&gt;q7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2bd5154"&gt;
 &lt;p&gt;
 &lt;i&gt;Is the trick \(66671777161\) simple?  If not, which portion of the&lt;/i&gt;
 &lt;i&gt;pattern can be repeated within the larger trick?&lt;/i&gt;
@@ -1387,9 +1387,9 @@ Then, we can get the tables for both siteswaps we're interested in.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org50794fe" class="outline-3"&gt;
-&lt;h3 id="org50794fe"&gt;66671777161&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org50794fe"&gt;
+&lt;div id="outline-container-orgdec289a" class="outline-3"&gt;
+&lt;h3 id="orgdec289a"&gt;66671777161&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdec289a"&gt;
 &lt;p&gt;
 Here, there are two states that occur more than once. I've marked the pairs here
 as a and b. This means you can juggle the patterns between the As (I.e. 6671,
@@ -1412,9 +1412,9 @@ and 7771616), and Bs (717771, and 61666)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org98bdf61" class="outline-3"&gt;
-&lt;h3 id="org98bdf61"&gt;6316131&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org98bdf61"&gt;
+&lt;div id="outline-container-org5c50607" class="outline-3"&gt;
+&lt;h3 id="org5c50607"&gt;6316131&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5c50607"&gt;
 &lt;p&gt;
 Here, this siteswap has no duplicated states, and is therefore prime.
 &lt;/p&gt;
@@ -1464,9 +1464,9 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5eaa318" class="outline-2"&gt;
-&lt;h2 id="org5eaa318"&gt;q8&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5eaa318"&gt;
+&lt;div id="outline-container-org71914fa" class="outline-2"&gt;
+&lt;h2 id="org71914fa"&gt;q8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org71914fa"&gt;
 &lt;p&gt;
 &lt;i&gt;There is 1 ground state 5 ball trick of length 1 (5), 2 of length 2&lt;/i&gt;
 &lt;i&gt;(55, 64), 6 of length 3 (555, 564, 645, 663, 744, 753), 24 of length&lt;/i&gt;
@@ -1515,9 +1515,9 @@ of throws (until we start getting 0s… See next q).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge1f767a" class="outline-2"&gt;
-&lt;h2 id="orge1f767a"&gt;q9&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge1f767a"&gt;
+&lt;div id="outline-container-org122a54c" class="outline-2"&gt;
+&lt;h2 id="org122a54c"&gt;q9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org122a54c"&gt;
 &lt;p&gt;
 &lt;i&gt;There are not 7! = 5040 ground state 5 ball patterns of length 7,&lt;/i&gt;
 &lt;i&gt;as the above pattern would suggest (the actual number is around&lt;/i&gt;
@@ -1603,9 +1603,9 @@ So with this in mind, we can calculate the total number of siteswaps of length
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc0b7f84" class="outline-3"&gt;
-&lt;h3 id="orgc0b7f84"&gt;Arrow permutations:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc0b7f84"&gt;
+&lt;div id="outline-container-org26f6411" class="outline-3"&gt;
+&lt;h3 id="org26f6411"&gt;Arrow permutations:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org26f6411"&gt;
 &lt;p&gt;
 To work out the permutations of length l, we can use the method we had before.
 We go through the catches, and work out where the throw could've come from. Now
@@ -1627,7 +1627,7 @@ point.
 &lt;p&gt;
 As long as the pattern is going, we have \(n\) places the throw could've been
 made. We go through the siteswap from left to right, picking each throw source
-in turn. Therafore, the number of possible sources remains the same - \(n\).
+in turn. Therefore, the number of possible sources remains the same - \(n\).
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -1654,9 +1654,9 @@ Since we already know how many ground state siteswaps there are for \(l &amp;lt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8a76816" class="outline-3"&gt;
-&lt;h3 id="org8a76816"&gt;Gap insertion&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org8a76816"&gt;
+&lt;div id="outline-container-orgd1629f8" class="outline-3"&gt;
+&lt;h3 id="orgd1629f8"&gt;Gap insertion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd1629f8"&gt;
 &lt;p&gt;
 Given a siteswap of length \(l\) with no gaps, we're looking to insert them so as
 to end up with one of length \(L, L &amp;gt;= l\).
@@ -1676,9 +1676,9 @@ number of balls.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0152d5e" class="outline-3"&gt;
-&lt;h3 id="org0152d5e"&gt;Putting it all together:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0152d5e"&gt;
+&lt;div id="outline-container-orgdf16897" class="outline-3"&gt;
+&lt;h3 id="orgdf16897"&gt;Putting it all together:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdf16897"&gt;
 &lt;p&gt;
 Lets insert what we have into the equation.
 &lt;/p&gt;
@@ -1718,9 +1718,9 @@ length 7 there are:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4aefcad" class="outline-3"&gt;
-&lt;h3 id="org4aefcad"&gt;Simplify&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4aefcad"&gt;
+&lt;div id="outline-container-orgc931ae0" class="outline-3"&gt;
+&lt;h3 id="orgc931ae0"&gt;Simplify&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc931ae0"&gt;
 &lt;p&gt;
 We can simplify this formula a lot further! First taking \(n!\) out side the sum.
 &lt;/p&gt;
@@ -1778,9 +1778,9 @@ Which… FINALLY gives us the the answer! Phew!
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgabc22f3" class="outline-2"&gt;
-&lt;h2 id="orgabc22f3"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgabc22f3"&gt;
+</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgfe2d1fa" class="outline-2"&gt;
+&lt;h2 id="orgfe2d1fa"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfe2d1fa"&gt;
 &lt;p&gt;
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: &lt;i&gt;Here be graphs&lt;/i&gt;.
@@ -1789,7 +1789,6 @@ movements and build more complex animations from them. Be warned: &lt;i&gt;Here 
 &lt;p&gt;
 We'll be using the idea of &lt;b&gt;State&lt;/b&gt;, &lt;b&gt;Update&lt;/b&gt;, &lt;b&gt;Apply&lt;/b&gt; from &lt;a href="https://imois.in/posts/procedural-animation-1-state-machines/"&gt;Part 1&lt;/a&gt; here too. If
 you haven't read that, you might want to start there!
-[./procedural-animation-1-state-machines/][Part 1]] here too. If
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -1799,9 +1798,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org78e1a6d" class="outline-2"&gt;
-&lt;h2 id="org78e1a6d"&gt;Bouncing ball&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org78e1a6d"&gt;
+&lt;div id="outline-container-org1f73c43" class="outline-2"&gt;
+&lt;h2 id="org1f73c43"&gt;Bouncing ball&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1f73c43"&gt;
 &lt;p&gt;
 How to make this?
 &lt;/p&gt;
@@ -1904,9 +1903,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org47bc850" class="outline-2"&gt;
-&lt;h2 id="org47bc850"&gt;Different Applications (heh)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org47bc850"&gt;
+&lt;div id="outline-container-orgc2fb241" class="outline-2"&gt;
+&lt;h2 id="orgc2fb241"&gt;Different Applications (heh)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc2fb241"&gt;
 &lt;p&gt;
 By just changing the &lt;b&gt;Apply&lt;/b&gt; function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -1966,9 +1965,9 @@ a way very similar to above ^. That's a whole different blog post though!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org783a076" class="outline-2"&gt;
-&lt;h2 id="org783a076"&gt;Zigzag&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org783a076"&gt;
+&lt;div id="outline-container-org3080da1" class="outline-2"&gt;
+&lt;h2 id="org3080da1"&gt;Zigzag&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3080da1"&gt;
 &lt;p&gt;
 This is a slighly harder example for the idea of manipulating function shapes.
 &lt;/p&gt;
@@ -2000,9 +1999,9 @@ this (Green).
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org59c91b1" class="outline-2"&gt;
-&lt;h2 id="org59c91b1"&gt;Bouncing balls&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org59c91b1"&gt;
+&lt;div id="outline-container-org3d2f828" class="outline-2"&gt;
+&lt;h2 id="org3d2f828"&gt;Bouncing balls&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3d2f828"&gt;
 &lt;p&gt;
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -2030,9 +2029,9 @@ extra transformation: 1-zigzag&lt;sup&gt;2&lt;/sup&gt;.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9c810ea" class="outline-2"&gt;
-&lt;h2 id="org9c810ea"&gt;More Ideas&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9c810ea"&gt;
+&lt;div id="outline-container-orgda2883c" class="outline-2"&gt;
+&lt;h2 id="orgda2883c"&gt;More Ideas&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgda2883c"&gt;
 &lt;p&gt;
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -2064,9 +2063,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc4aba38" class="outline-2"&gt;
-&lt;h2 id="orgc4aba38"&gt;Other applications&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc4aba38"&gt;
+&lt;div id="outline-container-orgebb6aee" class="outline-2"&gt;
+&lt;h2 id="orgebb6aee"&gt;Other applications&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgebb6aee"&gt;
 &lt;p&gt;
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.

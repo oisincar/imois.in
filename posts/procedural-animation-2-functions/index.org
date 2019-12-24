@@ -31,7 +31,6 @@ movements and build more complex animations from them. Be warned: /Here be graph
 
 We'll be using the idea of *State*, *Update*, *Apply* from [[./procedural-animation-1-state-machines/][Part 1]] here too. If
 you haven't read that, you might want to start there!
-[./procedural-animation-1-state-machines/][Part 1]] here too. If
 
 And finally, all of the animations are running in javascript canvas, so you can open the
 source code in the inspector or find it on [[https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation][my github for the site!]]
