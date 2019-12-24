@@ -18,28 +18,24 @@
     font-style: italic;
     color: #475678;
 }
-.figure > p > * {
-  max-width: 85vw;
-}
-.figure > canvas {
-  max-width: 85vw;
-}
 
 .figure-number {
     font-weight: bold;
 }
-
-
-/* Stuff taken procedural animation talk. Sliders, borders etc. */
 
 .light_border {
   /* border: 3px solid #ccc5b6 */
   /* margin-bottom: 10px; */
 }
 
-.MathJax_Display {
-  overflow-x: auto;
-}
+/* Fixing overflow issues! */
+.figure > p > * { max-width: 85vw; }
+.figure > canvas { max-width: 85vw; }
+.MathJax_Display { overflow-x: auto; }
+/* The bar containing tags and date */
+.meta_clearfix { overflow-x: auto; }
+
+/* Stuff taken procedural animation talk. Sliders, borders etc. */
 
 /* .align_all { */
 /*   display: flex; */
