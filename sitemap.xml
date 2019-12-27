@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2019-04-27T01:12:00Z</lastmod>
+  <lastmod>2019-12-26T23:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2019-12-24T20:10:00Z</lastmod>
+  <lastmod>2019-12-26T22:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
@@ -52,6 +52,10 @@
  <url>
   <loc>https://imois.in/listings/</loc>
   <lastmod>2019-04-26T01:06:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/pages/about-me/</loc>
+  <lastmod>2019-12-26T22:40:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/posts/jack-boyces-siteswap-questions/</loc>

@@ -1,0 +1,32 @@
+#+BEGIN_COMMENT
+.. title: About Me
+.. slug: about-me
+.. date: 2019-12-26 22:35:28 UTC
+.. tags:
+.. category:
+.. link:
+.. description:
+.. type: text
+.. nocomments: true
+#+END_COMMENT
+
+* About Me
+Hi, I'm Oisin,
+
+Right now, I'm a Masters Computer Engineering student in Trinity College,
+Dublin. A longtime hobbyist gamedeveloper, juggler, and machine learning enthusiast, recently I've
+been trying to up my pure-maths skills, too.
+
+This site collects random projects I've been working on in my spare time.
+
+Other bits I've worked on/am working on include:
+- [[http://siliconsynapse.net/][*Silicone Synapse*]]: A VR exhibit with artist AlanJames Burns.
+- [[https://syze.ai/][*Syze.ai*]]: An AI-based startup aiming to reduce returns for online clothing stores.
+- [[https://www.facebook.com/WizardLizardGame/][*WizardLizard*]]: A 3d puzzle game based on illusions, featuring a procedural lizard.
+- [[https://github.com/oisincar/cnp-5][*CNP*]]: An old maths problem that is the subject of a recent [[http://michaelnielsen.org/polymath1/index.php?title=Hadwiger-Nelson_problem][polymath project]].
+
+[[../misc/resume.pdf][My CV]] is a bit outdated now but might be interesting!
+
+* Contact
+Feel free to contact me via email; hi@imois.in. I'm told there are people
+sharing my name/ background on linkedin but they're not me(!)
