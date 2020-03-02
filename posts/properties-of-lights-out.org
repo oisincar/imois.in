@@ -379,7 +379,7 @@ The resulting images for different sizes.
 Here we can see the patterns that continue even for very large boards. In the
 512x512 image, there's a faint grid forming at near powers of 2: 127 and 255.
 Above it, there's a similar line around 63. The largest size: 4096 requires
-zooming for the 'constilations' to be even visible, but they're there, with
+zooming for the 'constellations' to be even visible, but they're there, with
 several big spots also scattered around.
 
 It's interesting that, as you move further 'out', the boards are relatively more
