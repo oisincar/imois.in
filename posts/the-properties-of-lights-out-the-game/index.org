@@ -2,7 +2,7 @@
 .. title: Properties of Lights Out: The Game.
 .. slug: the-properties-of-lights-out-the-game
 .. date: 2019-12-19 16:59:29 UTC
-.. tags: programming, gamedev, maths
+.. tags: programming, gamedev, math
 .. category:
 .. link:
 .. has_math: true
