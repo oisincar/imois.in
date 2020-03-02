@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 02 Mar 2020 15:08:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgf027450" class="outline-2"&gt;
-&lt;h2 id="orgf027450"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf027450"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 02 Mar 2020 15:29:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org44fc9a0" class="outline-2"&gt;
+&lt;h2 id="org44fc9a0"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org44fc9a0"&gt;
 &lt;p&gt;
 This game was sent to me by Lucy Deacon (Link to be added :P), who found it in &lt;a href="https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&amp;amp;hl=en_IE"&gt;Simon Tatham's Puzzles&lt;/a&gt;
 under the name 'Flip' around August of 2018. For the few months thereafter
@@ -12,9 +12,9 @@ boards. This post contains some of the stuff we managed to work out!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb999699" class="outline-2"&gt;
-&lt;h2 id="orgb999699"&gt;The Game&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb999699"&gt;
+&lt;div id="outline-container-org248a5c0" class="outline-2"&gt;
+&lt;h2 id="org248a5c0"&gt;The Game&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org248a5c0"&gt;
 &lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/utils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOut.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOutState.js"&gt;&lt;/script&gt;&lt;p&gt;
 &lt;span class="underline"&gt;Lights Out&lt;/span&gt; is a game released by Tiger
 Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
@@ -49,9 +49,9 @@ and instantly know how to solve it or even if can be solved at all?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge781b6e" class="outline-2"&gt;
-&lt;h2 id="orge781b6e"&gt;Impossible boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge781b6e"&gt;
+&lt;div id="outline-container-orge6f096b" class="outline-2"&gt;
+&lt;h2 id="orge6f096b"&gt;Impossible boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge6f096b"&gt;
 &lt;p&gt;
 First of all, not all boards are solvable. A 2x1 board, for example, will never
 let you click on only a single tile. If it starts with just one light on,
@@ -72,9 +72,9 @@ All other boards in this page are solvable though… So don't worry :P
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgad07cda" class="outline-2"&gt;
-&lt;h2 id="orgad07cda"&gt;State&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgad07cda"&gt;
+&lt;div id="outline-container-org14e6b52" class="outline-2"&gt;
+&lt;h2 id="org14e6b52"&gt;State&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org14e6b52"&gt;
 &lt;p&gt;
 The first thing to notice is that tapping on the same square twice is the same
 as not tapping at all, and also that the order you tap the squares doesn't make
@@ -109,9 +109,9 @@ We'd be able to solve the game.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1bebcaa" class="outline-2"&gt;
-&lt;h2 id="org1bebcaa"&gt;Forward mapping&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1bebcaa"&gt;
+&lt;div id="outline-container-org72435f7" class="outline-2"&gt;
+&lt;h2 id="org72435f7"&gt;Forward mapping&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org72435f7"&gt;
 &lt;p&gt;
 It's not too hard to do the reverse: I.e. take the tapped squares (red) and work out the
 corresponding board position. There's also only one mapping from this red
@@ -173,9 +173,9 @@ corresponding to every board state - and all board states are solvable.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1aa7907" class="outline-2"&gt;
-&lt;h2 id="org1aa7907"&gt;Unsolvable boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1aa7907"&gt;
+&lt;div id="outline-container-orgf890e3e" class="outline-2"&gt;
+&lt;h2 id="orgf890e3e"&gt;Unsolvable boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf890e3e"&gt;
 &lt;p&gt;
 If there is an unsolvable configuration of the board, i.e. a board state which
 has no taps that leaves all the lights off, then it must exist in the null space
@@ -203,9 +203,9 @@ boards too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org81821d7" class="outline-2"&gt;
-&lt;h2 id="org81821d7"&gt;Nullity?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org81821d7"&gt;
+&lt;div id="outline-container-org05e7330" class="outline-2"&gt;
+&lt;h2 id="org05e7330"&gt;Nullity?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org05e7330"&gt;
 &lt;p&gt;
 It's interesting to mess around with one of the boards with maximum nullity.
 Here's a 4x4 board. It's far easier than others because if there is a solution
@@ -233,9 +233,9 @@ unsolvable ones.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org08ac28a" class="outline-2"&gt;
-&lt;h2 id="org08ac28a"&gt;'Cascading'&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org08ac28a"&gt;
+&lt;div id="outline-container-org033e24d" class="outline-2"&gt;
+&lt;h2 id="org033e24d"&gt;'Cascading'&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org033e24d"&gt;
 &lt;p&gt;
 One (human) way of trying to solve a lights-out puzzle is to always try to
 click under any light. If you go through the board row-by-row downwards,
@@ -332,9 +332,9 @@ setupCascade(h, 100);
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgacaf86a" class="outline-2"&gt;
-&lt;h2 id="orgacaf86a"&gt;Maximum nullity&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgacaf86a"&gt;
+&lt;div id="outline-container-orgc128e8b" class="outline-2"&gt;
+&lt;h2 id="orgc128e8b"&gt;Maximum nullity&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc128e8b"&gt;
 &lt;p&gt;
 An interesting result from this is there is a maximum nullity for any board.
 &lt;/p&gt;
@@ -375,9 +375,9 @@ nullity is \(min(m,n)\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga966b4a" class="outline-2"&gt;
-&lt;h2 id="orga966b4a"&gt;Bitops&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga966b4a"&gt;
+&lt;div id="outline-container-org1d6cf4a" class="outline-2"&gt;
+&lt;h2 id="org1d6cf4a"&gt;Bitops&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1d6cf4a"&gt;
 &lt;p&gt;
 In order to speed up calculating large boards, we wrote some Very Fast&lt;sup&gt;tm&lt;/sup&gt; c++
 matrix code, to perform all binary field arithmetic in parallel with bitops.
@@ -408,9 +408,9 @@ This allows us to perform up to 32 'clicks' at once, in very few bit operations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga317e11" class="outline-2"&gt;
-&lt;h2 id="orga317e11"&gt;Low memory cascade&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga317e11"&gt;
+&lt;div id="outline-container-org20d2aa3" class="outline-2"&gt;
+&lt;h2 id="org20d2aa3"&gt;Low memory cascade&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org20d2aa3"&gt;
 &lt;p&gt;
 Although this cascade is fast, it requires a lot of memory. In order to generate
 the matrix for, e.g. a \(4000 \times 4000\) board, it requires 4000 boards, or the
@@ -440,9 +440,9 @@ vs the pre-cascading programs and our initial python/numpy code too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org28fccdf" class="outline-2"&gt;
-&lt;h2 id="org28fccdf"&gt;Lots of boards&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org28fccdf"&gt;
+&lt;div id="outline-container-org13680eb" class="outline-2"&gt;
+&lt;h2 id="org13680eb"&gt;Lots of boards&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org13680eb"&gt;
 &lt;p&gt;
 In order to calculate nullity for a few million boards… We could compute
 the matrices for all boards of a certain width simultaneously. Cascade once,
@@ -456,9 +456,9 @@ optimizations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org78dee40" class="outline-2"&gt;
-&lt;h2 id="org78dee40"&gt;Results!!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org78dee40"&gt;
+&lt;div id="outline-container-orga067fe0" class="outline-2"&gt;
+&lt;h2 id="orga067fe0"&gt;Results!!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga067fe0"&gt;
 &lt;p&gt;
 The resulting images for different sizes.
 &lt;/p&gt;
@@ -480,7 +480,7 @@ The resulting images for different sizes.
 Here we can see the patterns that continue even for very large boards. In the
 512x512 image, there's a faint grid forming at near powers of 2: 127 and 255.
 Above it, there's a similar line around 63. The largest size: 4096 requires
-zooming for the 'constilations' to be even visible, but they're there, with
+zooming for the 'constellations' to be even visible, but they're there, with
 several big spots also scattered around.
 &lt;/p&gt;
 
@@ -551,13 +551,13 @@ These are all surprisingly structured! Often near 2&lt;sup&gt;n&lt;/sup&gt;-1 or
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org83cdb6b" class="outline-2"&gt;
-&lt;h2 id="org83cdb6b"&gt;Other…&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org83cdb6b"&gt;
+&lt;div id="outline-container-org05ee386" class="outline-2"&gt;
+&lt;h2 id="org05ee386"&gt;Other…&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org05ee386"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orga649a4f" class="outline-3"&gt;
-&lt;h3 id="orga649a4f"&gt;Looping patterns?&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga649a4f"&gt;
+&lt;div id="outline-container-org6e456db" class="outline-3"&gt;
+&lt;h3 id="org6e456db"&gt;Looping patterns?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6e456db"&gt;
 &lt;p&gt;
 Since a cascade operation can be written as a matrix multiplication (if the
 board has width \(m\), the resulting cascade matrix is \(2m\times 2m\)), we can
@@ -582,9 +582,9 @@ Funnily, we both came up with this idea coincidentally within a few minutes of e
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4c8a442" class="outline-3"&gt;
-&lt;h3 id="org4c8a442"&gt;Sequences&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4c8a442"&gt;
+&lt;div id="outline-container-org4ae109c" class="outline-3"&gt;
+&lt;h3 id="org4ae109c"&gt;Sequences&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4ae109c"&gt;
 &lt;p&gt;
 Some board widths are surprisingly solvable/ unsolvable. We found boards of size
 (\(10 \times 31n-1\)) are all unsolvable (nullity of 10) to as high as we could
@@ -597,9 +597,9 @@ Several other widths are surprisingly solvable, 10 (other than above), 81, and m
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org20b15d8" class="outline-3"&gt;
-&lt;h3 id="org20b15d8"&gt;OEIS&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org20b15d8"&gt;
+&lt;div id="outline-container-org4a68718" class="outline-3"&gt;
+&lt;h3 id="org4a68718"&gt;OEIS&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4a68718"&gt;
 &lt;p&gt;
 The Online Encyclopedia of Integer Sequences is a searchable database
 containing, well, integer sequences. After finishing up, we tried searching it
@@ -616,9 +616,9 @@ the OEIS sequence is 2363, while ours is ~4100.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd444ab9" class="outline-2"&gt;
-&lt;h2 id="orgd444ab9"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd444ab9"&gt;
+&lt;div id="outline-container-org1cd3300" class="outline-2"&gt;
+&lt;h2 id="org1cd3300"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1cd3300"&gt;
 &lt;p&gt;
 I think we both agree we haven't completely figured out as much as we'd like…
 The patterns are still somewhat a mystery, even if we've found some logic in
