@@ -7,19 +7,23 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2019-12-27T00:09:00Z</lastmod>
+  <lastmod>2020-05-24T22:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
   <lastmod>2019-04-26T01:06:00Z</lastmod>
  </url>
  <url>
+  <loc>https://imois.in/2020/</loc>
+  <lastmod>2020-05-24T22:39:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2020-03-02T15:13:00Z</lastmod>
+  <lastmod>2020-05-24T22:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
-  <lastmod>2020-03-02T15:15:00Z</lastmod>
+  <lastmod>2020-05-24T22:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/animation/</loc>
@@ -32,6 +36,10 @@
  <url>
   <loc>https://imois.in/categories/juggling/</loc>
   <lastmod>2019-05-06T18:51:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/categories/machine-learning/</loc>
+  <lastmod>2020-05-24T22:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/math/</loc>
@@ -52,6 +60,10 @@
  <url>
   <loc>https://imois.in/pages/about-me/</loc>
   <lastmod>2019-12-26T22:40:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/card-network/</loc>
+  <lastmod>2020-05-24T22:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/posts/jack-boyces-siteswap-questions/</loc>

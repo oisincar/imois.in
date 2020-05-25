@@ -1,3 +1,15 @@
+/* Monospace block for terminal stuff */
+.monospace-code{
+  text-align: left;
+  font-size: 1.25em;
+  font-family: monospace;
+  white-space: pre-wrap;
+
+  background: black;
+  color: antiquewhite;
+}
+
+
 /* Small edge padding for mobile */
 .outline-2 {
     padding: 0 10px;

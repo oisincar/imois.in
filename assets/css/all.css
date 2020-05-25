@@ -641,6 +641,18 @@ pre.code .vm, .highlight pre .vm { color: #bb60d5 } /* Name.Variable.Magic */
 pre.code .il, .highlight pre .il { color: #40a070 } /* Literal.Number.Integer.Long */
 table.codetable { width: 100%;} td.linenos {text-align: right; width: 4em;}
 
+/* Monospace block for terminal stuff */
+.monospace-code{
+  text-align: left;
+  font-size: 1.25em;
+  font-family: monospace;
+  white-space: pre-wrap;
+
+  background: black;
+  color: antiquewhite;
+}
+
+
 /* Small edge padding for mobile */
 .outline-2 {
     padding: 0 10px;

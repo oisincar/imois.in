@@ -35,6 +35,7 @@ let ss = [8,6,8,6,7,1]
 
 Answer: 6
 
+
 * q2
 /I have a bowling ball that I can only throw as a site swap '$3$' throw. Which/
 /of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:/

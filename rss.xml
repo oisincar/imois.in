@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 02 Mar 2020 15:29:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org44fc9a0" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 25 May 2020 01:15:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Card Network</title><link>https://imois.in/posts/card-network/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org15c596a" class="outline-2"&gt;
+&lt;h2 id="org15c596a"&gt;Testing!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org15c596a"&gt;
+&lt;p&gt;
+this is
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="cp"&gt;#define f float&lt;/span&gt;
+&lt;span class="cp"&gt;#define v std::vector&amp;lt;f&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.01&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.01&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// relu leak, learning rate&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;resize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nl"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;31&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;);}&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;fr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;nx&lt;/span&gt;
+&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;nx&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="nf"&gt;a&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nl"&gt;i&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nl"&gt;K&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;bk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;dy&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;dz&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="n"&gt;dy&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="n"&gt;dz&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="n"&gt;W&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;-=&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;dz&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;];}&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;;}};&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt;
+&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;[]{&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)};&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;
+&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;500336&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;242&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;243&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;3.&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;5.&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;6.14&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="n"&gt;fr&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;dy&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\x1e\0\0\b\x01\0&lt;/span&gt;&lt;span class="s"&gt;@H&lt;/span&gt;&lt;span class="se"&gt;\374&lt;/span&gt;&lt;span class="s"&gt;\&lt;/span&gt;
+&lt;span class="se"&gt;\377&lt;/span&gt;&lt;span class="s"&gt;B&lt;/span&gt;&lt;span class="se"&gt;\x12&lt;/span&gt;&lt;span class="s"&gt;@&lt;/span&gt;&lt;span class="se"&gt;\x18\x12&lt;/span&gt;&lt;span class="s"&gt;G&lt;/span&gt;&lt;span class="se"&gt;\302\x10&lt;/span&gt;&lt;span class="s"&gt;@&lt;/span&gt;&lt;span class="se"&gt;\x12\372\377&lt;/span&gt;&lt;span class="s"&gt;\&lt;/span&gt;
+&lt;span class="se"&gt;\221\x10\0\0\200\0\0\0\x02&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))}&lt;/span&gt;
+&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;dy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="n"&gt;bk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dy&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;putchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;" .,-*o\&lt;/span&gt;
+&lt;span class="s"&gt;O##"&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+&lt;span class="mi"&gt;243&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="s"&gt;""&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\033&lt;/span&gt;&lt;span class="s"&gt;[9A"&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\r&lt;/span&gt;&lt;span class="s"&gt;   --- Oisin Carroll \&lt;/span&gt;
+&lt;span class="s"&gt;---&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt; gh:Oisincar  web:imois.in"&lt;/span&gt;&lt;span class="p"&gt;);}}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+&lt;button&gt;Run Code!&lt;/button&gt;
+&lt;div class="monospace-code" id="div1"&gt;&amp;gt; ./card_network&lt;/div&gt;
+
+&lt;script src="https://imois.in/assets/js/card_network/fk_network.js"&gt;&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>machine-learning</category><category>programming</category><guid>https://imois.in/posts/card-network/</guid><pubDate>Sun, 24 May 2020 22:36:12 GMT</pubDate></item><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org44fc9a0" class="outline-2"&gt;
 &lt;h2 id="org44fc9a0"&gt;Intro&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org44fc9a0"&gt;
 &lt;p&gt;
@@ -1123,9 +1165,9 @@ ideas and shapes.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgfa7b272" class="outline-2"&gt;
-&lt;h2 id="orgfa7b272"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgfa7b272"&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org292b8b4" class="outline-2"&gt;
+&lt;h2 id="org292b8b4"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org292b8b4"&gt;
 &lt;p&gt;
 At EJC last year (2018), I came across Jack Boyce's siteswap questions, which
 can be found &lt;a href="http://www.juggling.org/help/siteswap/tests/test-boyce.html"&gt;HERE!&lt;/a&gt; I'd highly recommend giving them a go. They start off doable,
@@ -1146,9 +1188,9 @@ it up and posting it now… 9 months later.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org45e4ca8" class="outline-2"&gt;
-&lt;h2 id="org45e4ca8"&gt;q1&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org45e4ca8"&gt;
+&lt;div id="outline-container-orgf7ccd81" class="outline-2"&gt;
+&lt;h2 id="orgf7ccd81"&gt;q1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf7ccd81"&gt;
 &lt;p&gt;
 &lt;i&gt;I am juggling \(868671\) with clubs (yeah, right).  How many do I have?&lt;/i&gt;
 &lt;/p&gt;
@@ -1167,9 +1209,10 @@ Answer: 6
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0c4fd46" class="outline-2"&gt;
-&lt;h2 id="org0c4fd46"&gt;q2&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0c4fd46"&gt;
+
+&lt;div id="outline-container-org5d90bd3" class="outline-2"&gt;
+&lt;h2 id="org5d90bd3"&gt;q2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5d90bd3"&gt;
 &lt;p&gt;
 &lt;i&gt;I have a bowling ball that I can only throw as a site swap '\(3\)' throw. Which&lt;/i&gt;
 &lt;i&gt;of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:&lt;/i&gt;
@@ -1192,9 +1235,9 @@ This is only c).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc84c76e" class="outline-2"&gt;
-&lt;h2 id="orgc84c76e"&gt;q3&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc84c76e"&gt;
+&lt;div id="outline-container-orge19e04d" class="outline-2"&gt;
+&lt;h2 id="orge19e04d"&gt;q3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge19e04d"&gt;
 &lt;p&gt;
 &lt;i&gt;You are doing a 4 ball fountain and decide you want to switch into&lt;/i&gt;
 &lt;i&gt;741, an excited state site swap.  You can't just start throwing:&lt;/i&gt;
@@ -1228,9 +1271,9 @@ away from the base state.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org62ef2d0" class="outline-2"&gt;
-&lt;h2 id="org62ef2d0"&gt;q4&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org62ef2d0"&gt;
+&lt;div id="outline-container-orgee70d8d" class="outline-2"&gt;
+&lt;h2 id="orgee70d8d"&gt;q4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgee70d8d"&gt;
 &lt;p&gt;
 &lt;i&gt;You want to get back into the fountain, from 741.  What is the&lt;/i&gt;
 &lt;i&gt;shortest connecting (ending) sequence in this direction?&lt;/i&gt;
@@ -1250,9 +1293,9 @@ into and out of any siteswap must be, itself, a valid (ground state) pattern.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdf64dbd" class="outline-2"&gt;
-&lt;h2 id="orgdf64dbd"&gt;q5&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdf64dbd"&gt;
+&lt;div id="outline-container-org86053f8" class="outline-2"&gt;
+&lt;h2 id="org86053f8"&gt;q5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org86053f8"&gt;
 &lt;p&gt;
 &lt;i&gt;Go from the 4 ball fountain to 714.  What are the shortest&lt;/i&gt;
 &lt;i&gt;connecting sequences (both directions)?&lt;/i&gt;
@@ -1296,9 +1339,9 @@ will work because \(552\) and \(642\) are valid siteswaps.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgab58283" class="outline-2"&gt;
-&lt;h2 id="orgab58283"&gt;q6&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgab58283"&gt;
+&lt;div id="outline-container-org7fdc9db" class="outline-2"&gt;
+&lt;h2 id="org7fdc9db"&gt;q6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7fdc9db"&gt;
 &lt;p&gt;
 &lt;i&gt;You are already doing \(741\) and want to switch directly into \(714\).&lt;/i&gt;
 &lt;i&gt;What is the shortest sequence for doing so?  [You could just&lt;/i&gt;
@@ -1319,9 +1362,9 @@ an extra \(5\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2bd5154" class="outline-2"&gt;
-&lt;h2 id="org2bd5154"&gt;q7&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2bd5154"&gt;
+&lt;div id="outline-container-orgb267dae" class="outline-2"&gt;
+&lt;h2 id="orgb267dae"&gt;q7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb267dae"&gt;
 &lt;p&gt;
 &lt;i&gt;Is the trick \(66671777161\) simple?  If not, which portion of the&lt;/i&gt;
 &lt;i&gt;pattern can be repeated within the larger trick?&lt;/i&gt;
@@ -1387,9 +1430,9 @@ Then, we can get the tables for both siteswaps we're interested in.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdec289a" class="outline-3"&gt;
-&lt;h3 id="orgdec289a"&gt;66671777161&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgdec289a"&gt;
+&lt;div id="outline-container-orgc3f70ef" class="outline-3"&gt;
+&lt;h3 id="orgc3f70ef"&gt;66671777161&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc3f70ef"&gt;
 &lt;p&gt;
 Here, there are two states that occur more than once. I've marked the pairs here
 as a and b. This means you can juggle the patterns between the As (I.e. 6671,
@@ -1412,9 +1455,9 @@ and 7771616), and Bs (717771, and 61666)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5c50607" class="outline-3"&gt;
-&lt;h3 id="org5c50607"&gt;6316131&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5c50607"&gt;
+&lt;div id="outline-container-org36f99d1" class="outline-3"&gt;
+&lt;h3 id="org36f99d1"&gt;6316131&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org36f99d1"&gt;
 &lt;p&gt;
 Here, this siteswap has no duplicated states, and is therefore prime.
 &lt;/p&gt;
@@ -1464,9 +1507,9 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org71914fa" class="outline-2"&gt;
-&lt;h2 id="org71914fa"&gt;q8&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org71914fa"&gt;
+&lt;div id="outline-container-orgbc6eec4" class="outline-2"&gt;
+&lt;h2 id="orgbc6eec4"&gt;q8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbc6eec4"&gt;
 &lt;p&gt;
 &lt;i&gt;There is 1 ground state 5 ball trick of length 1 (5), 2 of length 2&lt;/i&gt;
 &lt;i&gt;(55, 64), 6 of length 3 (555, 564, 645, 663, 744, 753), 24 of length&lt;/i&gt;
@@ -1515,9 +1558,9 @@ of throws (until we start getting 0s… See next q).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org122a54c" class="outline-2"&gt;
-&lt;h2 id="org122a54c"&gt;q9&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org122a54c"&gt;
+&lt;div id="outline-container-org38f1906" class="outline-2"&gt;
+&lt;h2 id="org38f1906"&gt;q9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org38f1906"&gt;
 &lt;p&gt;
 &lt;i&gt;There are not 7! = 5040 ground state 5 ball patterns of length 7,&lt;/i&gt;
 &lt;i&gt;as the above pattern would suggest (the actual number is around&lt;/i&gt;
@@ -1603,9 +1646,9 @@ So with this in mind, we can calculate the total number of siteswaps of length
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org26f6411" class="outline-3"&gt;
-&lt;h3 id="org26f6411"&gt;Arrow permutations:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org26f6411"&gt;
+&lt;div id="outline-container-org79df576" class="outline-3"&gt;
+&lt;h3 id="org79df576"&gt;Arrow permutations:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org79df576"&gt;
 &lt;p&gt;
 To work out the permutations of length l, we can use the method we had before.
 We go through the catches, and work out where the throw could've come from. Now
@@ -1654,9 +1697,9 @@ Since we already know how many ground state siteswaps there are for \(l &amp;lt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd1629f8" class="outline-3"&gt;
-&lt;h3 id="orgd1629f8"&gt;Gap insertion&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd1629f8"&gt;
+&lt;div id="outline-container-org8586587" class="outline-3"&gt;
+&lt;h3 id="org8586587"&gt;Gap insertion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8586587"&gt;
 &lt;p&gt;
 Given a siteswap of length \(l\) with no gaps, we're looking to insert them so as
 to end up with one of length \(L, L &amp;gt;= l\).
@@ -1676,9 +1719,9 @@ number of balls.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdf16897" class="outline-3"&gt;
-&lt;h3 id="orgdf16897"&gt;Putting it all together:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgdf16897"&gt;
+&lt;div id="outline-container-org0e87e4f" class="outline-3"&gt;
+&lt;h3 id="org0e87e4f"&gt;Putting it all together:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0e87e4f"&gt;
 &lt;p&gt;
 Lets insert what we have into the equation.
 &lt;/p&gt;
@@ -1718,9 +1761,9 @@ length 7 there are:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc931ae0" class="outline-3"&gt;
-&lt;h3 id="orgc931ae0"&gt;Simplify&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc931ae0"&gt;
+&lt;div id="outline-container-orge15fa58" class="outline-3"&gt;
+&lt;h3 id="orge15fa58"&gt;Simplify&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge15fa58"&gt;
 &lt;p&gt;
 We can simplify this formula a lot further! First taking \(n!\) out side the sum.
 &lt;/p&gt;
