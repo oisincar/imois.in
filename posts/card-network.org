@@ -49,7 +49,7 @@ if(i%27<1)puts(i?i%243?"":"\033[9A":"\r\
 </div>
 #+END_EXPORT
 
-You can view the output here by clicking Run. (I hate to admit it's not actually running the code in the browser :P, but you'll see the same or similar output if you run the code yourself).
+You can view the output here by clicking the play button. (I hate to admit it's not actually running the code in the browser :P, but you'll see the same or similar output if you run the code yourself).
 
 #+BEGIN_EXPORT html
 <div style="text-align:right; position:relative;">
@@ -192,7 +192,7 @@ Forward propagation
 </div>
 <div class="code-col smol-text-col">
 #+END_EXPORT
-Create error vector src_cpp{Y}.
+From the output of the network, src_cpp{y}, calculate $\frac{dE}{dy}. We use mean squared error, so the derivative is just $2(y-\hat{y})$, where $\hat{y}$ is the target value and is encoded in a string. When written with non-ascii characters this is a lot shorter.
 #+BEGIN_EXPORT html
 </div>
 </div>
@@ -224,8 +224,9 @@ if(i%27<1)puts(i?i%243?"":"\033[9A":"\r\
 </div>
 <div class="code-col">
 #+END_EXPORT
-Output. Choose different chars based on how high/low the value predicted is. src_cpp{i%27==0} if we're at the end of a line and src_cpp{i%243==0} if we're at the end of a full training cycle. When we're finished src_cpp{i==0}, print the end text.
+Output: Choose different chars based on how high/low the value predicted is. Then print special characters if we're at the end of a line (src_cpp{i%27==0}) or we've done a full epoch (src_cpp{i%243==0}). Finally, when we're finished, src_cpp{i==0} and we print the end text.
 #+BEGIN_EXPORT html
 </div>
 </div>
 #+END_EXPORT
+Thanks for reading! I'd love to hear suggestions on how to make it shorter, or any other ideas.
