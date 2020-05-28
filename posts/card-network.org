@@ -5,47 +5,227 @@
 .. tags: programming, machine-learning
 .. category:
 .. link:
+.. has_math: true
 .. description: A tiny neural network in c++
 .. type: text
 #+END_COMMENT
 
-* Testing!
-this is
+#+PROPERTY: header-args :exports code
 
+* Business Card Neural Network
+I recently came across Paul Heckbert's fascinating [[https://fabiensanglard.net/rayTracing_back_of_business_card/][Business Card Raytracer]]. His code, in just 1337 bytes, generates a full raytraced image complete with depth of field, reflections, a sky gradient, and a textured floor. In a similar vein, I set out to create a full neural network that could fit on the back of a business card. The code below is the result, creating a 3-layer fully-connected neural network with leaky-relu activations and training it to generate a small image of my name.
+
+#+BEGIN_EXPORT html
+<div style="text-align:center">
+<div style="display:inline-block; text-align:left">
+#+END_EXPORT
 #+BEGIN_SRC cpp
 #include <bits/stdc++.h>
 
-#define f float
-#define v std::vector<f>
-f K=0.01,R=0.01; // relu leak, learning rate
-
-struct L{int w,h,i;v W,x,z;L(int i,int o){
-w=i;h=o;W.resize(w*h);for(f&a:W)a=(rand()/
-(1.1-(1<<31))-0.5)/sqrt(w+h+0.);}v fr(v nx
-){x=nx;v a(h);i=h*w;while(i--)a[i/w]+=W[i]
-*x[i%w];z=a;for(f&i:a)i=K>i?K:i;return a;}
-v bk(v dy){v dx(w);i=w*h;while(i--){f dz=
-dy[i/w]*(z[i/w]>0?1:K);dx[i%w]+=dz*W[i];W[
-i]-=R*dz*x[i%w];}return dx;}};int main(){L
-n[]{L(40,50),L(50,50),L(50,1)};int l,z,k,i
-=500336;while(i--){z=242-i%243;k=40;v x(k)
-,y;while(k--)x[k]=sin((k%2?z/27/3.:z%27/5.
-)+6.14*k/20);y=x;for(l=0;l<3;l++)y=n[l].fr
-(y);v dy{2*(y[0]-("\x1e\0\0\b\x01\0@H\374\
-\377B\x12@\x18\x12G\302\x10@\x12\372\377\
-\221\x10\0\0\200\0\0\0\x02"[z/8]>>z%8&1))}
-;while(l--)dy=n[l].bk(dy);putchar(" .,-*o\
-O##"[(int)(y[0]*8)%9]);if(i%27<1)puts(i?i%
-243?"":"\033[9A":"\r   --- Oisin Carroll \
----\n gh:Oisincar  web:imois.in");}}
+typedef float f;typedef std::vector<f> v;
+f K=0.01,R=0.01;struct L{int w,h,i;v W,x,
+z;L(int i,int o){W.resize(i*o);for(f&a:W)
+a=(rand()/(1.1-(1<<31))-0.5)/sqrt(i+o+0.)
+;w=i;h=o;}v F(v X){x=X;v a(h);i=h*w;while
+(i--)a[i/w]+=W[i]*x[i%w];z=a;for(f&i:a)i=
+K>i?K:i;return a;}v B(v Y){v X(w);i=w*h;
+while(i--){f Z=Y[i/w]*(z[i/w]>0?1:K);X[i%
+w]+=Z*W[i];W[i]-=R*Z*x[i%w];}return X;}};
+int main(){L n[]{L(40,50),L(50,50),L(50,1
+)};int l,z,k,i=500337;while(i--){z=242-i%
+243;k=40;v x(k),y;while(k--)x[k]=sin((k%2
+?z/27/3.:z%27/5.)+6.14*k/20);y=x;for(l=0;
+l<3;l++)y=n[l].F(y);v Y{2*(y[0]-("\x1e\0\
+\0\b\x01\0@H\374\377B\x12@\x18\x12G\302\
+\x10@\x12\372\377\221\x10\0\0\200\0\0\0\
+\x02"[z/8]>>z%8&1))};while(l--)Y=n[l].B(Y
+);putchar(" .,-*oO##"[(int)(y[0]*8)%9]);
+if(i%27<1)puts(i?i%243?"":"\033[9A":"\r\
+   --- Oisin Carroll ---\n\
+ gh:Oisincar  web:imois.in");}}
 #+END_SRC
+#+BEGIN_EXPORT html
+</div>
+</div>
+#+END_EXPORT
 
-
-
+You can view the output here by clicking Run. (I hate to admit it's not actually running the code in the browser :P, but you'll see the same or similar output if you run the code yourself).
 
 #+BEGIN_EXPORT html
-<button>Run Code!</button>
-<div class="monospace-code" id="div1">> ./card_network</div>
-
+<div style="text-align:right; position:relative;">
+<div class="terminal-code" id="div1" style="height:13em; padding:0.5em" >> ./card_network</div>
+<button class="button-pp" style="position:absolute; top:15px; right:5px;"></button>
 <script src="../assets/js/card_network/fk_network.js"></script>
+</div>
+#+END_EXPORT
+
+The code is only 878 characters, and (as mentioned previously) creates and trains a small neural network. I'm sure it's possible to make it shorter still, but I was happy enough to get this far! I think making it any shorter would make it impossible to reason about, now at least new layers can be added or removed easily and the forward/back propagation is pretty neat! (I'm not biased I swear).
+
+Here's a small breakdown of how it works.
+
+#+BEGIN_EXPORT css
+code-col {
+    display:inline-block;
+    text-align:left
+}
+#+END_EXPORT
+
+# Open big column, wrap code block.
+# <div style="text-align:center; column-count:2">
+#+BEGIN_EXPORT html
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+#include <bits/stdc++.h>
+
+typedef float f;typedef std::vector<f> v;
+f K=0.01,R=0.01;
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col">
+#+END_EXPORT
+
+Define simple imports and typedefs. The two floats define constants used for the 'leak' of leaky relu, (I.e. the $K$ in $f(x) = max(Kx, x)$), and the learning rate.
+
+# Close column divs... Start again!
+
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+                struct L{int w,h,i;v W,x,
+z;L(int i,int o){W.resize(i*o);for(f&a:W)
+a=(rand()/(1.1-(1<<31))-0.5)/sqrt(i+o+0.)
+;w=i;h=o;}
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col">
+#+END_EXPORT
+
+Start of the layer struct src_cpp{L}. The constructor takes the input and output sizes, and initializes a weights matrix in an approximation of [[https://towardsdatascience.com/weight-initialization-in-neural-networks-a-journey-from-the-basics-to-kaiming-954fb9b47c79][Xavier Initilization]]. Ideally, the random variable would be normally distributed, but linearly seems to work decently too!
+
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+          v F(v X){x=X;v a(h);i=h*w;while
+(i--)a[i/w]+=W[i]x[i%w];z=a;for(f&i:a)i=
+K>i?K:i;return a;}v B(v Y){v X(w);i=w*h;
+while(i--){f Z=Y[i/w]*(z[i/w]>0?1:K);X[i%
+w]+=Z*W[i];W[i]-=R*Z*x[i%w];}return X;}};
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col">
+#+END_EXPORT
+
+Two functions for the layer struct. src_cpp{F} performs forward propagation, taking the input vector and returning the output. Some values are cached for later. src_cpp{B} performs backward propagation, taking the derivative of the output, updating the weights matrix, and returning the derivative of the input. Both are using leaky relu.
+
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+int main(){L n[]{L(40,50),L(50,50),L(50,1
+)};int l,z,k,i=500337;while(i--){
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col">
+#+END_EXPORT
+Start of main, create a 3 layer network. The network takes 40 values for input, and has two hidden layers with 50 nodes each, and returns single value at the end. The input is based on the x,y coordinate currently predicted, and the output is a single value for whether this pixel should be a space or '#'. At the end we open the training loop, which runs for 500336 iterations, which is a multiple of the output size; 243.
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+                                 z=242-i%
+243;k=40;v x(k),y;while(k--)x[k]=sin((k%2
+?z/27/3.:z%27/5.)+6.14*k/20);
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col">
+#+END_EXPORT
+Generate the input vector src_cpp{x}. Each element of src_cpp{x} is based on the sin of either the x or y coordinate of the pixel currently being predicted.
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+                             y=x;for(l=0;
+l<3;l++)y=n[l].F(y);
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col smol-text-col">
+#+END_EXPORT
+Forward propagation
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+                    v Y{2*(y[0]-("\x1e\0\
+\0\b\x01\0@H\374\377B\x12@\x18\x12G\302\
+\x10@\x12\372\377\221\x10\0\0\200\0\0\0\
+\x02"[z/8]>>z%8&1))};
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col smol-text-col">
+#+END_EXPORT
+Create error vector src_cpp{Y}.
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+                     while(l--)Y=n[l].B(Y
+);
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col smol-text-col">
+#+END_EXPORT
+Back propagation
+#+BEGIN_EXPORT html
+</div>
+</div>
+<div class="code-row">
+<div class="code-col">
+#+END_EXPORT
+#+BEGIN_SRC cpp
+  putchar(" .,-*oO##"[(int)(y[0]*8)%9]);
+if(i%27<1)puts(i?i%243?"":"\033[9A":"\r\
+   --- Oisin Carroll ---\n\
+ gh:Oisincar  web:imois.in");}}
+#+END_SRC
+#+BEGIN_EXPORT html
+</div>
+<div class="code-col">
+#+END_EXPORT
+Output. Choose different chars based on how high/low the value predicted is. src_cpp{i%27==0} if we're at the end of a line and src_cpp{i%243==0} if we're at the end of a full training cycle. When we're finished src_cpp{i==0}, print the end text.
+#+BEGIN_EXPORT html
+</div>
+</div>
 #+END_EXPORT
