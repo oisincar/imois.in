@@ -84,9 +84,9 @@
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgc4e9213" class="outline-2">
-<h2 id="orgc4e9213">Business Card Neural Network</h2>
-<div class="outline-text-2" id="text-orgc4e9213">
+        <div id="outline-container-org153b463" class="outline-2">
+<h2 id="org153b463">Business Card Neural Network</h2>
+<div class="outline-text-2" id="text-org153b463">
 <p>
 I recently came across Paul Heckbert's fascinating <a href="https://fabiensanglard.net/rayTracing_back_of_business_card/">Business Card Raytracer</a>. His code, in just 1337 bytes, generates a full raytraced image complete with depth of field, reflections, a sky gradient, and a textured floor. In a similar vein, I set out to create a full neural network that could fit on the back of a business card. The code below is the result, creating a 3-layer fully-connected neural network with leaky-relu activations and training it to generate a small image of my name.
 </p>
@@ -121,7 +121,7 @@ I recently came across Paul Heckbert's fascinating <a href="https://fabiensangla
 </div>
 
 <p>
-You can view the output here by clicking Run. (I hate to admit it's not actually running the code in the browser :P, but you'll see the same or similar output if you run the code yourself).
+You can view the output here by clicking the play button. (I hate to admit it's not actually running the code in the browser :P, but you'll see the same or similar output if you run the code yourself).
 </p>
 
 <div style="text-align:right; position:relative;">
@@ -234,7 +234,7 @@ Forward propagation
 </div>
 <div class="code-col smol-text-col">
 <p>
-Create error vector <code class="src src-cpp">Y</code>.
+From the output of the network, <code class="src src-cpp">y</code>, calculate $\frac{dE}{dy}. We use mean squared error, so the derivative is just \(2(y-\hat{y})\), where \(\hat{y}\) is the target value and is encoded in a string. When written with non-ascii characters this is a lot shorter.
 </p>
 </div>
 </div>
@@ -260,10 +260,13 @@ Back propagation
 </div>
 <div class="code-col">
 <p>
-Output. Choose different chars based on how high/low the value predicted is. <code class="src src-cpp">i%27==0</code> if we're at the end of a line and <code class="src src-cpp">i%243==0</code> if we're at the end of a full training cycle. When we're finished <code class="src src-cpp">i==0</code>, print the end text.
+Output: Choose different chars based on how high/low the value predicted is. Then print special characters if we're at the end of a line (<code class="src src-cpp">i%27==0</code>) or we've done a full epoch (<code class="src src-cpp">i%243==0</code>). Finally, when we're finished, <code class="src src-cpp">i==0</code> and we print the end text.
 </p>
 </div>
 </div>
+<p>
+Thanks for reading! I'd love to hear suggestions on how to make it shorter, or any other ideas.
+</p>
 </div>
 </div>
             

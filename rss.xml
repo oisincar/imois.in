@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Thu, 28 May 2020 16:26:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Card Network</title><link>https://imois.in/posts/card-network/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgc4e9213" class="outline-2"&gt;
-&lt;h2 id="orgc4e9213"&gt;Business Card Neural Network&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc4e9213"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Thu, 28 May 2020 16:46:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Card Network</title><link>https://imois.in/posts/card-network/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org153b463" class="outline-2"&gt;
+&lt;h2 id="org153b463"&gt;Business Card Neural Network&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org153b463"&gt;
 &lt;p&gt;
 I recently came across Paul Heckbert's fascinating &lt;a href="https://fabiensanglard.net/rayTracing_back_of_business_card/"&gt;Business Card Raytracer&lt;/a&gt;. His code, in just 1337 bytes, generates a full raytraced image complete with depth of field, reflections, a sky gradient, and a textured floor. In a similar vein, I set out to create a full neural network that could fit on the back of a business card. The code below is the result, creating a 3-layer fully-connected neural network with leaky-relu activations and training it to generate a small image of my name.
 &lt;/p&gt;
@@ -36,7 +36,7 @@ I recently came across Paul Heckbert's fascinating &lt;a href="https://fabiensan
 &lt;/div&gt;
 
 &lt;p&gt;
-You can view the output here by clicking Run. (I hate to admit it's not actually running the code in the browser :P, but you'll see the same or similar output if you run the code yourself).
+You can view the output here by clicking the play button. (I hate to admit it's not actually running the code in the browser :P, but you'll see the same or similar output if you run the code yourself).
 &lt;/p&gt;
 
 &lt;div style="text-align:right; position:relative;"&gt;
@@ -149,7 +149,7 @@ Forward propagation
 &lt;/div&gt;
 &lt;div class="code-col smol-text-col"&gt;
 &lt;p&gt;
-Create error vector &lt;code class="src src-cpp"&gt;Y&lt;/code&gt;.
+From the output of the network, &lt;code class="src src-cpp"&gt;y&lt;/code&gt;, calculate $\frac{dE}{dy}. We use mean squared error, so the derivative is just \(2(y-\hat{y})\), where \(\hat{y}\) is the target value and is encoded in a string. When written with non-ascii characters this is a lot shorter.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -175,10 +175,13 @@ Back propagation
 &lt;/div&gt;
 &lt;div class="code-col"&gt;
 &lt;p&gt;
-Output. Choose different chars based on how high/low the value predicted is. &lt;code class="src src-cpp"&gt;i%27==0&lt;/code&gt; if we're at the end of a line and &lt;code class="src src-cpp"&gt;i%243==0&lt;/code&gt; if we're at the end of a full training cycle. When we're finished &lt;code class="src src-cpp"&gt;i==0&lt;/code&gt;, print the end text.
+Output: Choose different chars based on how high/low the value predicted is. Then print special characters if we're at the end of a line (&lt;code class="src src-cpp"&gt;i%27==0&lt;/code&gt;) or we've done a full epoch (&lt;code class="src src-cpp"&gt;i%243==0&lt;/code&gt;). Finally, when we're finished, &lt;code class="src src-cpp"&gt;i==0&lt;/code&gt; and we print the end text.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;p&gt;
+Thanks for reading! I'd love to hear suggestions on how to make it shorter, or any other ideas.
+&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>machine-learning</category><category>programming</category><guid>https://imois.in/posts/card-network/</guid><pubDate>Sun, 24 May 2020 22:36:12 GMT</pubDate></item><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org44fc9a0" class="outline-2"&gt;
 &lt;h2 id="org44fc9a0"&gt;Intro&lt;/h2&gt;
