@@ -84,9 +84,9 @@
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org153b463" class="outline-2">
-<h2 id="org153b463">Business Card Neural Network</h2>
-<div class="outline-text-2" id="text-org153b463">
+        <div id="outline-container-orgd2646ca" class="outline-2">
+<h2 id="orgd2646ca">Business Card Neural Network</h2>
+<div class="outline-text-2" id="text-orgd2646ca">
 <p>
 I recently came across Paul Heckbert's fascinating <a href="https://fabiensanglard.net/rayTracing_back_of_business_card/">Business Card Raytracer</a>. His code, in just 1337 bytes, generates a full raytraced image complete with depth of field, reflections, a sky gradient, and a textured floor. In a similar vein, I set out to create a full neural network that could fit on the back of a business card. The code below is the result, creating a 3-layer fully-connected neural network with leaky-relu activations and training it to generate a small image of my name.
 </p>
@@ -234,7 +234,7 @@ Forward propagation
 </div>
 <div class="code-col smol-text-col">
 <p>
-From the output of the network, <code class="src src-cpp">y</code>, calculate $\frac{dE}{dy}. We use mean squared error, so the derivative is just \(2(y-\hat{y})\), where \(\hat{y}\) is the target value and is encoded in a string. When written with non-ascii characters this is a lot shorter.
+From the output of the network, <code class="src src-cpp">y</code>, calculate \(\frac{dE}{dy}\). We use mean squared error, so the derivative is just \(2(y-\hat{y})\), where \(\hat{y}\) is the target value and is encoded in a string. When written with non-ascii characters this is a lot shorter.
 </p>
 </div>
 </div>
