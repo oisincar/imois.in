@@ -192,7 +192,7 @@ Forward propagation
 </div>
 <div class="code-col smol-text-col">
 #+END_EXPORT
-From the output of the network, src_cpp{y}, calculate $\frac{dE}{dy}. We use mean squared error, so the derivative is just $2(y-\hat{y})$, where $\hat{y}$ is the target value and is encoded in a string. When written with non-ascii characters this is a lot shorter.
+From the output of the network, src_cpp{y}, calculate $\frac{dE}{dy}$. We use mean squared error, so the derivative is just $2(y-\hat{y})$, where $\hat{y}$ is the target value and is encoded in a string. When written with non-ascii characters this is a lot shorter.
 #+BEGIN_EXPORT html
 </div>
 </div>
