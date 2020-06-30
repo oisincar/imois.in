@@ -13,7 +13,7 @@
 #+PROPERTY: header-args :exports code
 
 * Business Card Neural Network
-I recently came across Paul Heckbert's fascinating [[https://fabiensanglard.net/rayTracing_back_of_business_card/][Business Card Raytracer]]. His code, in just 1337 bytes, generates a full raytraced image complete with depth of field, reflections, a sky gradient, and a textured floor. In a similar vein, I set out to create a full neural network that could fit on the back of a business card. The code below is the result, creating a 3-layer fully-connected neural network with leaky-relu activations and training it to generate a small image of my name.
+I recently came across Andrew Kensler's fascinating [[https://fabiensanglard.net/rayTracing_back_of_business_card/][Business Card Raytracer]]. His code, in just 1337 bytes, generates a full raytraced image complete with depth of field, reflections, a sky gradient, and a textured floor. In a similar vein, I set out to create a full neural network that could fit on the back of a business card. The code below is the result, creating a 3-layer fully-connected neural network with leaky-relu activations and training it to generate a small image of my name.
 
 #+BEGIN_EXPORT html
 <div style="text-align:center">
