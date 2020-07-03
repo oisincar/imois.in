@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 30 Jun 2020 17:00:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Card Network</title><link>https://imois.in/posts/card-network/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgc7b07d5" class="outline-2"&gt;
-&lt;h2 id="orgc7b07d5"&gt;Business Card Neural Network&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc7b07d5"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 03 Jul 2020 18:06:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Card Network</title><link>https://imois.in/posts/card-network/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgade32a9" class="outline-2"&gt;
+&lt;h2 id="orgade32a9"&gt;Business Card Neural Network&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgade32a9"&gt;
 &lt;p&gt;
 I recently came across Andrew Kensler's fascinating &lt;a href="https://fabiensanglard.net/rayTracing_back_of_business_card/"&gt;Business Card Raytracer&lt;/a&gt;. His code, in just 1337 bytes, generates a full raytraced image complete with depth of field, reflections, a sky gradient, and a textured floor. In a similar vein, I set out to create a full neural network that could fit on the back of a business card. The code below is the result, creating a 3-layer fully-connected neural network with leaky-relu activations and training it to generate a small image of my name.
 &lt;/p&gt;
@@ -179,6 +179,11 @@ Output: Choose different chars based on how high/low the value predicted is. The
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;p&gt;
+On reddit `/u/pm&lt;sub&gt;me&lt;/sub&gt;&lt;sub&gt;P&lt;/sub&gt;&lt;sub&gt;vs&lt;/sub&gt;&lt;sub&gt;NP&lt;/sub&gt;&lt;sub&gt;papers&lt;/sub&gt;` managed to shorten the code even further - by 50 bytes! Making the final length only 828 bytes and 22 lines. You can read about their optimizations &lt;a href="https://www.reddit.com/r/tinycode/comments/hiscpb/business_card_neural_network/fwkg9i9?utm_source=share&amp;amp;utm_medium=web2x"&gt;HERE!&lt;/a&gt;
+&lt;/p&gt;
+
 &lt;p&gt;
 Thanks for reading! I'd love to hear suggestions on how to make it shorter, or any other ideas.
 &lt;/p&gt;
