@@ -229,4 +229,7 @@ Output: Choose different chars based on how high/low the value predicted is. The
 </div>
 </div>
 #+END_EXPORT
+
+On reddit `/u/pm_me_P_vs_NP_papers` managed to shorten the code even further - by 50 bytes! Making the final length only 828 bytes and 22 lines. You can read about their optimizations [[https://www.reddit.com/r/tinycode/comments/hiscpb/business_card_neural_network/fwkg9i9?utm_source=share&utm_medium=web2x][HERE!]]
+
 Thanks for reading! I'd love to hear suggestions on how to make it shorter, or any other ideas.
