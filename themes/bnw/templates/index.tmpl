@@ -28,9 +28,11 @@ ${math.math_styles_ifposts(posts)}
                 %endfor
                 </div>
                 <div class="num-of-comments">
+                <!--
                 % if not post.meta('nocomments'):
-                    ${comments.comment_link(post.permalink(), post.base_path)}
+                     ${comments.comment_link(post.permalink(), post.base_path)}
                 % endif
+                -->
                 </div>
                 <div class="post-description">
                     ${post.description()}
