@@ -10,10 +10,6 @@
   <lastmod>2019-12-24T19:58:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://imois.in/categories/cat_math.xml</loc>
-  <lastmod>2020-08-23T23:59:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://imois.in/categories/gamedev.xml</loc>
   <lastmod>2020-03-02T15:29:00Z</lastmod>
  </sitemap>
@@ -43,6 +39,6 @@
  </sitemap>
  <sitemap>
   <loc>https://imois.in/sitemap.xml</loc>
-  <lastmod>2020-08-24T00:57:00Z</lastmod>
+  <lastmod>2020-08-24T01:00:00Z</lastmod>
  </sitemap>
 </sitemapindex>
