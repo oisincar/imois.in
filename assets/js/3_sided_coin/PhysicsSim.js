@@ -63,7 +63,14 @@ loop();
 function init() {
 
     var n = navigator.userAgent;
-    if (n.match(/Android/i) || n.match(/webOS/i) || n.match(/iPhone/i) || n.match(/iPad/i) || n.match(/iPod/i) || n.match(/BlackBerry/i) || n.match(/Windows Phone/i)){ isMobile = true;  antialias = false; document.getElementById("MaxNumber").value = 200; }
+    if (n.match(/Android/i) || n.match(/webOS/i) || n.match(/iPhone/i) ||
+        n.match(/iPad/i) || n.match(/iPod/i) || n.match(/BlackBerry/i) ||
+        n.match(/Windows Phone/i))
+    {
+        console.log("Mobile browser detected!!");
+        isMobile = true;
+        antialias = false;
+    }
 
     canvas = document.getElementById("physics-sim");
 
@@ -80,7 +87,8 @@ function init() {
 
     var materialType = 'MeshBasicMaterial';
 
-    if(!isMobile){
+    // if(!isMobile){
+    if(true){
 
         scene.add( new THREE.AmbientLight( 0x3D4143 ) );
 
