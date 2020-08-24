@@ -79,9 +79,9 @@ it ha">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orge678dd9" class="outline-2">
-<h2 id="orge678dd9">Intro</h2>
-<div class="outline-text-2" id="text-orge678dd9">
+        <div id="outline-container-org5f9d9cd" class="outline-2">
+<h2 id="org5f9d9cd">Intro</h2>
+<div class="outline-text-2" id="text-org5f9d9cd">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script><p>
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
@@ -153,7 +153,7 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
     $("#coin_width").slider({
         // 10x the ratio of the diameter
         min: 10,
-        max: 200,
+        max: 2000,
         values: [coin_thickness*100],
         slide: function(event, ui) {
             $("#coin_width_val").text(ui.values[0]/100.0);
@@ -186,7 +186,7 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
 
     $("#throw_height").slider({
         min: 10,
-        max: 250,
+        max: 500,
         values: [throw_height],
         slide: function(event, ui) {
             $("#throw_height_val").text(ui.values[0]);
