@@ -371,7 +371,7 @@ function updateOimoPhysics() {
             var coin_sp_z = world_dim/num_coins_y;
 
             x = ((i % num_coins_x) + 0.5 - num_coins_x/2) * coin_sp_x;
-            y = 100 // Drop height
+            y = throw_height // Drop height
             z = (Math.floor(i / num_coins_x) + 0.5 - num_coins_y/2) * coin_sp_z;
 
             body.resetPosition(x,y,z);
@@ -382,10 +382,9 @@ function updateOimoPhysics() {
                                Math.random()*360);
 
             // Add rotational impulse
-            var rot_imp = 10
-            body.angularVelocity.set((Math.random()-0.5)*2*rot_imp,
-                                     (Math.random()-0.5)*2*rot_imp,
-                                     (Math.random()-0.5)*2*rot_imp);
+            body.angularVelocity.set((Math.random()-0.5)*2*throw_spin,
+                                     (Math.random()-0.5)*2*throw_spin,
+                                     (Math.random()-0.5)*2*throw_spin);
 
             // Rebuild coin if thickness or restitution changes!
 

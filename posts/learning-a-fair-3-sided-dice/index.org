@@ -1,5 +1,5 @@
 #+BEGIN_COMMENT
-.. title: Learning The Properties of a Fair 3-Sided Coin
+.. title: The Properties of a Fair 3-Sided Coin
 .. slug: learning-a-fair-3-sided-dice
 .. date: 2020-08-23 22:30:01 UTC+01:00
 .. tags:
@@ -110,8 +110,8 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
     $("#coin_bounce_val").text(coin_bounce);
 
     $("#throw_spin").slider({
-        min: 5,
-        max: 40,
+        min: 0,
+        max: 50,
         values: [throw_spin],
         slide: function(event, ui) {
             $("#throw_spin_val").text(ui.values[0]);
