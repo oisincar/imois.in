@@ -1,5 +1,17 @@
-/* Column for code/text side-by-side breakdown (see: card-network) */
 
+/* triple split column w/ centered text (see: coin) */
+.stacked_bar_chart {
+  padding:10px;
+  flex:1 1 0px;
+  min-width:0px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Column for code/text side-by-side breakdown (see: card-network) */
 .smol-text-col { /* Left in double-column layout, centered on mobile */
   justify-content: center;
 }
