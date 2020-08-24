@@ -126,7 +126,7 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
         values: [throw_height],
         slide: function(event, ui) {
             $("#throw_height_val").text(ui.values[0]);
-            throw_spin = ui.values[0];
+            throw_height = ui.values[0];
         },
     });
     $("#throw_height_val").text(throw_height);
