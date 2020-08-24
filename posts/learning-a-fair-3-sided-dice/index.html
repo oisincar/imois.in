@@ -79,16 +79,16 @@ it ha">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgead9029" class="outline-2">
-<h2 id="orgead9029">Intro</h2>
-<div class="outline-text-2" id="text-orgead9029">
+        <div id="outline-container-orge678dd9" class="outline-2">
+<h2 id="orge678dd9">Intro</h2>
+<div class="outline-text-2" id="text-orge678dd9">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script><p>
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
 </p>
 
 <p>
-I learned about this problem in <a href="https://www.youtube.com/watch?v=-qqPKKOU-yY">this video by Matt Parker</a>, who looks at some mathematical ways to solve it. The approaches don't line up with my intuition though; estimating that a standard euro coin would fall on it's edge \(1/20\) times (\(P(E) \approx 0.0501\)) via the 'sphere method', or \(1/16\) via the 'triangle method' (\(P(E) \approx 0.064\)). That sounds pretty high to me! I've never seen that happen…
+I learned about this problem in <a href="https://www.youtube.com/watch?v=-qqPKKOU-yY">this video by Matt Parker</a>, who looks at some mathematical ways to solve it. The approaches don't line up with my intuition though; estimating that a standard euro coin would fall on it's edge \(1/20\) times (\(P(E) \approx 0.0501\)) via the 'sphere method', or \(1/16\) via the 'triangle method' (\(P(E) \approx 0.064\)).
 </p>
 
 <p>
@@ -97,13 +97,128 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
 
 <div class="figure">
 
-    <canvas id="physics-sim" class="light_border" width="600" height="600"> Your browser sucks :c. </canvas><div id="interface">
-        <input type="button" value="demo" onclick="populate(1)"><input type="number" name="num_x" min="2" max="15" value="3" id="numCoinsX"><input type="number" name="num_y" min="2" max="15" value="3" id="numCoinsY"><input type="submit" onclick="populate()"><input type="number" name="gravity" min="-20" max="20" value="-10" id="gravity" onchange="gravity()">
-</div>
+    <canvas id="physics-sim" class="light_border" width="600" height="600"> Your browser sucks :c. </canvas><span style="display:flex; padding-bottom:20px">
+    <div id="num_heads_box" class="stacked_bar_chart" style=" background:#ffa324">
+    #Heads: <b id="num_heads_val">0</b>
+    </div>
+    <div id="num_tails_box" class="stacked_bar_chart" style="background:#ff4546">
+    #Tails: <b id="num_tails_val">0</b>
+    </div>
+    <div id="num_sides_box" class="stacked_bar_chart" style="background:#48abf0">
+    #Sides: <b id="num_sides_val">0</b>
+    </div>
 
-    <p><span class="figure-number">Anim 1:</span> Randomly flickering light.</p>
+    </span>
+
+    <!-- Sliders -->
+    <span class="slider_row">
+        <span class="slider_label">Coin Thickness</span>
+        <span id="coin_width" class="flat-slider"></span>
+        <span type="text" id="coin_width_val" class="slider_text"></span>
+    </span>
+    <span class="slider_row">
+        <span class="slider_label">Restitution (Bounce)</span>
+        <span id="coin_bounce" class="flat-slider"></span>
+        <span type="text" id="coin_bounce_val" class="slider_text"></span>
+    </span>
+    <span class="slider_row">
+        <span class="slider_label">Maximum Throw Spin</span>
+        <span id="throw_spin" class="flat-slider"></span>
+        <span type="text" id="throw_spin_val" class="slider_text"></span>
+    </span>
+    <span class="slider_row">
+        <span class="slider_label">Drop Height</span>
+        <span id="throw_height" class="flat-slider"></span>
+        <span type="text" id="throw_height_val" class="slider_text"></span>
+    </span>
+
+    <span class="slider_row">
+        <span class="slider_label">Num Coins <b>x</b></span>
+        <span id="num_coins_x" class="flat-slider"></span>
+        <span type="text" id="num_coins_x_val" class="slider_text"></span>
+    </span>
+
+    <span class="slider_row">
+        <span class="slider_label">Num Coins <b>y</b></span>
+        <span id="num_coins_y" class="flat-slider"></span>
+        <span type="text" id="num_coins_y_val" class="slider_text"></span>
+    </span>
+
+    <div id="interface">
+        <input type="button" value="Reset Counters" onclick="reset_counts()"><input type="button" value="Restart Simulation" onclick="populate()">
 </div>
-<script src="../../assets/js/3_sided_coin/PhysicsSim.js"></script>
+</div>
+<script src="../../assets/js/3_sided_coin/PhysicsSim.js"></script><script type="text/javascript">
+{
+    $("#coin_width").slider({
+        // 10x the ratio of the diameter
+        min: 10,
+        max: 200,
+        values: [coin_thickness*100],
+        slide: function(event, ui) {
+            $("#coin_width_val").text(ui.values[0]/100.0);
+            coin_thickness = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_width_val").text(coin_thickness);
+
+    $("#coin_bounce").slider({
+        min: 10,
+        max: 80,
+        values: [coin_bounce*100],
+        slide: function(event, ui) {
+            $("#coin_bounce_val").text(ui.values[0]/100.0);
+            coin_bounce = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_bounce_val").text(coin_bounce);
+
+    $("#throw_spin").slider({
+        min: 5,
+        max: 40,
+        values: [throw_spin],
+        slide: function(event, ui) {
+            $("#throw_spin_val").text(ui.values[0]);
+            throw_spin = ui.values[0];
+        },
+    });
+    $("#throw_spin_val").text(throw_spin);
+
+    $("#throw_height").slider({
+        min: 10,
+        max: 250,
+        values: [throw_height],
+        slide: function(event, ui) {
+            $("#throw_height_val").text(ui.values[0]);
+            throw_spin = ui.values[0];
+        },
+    });
+    $("#throw_height_val").text(throw_height);
+
+    // slider
+    $("#num_coins_x").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_x],
+        slide: function(event, ui) {
+            $("#num_coins_x_val").text(ui.values[0]);
+            num_coins_x = ui.values[0];
+        },
+    });
+    $("#num_coins_x_val").text(num_coins_x);
+
+    $("#num_coins_y").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_y],
+        slide: function(event, ui) {
+            $("#num_coins_y_val").text(ui.values[0]);
+            num_coins_y = ui.values[0];
+        }
+    });
+    $("#num_coins_y_val").text(num_coins_y);
+}
+</script>
 </div>
 </div>
             

@@ -24,7 +24,8 @@ var antialias = true;
 var camera, scene, light, renderer, canvas;
 var meshs = [];
 var grounds = [];
-var matBox, matCoin, matBoxSleep, matCoinSleep, matGround, matGroundTrans;
+
+var matBox, matCoin, matBoxSleep, matCoinSleep, matGround, matGroundHeads, matGroundSide, matGroundTails;
 var buffgeoCoin, buffgeoBox;
 var ToRad = 0.0174532925199432957;
 
@@ -32,14 +33,23 @@ var ToRad = 0.0174532925199432957;
 var num_frame_to_reset = 50;
 var counters = [];
 
-
 // Size of the world in THREE units, centered at 0,0,0
 var world_dim = 400
-//
-var num_coins_x = 0;
-var num_coins_y = 0;
-var num_coins = 0;
 
+var coin_diameter = 15;
+// Slider values...
+var coin_thickness = 1;
+var coin_bounce = 0.3;
+var throw_spin = 10;
+var throw_height = 100;
+
+var num_coins_x = 4;
+var num_coins_y = 4;
+var num_coins = num_coins_x * num_coins_y;
+
+var head_count = 0;
+var tail_count = 0;
+var side_count = 0;
 
 //oimo var
 var world = null;
@@ -66,7 +76,7 @@ function init() {
     scene = new THREE.Scene();
 
     renderer = new THREE.WebGLRenderer({ canvas:canvas, precision: "mediump", antialias:antialias });
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    // renderer.setSize( window.innerWidth, window.innerHeight );
 
     var materialType = 'MeshBasicMaterial';
 
@@ -108,8 +118,11 @@ function init() {
     matBox = new THREE[materialType]( {  map: basicTexture(2), name:'box' } );
     matCoinSleep = new THREE[materialType]( { map: basicTexture(1), name:'ssph' } );
     matBoxSleep = new THREE[materialType]( {  map: basicTexture(3), name:'sbox' } );
-    matGround = new THREE[materialType]( { color: 0x3D4143, transparent:true, opacity:0.5 } );
-    matGroundTrans = new THREE[materialType]( { color: 0x3D4143, transparent:true, opacity:0.6 } );
+
+    matGround = new THREE[materialType]( { color: 0x191b1c, name:'ground_base' } );
+    matGroundHeads = new THREE[materialType]( { color: 0xff7f0e } );
+    matGroundTails = new THREE[materialType]( { color: 0xd62728 } );
+    matGroundSide = new THREE[materialType]( { color: 0x1f77b4 } );
 
     // events
 
@@ -131,9 +144,9 @@ function loop() {
 
 function onWindowResize() {
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    // camera.aspect = window.innerWidth / window.innerHeight;
+    // camera.updateProjectionMatrix();
+    // renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
 
@@ -171,7 +184,46 @@ function initOimoPhysics(){
 
 }
 
+function reset_counts() {
+    head_count = 0;
+    tail_count = 0;
+    side_count = 0;
+    update_counts();
+}
+
+function update_counts() {
+    $("#num_heads_val").text(head_count);
+    $("#num_tails_val").text(tail_count);
+    $("#num_sides_val").text(side_count);
+
+    $("#num_heads_box").css('flex', Math.max(head_count, 1) + ' 1 0%');
+    $("#num_tails_box").css('flex', Math.max(tail_count, 1) + ' 1 0%');
+    $("#num_sides_box").css('flex', Math.max(side_count, 1) + ' 1 0%');
+}
+
+
+function add_coin(posit) {
+    var group_coin = 1 << 1;  // 00000000 00000000 00000000 00000010
+    var all = 0xffffffff; // 11111111 11111111 11111111 11111111
+
+    var config_coin = [
+        1, // The density of the shape.
+        0.4, // The coefficient of friction of the shape.
+        coin_bounce, // The coefficient of restitution of the shape.
+        group_coin, // The bits of the collision groups to which the shape belongs.
+        all & ~group_coin // The bits of the collision groups with which the shape collides.
+    ];
+
+    return world.add({type:'cylinder', size:[coin_diameter, coin_thickness*coin_diameter,
+                                             coin_diameter], pos:posit, move:true, config:config_coin });
+}
+
 function populate() {
+    head_count = 0;
+    tail_count = 0;
+    side_count = 0;
+
+    update_counts();
 
     // The Bit of a collision group
     var group_ground = 1 << 0;  // 00000000 00000000 00000000 00000001
@@ -179,8 +231,8 @@ function populate() {
     var group3 = 1 << 2;  // 00000000 00000000 00000000 00000100
     var all = 0xffffffff; // 11111111 11111111 11111111 11111111
 
-    num_coins_x = document.getElementById("numCoinsX").value;
-    num_coins_y = document.getElementById("numCoinsY").value;
+    // num_coins_x = document.getElementById("numCoinsX").value;
+    // num_coins_y = document.getElementById("numCoinsY").value;
     num_coins = num_coins_x*num_coins_y;
     counters = new Array(num_coins).fill(0);
 
@@ -200,33 +252,37 @@ function populate() {
         0xffffffff // The bits of the collision groups with which the shape collides.
     ];
 
-    //add ground
+    //add ground collision
     var ground = world.add({size:[world_dim*2, 40, world_dim*2], pos:[0,-20,0], config:config});
-    addStaticBox([world_dim*2, 40, world_dim*2], [0,-20,0], [0,0,0]);
 
-    config[3] = group_coin;
-    config[4] = all & ~group_coin; // All except other coins
-    // var ground3 = world.add({size:[5, 100, 390], pos:[0,40,0], rot:[0,0,0], config:config});
-    // addStaticBox([5, 100, 390], [0,40,0], [0,0,0], true);
+    // Add a box under each coin
+    for (var i = 0; i < num_coins; i++) {
+
+        var coin_sp_x = world_dim/num_coins_x;
+        var coin_sp_z = world_dim/num_coins_y;
+
+        x = ((i % num_coins_x) + 0.5 - num_coins_x/2) * coin_sp_x;
+        y = -20 //
+        z = (Math.floor(i / num_coins_x) + 0.5 - num_coins_y/2) * coin_sp_z;
+
+        addStaticBox([coin_sp_x*0.95, 40, coin_sp_z*0.95], [x,y,z], [0,0,0]);
+    }
 
     // now add object
-    var x, y, z, w, h, d;
+    var x, y, z, d, h;
 
-    for (i = 0; i < num_coins; i++) {
+    for (var i = 0; i < num_coins; i++) {
         if(type===3) t = Math.floor(Math.random()*2)+1;
         else t = type;
 
-        // var coin_sp_x = world_dim/num_coins_x;
-        // var coin_sp_z = world_dim/num_coins_y;
-
         x = 0; y = -100; z = 0;
 
-        r = 15
-        d = 8
+        d = coin_diameter;
+        h = d * coin_thickness;
 
-        bodys[i] = world.add({type:'cylinder', size:[r,d,r], pos:[x,y,z], move:true, config:config });
+        bodys[i] = add_coin([x,y,z]);
         meshs[i] = new THREE.Mesh( buffgeoCoin, matCoin );
-        meshs[i].scale.set( r, d, r);
+        meshs[i].scale.set( d, h, d);
 
         meshs[i].castShadow = true;
         meshs[i].receiveShadow = true;
@@ -256,17 +312,49 @@ function updateOimoPhysics() {
 
         if (body.sleeping) {
             counters[i] += 1;
-            // TODO: Update mesh based on type...
-            if(mesh.material.name !== 'ssph') mesh.material = matCoinSleep;
+            // if(mesh.material.name !== 'ssph') mesh.material = matCoinSleep;
+            if(grounds[i].material.name === 'ground_base') {
+                var vector = new THREE.Vector3( 0, 1, 0 );
+                vector.applyQuaternion( mesh.quaternion );
+                // console.log("FINISHED", vector);
+                if (vector.y > 0.8) {
+                    grounds[i].material = matGroundHeads;
+                    head_count++;
+                }
+                else if (vector.y < -0.8) {
+                    grounds[i].material = matGroundTails;
+                    tail_count++;
+                }
+                else {
+                    grounds[i].material = matGroundSide;
+                    side_count++;
+                }
+
+                // Update ui
+                update_counts();
+            }
         }
 
         // Reset if it fell off, or has rested long enough.
         if((body.sleeping && counters[i] > num_frame_to_reset) || mesh.position.y < -100){
             counters[i] = 0;
+            grounds[i].material = matGround;
 
             if (body.sleeping) {
                 // TODO: count results!
-                console.log(body.getAxis());
+                // console.log(body.getAxis());
+            }
+
+
+            var d = coin_diameter;
+            var h = d * coin_thickness;
+            if (mesh.scale.y != h || body.shapes.restitution != coin_bounce) {
+                console.log("Something changed! Rebuilding");
+                body.remove();
+                bodys[i] = add_coin([0,0,0]);
+
+                // Rescale mesh
+                meshs[i].scale.set(d, h, d);
             }
 
 
@@ -290,7 +378,9 @@ function updateOimoPhysics() {
             body.angularVelocity.set((Math.random()-0.5)*2*rot_imp,
                                      (Math.random()-0.5)*2*rot_imp,
                                      (Math.random()-0.5)*2*rot_imp);
-            console.log(body.angularVelocity);
+
+            // Rebuild coin if thickness or restitution changes!
+
         }
 
         if(!body.sleeping){
