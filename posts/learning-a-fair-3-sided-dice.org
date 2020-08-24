@@ -1,0 +1,42 @@
+#+BEGIN_COMMENT
+.. title: Learning The Properties of a Fair 3-Sided Coin
+.. slug: learning-a-fair-3-sided-dice
+.. date: 2020-08-23 22:30:01 UTC+01:00
+.. tags:
+.. category: math
+.. link:
+.. has_math: true
+.. description:
+.. type: text
+.. status: draft
+#+END_COMMENT
+
+* Intro
+#+BEGIN_EXPORT html
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
+#+END_EXPORT
+
+A coin effectively has 2 sides, heads or tails. Still, there's a chance --- albeit small --- that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
+it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
+
+I learned about this problem in [[https://www.youtube.com/watch?v=-qqPKKOU-yY][this video by Matt Parker]], who looks at some mathematical ways to solve it. The approaches don't line up with my intuition though; estimating that a standard euro coin would fall on it's edge $1/20$ times ($P(E) \approx 0.0501$) via the 'sphere method', or $1/16$ via the 'triangle method' ($P(E) \approx 0.064$). That sounds pretty high to me! I've never seen that happen...
+
+Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We can vary the widths of coins, their coefficients of restitution, starting heights and velocities and see how that affects our results too.
+
+#+BEGIN_EXPORT html
+<div class="figure">
+
+    <canvas id="physics-sim" class="light_border" width="600" height="600"> Your browser sucks :c. </canvas>
+    <div id='interface'>
+        <input type="button" value="demo" onClick=populate(1)>
+        <input type="number" name="num_x" min="2" max="15" value="3"  id='numCoinsX'>
+        <input type="number" name="num_y" min="2" max="15" value="3"  id='numCoinsY'>
+        <input type="submit" onClick=populate()>
+        <input type="number" name="gravity" min="-20" max="20" value="-10" id='gravity' onChange=gravity() >
+    </div>
+
+    <p><span class="figure-number">Anim 1:</span> Randomly flickering light.</p>
+</div>
+<script src="../assets/js/3_sided_coin/PhysicsSim.js"></script>
+#+END_EXPORT
