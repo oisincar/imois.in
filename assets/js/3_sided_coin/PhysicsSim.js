@@ -360,12 +360,11 @@ function updateOimoPhysics() {
                 console.log("Something changed! Rebuilding");
                 body.remove();
                 bodys[i] = add_coin([0,0,0]);
+                body = bodys[i];
 
                 // Rescale mesh
                 meshs[i].scale.set(d, h, d);
             }
-
-
 
             var coin_sp_x = world_dim/num_coins_x;
             var coin_sp_z = world_dim/num_coins_y;
@@ -376,18 +375,34 @@ function updateOimoPhysics() {
 
             body.resetPosition(x,y,z);
 
-            // Random rot...
-            body.resetRotation(Math.random()*360,
-                               Math.random()*360,
-                               Math.random()*360);
+            // Rotate around x axis
+            var randx_rot = new THREE.Quaternion();
+            randx_rot.setFromAxisAngle(
+                new THREE.Vector3( 1, 0, 0 ),
+                // new THREE.Vector3( Math.random()-0.5,
+                //                    Math.random()-0.5,
+                //                    Math.random()-0.5 ).normalize(),
+                Math.random()*2*Math.PI );
 
-            // Add rotational impulse
+            // After rotate around y axis...
+            var randy_rot = new THREE.Quaternion();
+            randy_rot.setFromAxisAngle(
+                new THREE.Vector3( 0, 1, 0 ),
+                // new THREE.Vector3( Math.random()-0.5,
+                //                    Math.random()-0.5,
+                //                    Math.random()-0.5 ).normalize(),
+                Math.random()*2*Math.PI );
+
+            randy_rot.multiply(randx_rot);
+
+            body.resetQuaternion(randy_rot);
+
             body.angularVelocity.set((Math.random()-0.5)*2*throw_spin,
                                      (Math.random()-0.5)*2*throw_spin,
                                      (Math.random()-0.5)*2*throw_spin);
 
-            // Rebuild coin if thickness or restitution changes!
-
+            // Make sure mesh is in new pos...
+            mesh.position.copy(body.getPosition());
         }
 
         if(!body.sleeping){

@@ -89,7 +89,7 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
     $("#coin_width").slider({
         // 100x the ratio of the diameter
         min: 10,
-        max: 2000, // 250
+        max: 250, // 250
         values: [coin_thickness*100],
         slide: function(event, ui) {
             $("#coin_width_val").text(ui.values[0]/100.0);
@@ -100,7 +100,7 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
 
     $("#coin_bounce").slider({
         min: 10,
-        max: 101, // 80
+        max: 80, // 80
         values: [coin_bounce*100],
         slide: function(event, ui) {
             $("#coin_bounce_val").text(ui.values[0]/100.0);
@@ -111,7 +111,7 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
 
     $("#throw_spin").slider({
         min: 1,
-        max: 200, // 50
+        max: 50, // 50
         values: [throw_spin],
         slide: function(event, ui) {
             $("#throw_spin_val").text(ui.values[0]);
