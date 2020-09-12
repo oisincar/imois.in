@@ -43,8 +43,8 @@ var coin_bounce = 0.3;
 var throw_spin = 10;
 var throw_height = 100;
 
-var num_coins_x = 4;
-var num_coins_y = 4;
+var num_coins_x = 12;
+var num_coins_y = 12;
 var num_coins = num_coins_x * num_coins_y;
 
 var head_count = 0;
@@ -137,9 +137,11 @@ function init() {
     window.addEventListener( 'resize', onWindowResize, false );
 
     // physics
-
     initOimoPhysics();
 
+
+
+    initTests();
 }
 
 function loop() {
@@ -148,6 +150,49 @@ function loop() {
     renderer.render( scene, camera );
     requestAnimationFrame( loop );
 
+    runTests();
+}
+
+var test_ix;
+var test_vals;
+
+function initTests() {
+    test_ix = 0;
+    test_vals = [0.90, 0.91, 0.92, 0.93, 0.94, 0.95];
+
+    // test_vals = [1.05, 1.1, 1.15, 1.2, 1.25,
+    //              1.3, 1.35, 1.4, 1.45,
+    //              1.5, 1.55, 1.6, 1.65,
+    //              1.7, 1.75, 1.8, 1.85,
+    //              1.9, 1.95, 2];
+
+    coin_thickness = test_vals[test_ix];
+
+    update_counts();
+
+    // Rebuild world, juts to be sure...
+    populate();
+}
+
+function runTests() {
+    var c = 10000;
+    if (head_count + tail_count + side_count >= c) {
+        console.log("DONE. ix:", test_ix,
+                    "thickness:", coin_thickness,
+                    "h", head_count,
+                    "t", tail_count,
+                    "s", side_count);
+
+        reset_counts();
+
+        test_ix++;
+        coin_thickness = test_vals[test_ix];
+        update_counts();
+
+
+        // Rebuild everythingggg.
+        populate();
+    }
 }
 
 function onWindowResize() {
@@ -347,12 +392,6 @@ function updateOimoPhysics() {
         if((body.sleeping && counters[i] > num_frame_to_reset) || mesh.position.y < -100){
             counters[i] = 0;
             grounds[i].material = matGround;
-
-            if (body.sleeping) {
-                // TODO: count results!
-                // console.log(body.getAxis());
-            }
-
 
             var d = coin_diameter;
             var h = d * coin_thickness;
