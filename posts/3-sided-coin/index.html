@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Learning The Properties of a Fair 3-Sided Coin | im_oisin</title>
+<title>Searching for a fair, 3-sided coin. | im_oisin</title>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
-<link rel="canonical" href="https://imois.in/posts/learning-a-fair-3-sided-dice/">
+<link rel="canonical" href="https://imois.in/posts/3-sided-coin/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
 <!-- Adsense code! --><script data-ad-client="ca-pub-5291127435009817" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
-<meta property="og:title" content="Learning The Properties of a Fair 3-Sided Coin">
-<meta property="og:url" content="https://imois.in/posts/learning-a-fair-3-sided-dice/">
+<meta property="og:title" content="Searching for a fair, 3-sided coin.">
+<meta property="og:url" content="https://imois.in/posts/3-sided-coin/">
 <meta property="og:description" content="Intro
 
 
@@ -58,7 +58,7 @@ it ha">
     <div class="post-header">
         <div class="container">
             <div class="title">
-                Learning The Properties of a Fair 3-Sided Coin
+                Searching for a fair, 3-sided coin.
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@ it ha">
 	  <div class="authordate">
 	    <time class="timeago" datetime="2020-08-23T22:30:01+01:00">2020/08/23</time><!-- 
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="/posts/learning-a-fair-3-sided-dice/index.org" id="sourcelink">Source</a>
+        <a href="/posts/3-sided-coin/index.org" id="sourcelink">Source</a>
 -->
 </div>
 	  <div class="post-tags">
@@ -87,20 +87,20 @@ it ha">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgad6e11d" class="outline-2">
-<h2 id="orgad6e11d">Intro</h2>
-<div class="outline-text-2" id="text-orgad6e11d">
+        <div id="outline-container-org4bbff34" class="outline-2">
+<h2 id="org4bbff34">Intro</h2>
+<div class="outline-text-2" id="text-org4bbff34">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script><p>
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
 </p>
 
 <p>
-I learned about this problem in <a href="https://www.youtube.com/watch?v=-qqPKKOU-yY">this video by Matt Parker</a>, who looks at some mathematical ways to solve it. The approaches don't line up with my intuition though; estimating that a standard euro coin would fall on it's edge \(1/20\) times (\(P(E) \approx 0.0501\)) via the 'sphere method', or \(1/16\) via the 'triangle method' (\(P(E) \approx 0.064\)).
+I learned about this problem in <a href="https://www.youtube.com/watch?v=-qqPKKOU-yY">this video by Matt Parker</a>, who looks at some mathematical ways to solve it. Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We can vary the thicknesses of coins and see how that changes the chances of heads, tails and sides. We can also vary their coefficients of restitution (bounciness), how much we spin the coins, and other things and see how that affects our results too!
 </p>
 
 <p>
-Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We can vary the widths of coins, their coefficients of restitution, starting heights and velocities and see how that affects our results too.
+We'll try to work out the ideal thickness of the coin in terms of it's radius (\(r\)).
 </p>
 
 <div class="figure">
@@ -171,8 +171,8 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
     $("#coin_width_val").text(coin_thickness + "*r");
 
     $("#coin_bounce").slider({
-        min: 10,
-        max: 80, // 80
+        min: 0,
+        max: 90, // 80
         values: [coin_bounce*100],
         slide: function(event, ui) {
             $("#coin_bounce_val").text(ui.values[0]/100.0);
@@ -182,15 +182,15 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
     $("#coin_bounce_val").text(coin_bounce);
 
     $("#throw_spin").slider({
-        min: 1,
+        min: 0,
         max: 50, // 50
         values: [throw_spin],
         slide: function(event, ui) {
-            $("#throw_spin_val").text(ui.values[0]);
+            $("#throw_spin_val").text(ui.values[0] + " deg/s");
             throw_spin = ui.values[0];
         },
     });
-    $("#throw_spin_val").text(throw_spin);
+    $("#throw_spin_val").text(throw_spin + "deg/s");
 
     $("#throw_height").slider({
         min: 10,
@@ -231,27 +231,114 @@ Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We c
 </div>
 
 
-<div id="outline-container-orge23519c" class="outline-2">
-<h2 id="orge23519c">Results!</h2>
-<div class="outline-text-2" id="text-orge23519c">
+<div id="outline-container-orgb16ce75" class="outline-2">
+<h2 id="orgb16ce75">Coin thickness?</h2>
+<div class="outline-text-2" id="text-orgb16ce75">
 <p>
-Well that's fun and all, but what does it tell us? We can run trials over a variety of coin thicknesses and see how that affects the number of sides thrown compared to heads or tails.
+Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
 </p>
-
 
 
 <div class="figure">
 <p><img src="../../images/learning-dice/baseline-flips.png" alt="baseline-flips.png"></p>
-<p><span class="figure-number">Figure 1: </span>The number of heads, tails and sides over 1000 trials with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.3.</p>
+<p><span class="figure-number">Figure 1: </span>The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.</p>
 </div>
 
-
+<p>
+Ok… Zoom and enhance! Running over 10x as many flips this time….
+</p>
 
 
 <div class="figure">
 <p><img src="../../images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"></p>
-<p><span class="figure-number">Figure 2: </span>A zoomed version of the previous, ran over 10000 trials this time. It seems that the equal coin has a thickness of 0.85*r!</p>
+<p><span class="figure-number">Figure 2: </span>The exact same as above, but over just thicknesses from 0.75r to 0.95r.</p>
 </div>
+
+<p>
+It seems our ideal coin has a thickness of \(0.85r\)! That's the point where there's exactly 1/3rd chance of heads, 1/3rd chance of tails, and 1/3rd chance of sides.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ff4d24" class="outline-2">
+<h2 id="org3ff4d24">Does the maths agree?</h2>
+<div class="outline-text-2" id="text-org3ff4d24">
+<p>
+Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
+</p>
+
+<p>
+The first considers the coin as inscribed in a sphere. There's equal chance that any point on the sphere could be touching the ground, and so what's the dimensions of the coin such that it divides the area of the sphere perfectly into 3…
+This gives \(t = \frac{r}{\sqrt{2}} \approx 0.707r\).
+</p>
+
+<p>
+The second approach thinks of the coin as being placed on the ground at a random angle. We can ignore one axis of rotation, and think of it as a box. The box will either tip towards heads/tails or sides based on the center of gravity.
+This gives the thickness, \(t\) as \(t = \frac{2r}{\sqrt{3}} \approx 1.154r\).
+</p>
+
+<p>
+And simulating it gives an answer of \(0.85r\)?? Right in the middle… The second approach interestingly works in our simulation, if we ignore the fact the coin may move. Try entering a coin with a thickness \(1.15r\), and \(0\) for restitution and spin. (Note: This is due to a simplification of how random coin rotations are sampled and may not be entirely correct.)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge7f8e4a" class="outline-2">
+<h2 id="orge7f8e4a">The end of the story?</h2>
+<div class="outline-text-2" id="text-orge7f8e4a">
+<p>
+So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. In a regular dice, all sides are the same, but this isn't true for our 3 sided coin. Namely, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"></p>
+<p><span class="figure-number">Figure 3: </span>How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).</p>
+</div>
+
+<p>
+That's a strange curve! It looks like pepsi… But also, it seems bouncy coins are less likely to land on their side – at least up to a point.
+</p>
+
+<p>
+What about the throw spin? Can you bias a 3 sided coin by throwing it with more or less spin? Maybe something similar applies. The coin is thrown starting at a random angle, so this shouldn't affect anything… In theory. We change the maximum throw spin, and each coin's spin is randomly sampled less than this.
+</p>
+
+
+<div class="figure">
+<p><img src="../../images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"></p>
+<p><span class="figure-number">Figure 4: </span>What's going on?? The chance of sides changes dramatically with increased spin on the coin.</p>
+</div>
+
+<p>
+With low spin the coin seems likely to bounce once and then land on a face. As the spin increases there actually becomes more of a chance to land on it's side since the coin can reach it in more ways. Rather than needing to perfectly hit the 'double bounce' on the side, they instead often 'roll' up to sit on the edge. At high spins the coins seem to somehow spin up to sit on the edge fairly consistently. Try it!
+</p>
+
+<p>
+Maybe this could be a useful trick… Get your friends to pick between heads/tails or sides of your coin, then change how you throw it accordingly. A gentle toss if you want sides or lots of spin for faces.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org274d94f" class="outline-2">
+<h2 id="org274d94f">Disclaimer!</h2>
+<div class="outline-text-2" id="text-org274d94f">
+<p>
+The results on this page are only as good as the physics simulation is. This page uses <a href="https://lo-th.github.io/Oimo.js/#basic">Oimo.js</a> for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
+</p>
+
+<p>
+Also, picking truly random rotations is <i>hard</i>. <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices">Surprisingly hard</a>. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is… But mightn't satisfy those looking for a perfect sampling of \(SO(n)\) :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or <a href="https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js">on my github</a> and check I'm doing things right!
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga66be87" class="outline-2">
+<h2 id="orga66be87">Conclusion</h2>
+<div class="outline-text-2" id="text-orga66be87">
+<p>
+After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
+</p>
 </div>
 </div>
 

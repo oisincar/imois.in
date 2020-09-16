@@ -1,5 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 03 Jul 2020 18:08:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Card Network</title><link>https://imois.in/posts/card-network/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org75853ff" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 16 Sep 2020 01:26:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org4bbff34" class="outline-2"&gt;
+&lt;h2 id="org4bbff34"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4bbff34"&gt;
+&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"&gt;&lt;/script&gt;&lt;p&gt;
+A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
+it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
+&lt;/p&gt;
+
+&lt;p&gt;
+I learned about this problem in &lt;a href="https://www.youtube.com/watch?v=-qqPKKOU-yY"&gt;this video by Matt Parker&lt;/a&gt;, who looks at some mathematical ways to solve it. Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We can vary the thicknesses of coins and see how that changes the chances of heads, tails and sides. We can also vary their coefficients of restitution (bounciness), how much we spin the coins, and other things and see how that affects our results too!
+&lt;/p&gt;
+
+&lt;p&gt;
+We'll try to work out the ideal thickness of the coin in terms of it's radius (\(r\)).
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+
+    &lt;canvas id="physics-sim" class="light_border" width="600" height="600"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;span style="display:flex; padding-bottom:20px"&gt;
+    &lt;div id="num_heads_box" class="stacked_bar_chart" style=" background:#ffa324"&gt;
+    #Heads: &lt;b id="num_heads_val"&gt;0&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div id="num_tails_box" class="stacked_bar_chart" style="background:#ff4546"&gt;
+    #Tails: &lt;b id="num_tails_val"&gt;0&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div id="num_sides_box" class="stacked_bar_chart" style="background:#48abf0"&gt;
+    #Sides: &lt;b id="num_sides_val"&gt;0&lt;/b&gt;
+    &lt;/div&gt;
+
+    &lt;/span&gt;
+
+    &lt;!-- Sliders --&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Coin Thickness&lt;/span&gt;
+        &lt;span id="coin_width" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="coin_width_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Restitution (Bounce)&lt;/span&gt;
+        &lt;span id="coin_bounce" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="coin_bounce_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Maximum Throw Spin&lt;/span&gt;
+        &lt;span id="throw_spin" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="throw_spin_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Drop Height&lt;/span&gt;
+        &lt;span id="throw_height" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="throw_height_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Num Coins &lt;b&gt;x&lt;/b&gt;&lt;/span&gt;
+        &lt;span id="num_coins_x" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="num_coins_x_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Num Coins &lt;b&gt;y&lt;/b&gt;&lt;/span&gt;
+        &lt;span id="num_coins_y" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="num_coins_y_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+
+    &lt;div id="interface"&gt;
+        &lt;input type="button" value="Reset Counters" onclick="reset_counts()"&gt;&lt;input type="button" value="Restart Simulation" onclick="populate()"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script src="https://imois.in/assets/js/3_sided_coin/PhysicsSim.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;
+{
+    $("#coin_width").slider({
+        // 100x the ratio of the diameter
+        min: 10,
+        max: 250, // 250
+        values: [coin_thickness*100],
+        slide: function(event, ui) {
+            $("#coin_width_val").text(ui.values[0]/100.0 + "*r");
+            coin_thickness = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_width_val").text(coin_thickness + "*r");
+
+    $("#coin_bounce").slider({
+        min: 0,
+        max: 90, // 80
+        values: [coin_bounce*100],
+        slide: function(event, ui) {
+            $("#coin_bounce_val").text(ui.values[0]/100.0);
+            coin_bounce = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_bounce_val").text(coin_bounce);
+
+    $("#throw_spin").slider({
+        min: 0,
+        max: 50, // 50
+        values: [throw_spin],
+        slide: function(event, ui) {
+            $("#throw_spin_val").text(ui.values[0] + " deg/s");
+            throw_spin = ui.values[0];
+        },
+    });
+    $("#throw_spin_val").text(throw_spin + "deg/s");
+
+    $("#throw_height").slider({
+        min: 10,
+        max: 500,
+        values: [throw_height],
+        slide: function(event, ui) {
+            $("#throw_height_val").text(ui.values[0]);
+            throw_height = ui.values[0];
+        },
+    });
+    $("#throw_height_val").text(throw_height);
+
+    // slider
+    $("#num_coins_x").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_x],
+        slide: function(event, ui) {
+            $("#num_coins_x_val").text(ui.values[0]);
+            num_coins_x = ui.values[0];
+        },
+    });
+    $("#num_coins_x_val").text(num_coins_x);
+
+    $("#num_coins_y").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_y],
+        slide: function(event, ui) {
+            $("#num_coins_y_val").text(ui.values[0]);
+            num_coins_y = ui.values[0];
+        }
+    });
+    $("#num_coins_y_val").text(num_coins_y);
+}
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgb16ce75" class="outline-2"&gt;
+&lt;h2 id="orgb16ce75"&gt;Coin thickness?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb16ce75"&gt;
+&lt;p&gt;
+Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips.png" alt="baseline-flips.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Ok… Zoom and enhance! Running over 10x as many flips this time….
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The exact same as above, but over just thicknesses from 0.75r to 0.95r.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+It seems our ideal coin has a thickness of \(0.85r\)! That's the point where there's exactly 1/3rd chance of heads, 1/3rd chance of tails, and 1/3rd chance of sides.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3ff4d24" class="outline-2"&gt;
+&lt;h2 id="org3ff4d24"&gt;Does the maths agree?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3ff4d24"&gt;
+&lt;p&gt;
+Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
+&lt;/p&gt;
+
+&lt;p&gt;
+The first considers the coin as inscribed in a sphere. There's equal chance that any point on the sphere could be touching the ground, and so what's the dimensions of the coin such that it divides the area of the sphere perfectly into 3…
+This gives \(t = \frac{r}{\sqrt{2}} \approx 0.707r\).
+&lt;/p&gt;
+
+&lt;p&gt;
+The second approach thinks of the coin as being placed on the ground at a random angle. We can ignore one axis of rotation, and think of it as a box. The box will either tip towards heads/tails or sides based on the center of gravity.
+This gives the thickness, \(t\) as \(t = \frac{2r}{\sqrt{3}} \approx 1.154r\).
+&lt;/p&gt;
+
+&lt;p&gt;
+And simulating it gives an answer of \(0.85r\)?? Right in the middle… The second approach interestingly works in our simulation, if we ignore the fact the coin may move. Try entering a coin with a thickness \(1.15r\), and \(0\) for restitution and spin. (Note: This is due to a simplification of how random coin rotations are sampled and may not be entirely correct.)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge7f8e4a" class="outline-2"&gt;
+&lt;h2 id="orge7f8e4a"&gt;The end of the story?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge7f8e4a"&gt;
+&lt;p&gt;
+So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. In a regular dice, all sides are the same, but this isn't true for our 3 sided coin. Namely, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+That's a strange curve! It looks like pepsi… But also, it seems bouncy coins are less likely to land on their side – at least up to a point.
+&lt;/p&gt;
+
+&lt;p&gt;
+What about the throw spin? Can you bias a 3 sided coin by throwing it with more or less spin? Maybe something similar applies. The coin is thrown starting at a random angle, so this shouldn't affect anything… In theory. We change the maximum throw spin, and each coin's spin is randomly sampled less than this.
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;What's going on?? The chance of sides changes dramatically with increased spin on the coin.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+With low spin the coin seems likely to bounce once and then land on a face. As the spin increases there actually becomes more of a chance to land on it's side since the coin can reach it in more ways. Rather than needing to perfectly hit the 'double bounce' on the side, they instead often 'roll' up to sit on the edge. At high spins the coins seem to somehow spin up to sit on the edge fairly consistently. Try it!
+&lt;/p&gt;
+
+&lt;p&gt;
+Maybe this could be a useful trick… Get your friends to pick between heads/tails or sides of your coin, then change how you throw it accordingly. A gentle toss if you want sides or lots of spin for faces.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org274d94f" class="outline-2"&gt;
+&lt;h2 id="org274d94f"&gt;Disclaimer!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org274d94f"&gt;
+&lt;p&gt;
+The results on this page are only as good as the physics simulation is. This page uses &lt;a href="https://lo-th.github.io/Oimo.js/#basic"&gt;Oimo.js&lt;/a&gt; for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
+&lt;/p&gt;
+
+&lt;p&gt;
+Also, picking truly random rotations is &lt;i&gt;hard&lt;/i&gt;. &lt;a href="https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices"&gt;Surprisingly hard&lt;/a&gt;. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is… But mightn't satisfy those looking for a perfect sampling of \(SO(n)\) :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js"&gt;on my github&lt;/a&gt; and check I'm doing things right!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga66be87" class="outline-2"&gt;
+&lt;h2 id="orga66be87"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga66be87"&gt;
+&lt;p&gt;
+After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item><item><title>Card Network</title><link>https://imois.in/posts/card-network/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org75853ff" class="outline-2"&gt;
 &lt;h2 id="org75853ff"&gt;Business Card Neural Network&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org75853ff"&gt;
 &lt;p&gt;

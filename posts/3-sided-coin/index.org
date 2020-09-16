@@ -1,0 +1,377 @@
+#+BEGIN_COMMENT
+.. title: Searching for a fair, 3-sided coin.
+.. slug: 3-sided-coin
+.. date: 2020-08-23 22:30:01 UTC+01:00
+.. tags: math, programming
+.. category: math
+.. link:
+.. has_math: true
+.. description:
+.. type: text
+#+END_COMMENT
+# .. status: draft
+
+* Intro
+#+BEGIN_EXPORT html
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
+#+END_EXPORT
+
+A coin effectively has 2 sides, heads or tails. Still, there's a chance --- albeit small --- that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
+it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
+
+I learned about this problem in [[https://www.youtube.com/watch?v=-qqPKKOU-yY][this video by Matt Parker]], who looks at some mathematical ways to solve it. Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We can vary the thicknesses of coins and see how that changes the chances of heads, tails and sides. We can also vary their coefficients of restitution (bounciness), how much we spin the coins, and other things and see how that affects our results too!
+
+We'll try to work out the ideal thickness of the coin in terms of it's radius ($r$).
+
+#+BEGIN_EXPORT html
+<div class="figure">
+
+    <canvas id="physics-sim" class="light_border" width="600" height="600"> Your browser sucks :c. </canvas>
+
+    <span style="display:flex; padding-bottom:20px">
+    <div id="num_heads_box" class="stacked_bar_chart" style=" background:#ffa324">
+    #Heads:&nbsp;<b id="num_heads_val">0</b>
+    </div>
+    <div id="num_tails_box" class="stacked_bar_chart" style="background:#ff4546">
+    #Tails:&nbsp;<b id="num_tails_val">0</b>
+    </div>
+    <div id="num_sides_box" class="stacked_bar_chart" style="background:#48abf0">
+    #Sides:&nbsp;<b id="num_sides_val">0</b>
+    </div>
+
+    </span>
+
+    <!-- Sliders -->
+    <span class="slider_row">
+        <span class="slider_label">Coin Thickness</span>
+        <span id="coin_width" class="flat-slider"></span>
+        <span type="text" id="coin_width_val" class="slider_text"></span>
+    </span>
+    <span class="slider_row">
+        <span class="slider_label">Restitution (Bounce)</span>
+        <span id="coin_bounce" class="flat-slider"></span>
+        <span type="text" id="coin_bounce_val" class="slider_text"></span>
+    </span>
+    <span class="slider_row">
+        <span class="slider_label">Maximum Throw Spin</span>
+        <span id="throw_spin" class="flat-slider"></span>
+        <span type="text" id="throw_spin_val" class="slider_text"></span>
+    </span>
+    <span class="slider_row">
+        <span class="slider_label">Drop Height</span>
+        <span id="throw_height" class="flat-slider"></span>
+        <span type="text" id="throw_height_val" class="slider_text"></span>
+    </span>
+
+    <span class="slider_row">
+        <span class="slider_label">Num Coins <b>x</b></span>
+        <span id="num_coins_x" class="flat-slider"></span>
+        <span type="text" id="num_coins_x_val" class="slider_text"></span>
+    </span>
+
+    <span class="slider_row">
+        <span class="slider_label">Num Coins <b>y</b></span>
+        <span id="num_coins_y" class="flat-slider"></span>
+        <span type="text" id="num_coins_y_val" class="slider_text"></span>
+    </span>
+
+    <div id='interface'>
+        <input type="button" value="Reset Counters" onClick=reset_counts()>
+        <input type="button" value="Restart Simulation" onClick=populate()>
+    </div>
+</div>
+<script src="../assets/js/3_sided_coin/PhysicsSim.js"></script>
+#+END_EXPORT
+
+#+BEGIN_SRC inline-js
+{
+    $("#coin_width").slider({
+        // 100x the ratio of the diameter
+        min: 10,
+        max: 250, // 250
+        values: [coin_thickness*100],
+        slide: function(event, ui) {
+            $("#coin_width_val").text(ui.values[0]/100.0 + "*r");
+            coin_thickness = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_width_val").text(coin_thickness + "*r");
+
+    $("#coin_bounce").slider({
+        min: 0,
+        max: 90, // 80
+        values: [coin_bounce*100],
+        slide: function(event, ui) {
+            $("#coin_bounce_val").text(ui.values[0]/100.0);
+            coin_bounce = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_bounce_val").text(coin_bounce);
+
+    $("#throw_spin").slider({
+        min: 0,
+        max: 50, // 50
+        values: [throw_spin],
+        slide: function(event, ui) {
+            $("#throw_spin_val").text(ui.values[0] + " deg/s");
+            throw_spin = ui.values[0];
+        },
+    });
+    $("#throw_spin_val").text(throw_spin + "deg/s");
+
+    $("#throw_height").slider({
+        min: 10,
+        max: 500,
+        values: [throw_height],
+        slide: function(event, ui) {
+            $("#throw_height_val").text(ui.values[0]);
+            throw_height = ui.values[0];
+        },
+    });
+    $("#throw_height_val").text(throw_height);
+
+    // slider
+    $("#num_coins_x").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_x],
+        slide: function(event, ui) {
+            $("#num_coins_x_val").text(ui.values[0]);
+            num_coins_x = ui.values[0];
+        },
+    });
+    $("#num_coins_x_val").text(num_coins_x);
+
+    $("#num_coins_y").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_y],
+        slide: function(event, ui) {
+            $("#num_coins_y_val").text(ui.values[0]);
+            num_coins_y = ui.values[0];
+        }
+    });
+    $("#num_coins_y_val").text(num_coins_y);
+}
+#+END_SRC
+
+
+* Coin thickness?
+
+Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
+
+#+BEGIN_SRC python :session :results file :exports none
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.ticker as mticker
+import matplotlib.pyplot as plt
+import numpy as np
+
+path = "../images/learning-dice/"
+
+def savePlt(filename):
+    plt.savefig(path + filename)
+    return path+filename # return this to org-mode
+#+END_SRC
+
+#+RESULTS:
+[[file:None]]
+
+#+begin_src python :session :results file :exports results
+
+# Bounce: 0.3, Max throw spin: 10, Drop height: 100
+data = [{"value": 0.1 , "h": 483, "t": 518, "s": 0}  ,
+        {"value": 0.15, "h": 479, "t": 521, "s": 0}  ,
+        {"value": 0.2 , "h": 484, "t": 514, "s": 2}  ,
+        {"value": 0.25, "h": 488, "t": 499, "s": 13} ,
+        {"value": 0.3 , "h": 505, "t": 476, "s": 19} ,
+        {"value": 0.35, "h": 484, "t": 462, "s": 54} ,
+        {"value": 0.4 , "h": 472, "t": 445, "s": 83} ,
+        {"value": 0.45, "h": 419, "t": 426, "s": 156},
+        {"value": 0.5 , "h": 421, "t": 428, "s": 153},
+        {"value": 0.55, "h": 392, "t": 424, "s": 184},
+        {"value": 0.6 , "h": 405, "t": 385, "s": 210},
+        {"value": 0.65, "h": 409, "t": 374, "s": 217},
+        {"value": 0.7 , "h": 357, "t": 400, "s": 243},
+        {"value": 0.75, "h": 387, "t": 344, "s": 269},
+        {"value": 0.8 , "h": 339, "t": 348, "s": 313},
+        {"value": 0.85, "h": 323, "t": 338, "s": 339},
+        {"value": 0.9 , "h": 324, "t": 312, "s": 364},
+        {"value": 0.95, "h": 293, "t": 304, "s": 403},
+        {"value": 1.00, "h": 286, "t": 283, "s": 431},
+        {'value': 1.05, 'h': 229, 't': 243, 's': 529},
+        {'value': 1.1 , 'h': 229, 't': 224, 's': 547},
+        {'value': 1.15, 'h': 209, 't': 202, 's': 591},
+        {'value': 1.2 , 'h': 172, 't': 184, 's': 644},
+        {'value': 1.25, 'h': 169, 't': 189, 's': 642},
+        {'value': 1.3 , 'h': 178, 't': 156, 's': 666},
+        {'value': 1.35, 'h': 137, 't': 157, 's': 706},
+        {'value': 1.4 , 'h': 127, 't': 111, 's': 762},
+        {'value': 1.45, 'h': 113, 't': 131, 's': 756},
+        {'value': 1.5 , 'h': 111, 't': 107, 's': 784},
+        {'value': 1.55, 'h': 128, 't': 107, 's': 765},
+        {'value': 1.6 , 'h': 82 , 't': 104, 's': 814},
+        {'value': 1.65, 'h': 82 , 't': 104, 's': 814},
+        {'value': 1.7 , 'h': 76 , 't': 112, 's': 813},
+        {'value': 1.75, 'h': 94 , 't': 112, 's': 795},
+        {'value': 1.8 , 'h': 89 , 't': 70 , 's': 841},
+        {'value': 1.85, 'h': 83 , 't': 91 , 's': 826},
+        {'value': 1.9 , 'h': 91 , 't': 62 , 's': 847},
+        {'value': 1.95, 'h': 72 , 't': 95 , 's': 834},
+        {'value': 2   , 'h': 65 , 't': 70 , 's': 865}]
+
+def get_graph(data, num_trials=1000, x_label='Coin thickness', x_format='%.2fr'):
+    th = [a['value'] for a in data]
+    hs = [a['h'] for a in data]
+    ts = [a['t'] for a in data]
+    ss = [a['s'] for a in data]
+
+    fig = plt.figure(figsize=(6,5))
+    plt.gca().xaxis.set_major_formatter(mticker.FormatStrFormatter(x_format))
+
+    plt.xlabel(x_label)
+    plt.ylabel("Number of occurences")
+
+    pal = ['#1f77b4', '#ff7f0e', '#d62728']
+
+    plt.stackplot(th, ss, hs, ts, labels=['Sides','Heads','Tails'], colors=pal, alpha=0.8)
+    plt.hlines(num_trials/3, th[0], th[-1], color='#000000')
+    plt.hlines(num_trials*2/3, th[0], th[-1], color='#000000')
+    plt.grid()
+    plt.legend()
+
+    fig.tight_layout()
+    return plt
+
+plt = get_graph(data, num_trials=1000)
+savePlt("baseline-flips.png")
+#+end_src
+#+CAPTION: The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.
+#+RESULTS:
+[[file:../images/learning-dice/baseline-flips.png]]
+
+Ok... Zoom and enhance! Running over 10x as many flips this time....
+
+#+begin_src python :session :results file :exports results
+# Bounce: 0.3, Max throw spin: 10, Drop height: 100
+
+data = [{'value': 0.75, "h": 3641, "t": 3613, "s": 2746},
+        {'value': 0.76, "h": 3667, "t": 3585, "s": 2748},
+        {'value': 0.77, "h": 3520, "t": 3565, "s": 2915},
+        {'value': 0.78, "h": 3522, "t": 3485, "s": 2993},
+        {'value': 0.79, "h": 3595, "t": 3480, "s": 2925},
+        {'value': 0.80, "h": 3507, "t": 3491, "s": 3002},
+        {'value': 0.81, "h": 3391, "t": 3509, "s": 3102},
+        {'value': 0.82, "h": 3434, "t": 3372, "s": 3194},
+        {'value': 0.83, "h": 3357, "t": 3410, "s": 3233},
+        {'value': 0.84, "h": 3453, "t": 3349, "s": 3198},
+        {'value': 0.85, "h": 3324, "t": 3316, "s": 3360},
+        {'value': 0.86, "h": 3247, "t": 3330, "s": 3423},
+        {'value': 0.87, "h": 3242, "t": 3324, "s": 3434},
+        {'value': 0.88, "h": 3209, "t": 3211, "s": 3580},
+        {'value': 0.89, "h": 3252, "t": 3180, "s": 3568},
+        {'value': 0.90, "h": 3142, "t": 3179, "s": 3679},
+        {'value': 0.91, "h": 3084, "t": 3173, "s": 3743},
+        {'value': 0.92, "h": 3069, "t": 3047, "s": 3884},
+        {'value': 0.93, "h": 3052, "t": 3060, "s": 3888},
+        {'value': 0.94, "h": 2937, "t": 3005, "s": 4058},
+        {'value': 0.95, "h": 2914, "t": 2992, "s": 4094}]
+
+plt = get_graph(data, num_trials=10000)
+savePlt("baseline-flips-zoom.png")
+#+end_src
+#+CAPTION: The exact same as above, but over just thicknesses from 0.75r to 0.95r.
+#+RESULTS:
+[[file:../images/learning-dice/baseline-flips-zoom.png]]
+
+It seems our ideal coin has a thickness of $0.85r$! That's the point where there's exactly 1/3rd chance of heads, 1/3rd chance of tails, and 1/3rd chance of sides.
+
+* Does the maths agree?
+Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
+
+The first considers the coin as inscribed in a sphere. There's equal chance that any point on the sphere could be touching the ground, and so what's the dimensions of the coin such that it divides the area of the sphere perfectly into 3...
+This gives $t = \frac{r}{\sqrt{2}} \approx 0.707r$.
+
+The second approach thinks of the coin as being placed on the ground at a random angle. We can ignore one axis of rotation, and think of it as a box. The box will either tip towards heads/tails or sides based on the center of gravity.
+This gives the thickness, $t$ as $t = \frac{2r}{\sqrt{3}} \approx 1.154r$.
+
+And simulating it gives an answer of $0.85r$?? Right in the middle... The second approach interestingly works in our simulation, if we ignore the fact the coin may move. Try entering a coin with a thickness $1.15r$, and $0$ for restitution and spin. (Note: This is due to a simplification of how random coin rotations are sampled and may not be entirely correct.)
+
+* The end of the story?
+So... we're done? The answer is $0.85r$? Not quite... There are a lot of other properties that go into a coin. In a regular dice, all sides are the same, but this isn't true for our 3 sided coin. Namely, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'... Lets test it!
+
+#+begin_src python :session :results file :exports results
+data = [{"value": 0   , "h": 342, "t": 313, "s": 346},
+        {"value": 0.05, "h": 328, "t": 347, "s": 326},
+        {"value": 0.1 , "h": 321, "t": 310, "s": 369},
+        {"value": 0.15, "h": 308, "t": 370, "s": 322},
+        {"value": 0.20, "h": 373, "t": 316, "s": 311},
+        {"value": 0.25, "h": 333, "t": 293, "s": 374},
+        {"value": 0.30, "h": 325, "t": 334, "s": 342},
+        {"value": 0.35, "h": 333, "t": 311, "s": 356},
+        {"value": 0.40, "h": 354, "t": 334, "s": 312},
+        {"value": 0.45, "h": 365, "t": 332, "s": 305},
+        {"value": 0.50, "h": 367, "t": 367, "s": 266},
+        {"value": 0.55, "h": 377, "t": 344, "s": 279},
+        {"value": 0.60, "h": 373, "t": 375, "s": 253},
+        {"value": 0.65, "h": 403, "t": 371, "s": 227},
+        {"value": 0.70, "h": 379, "t": 405, "s": 216},
+        {"value": 0.75, "h": 389, "t": 389, "s": 222},
+        {"value": 0.80, "h": 403, "t": 408, "s": 189},
+        {"value": 0.85, "h": 387, "t": 374, "s": 239},
+        {"value": 0.90, "h": 390, "t": 351, "s": 259},
+        {"value": 0.95, "h": 319, "t": 355, "s": 326}]
+
+plt = get_graph(data, num_trials=1000, x_label='Coeffecient of restitution (bounciness)', x_format='%.1f')
+savePlt("num_flips_bounce.png")
+#+end_src
+#+CAPTION: How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at $0.85r$.
+#+RESULTS:
+[[file:../images/learning-dice/num_flips_bounce.png]]
+
+That's a strange curve! It looks like pepsi... But also, it seems bouncy coins are less likely to land on their side -- at least up to a point.
+
+What about the throw spin? Can you bias a 3 sided coin by throwing it with more or less spin? Maybe something similar applies. The coin is thrown starting at a random angle, so this shouldn't affect anything... In theory. We change the maximum throw spin, and each coin's spin is randomly sampled less than this.
+
+#+begin_src python :session :results file :exports results
+data = [{"value": 0    ,"h": 452 ,"t": 435 ,"s": 113 },
+        {"value": 2.5  ,"h": 440 ,"t": 413 ,"s": 148 },
+        {"value": 5    ,"h": 385 ,"t": 388 ,"s": 227 },
+        {"value": 7.5  ,"h": 345 ,"t": 333 ,"s": 322 },
+        {"value": 10   ,"h": 317 ,"t": 343 ,"s": 340 },
+        {"value": 12.5 ,"h": 291 ,"t": 298 ,"s": 411 },
+        {"value": 15   ,"h": 284 ,"t": 297 ,"s": 420 },
+        {"value": 17.5 ,"h": 278 ,"t": 265 ,"s": 457 },
+        {"value": 20   ,"h": 240 ,"t": 271 ,"s": 489 },
+        {"value": 22.5 ,"h": 267 ,"t": 220 ,"s": 513 },
+        {"value": 25   ,"h": 252 ,"t": 256 ,"s": 492 },
+        {"value": 27.5 ,"h": 265 ,"t": 223 ,"s": 512 },
+        {"value": 30   ,"h": 242 ,"t": 230 ,"s": 528 },
+        {"value": 32.5 ,"h": 248 ,"t": 261 ,"s": 491 },
+        {"value": 35   ,"h": 221 ,"t": 225 ,"s": 554 },
+        {"value": 37.5 ,"h": 242 ,"t": 207 ,"s": 551 },
+        {"value": 40   ,"h": 225 ,"t": 226 ,"s": 550 },
+        {"value": 42.5 ,"h": 218 ,"t": 218 ,"s": 564 },
+        {"value": 45   ,"h": 231 ,"t": 233 ,"s": 537 },
+        {"value": 47.5 ,"h": 236 ,"t": 224 ,"s": 540 },
+        {"value": 50   ,"h": 221 ,"t": 220 ,"s": 559 }]
+
+plt = get_graph(data, num_trials=1000, x_label='Maximum throw spin (deg/sec)', x_format='%.0f')
+savePlt("num_flips_spin.png")
+#+end_src
+#+CAPTION: What's going on?? The chance of sides changes dramatically with increased spin on the coin.
+#+RESULTS:
+[[file:../images/learning-dice/num_flips_spin.png]]
+
+With low spin the coin seems likely to bounce once and then land on a face. As the spin increases there actually becomes more of a chance to land on it's side since the coin can reach it in more ways. Rather than needing to perfectly hit the 'double bounce' on the side, they instead often 'roll' up to sit on the edge. At high spins the coins seem to somehow spin up to sit on the edge fairly consistently. Try it!
+
+Maybe this could be a useful trick... Get your friends to pick between heads/tails or sides of your coin, then change how you throw it accordingly. A gentle toss if you want sides or lots of spin for faces.
+
+* Disclaimer!
+The results on this page are only as good as the physics simulation is. This page uses [[https://lo-th.github.io/Oimo.js/#basic][Oimo.js]] for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
+
+Also, picking truly random rotations is /hard/. [[https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices][Surprisingly hard]]. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is... But mightn't satisfy those looking for a perfect sampling of $SO(n)$ :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or [[https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js][on my github]] and check I'm doing things right!
+
+* Conclusion
+After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least...

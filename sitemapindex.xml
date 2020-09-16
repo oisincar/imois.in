@@ -10,6 +10,10 @@
   <lastmod>2019-12-24T19:58:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>https://imois.in/categories/cat_math.xml</loc>
+  <lastmod>2020-09-16T01:24:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://imois.in/categories/gamedev.xml</loc>
   <lastmod>2020-03-02T15:29:00Z</lastmod>
  </sitemap>
@@ -23,11 +27,11 @@
  </sitemap>
  <sitemap>
   <loc>https://imois.in/categories/math.xml</loc>
-  <lastmod>2020-05-25T01:14:00Z</lastmod>
+  <lastmod>2020-09-16T01:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://imois.in/categories/programming.xml</loc>
-  <lastmod>2020-07-03T18:08:00Z</lastmod>
+  <lastmod>2020-09-16T01:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://imois.in/galleries/rss.xml</loc>
@@ -35,10 +39,10 @@
  </sitemap>
  <sitemap>
   <loc>https://imois.in/rss.xml</loc>
-  <lastmod>2020-08-24T00:57:00Z</lastmod>
+  <lastmod>2020-09-16T01:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://imois.in/sitemap.xml</loc>
-  <lastmod>2020-08-25T18:07:00Z</lastmod>
+  <lastmod>2020-09-16T01:24:00Z</lastmod>
  </sitemap>
 </sitemapindex>
