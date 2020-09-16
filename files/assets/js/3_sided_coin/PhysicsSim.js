@@ -38,7 +38,7 @@ var world_dim = 400
 
 var coin_diameter = 15;
 // Slider values...
-var coin_thickness = 1;
+var coin_thickness = 0.85;
 var coin_bounce = 0.3;
 var throw_spin = 10;
 var throw_height = 100;
@@ -141,7 +141,7 @@ function init() {
 
 
 
-    initTests();
+    // initTests();
 }
 
 function loop() {
@@ -150,7 +150,7 @@ function loop() {
     renderer.render( scene, camera );
     requestAnimationFrame( loop );
 
-    runTests();
+    // runTests();
 }
 
 var test_ix;
@@ -158,7 +158,13 @@ var test_vals;
 
 function initTests() {
     test_ix = 0;
-    test_vals = [0.90, 0.91, 0.92, 0.93, 0.94, 0.95];
+
+    test_vals = [];
+
+    var i = 50;
+    for (i; i < 54; i += 2.5) {
+        test_vals.push(i);
+    }
 
     // test_vals = [1.05, 1.1, 1.15, 1.2, 1.25,
     //              1.3, 1.35, 1.4, 1.45,
@@ -166,7 +172,7 @@ function initTests() {
     //              1.7, 1.75, 1.8, 1.85,
     //              1.9, 1.95, 2];
 
-    coin_thickness = test_vals[test_ix];
+    throw_spin = test_vals[test_ix];
 
     update_counts();
 
@@ -175,18 +181,18 @@ function initTests() {
 }
 
 function runTests() {
-    var c = 10000;
+    var c = 1000;
     if (head_count + tail_count + side_count >= c) {
         console.log("DONE. ix:", test_ix,
-                    "thickness:", coin_thickness,
-                    "h", head_count,
-                    "t", tail_count,
-                    "s", side_count);
+                    "{\"throw_spin\":", throw_spin,
+                    ",\"h\":", head_count,
+                    ",\"t\":", tail_count,
+                    ",\"s\":", side_count, "},");
 
         reset_counts();
 
         test_ix++;
-        coin_thickness = test_vals[test_ix];
+        throw_spin = test_vals[test_ix];
         update_counts();
 
 
@@ -300,7 +306,7 @@ function populate() {
     var config = [
         1, // The density of the shape.
         0.4, // The coefficient of friction of the shape.
-        0.35, // The coefficient of restitution of the shape.
+        0.9, // The coefficient of restitution of the shape.
         group_ground, // The bits of the collision groups to which the shape belongs.
         0xffffffff // The bits of the collision groups with which the shape collides.
     ];
