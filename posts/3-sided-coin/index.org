@@ -299,7 +299,7 @@ This gives the thickness, $t$ as $t = \frac{2r}{\sqrt{3}} \approx 1.154r$.
 And simulating it gives an answer of $0.85r$?? Right in the middle... The second approach interestingly works in our simulation, if we ignore the fact the coin may move. Try entering a coin with a thickness $1.15r$, and $0$ for restitution and spin. (Note: This is due to a simplification of how random coin rotations are sampled and may not be entirely correct.)
 
 * The end of the story?
-So... we're done? The answer is $0.85r$? Not quite... There are a lot of other properties that go into a coin. In a regular dice, all sides are the same, but this isn't true for our 3 sided coin. Namely, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'... Lets test it!
+So... we're done? The answer is $0.85r$? Not quite... There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'... Lets test it!
 
 #+begin_src python :session :results file :exports results
 data = [{"value": 0   , "h": 342, "t": 313, "s": 346},
@@ -330,7 +330,7 @@ savePlt("num_flips_bounce.png")
 #+RESULTS:
 [[file:../images/learning-dice/num_flips_bounce.png]]
 
-That's a strange curve! It looks like pepsi... But also, it seems bouncy coins are less likely to land on their side -- at least up to a point.
+That's a strange curve! It looks like pepsi... But also, it seems bouncy coins are less likely to land on their side --- At least up to a point. Interesting!
 
 What about the throw spin? Can you bias a 3 sided coin by throwing it with more or less spin? Maybe something similar applies. The coin is thrown starting at a random angle, so this shouldn't affect anything... In theory. We change the maximum throw spin, and each coin's spin is randomly sampled less than this.
 
@@ -364,6 +364,7 @@ savePlt("num_flips_spin.png")
 #+RESULTS:
 [[file:../images/learning-dice/num_flips_spin.png]]
 
+Nope! The opposite happens. More spin seems to make the coin more likely to land on it's side.
 With low spin the coin seems likely to bounce once and then land on a face. As the spin increases there actually becomes more of a chance to land on it's side since the coin can reach it in more ways. Rather than needing to perfectly hit the 'double bounce' on the side, they instead often 'roll' up to sit on the edge. At high spins the coins seem to somehow spin up to sit on the edge fairly consistently. Try it!
 
 Maybe this could be a useful trick... Get your friends to pick between heads/tails or sides of your coin, then change how you throw it accordingly. A gentle toss if you want sides or lots of spin for faces.
