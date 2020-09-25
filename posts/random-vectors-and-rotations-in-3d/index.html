@@ -317,7 +317,7 @@ MathJax.Hub.Config({
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Much better! There looks like an equal chance of 'choosing' a vector in any direction now. Still, the chance we discard a vector is $1 - \frac{4}{3}\pi0.5^2 \approx 0.47$. This means we'll often have to go through multiple itterations. Surely there's a better way...</p>
+<p>Much better! There looks like an equal chance of 'choosing' a vector in any direction now. Still, the chance we discard a vector is $1 - \frac{4}{3}\pi0.5^2 \approx 0.47$. This means we'll often have to go through multiple iterations. Surely there's a better way...</p>
 <p>If we use the values of the vector with a normal distribution, we can simply normalize to get a random vector.
 This is due to a neat property of the normal distribution - it's rotationally invariant.</p>
 
@@ -491,7 +491,7 @@ $$g(\alpha, \beta, \gamma) = \frac{1}{8\pi^2} \sin \alpha, \;\;\; 0 \leq \alpha 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now the vectors are rarely changed far from their starting point?? Well, if the random axis chosen is close to the $y$ axis then the rotated vector will always remain close - regardless of the angle chosen. Again Miles has a PDF that corrects for this bias... But it's even more confusing than the previous. We define the rotation axis in terms of  a tuple; $(\theta, \phi)$. These are effectively euler angles, placing a point on the surface of a unit sphere. And an angle $V$, about which to rotate. The PDF is then given by:</p>
-$$g(V, \theta, \phi) = \frac{1}{2\pi^2}\sin^2{\frac{1}{2}V\sin{\theta}}$$<p>Where $0 \leq V \lt \pi, 0 \leq \theta \lt \pi, 0 \leq \phi &lt; 2\pi$</p>
+$$g(V, \theta, \phi) = \frac{1}{2\pi^2}\sin^2{\frac{1}{2}V\sin{\theta}}$$<p>Where $0 \leq V \leq \pi, 0 \leq \theta \leq \pi, 0 \leq \phi &lt; 2\pi$</p>
 <h3 id="Gram-Schmidt">Gram-Schmidt<a class="anchor-link" href="#Gram-Schmidt">¶</a>
 </h3>
 <p>A rotation in 3D can be expressed as a rotation matrix - which is simply an orthagonal normal basis. Since we can generate normal vectors, we can use the Gram-Shmidt process to create a random basis. Note that we must use Gram-Schmidt; SVD or qr decomposition alone do <em>not</em> produce an evenly distributed rotation.</p>
