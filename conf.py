@@ -230,12 +230,15 @@ POSTS = (
     ("posts/*.md", "posts", "post.tmpl"),
     ("posts/*.txt", "posts", "post.tmpl"),
     ("posts/*.html", "posts", "post.tmpl"),
+    ("posts/*.org", "posts", "post.tmpl"),
+    ("posts/*.ipynb", "posts", "post.tmpl"),
 )
 PAGES = (
     ("pages/*.rst", "pages", "page.tmpl"),
     ("pages/*.md", "pages", "page.tmpl"),
     ("pages/*.txt", "pages", "page.tmpl"),
     ("pages/*.html", "pages", "page.tmpl"),
+    ("pages/*.org", "pages", "story.tmpl"),
 )
 
 
@@ -305,6 +308,7 @@ COMPILERS = {
     "wiki": ('.wiki',),
     "ipynb": ('.ipynb',),
     "html": ('.html', '.htm'),
+    "orgmode": ('.org',),
     # PHP files are rendered the usual way (i.e. with the full templates).
     # The resulting files have .php extensions, making it possible to run
     # them without reconfiguring your server to recognize them.
@@ -1035,7 +1039,21 @@ DEPLOY_DRAFTS = True
 # SCHEDULE_ALL = False
 
 # Do you want a add a Mathjax config file?
-# MATHJAX_CONFIG = ""
+# Custom mathjax magic! Listen to my $ finally.
+MATHJAX_CONFIG = """
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\\[","\\\]"] ],
+        processEscapes: true
+    },
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script>
+"""
 
 # If you want support for the $.$ syntax (which may conflict with running
 # text!), just use this config:
@@ -1378,11 +1396,3 @@ GLOBAL_CONTEXT = {
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = []
-
-# Add the orgmode compiler to your COMPILERS dict.
-COMPILERS["orgmode"] = ('.org',)
-
-# Add org files to your POSTS, PAGES
-POSTS = POSTS + (("posts/*.org", "posts", "post.tmpl"),)
-#PAGES = PAGES + (("stories/*.org", "stories", "story.tmpl"),)
-PAGES = PAGES + (("pages/*.org", "pages", "story.tmpl"),)
