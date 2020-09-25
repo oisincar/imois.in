@@ -19,7 +19,7 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2020-09-16T01:24:00Z</lastmod>
+  <lastmod>2020-09-25T21:10:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
@@ -88,6 +88,14 @@
  <url>
   <loc>https://imois.in/posts/procedural-animation-3-gradient-descent/</loc>
   <lastmod>2019-11-26T16:05:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/random-vectors-and-rotations-in-3d/</loc>
+  <lastmod>2020-09-19T15:50:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/test-underscore-123/</loc>
+  <lastmod>2020-09-25T20:46:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/posts/the-properties-of-lights-out-the-game/</loc>

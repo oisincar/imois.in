@@ -2,21 +2,29 @@
 <html prefix="" lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="description" content="A simulation to try and find the properties of a fair 3-sided coin; One which has equal chance of landing on heads, tails and sides.">
 <meta name="viewport" content="width=device-width">
 <title>Searching for a fair, 3-sided coin. | im_oisin</title>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://imois.in/posts/3-sided-coin/">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
 <!-- Adsense code! --><script data-ad-client="ca-pub-5291127435009817" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
 <meta property="og:title" content="Searching for a fair, 3-sided coin.">
 <meta property="og:url" content="https://imois.in/posts/3-sided-coin/">
-<meta property="og:description" content="Intro
-
-
-A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
-it ha">
+<meta property="og:description" content="A simulation to try and find the properties of a fair 3-sided coin; One which has equal chance of landing on heads, tails and sides.">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2020-08-23T22:30:01+01:00">
 <meta property="article:tag" content="math">
@@ -87,9 +95,9 @@ it ha">
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org2fdfdfe" class="outline-2">
-<h2 id="org2fdfdfe">Intro</h2>
-<div class="outline-text-2" id="text-org2fdfdfe">
+        <div id="outline-container-orgf7f1943" class="outline-2">
+<h2 id="orgf7f1943">Intro</h2>
+<div class="outline-text-2" id="text-orgf7f1943">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script><p>
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
@@ -231,9 +239,9 @@ We'll try to work out the ideal thickness of the coin in terms of it's radius (\
 </div>
 
 
-<div id="outline-container-org3ca33ac" class="outline-2">
-<h2 id="org3ca33ac">Coin thickness?</h2>
-<div class="outline-text-2" id="text-org3ca33ac">
+<div id="outline-container-orgec55f4c" class="outline-2">
+<h2 id="orgec55f4c">Coin thickness?</h2>
+<div class="outline-text-2" id="text-orgec55f4c">
 <p>
 Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
 </p>
@@ -260,9 +268,9 @@ It seems our ideal coin has a thickness of \(0.85r\)! That's the point where the
 </div>
 </div>
 
-<div id="outline-container-org7ec2d0e" class="outline-2">
-<h2 id="org7ec2d0e">Does the maths agree?</h2>
-<div class="outline-text-2" id="text-org7ec2d0e">
+<div id="outline-container-org14a22e8" class="outline-2">
+<h2 id="org14a22e8">Does the maths agree?</h2>
+<div class="outline-text-2" id="text-org14a22e8">
 <p>
 Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
 </p>
@@ -283,9 +291,9 @@ And simulating it gives an answer of \(0.85r\)?? Right in the middle… The seco
 </div>
 </div>
 
-<div id="outline-container-org718bf58" class="outline-2">
-<h2 id="org718bf58">The end of the story?</h2>
-<div class="outline-text-2" id="text-org718bf58">
+<div id="outline-container-orgc4d9fa9" class="outline-2">
+<h2 id="orgc4d9fa9">The end of the story?</h2>
+<div class="outline-text-2" id="text-orgc4d9fa9">
 <p>
 So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
 </p>
@@ -321,22 +329,22 @@ Maybe this could be a useful trick… Get your friends to pick between heads/tai
 </div>
 </div>
 
-<div id="outline-container-org8fe711f" class="outline-2">
-<h2 id="org8fe711f">Disclaimer!</h2>
-<div class="outline-text-2" id="text-org8fe711f">
+<div id="outline-container-org1a998f0" class="outline-2">
+<h2 id="org1a998f0">Disclaimer!</h2>
+<div class="outline-text-2" id="text-org1a998f0">
 <p>
 The results on this page are only as good as the physics simulation is. This page uses <a href="https://lo-th.github.io/Oimo.js/#basic">Oimo.js</a> for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
 </p>
 
 <p>
-Also, picking truly random rotations is <i>hard</i>. <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices">Surprisingly hard</a>. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is… But mightn't satisfy those looking for a perfect sampling of \(SO(n)\) :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or <a href="https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js">on my github</a> and check I'm doing things right!
+Also, picking truly random rotations is <i>hard</i>. <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices">Surprisingly hard</a>. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is… But mightn't satisfy those looking for a perfect sampling of \(SO(3)\) :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or <a href="https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js">on my github</a> and check I'm doing things right!
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2ff9e1a" class="outline-2">
-<h2 id="org2ff9e1a">Conclusion</h2>
-<div class="outline-text-2" id="text-org2ff9e1a">
+<div id="outline-container-org025a2cb" class="outline-2">
+<h2 id="org025a2cb">Conclusion</h2>
+<div class="outline-text-2" id="text-org025a2cb">
 <p>
 After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
 </p>
@@ -346,8 +354,17 @@ After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope 
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
-        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
-        </script>
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script>
 </div>
     </div>
 

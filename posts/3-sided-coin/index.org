@@ -6,7 +6,7 @@
 .. category: math
 .. link:
 .. has_math: true
-.. description:
+.. description: A simulation to try and find the properties of a fair 3-sided coin; One which has equal chance of landing on heads, tails and sides.
 .. type: text
 #+END_COMMENT
 # .. status: draft
@@ -372,7 +372,7 @@ Maybe this could be a useful trick... Get your friends to pick between heads/tai
 * Disclaimer!
 The results on this page are only as good as the physics simulation is. This page uses [[https://lo-th.github.io/Oimo.js/#basic][Oimo.js]] for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
 
-Also, picking truly random rotations is /hard/. [[https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices][Surprisingly hard]]. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is... But mightn't satisfy those looking for a perfect sampling of $SO(n)$ :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or [[https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js][on my github]] and check I'm doing things right!
+Also, picking truly random rotations is /hard/. [[https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices][Surprisingly hard]]. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is... But mightn't satisfy those looking for a perfect sampling of $SO(3)$ :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or [[https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js][on my github]] and check I'm doing things right!
 
 * Conclusion
 After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least...
