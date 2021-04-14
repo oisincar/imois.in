@@ -19,7 +19,8 @@ MathJax.Hub.Config({
     }
 });
 </script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-<!-- Adsense code! --><script data-ad-client="ca-pub-5291127435009817" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
 <meta property="og:title" content="The Chromatic Number of the Plane">
@@ -31,6 +32,7 @@ MathJax.Hub.Config({
 <meta property="article:tag" content="programming">
 </head>
 <body>
+
     
 
     <header id="header" class="navbar"><div class="container">
@@ -483,7 +485,7 @@ Assume it can be coloured with 3. Pick a colour arbitrarally for $1$ (eg. red), 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Getting-Big...">Getting Big...<a class="anchor-link" href="#Getting-Big...">¶</a>
 </h2>
-<p>Aubery De Grey's paper in 2018 opened the floodgates for computer aided optimization and proofs. There has been plenty of very heavy research in chromatic graph theory, yet here we have a breakthrough using not much more than brute force. That's not to take away from the achievement... It's just nice to have a math paper I can actually understand. Similar to before 2 we create a graph, this one's just a bit bigger... To start, a familiar hexagon.</p>
+<p>Aubery De Grey's paper in 2018 opened the floodgates for computer aided optimization and proofs. There has been plenty of very heavy research in chromatic graph theory, yet here we have a breakthrough using not much more than brute force. That's not to take away from the achievement... It's just nice to have a math paper I can actually understand. Similar to before we create a graph, this one's just a bit bigger... To start, a familiar hexagon.</p>
 
 </div>
 </div>
@@ -528,7 +530,7 @@ Assume it can be coloured with 3. Pick a colour arbitrarally for $1$ (eg. red), 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We denote this 'H'. We're concerned with colourings of H where 3 out of the 6 vertices around the edge are a single colour. This is coined a 'monochromatic triple'. Now take 13 of these, and assemble them together.</p>
+<p>We denote this $H$. We're concerned with colourings of $H$ where 3 out of the 6 vertices around the edge are a single colour. This is coined a 'monochromatic triple'. Now take 13 of $H$ and assemble them together.</p>
 
 </div>
 </div>
@@ -924,7 +926,7 @@ Wall time: 2min 58s
 <h2 id="Bonus:">Bonus:<a class="anchor-link" href="#Bonus:">¶</a>
 </h2>
 <p>Why's it so fast? First: Generating the graph. Points are stored in both 'exact' sympy representation and approximate floating point, these can be used to find and remove duplicate points quickly while constructing the graphs. These are found using scipy's cKDTree implementation, which allows for spacial queries in O(Log(n)) time. The same setup is used to find unit-length edges, with candidate matches being created by distance and optionally verified using their exact representations.</p>
-<p>Next: Solving it. This lib uses pysat, which gives access to lots of SAT solvers. I've found MapleChrono is the fastest for this kind of problem, which isn't too surprising given it <a href="http://sat2018.forsyte.tuwien.ac.at/indexbff8.html?cat=results">won the main track at the 2018 SAT Conference</a>. The SAT problem formulation itself is pretty standard, but there're a few extra tricks for speeding up graph optimization that allows the solver to retain some of the previous graph's solve. All the code's open source anyway... Check it out <a href="https://github.com/oisincar/cnp-5">here</a>!</p>
+<p>Next: Solving it. This project uses pysat, which gives access to lots of SAT solvers. I've found MapleChrono is the fastest for this kind of problem, which isn't too surprising given it <a href="http://sat2018.forsyte.tuwien.ac.at/indexbff8.html?cat=results">won the main track at the 2018 SAT Conference</a>. The SAT problem formulation itself is pretty standard, but there're a few extra tricks for speeding up graph optimization that allows the solver to retain some of the previous graph's solve. All the code's open source anyway... Check it out <a href="https://github.com/oisincar/cnp-5">here</a>!</p>
 
 </div>
 </div>
@@ -988,12 +990,30 @@ MathJax.Hub.Config({
                 </div>
            
         </div>
-    </footer><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-143421297-1"></script><script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    </footer><div id="cookies-eu-banner" style="display: none; position:fixed; bottom: 0;">
+        By continuing to visit this site, you accept the use of cookies by Google Analytics and Google Adsense.
+        <a href="https://imois.in/pages/privacy-policy" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
 
-  gtag('config', 'UA-143421297-1');
-</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script>
+    
+<script src="../../assets/js/cookies-eu-banner.js"></script><script>
+    new CookiesEuBanner(function () {
+        // Your code to launch when user accept cookies
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-143421297-1', 'auto');
+        ga('send', 'pageview');
+
+
+        // TODO: Set up adsense here..??
+    }, true);
+
+</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script><div>
+</div>
 </body>
 </html>
