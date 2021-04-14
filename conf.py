@@ -142,6 +142,7 @@ NAVIGATION_LINKS = {
         ("/categories/", "Tags"),
         ("/rss.xml", "RSS feed"),
         ("/pages/about-me", "About Me"),
+        ("/pages/privacy-policy", "Privacy Policy"),
     ),
 }
 
