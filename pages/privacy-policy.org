@@ -1,7 +1,7 @@
 #+BEGIN_COMMENT
 .. title: Privacy Policy
 .. slug: privacy-policy
-.. date: 2021-04-14 22:35:28 UTC
+.. date: 2021-04-14 05:23:42 UTC+01:00
 .. tags:
 .. category:
 .. link:
