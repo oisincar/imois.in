@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2020-06-30T15:30:00Z</lastmod>
+  <lastmod>2021-04-12T23:18:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
@@ -18,8 +18,12 @@
   <lastmod>2020-05-24T22:39:00Z</lastmod>
  </url>
  <url>
+  <loc>https://imois.in/2021/</loc>
+  <lastmod>2021-04-12T23:18:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2020-09-25T23:09:00Z</lastmod>
+  <lastmod>2021-04-12T23:15:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
@@ -92,6 +96,10 @@
  <url>
   <loc>https://imois.in/posts/random-vectors-and-rotations-in-3d/</loc>
   <lastmod>2020-09-19T15:50:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/the-chromatic-number-of-the-plane/</loc>
+  <lastmod>2021-04-12T23:18:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/posts/the-properties-of-lights-out-the-game/</loc>

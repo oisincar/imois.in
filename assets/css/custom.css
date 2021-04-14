@@ -1,4 +1,10 @@
 
+/* output in jupyter notebooks */
+.output_png {
+  justify-content: center;
+  display: flex;
+}
+
 /* triple split column w/ centered text (see: coin) */
 .stacked_bar_chart {
   padding:10px;
