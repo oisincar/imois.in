@@ -1,0 +1,22 @@
+#+BEGIN_COMMENT
+.. title: Privacy Policy
+.. slug: privacy-policy
+.. date: 2021-04-14 05:23:42 UTC+01:00
+.. tags:
+.. category:
+.. link:
+.. description:
+.. type: text
+.. nocomments: true
+#+END_COMMENT
+
+# #+TITLE: Privacy policy
+
+* Privacy Policy
+Last updated: April 14, 2021
+
+Look man, it's just [[https://policies.google.com/technologies/partner-sites][google analytics and adsense]]. Don't sue me plz, ty.
+
+* Contact
+If you have any questions about this Privacy Policy, you can contact me:
+- By email: hi@imois.in
