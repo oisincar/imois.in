@@ -119,7 +119,7 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 * The problem: Kinematics
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
-refered to as the "Geometry of Motion". For charachter animation, we usually
+referred to as the "Geometry of Motion". For character animation, we usually
 deal with Kinematics of Simple Chains - or limbs...
 
 For a given arm, *Forward Kinematics* is working out where the hand (or end) is
@@ -131,11 +131,11 @@ to it as possible.
 - *Forward Kinematics:* :: Your upper arm is at $\alpha$ to your torso, and your
      upper arm is $\beta$ to your lower arm, where is your hand?
 
-- *Inverse Kinematics:* :: You want to reach for a ball infront of you, what
+- *Inverse Kinematics:* :: You want to reach for a ball in-front of you, what
      angles should you have at your shoulder and elbow?
 
 We're going to look at the second one. Inverse Kinematics are used for all kinds
-of charachter animation, robotics, and predicting people's location in VR. It'd
+of character animation, robotics, and predicting people's location in VR. It'd
 be pretty useful to have a way to solve it!
 
 #+BEGIN_EXPORT html
@@ -206,13 +206,13 @@ be pretty useful to have a way to solve it!
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
 
-Of course, there are cases where there are no solution. If the ball is out of
+Of course, there are cases where there is no solution. If the ball is out of
 reach, for example.
 
 It's possible to work out these two angles with coordinate geometry or a bit of
 trig, as long as you have the lengths of both arm segments and the target
-location. However, as there's a million other gamedev sites, robotics courses,
-and random medium posts, so I'll won't explain it here again. It is a fun problem
+location. However, as there are a million other gamedev sites, robotics courses,
+and random medium posts, I won't explain it here again. It is a fun problem
 though - I'd recommend giving it a go!
 
 It's also worth noting problems and limbs in 3D can be solved using the same 2D algorithm/equation
@@ -234,7 +234,7 @@ solutions to some problem that has a lot of possible solutions.
 
 Instead of trying to find a solution instantly, we take the current position of
 the arm and figure out how to improve it slightly. The solution is then
-calculated itteratively, looping over and over either until we're not getting
+calculated iteratively, looping over and over either until we're not getting
 any closer or we're within some distance.
 
 Because we're only 3 dimensional creatures... The solution is easiest to
@@ -242,7 +242,7 @@ describe for arms with 2 joints... But the maths works for any number of joints.
 
 * Forward Kinematics
 First, we need to work out where the end of our arm is... We write the angle at
-the shouder as $\alpha$, and at the elbow as $\beta$. The length of the upper
+the shoulder as $\alpha$, and at the elbow as $\beta$. The length of the upper
 arm is $l1$, and forearm is $l2$. I take the shoulder to be at $(0,0)$
 
 To do this, we can split it into 2 parts. The position of the elbow will be at:
@@ -289,7 +289,7 @@ Dist = \sqrt{Dist_x^2 - Dist_y^2}
 
 We can look at this distance for any value of $\alpha$ and $\beta$. If we plot
 $\alpha$ and $\beta$ on the x and y coordinates of a graph, and the
-corrisponding distance the arm is from the target the z (vertical) axis, we can
+corresponding distance the arm is from the target the z (vertical) axis, we can
 view the distance as a shape.
 
 # TODO: Insert graph thingy
@@ -337,15 +337,15 @@ view the distance as a shape.
 </div>
 #+END_EXPORT
 
-Each point on the surface corrisponds to some shoulder and elbow angles, and the
-height (or colour) there corrisponds to the distance those angles put the hand
+Each point on the surface corresponds to some shoulder and elbow angles, and the
+height (or colour) there corresponds to the distance those angles put the hand
 from the target. As you change the angles of the arms, you can see the graph
 translate - the center of it shows the current elbow and shoulder angles.
 
 Try tweaking lengths, then read the lowest/highest point from the graph... Then change
 the arm's angles to those and see what it looks like.
 
-There's often two low points in the graph - which corrispond to the two best
+There's often two low points in the graph - which correspond to the two best
  solutions. Moving the ball far away gives only one low point - meaning there's
  only one best solution; when the arm is pointing towards it.
  There's also usually one worst solution (the reddest/ highest point), which
@@ -355,10 +355,10 @@ Our goal will be effectively to try and find the lowest point on this surface -
 the angles there will bring our arm closest to our target ball.
 
 * Gradient Descent
-We can use the derivitive of this distance function to improve our errors.
-First, write the distance corrisponding to $\alpha$ and $\beta$ as $Dist(\alpha, \beta)$.
+We can use the derivative of this distance function to improve our errors.
+First, write the distance corresponding to $\alpha$ and $\beta$ as $Dist(\alpha, \beta)$.
 
-Then we can consider the partial derivitive with respect to the angles.
+Then we can consider the partial derivative with respect to the angles.
 
 \begin{align*}
 \frac{\partial Dist}{\partial \alpha}
@@ -368,8 +368,8 @@ This works out to a single value, and can be read/ thought of as 'how does the
 distance to the target change when I change $\alpha$ by a very small amount'.
 
 For example if $\frac{\partial Dist}{\partial \alpha}$ is positive, then
-increasing $\alpha$ will bring increase the distance. Decreasing $\alpha$ then brings
-hand towards the target. If the derivitive is negative, we
+increasing $\alpha$ will increase the distance. Decreasing $\alpha$ then brings the
+hand towards the target. If the derivative is negative, we
 should instead increase $\alpha$ by a small amount to improve our hand position.
 This can be written as:
 
@@ -392,7 +392,7 @@ This method of improving is called 'gradient descent', because if we look at the
 surface, each time we update we travel down the surface until we reach the bottom.
 
 The demos just perform this update once per frame, but it's easy to completely
-solve the system by running for more itterations.
+solve the system by running for more iterations.
 
 * Implementation & Extras
 It might help to look through the source code for the animations (embedded into

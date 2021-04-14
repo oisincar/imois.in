@@ -40,7 +40,7 @@ var coin_diameter = 15;
 // Slider values...
 var coin_thickness = 0.85;
 var coin_bounce = 0.3;
-var throw_spin = 10;
+var throw_spin = 40;
 var throw_height = 100;
 
 var num_coins_x = 12;
@@ -141,7 +141,7 @@ function init() {
 
 
 
-    // initTests();
+    initTests();
 }
 
 function loop() {
@@ -150,7 +150,7 @@ function loop() {
     renderer.render( scene, camera );
     requestAnimationFrame( loop );
 
-    // runTests();
+    runTests();
 }
 
 var test_ix;
@@ -161,18 +161,13 @@ function initTests() {
 
     test_vals = [];
 
-    var i = 50;
-    for (i; i < 54; i += 2.5) {
+    var i = 0.6;
+    for (i; i <= 0.81; i += 0.01) {
         test_vals.push(i);
     }
+    console.log("Testing over", test_vals);
 
-    // test_vals = [1.05, 1.1, 1.15, 1.2, 1.25,
-    //              1.3, 1.35, 1.4, 1.45,
-    //              1.5, 1.55, 1.6, 1.65,
-    //              1.7, 1.75, 1.8, 1.85,
-    //              1.9, 1.95, 2];
-
-    throw_spin = test_vals[test_ix];
+    coin_thickness = test_vals[test_ix];
 
     update_counts();
 
@@ -181,20 +176,19 @@ function initTests() {
 }
 
 function runTests() {
-    var c = 1000;
+    var c = 10000;
     if (head_count + tail_count + side_count >= c) {
-        console.log("DONE. ix:", test_ix,
-                    "{\"throw_spin\":", throw_spin,
-                    ",\"h\":", head_count,
-                    ",\"t\":", tail_count,
-                    ",\"s\":", side_count, "},");
+        console.log("{ \"value\":", test_vals[test_ix],
+                    ", \"h\":", head_count,
+                    ", \"t\":", tail_count,
+                    ", \"s\":", side_count, "},");
 
         reset_counts();
 
         test_ix++;
-        throw_spin = test_vals[test_ix];
-        update_counts();
 
+        coin_thickness = test_vals[test_ix];
+        update_counts();
 
         // Rebuild everythingggg.
         populate();
@@ -351,6 +345,14 @@ function populate() {
 }
 
 
+// Standard Normal variate using Box-Muller transform.
+// Taken from: https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+function randn_bm() {
+    // u,v in range (0,1]
+    var u = 1 - Math.random(), v = 1 - Math.random();
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
 
 function updateOimoPhysics() {
 
@@ -420,31 +422,22 @@ function updateOimoPhysics() {
 
             body.resetPosition(x,y,z);
 
-            // Rotate around x axis
-            var randx_rot = new THREE.Quaternion();
-            randx_rot.setFromAxisAngle(
-                new THREE.Vector3( 1, 0, 0 ),
-                // new THREE.Vector3( Math.random()-0.5,
-                //                    Math.random()-0.5,
-                //                    Math.random()-0.5 ).normalize(),
-                Math.random()*2*Math.PI );
 
-            // After rotate around y axis...
-            var randy_rot = new THREE.Quaternion();
-            randy_rot.setFromAxisAngle(
-                new THREE.Vector3( 0, 1, 0 ),
-                // new THREE.Vector3( Math.random()-0.5,
-                //                    Math.random()-0.5,
-                //                    Math.random()-0.5 ).normalize(),
-                Math.random()*2*Math.PI );
 
-            randy_rot.multiply(randx_rot);
+            // Random rotation!
+            var rand_rot = new THREE.Quaternion(randn_bm(), randn_bm(),
+                                                randn_bm(), randn_bm());
+            rand_rot = rand_rot.normalize();
+            body.resetQuaternion(rand_rot);
 
-            body.resetQuaternion(randy_rot);
 
-            body.angularVelocity.set((Math.random()-0.5)*2*throw_spin,
-                                     (Math.random()-0.5)*2*throw_spin,
-                                     (Math.random()-0.5)*2*throw_spin);
+            // Random impulse!*
+            // *: Not perfectly distributed...
+            var v = new THREE.Vector3(randn_bm(), randn_bm(), randn_bm()).normalize();
+            var a = (Math.random()-0.5) * 2 * (throw_spin/10 * 2 * Math.PI);
+
+            body.angularVelocity.set(v.x*a, v.y*a, v.z*a);
+            // body.angularVelocity.set(0, Math.PI*2, 0);
 
             // Make sure mesh is in new pos...
             mesh.position.copy(body.getPosition());
