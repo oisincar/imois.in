@@ -1,5 +1,7 @@
-import * as wasm from "./pkg/sudoku_wasm.js";
+import init, {greet, solve_board, empty_board} from './pkg/sudoku_wasm.js';
+await init();
 
+console.log(empty_board());
 
 class SudokuSolver {
     constructor(div_id) {
@@ -37,7 +39,8 @@ class SudokuSolver {
 
             var $ixs = $(`<td>{${ixs}}</td>`);
             $row.append($ixs);
-            $row.append($('<td/>', {text: sum, contentEditable: "true"}));
+            var $sum = $('<td/>', {text: sum, contentEditable: "true"});
+            $row.append($sum);
             var $button = $('<td><button type="button">X</button></td>');
             $row.append($button);
             $('#sudokurules').append($row);
@@ -80,12 +83,7 @@ class SudokuSolver {
                 // Grab the newly selected rule.
                 var $row = $(this).closest('tr');
                 var id = $row.attr('rule_id');
-                var new_rule = null;
-                parent.rules.forEach(function(r) {
-                    if (r.rule_id == id) {
-                        new_rule = r;
-                    }
-                });
+                var new_rule = parent.getRule(id);
 
                 // Select this
                 new_rule.html_ixs_list.addClass('sudoku_square_selected');
@@ -98,10 +96,22 @@ class SudokuSolver {
                     // parent.refreshRuleIxs(current_active_rule);
                 });
             });
+
+            // Update the rule when the sum is changed.
+            $sum.keyup(function(e) {
+                // Grab the rule being edited.
+                var $row = $(this).closest('tr');
+                var id = $row.attr('rule_id');
+                var rule = parent.getRule(id);
+
+                rule.sum = parseInt(this.innerText);
+                // parent.sumEdited(this.getAttribute('sq_ix'), this.innerText);
+            });
+
         };
 
-        let test_rules = Array({ixs: Array(1, 5, 8), sum: 43},
-                               {ixs: Array(1, 5, 8, 13, 27), sum: 43});
+        let test_rules = Array({ixs: Array(0, 1), sum: 5},
+                               {ixs: Array(1, 2), sum: 6});
         // Initilize some test rules
         test_rules.forEach(rule => {
             add_rule(rule.ixs, rule.sum);
@@ -171,6 +181,7 @@ class SudokuSolver {
             e.stopPropagation();
         });
         $('#solve_button').click(function(e) {
+            // Grab valid numbers from the list and add em to the str.
             let cell_values = Array(81).fill('-');
             parent.cells.forEach(function(c, ix) {
                 if (c.text() != '' && c.text.length == 1) {
@@ -179,10 +190,29 @@ class SudokuSolver {
             });
             // Just collapse to string...
             cell_values = cell_values.join("");
-            console.log({
-                cells: cell_values,
-                rules: parent.rules,
+
+            // Transform rules
+            let rules = parent.rules.map(function(r) {
+                return {ixs: r.ixs, sum: r.sum}
             });
+
+            let board = {
+                squares: cell_values,
+                rules: rules,
+            };
+
+            console.log("Solving:", board);
+            let res = solve_board(board);
+            console.log(res);
+
+            if (res.length != 81) {
+                alert('No solution found :c');
+            }
+            else {
+                Array.from(res).forEach(function(c, ix) {
+                    parent.cells[ix].text(c);
+                });
+            }
         });
         // RESET!
         $('#reset_button').mousedown(function(e) {
@@ -190,8 +220,22 @@ class SudokuSolver {
             e.stopPropagation();
         });
         $('#reset_button').click(function(e) {
-
+            // TODO!!!
+            parent.cells.forEach(function(c) {
+                c.text('');
+            })
         });
+    }
+
+    getRule(rule_id) {
+        // This is ugly af... Could do a map but also.. w/e.
+        var ans = null;
+        this.rules.forEach(function(r) {
+            if (r.rule_id == rule_id) {
+                ans = r;
+            }
+        });
+        return ans;
     }
 
     deselectAll() {
@@ -209,7 +253,7 @@ class SudokuSolver {
         var parent = this;
         this.cells.forEach(function(c) {
             if (parent.cellIsSelected(c)) {
-                rule.ixs.push(c.attr('sq_ix'));
+                rule.ixs.push(parseInt(c.attr('sq_ix')));
             }
         });
 
@@ -244,7 +288,6 @@ class SudokuSolver {
 
     // Returns the (new) current state of the square
     toggleCell(cell) {
-        console.log(cell);
         var selected_cl = 'sudoku_square_selected';
         if (!cell.hasClass(selected_cl)) {
             cell.addClass(selected_cl);
@@ -256,3 +299,5 @@ class SudokuSolver {
         }
     }
 }
+
+new SudokuSolver('sudokutr');

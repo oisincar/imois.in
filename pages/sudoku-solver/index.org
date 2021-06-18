@@ -7,21 +7,28 @@
 .. link:
 .. description: a-WASM-e solving of sudoku boards in rust and web assembly.
 .. type: text
+.. has_math: true
 #+END_COMMENT
 
 
-* Killer Sudoku
-A solver for killer sudokus! Written in rust and compiled to web assembly. For more information on the implementation itself see <TODO: Here>.
+** (Killer) Sudoku Solver
+A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
+
+Enter digits into the grid, or add some sum-rules. For more detailed instructions see below.
 
 #+BEGIN_EXPORT html
-<script type="module" src="../assets/js/sudoku/sudoku_board.js"></script>
 <div class='sudoku_container'>
-    <div>
-        <h3>Killer sudoku solver</h3>
+    <!--<div>
+        <h2>(Killer) Sudoku Solver</h2>
         <div>
-            Enter digits into the grid, or add some sum-rules. For more detailed instructions: see below.
+        <p>
+        A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
+        </p>
+        <p>
+        Enter digits into the grid, or add some sum-rules. For more detailed instructions see below.
+        </p>
         </div>
-    </div>
+    </div>-->
     <div>
         <button id='solve_button' type="button">Solve!</button>
         <button id='reset_button' type="button">Reset</button>
@@ -29,22 +36,34 @@ A solver for killer sudokus! Written in rust and compiled to web assembly. For m
     <table id='sudokutr' class='sudoku_grid'></table>
     <div  class='sumrule_container'>
         <table id='sudokurules' class='sumrule_table'>
-            <tr> <th>Square ixs</th><th>Sum To</th> <th></th></tr>
+            <tr> <th>Cell ixs</th><th>Sum To</th> <th></th></tr>
         </table>
         <div> <button id='add_rule_button' type="button">+</button> </div>
     </div>
 </div>
+<script type="module" src="../assets/js/sudoku/sudoku_board.js"></script>
 #+END_EXPORT
 
-#+BEGIN_SRC inline-js
-new SudokuSolver('sudokutr');
-#+END_SRC
+*** Fixed digits
+- You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.
+*** Sum constraints
+- Each cell has a corresponding index from $0-81$. Constraints consist of any number of these indices and a sum they should make.
+- To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.
+- Constraints can be edited by clicking on the corresponding `Cell ixs` entry, and reselecting squares.
+- Unlike some other solvers, constraints can overlap arbitrarily.
 
+*** Solving
+Finally, when you have a board complete... Hit solve. The first solution found will be displayed, or a warning if no solution could be found (is possible).
 
-** Entering fixed digits
-- You can enter fixed digits by selecting the square and entering a digit. You can enter more than one by click+draging or shift+clicking.
-** Adding sum constraints
-- Select squares, then hit the '+' at the bottom to create a sum rule governing these squares. You can then modify the sum value itself. The squares can be edited by clicking
-  on them and changing the selection on the board.
-** Solve
-Finally, when you have a board complete... Hit solve. The first solution found will be displayed.
+*** The solver itself
+The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
+
+It uses bitsets to improve performance, where possibilities for each cell are stored as a single binary number. If [1,3,5] were candidates for a square this is stored as $000010101$ - where the least significant digit corresponding to 1 being a candidate etc. When a number is placed in a square it can be removed as a candidate from row/column/box efficiently using binary digits.
+
+Sums constraints are calculated and cached in a hashset. If a constraint required us to make 8 in 3 squares there are only two ways to do it: [1,2,5] and [1,3,4]... And is similarly stored as a mask: $000011111$ - corresponding to all numbers that could make up a solution. This can be used to quickly mask squares. The calculation of these constraints is done quickly and lazily with some dynamic programming tricks - i.e. [[https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/][knapsack]].
+
+When a digit is placed in a cell two things happen - its value is removed as a candidate from row/column/box, then sum constraints containing the cell are updated and the resulting new mask is reapplied to the remaining squares.
+
+If those rules are enough to solve the puzzle - it's extremely fast. It can solve up to 2 million sudokus per second! Otherwise, it must guess a square and backtrack if it reaches a contradiction. It tries to guess the square with the fewest candidates.
+
+It's lack of more complex solving techniques; hidden singles, naked pairs etc. means it struggles to compare with the [[https://github.com/t-dillon/tdoku][fastest solvers of the day]]. For comparison it solves ~900/second of the 'puzzles5_forum_hardest' puzzles in the previous link (best=24,001/sec), while averaging a whopping 1456 guesses/puzzle (best=64 guesses). Not too bad for a weekend though... And it may in fact be the fastest killer sudoku solver!
