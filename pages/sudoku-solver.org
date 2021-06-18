@@ -1,0 +1,50 @@
+#+BEGIN_COMMENT
+.. title: Sudoku Solver
+.. slug: sudoku-solver
+.. date: 2021-06-16 23:04:35 UTC+01:00
+.. tags:
+.. category: Programming
+.. link:
+.. description: a-WASM-e solving of sudoku boards in rust and web assembly.
+.. type: text
+#+END_COMMENT
+
+
+* Killer Sudoku
+A solver for killer sudokus! Written in rust and compiled to web assembly. For more information on the implementation itself see <TODO: Here>.
+
+#+BEGIN_EXPORT html
+<script type="module" src="../assets/js/sudoku/sudoku_board.js"></script>
+<div class='sudoku_container'>
+    <div>
+        <h3>Killer sudoku solver</h3>
+        <div>
+            Enter digits into the grid, or add some sum-rules. For more detailed instructions: see below.
+        </div>
+    </div>
+    <div>
+        <button id='solve_button' type="button">Solve!</button>
+        <button id='reset_button' type="button">Reset</button>
+    </div>
+    <table id='sudokutr' class='sudoku_grid'></table>
+    <div  class='sumrule_container'>
+        <table id='sudokurules' class='sumrule_table'>
+            <tr> <th>Square ixs</th><th>Sum To</th> <th></th></tr>
+        </table>
+        <div> <button id='add_rule_button' type="button">+</button> </div>
+    </div>
+</div>
+#+END_EXPORT
+
+#+BEGIN_SRC inline-js
+new SudokuSolver('sudokutr');
+#+END_SRC
+
+
+** Entering fixed digits
+- You can enter fixed digits by selecting the square and entering a digit. You can enter more than one by click+draging or shift+clicking.
+** Adding sum constraints
+- Select squares, then hit the '+' at the bottom to create a sum rule governing these squares. You can then modify the sum value itself. The squares can be edited by clicking
+  on them and changing the selection on the board.
+** Solve
+Finally, when you have a board complete... Hit solve. The first solution found will be displayed.

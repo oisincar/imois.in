@@ -1230,12 +1230,14 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # Extra things you want in the pages HEAD tag. This will be added right
 # before </head>
 # (translatable)
+# TODO: This is kinda dumb... Sudoku css is loaded for all pages.
 EXTRA_HEAD_DATA = """
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/sudoku.css" rel="stylesheet" type="text/css">
 """
 # <!-- Adsense code! -->
 # <script data-ad-client="ca-pub-5291127435009817" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
