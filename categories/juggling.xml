@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about juggling)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/juggling.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 12 Apr 2021 21:49:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgc448c3e" class="outline-2"&gt;
-&lt;h2 id="orgc448c3e"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc448c3e"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about juggling)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/juggling.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 16 Jun 2021 21:59:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7535a17" class="outline-2"&gt;
+&lt;h2 id="org7535a17"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7535a17"&gt;
 &lt;p&gt;
 At EJC last year (2018), I came across Jack Boyce's siteswap questions, which
 can be found &lt;a href="http://www.juggling.org/help/siteswap/tests/test-boyce.html"&gt;HERE!&lt;/a&gt; I'd highly recommend giving them a go. They start off doable,
@@ -22,9 +22,9 @@ it up and posting it now… 9 months later.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5c379bc" class="outline-2"&gt;
-&lt;h2 id="org5c379bc"&gt;q1&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5c379bc"&gt;
+&lt;div id="outline-container-org877c961" class="outline-2"&gt;
+&lt;h2 id="org877c961"&gt;q1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org877c961"&gt;
 &lt;p&gt;
 &lt;i&gt;I am juggling \(868671\) with clubs (yeah, right).  How many do I have?&lt;/i&gt;
 &lt;/p&gt;
@@ -44,9 +44,9 @@ Answer: 6
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org7f97448" class="outline-2"&gt;
-&lt;h2 id="org7f97448"&gt;q2&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7f97448"&gt;
+&lt;div id="outline-container-org0cc68a8" class="outline-2"&gt;
+&lt;h2 id="org0cc68a8"&gt;q2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0cc68a8"&gt;
 &lt;p&gt;
 &lt;i&gt;I have a bowling ball that I can only throw as a site swap '\(3\)' throw. Which&lt;/i&gt;
 &lt;i&gt;of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:&lt;/i&gt;
@@ -69,9 +69,9 @@ This is only c).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org54ffd43" class="outline-2"&gt;
-&lt;h2 id="org54ffd43"&gt;q3&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org54ffd43"&gt;
+&lt;div id="outline-container-org1227dbf" class="outline-2"&gt;
+&lt;h2 id="org1227dbf"&gt;q3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1227dbf"&gt;
 &lt;p&gt;
 &lt;i&gt;You are doing a 4 ball fountain and decide you want to switch into&lt;/i&gt;
 &lt;i&gt;741, an excited state site swap.  You can't just start throwing:&lt;/i&gt;
@@ -85,14 +85,14 @@ A 4 ball base fountain occurs in the base state of 4 balls, which can be written
 as:
 &lt;/p&gt;
 
-&lt;pre class="example" id="orgeb61d0f"&gt;
+&lt;pre class="example" id="orgb0607d1"&gt;
 4|xxxx
 &lt;/pre&gt;
 
 &lt;p&gt;
 741 occurs in state:
 &lt;/p&gt;
-&lt;pre class="example" id="org59b6572"&gt;
+&lt;pre class="example" id="org103bd87"&gt;
 7|xx_x__x
 4|x_xx_x
 1|xxx_x
@@ -105,9 +105,9 @@ away from the base state.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga5f47ce" class="outline-2"&gt;
-&lt;h2 id="orga5f47ce"&gt;q4&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga5f47ce"&gt;
+&lt;div id="outline-container-org6961d82" class="outline-2"&gt;
+&lt;h2 id="org6961d82"&gt;q4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6961d82"&gt;
 &lt;p&gt;
 &lt;i&gt;You want to get back into the fountain, from 741.  What is the&lt;/i&gt;
 &lt;i&gt;shortest connecting (ending) sequence in this direction?&lt;/i&gt;
@@ -127,9 +127,9 @@ into and out of any siteswap must be, itself, a valid (ground state) pattern.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4693cde" class="outline-2"&gt;
-&lt;h2 id="org4693cde"&gt;q5&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4693cde"&gt;
+&lt;div id="outline-container-org57e4d42" class="outline-2"&gt;
+&lt;h2 id="org57e4d42"&gt;q5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org57e4d42"&gt;
 &lt;p&gt;
 &lt;i&gt;Go from the 4 ball fountain to 714.  What are the shortest&lt;/i&gt;
 &lt;i&gt;connecting sequences (both directions)?&lt;/i&gt;
@@ -140,7 +140,7 @@ As before we can work out the state that 714 starts in.
 &lt;/p&gt;
 
 
-&lt;pre class="example" id="org4f023b6"&gt;
+&lt;pre class="example" id="orgc6a7cc9"&gt;
 7|x_xx__x
 1|xxx__x
 4|xx_xx
@@ -156,7 +156,7 @@ single throw, so lets look at transitions of length 2.
 &lt;p&gt;
 I.e. finding the throws a, b here:
 &lt;/p&gt;
-&lt;pre class="example" id="org05522ac"&gt;
+&lt;pre class="example" id="orgf86f391"&gt;
 4|xxxx
 a|
 b|xx_xx
@@ -173,9 +173,9 @@ will work because \(552\) and \(642\) are valid siteswaps.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org184653f" class="outline-2"&gt;
-&lt;h2 id="org184653f"&gt;q6&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org184653f"&gt;
+&lt;div id="outline-container-orgd38efc3" class="outline-2"&gt;
+&lt;h2 id="orgd38efc3"&gt;q6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd38efc3"&gt;
 &lt;p&gt;
 &lt;i&gt;You are already doing \(741\) and want to switch directly into \(714\).&lt;/i&gt;
 &lt;i&gt;What is the shortest sequence for doing so?  [You could just&lt;/i&gt;
@@ -196,9 +196,9 @@ an extra \(5\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf140c0d" class="outline-2"&gt;
-&lt;h2 id="orgf140c0d"&gt;q7&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf140c0d"&gt;
+&lt;div id="outline-container-orgfa31f32" class="outline-2"&gt;
+&lt;h2 id="orgfa31f32"&gt;q7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfa31f32"&gt;
 &lt;p&gt;
 &lt;i&gt;Is the trick \(66671777161\) simple?  If not, which portion of the&lt;/i&gt;
 &lt;i&gt;pattern can be repeated within the larger trick?&lt;/i&gt;
@@ -264,16 +264,16 @@ Then, we can get the tables for both siteswaps we're interested in.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd09b4c4" class="outline-3"&gt;
-&lt;h3 id="orgd09b4c4"&gt;66671777161&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd09b4c4"&gt;
+&lt;div id="outline-container-orgb6c50d7" class="outline-3"&gt;
+&lt;h3 id="orgb6c50d7"&gt;66671777161&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb6c50d7"&gt;
 &lt;p&gt;
 Here, there are two states that occur more than once. I've marked the pairs here
 as a and b. This means you can juggle the patterns between the As (I.e. 6671,
 and 7771616), and Bs (717771, and 61666)
 &lt;/p&gt;
 
-&lt;pre class="example" id="org6b0593a"&gt;
+&lt;pre class="example" id="orga627b7a"&gt;
 1| xxxxx__
 6| xxxx_x_ A
 6| xxx_xx_
@@ -289,13 +289,13 @@ and 7771616), and Bs (717771, and 61666)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdb63bb9" class="outline-3"&gt;
-&lt;h3 id="orgdb63bb9"&gt;6316131&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgdb63bb9"&gt;
+&lt;div id="outline-container-orgf66ea7b" class="outline-3"&gt;
+&lt;h3 id="orgf66ea7b"&gt;6316131&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf66ea7b"&gt;
 &lt;p&gt;
 Here, this siteswap has no duplicated states, and is therefore prime.
 &lt;/p&gt;
-&lt;pre class="example" id="org72f802b"&gt;
+&lt;pre class="example" id="orge1ee381"&gt;
 1| xxx___
 6| xx___x
 3| x_x_x_
@@ -318,7 +318,7 @@ resulting graphs are shown below.
 
 
 
-&lt;div id="org84dcd9c" class="figure"&gt;
+&lt;div id="orgc4999f2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss1.png" alt="ss1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Siteswap map for 66671777161. We can see the two states we found (labeled A and B) before in the nodes with 2 input and output edges.&lt;/p&gt;
 &lt;/div&gt;
@@ -329,7 +329,7 @@ siteswap, which are (hopefully) just the 4 we found before. Pretty neat!
 &lt;/p&gt;
 
 
-&lt;div id="org37d6f52" class="figure"&gt;
+&lt;div id="orgaa97953" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss2.png" alt="ss2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;Siteswap map for 6316131&lt;/p&gt;
 &lt;/div&gt;
@@ -341,9 +341,9 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd44719c" class="outline-2"&gt;
-&lt;h2 id="orgd44719c"&gt;q8&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd44719c"&gt;
+&lt;div id="outline-container-orgce95e95" class="outline-2"&gt;
+&lt;h2 id="orgce95e95"&gt;q8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgce95e95"&gt;
 &lt;p&gt;
 &lt;i&gt;There is 1 ground state 5 ball trick of length 1 (5), 2 of length 2&lt;/i&gt;
 &lt;i&gt;(55, 64), 6 of length 3 (555, 564, 645, 663, 744, 753), 24 of length&lt;/i&gt;
@@ -354,7 +354,7 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/p&gt;
 
 
-&lt;div id="org3d70a63" class="figure"&gt;
+&lt;div id="org9376d96" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_1.png" alt="q8_1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;A continuous 5 ball cascade, breaking for a period 4 siteswap, before resuming.&lt;/p&gt;
 &lt;/div&gt;
@@ -377,7 +377,7 @@ the following 5 because they already have arrows connecting to them.
 &lt;/p&gt;
 
 
-&lt;div id="orgcb7c2a2" class="figure"&gt;
+&lt;div id="org1267acc" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_2.png" alt="q8_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;There are 4 possible values for a, shown in red.&lt;/p&gt;
 &lt;/div&gt;
@@ -392,9 +392,9 @@ of throws (until we start getting 0s… See next q).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org75fa269" class="outline-2"&gt;
-&lt;h2 id="org75fa269"&gt;q9&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org75fa269"&gt;
+&lt;div id="outline-container-org31fdbde" class="outline-2"&gt;
+&lt;h2 id="org31fdbde"&gt;q9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org31fdbde"&gt;
 &lt;p&gt;
 &lt;i&gt;There are not 7! = 5040 ground state 5 ball patterns of length 7,&lt;/i&gt;
 &lt;i&gt;as the above pattern would suggest (the actual number is around&lt;/i&gt;
@@ -420,7 +420,7 @@ be directed.
 &lt;/p&gt;
 
 
-&lt;div id="orgab45010" class="figure"&gt;
+&lt;div id="org5c017a3" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_1.png" alt="q9_1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -435,7 +435,7 @@ Where this falls apart however is for longer sequences..
 &lt;/p&gt;
 
 
-&lt;div id="orgd09314f" class="figure"&gt;
+&lt;div id="org9458d55" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_2.png" alt="q9_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;f or g could be a 0, and so the arrows in blue may not be possible. This is the problem with our current method.&lt;/p&gt;
 &lt;/div&gt;
@@ -459,11 +459,11 @@ Here's an example of this insertion… We can create all siteswaps with 0s
 similarly by adding gaps into siteswaps without 0s.
 &lt;/p&gt;
 
-&lt;div id="org27700c4" class="figure"&gt;
+&lt;div id="orgc161356" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_3.png" alt="q9_3.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="orgc5f72f5" class="figure"&gt;
+&lt;div id="org7000636" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_4.png" alt="q9_4.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 8: &lt;/span&gt;Siteswap 504 has exactly the same arrow placement as 33, but with an added 0. All siteswaps with 0s have exactly one siteswap without 0s they map to.&lt;/p&gt;
 &lt;/div&gt;
@@ -480,9 +480,9 @@ So with this in mind, we can calculate the total number of siteswaps of length
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3bb6bcc" class="outline-3"&gt;
-&lt;h3 id="org3bb6bcc"&gt;Arrow permutations:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3bb6bcc"&gt;
+&lt;div id="outline-container-orgabb1da5" class="outline-3"&gt;
+&lt;h3 id="orgabb1da5"&gt;Arrow permutations:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgabb1da5"&gt;
 &lt;p&gt;
 To work out the permutations of length l, we can use the method we had before.
 We go through the catches, and work out where the throw could've come from. Now
@@ -496,7 +496,7 @@ point.
 &lt;/p&gt;
 
 
-&lt;div id="org9c7a9c7" class="figure"&gt;
+&lt;div id="orgbd1be75" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_5.png" alt="q9_5.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 9: &lt;/span&gt;The n (n = 5 here) throws that could arrive at f. After picking the throw to arrive at f, we'll still have n choices for g - since f is now a possible source.&lt;/p&gt;
 &lt;/div&gt;
@@ -531,9 +531,9 @@ Since we already know how many ground state siteswaps there are for \(l &amp;lt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb7fe131" class="outline-3"&gt;
-&lt;h3 id="orgb7fe131"&gt;Gap insertion&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb7fe131"&gt;
+&lt;div id="outline-container-org70ebc60" class="outline-3"&gt;
+&lt;h3 id="org70ebc60"&gt;Gap insertion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org70ebc60"&gt;
 &lt;p&gt;
 Given a siteswap of length \(l\) with no gaps, we're looking to insert them so as
 to end up with one of length \(L, L &amp;gt;= l\).
@@ -553,9 +553,9 @@ number of balls.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf6820bd" class="outline-3"&gt;
-&lt;h3 id="orgf6820bd"&gt;Putting it all together:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf6820bd"&gt;
+&lt;div id="outline-container-org249ec3c" class="outline-3"&gt;
+&lt;h3 id="org249ec3c"&gt;Putting it all together:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org249ec3c"&gt;
 &lt;p&gt;
 Lets insert what we have into the equation.
 &lt;/p&gt;
@@ -595,9 +595,9 @@ length 7 there are:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org68ce3dd" class="outline-3"&gt;
-&lt;h3 id="org68ce3dd"&gt;Simplify&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org68ce3dd"&gt;
+&lt;div id="outline-container-org5652571" class="outline-3"&gt;
+&lt;h3 id="org5652571"&gt;Simplify&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5652571"&gt;
 &lt;p&gt;
 We can simplify this formula a lot further! First taking \(n!\) out side the sum.
 &lt;/p&gt;
