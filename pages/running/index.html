@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Privacy Policy | im_oisin</title>
+<title>Running | im_oisin</title>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
-<link rel="canonical" href="https://imois.in/pages/privacy-policy/">
+<link rel="canonical" href="https://imois.in/pages/running/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
@@ -23,27 +23,24 @@ MathJax.Hub.Config({
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
-<meta property="og:title" content="Privacy Policy">
-<meta property="og:url" content="https://imois.in/pages/privacy-policy/">
-<meta property="og:description" content="Privacy Policy
-
-
-Last updated: April 14, 2021
+<meta property="og:title" content="Running">
+<meta property="og:url" content="https://imois.in/pages/running/">
+<meta property="og:description" content='Intro
 
 
 
-Look man, it's just google analytics and adsense. Don't sue me plz, ty.
+#+BEGIN_EXPORT html
 
+    import init, {PhysicsStuff, setup} from "../../assets/wasm/run_pkg/run.js";
 
+    init()
+      .then(() =&gt; {
+        var PS = setup();
+        PS.step();
 
-
-
-Contact
-
-
-If you have any questions about this Privacy Policy, you can con">
+        PS.s'>
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2021-04-14T05:23:42+01:00">
+<meta property="article:published_time" content="2021-05-03T23:08:42+01:00">
 </head>
 <body>
 
@@ -82,38 +79,38 @@ If you have any questions about this Privacy Policy, you can con">
     <div class="post-header">
         <div class="container">
             <div class="title">
-                Privacy Policy
+                Running
             </div>
         </div>
     </div>
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org0e12d14" class="outline-2">
-<h2 id="org0e12d14">Privacy Policy</h2>
-<div class="outline-text-2" id="text-org0e12d14">
-<p>
-Last updated: April 14, 2021
-</p>
+        <div id="outline-container-org5dcc259" class="outline-2">
+<h2 id="org5dcc259">Intro</h2>
+<div class="outline-text-2" id="text-org5dcc259">
 
-<p>
-Look man, it's just <a href="https://policies.google.com/technologies/partner-sites">google analytics and adsense</a>. Don't sue me plz, ty.
-</p>
-</div>
-</div>
 
-<div id="outline-container-org01d2aaa" class="outline-2">
-<h2 id="org01d2aaa">Contact</h2>
-<div class="outline-text-2" id="text-org01d2aaa">
-<p>
-If you have any questions about this Privacy Policy, you can contact me:
-</p>
-<ul class="org-ul">
-<li>By email: hi@imois.in</li>
-</ul>
-</div>
-</div>
+#+BEGIN_EXPORT html
+<script type="module">
+    import init, {PhysicsStuff, setup} from "../../assets/wasm/run_pkg/run.js";
 
+    init()
+      .then(() => {
+        var PS = setup();
+        PS.step();
+
+        PS.step();
+
+        for (var i = 0; i < 100; i++) {
+            PS.step();
+            var s = PS.get_info();
+            console.log(s);
+        }
+      });
+</script>
+</div>
+</div>
         
 
         </div>

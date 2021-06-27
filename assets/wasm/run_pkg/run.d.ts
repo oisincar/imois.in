@@ -1,29 +1,40 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {string} name
 */
-export function greet(): void;
+export function greet(name: string): void;
 /**
-* @returns {any}
+* @returns {PhysicsStuff}
 */
-export function empty_board(): any;
+export function setup(): PhysicsStuff;
 /**
-* @param {any} board_js
+*/
+export class PhysicsStuff {
+  free(): void;
+/**
+*/
+  step(): void;
+/**
 * @returns {string}
 */
-export function solve_board(board_js: any): string;
+  get_info(): string;
+}
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly greet: () => void;
-  readonly empty_board: () => number;
-  readonly solve_board: (a: number, b: number) => void;
+  readonly greet: (a: number, b: number) => void;
+  readonly __wbg_physicsstuff_free: (a: number) => void;
+  readonly physicsstuff_step: (a: number) => void;
+  readonly physicsstuff_get_info: (a: number, b: number) => void;
+  readonly setup: () => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_exn_store: (a: number) => void;
 }
 
 /**

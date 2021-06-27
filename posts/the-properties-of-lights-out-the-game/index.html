@@ -102,9 +102,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org8d242d0" class="outline-2">
-<h2 id="org8d242d0">Intro</h2>
-<div class="outline-text-2" id="text-org8d242d0">
+        <div id="outline-container-org9d18fc6" class="outline-2">
+<h2 id="org9d18fc6">Intro</h2>
+<div class="outline-text-2" id="text-org9d18fc6">
 <p>
 This game was sent to me by Lucy Deacon (Link to be added :P), who found it in <a href="https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&amp;hl=en_IE">Simon Tatham's Puzzles</a>
 under the name 'Flip' around August of 2018. For the few months thereafter
@@ -115,9 +115,9 @@ boards. This post contains some of the stuff we managed to work out!
 </div>
 </div>
 
-<div id="outline-container-orga55743d" class="outline-2">
-<h2 id="orga55743d">The Game</h2>
-<div class="outline-text-2" id="text-orga55743d">
+<div id="outline-container-orge8800b7" class="outline-2">
+<h2 id="orge8800b7">The Game</h2>
+<div class="outline-text-2" id="text-orge8800b7">
 <script src="../../assets/js/TouchUtils.js"></script><script src="../../assets/js/lights_out/utils.js"></script><script src="../../assets/js/lights_out/LightsCanvas.js"></script><script src="../../assets/js/lights_out/LightsOut.js"></script><script src="../../assets/js/lights_out/LightsOutState.js"></script><p>
 <span class="underline">Lights Out</span> is a game released by Tiger
 Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
@@ -152,9 +152,9 @@ and instantly know how to solve it or even if can be solved at all?
 </div>
 </div>
 
-<div id="outline-container-orgac388ad" class="outline-2">
-<h2 id="orgac388ad">Impossible boards?</h2>
-<div class="outline-text-2" id="text-orgac388ad">
+<div id="outline-container-orgab50a01" class="outline-2">
+<h2 id="orgab50a01">Impossible boards?</h2>
+<div class="outline-text-2" id="text-orgab50a01">
 <p>
 First of all, not all boards are solvable. A 2x1 board, for example, will never
 let you click on only a single tile. If it starts with just one light on,
@@ -175,9 +175,9 @@ All other boards in this page are solvable though… So don't worry :P
 </div>
 </div>
 
-<div id="outline-container-orga7f7b2f" class="outline-2">
-<h2 id="orga7f7b2f">State</h2>
-<div class="outline-text-2" id="text-orga7f7b2f">
+<div id="outline-container-org471995f" class="outline-2">
+<h2 id="org471995f">State</h2>
+<div class="outline-text-2" id="text-org471995f">
 <p>
 The first thing to notice is that tapping on the same square twice is the same
 as not tapping at all, and also that the order you tap the squares doesn't make
@@ -212,9 +212,9 @@ We'd be able to solve the game.
 </div>
 </div>
 
-<div id="outline-container-org5cb111e" class="outline-2">
-<h2 id="org5cb111e">Forward mapping</h2>
-<div class="outline-text-2" id="text-org5cb111e">
+<div id="outline-container-org1457653" class="outline-2">
+<h2 id="org1457653">Forward mapping</h2>
+<div class="outline-text-2" id="text-org1457653">
 <p>
 It's not too hard to do the reverse: I.e. take the tapped squares (red) and work out the
 corresponding board position. There's also only one mapping from this red
@@ -276,9 +276,9 @@ corresponding to every board state - and all board states are solvable.
 </div>
 </div>
 
-<div id="outline-container-org1b716d3" class="outline-2">
-<h2 id="org1b716d3">Unsolvable boards?</h2>
-<div class="outline-text-2" id="text-org1b716d3">
+<div id="outline-container-org31e40fb" class="outline-2">
+<h2 id="org31e40fb">Unsolvable boards?</h2>
+<div class="outline-text-2" id="text-org31e40fb">
 <p>
 If there is an unsolvable configuration of the board, i.e. a board state which
 has no taps that leaves all the lights off, then it must exist in the null space
@@ -292,7 +292,7 @@ always solvable, and which have many configurations that make them unsolvable.
 </p>
 
 
-<div id="org2ee7f63" class="figure">
+<div id="org221748c" class="figure">
 <p><img src="../../images/lights_out/graph20.png" alt="graph20.png" width="500px"></p>
 <p><span class="figure-number">Figure 1: </span>What board sizes are solvable? If a boardsize is solvable completely, it's corresponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.</p>
 </div>
@@ -306,9 +306,9 @@ boards too.
 </div>
 </div>
 
-<div id="outline-container-org845c8d9" class="outline-2">
-<h2 id="org845c8d9">Nullity?</h2>
-<div class="outline-text-2" id="text-org845c8d9">
+<div id="outline-container-orgd3ba6fd" class="outline-2">
+<h2 id="orgd3ba6fd">Nullity?</h2>
+<div class="outline-text-2" id="text-orgd3ba6fd">
 <p>
 It's interesting to mess around with one of the boards with maximum nullity.
 Here's a 4x4 board. It's far easier than others because if there is a solution
@@ -336,9 +336,9 @@ unsolvable ones.
 </div>
 </div>
 
-<div id="outline-container-org03c6664" class="outline-2">
-<h2 id="org03c6664">'Cascading'</h2>
-<div class="outline-text-2" id="text-org03c6664">
+<div id="outline-container-org57177e0" class="outline-2">
+<h2 id="org57177e0">'Cascading'</h2>
+<div class="outline-text-2" id="text-org57177e0">
 <p>
 One (human) way of trying to solve a lights-out puzzle is to always try to
 click under any light. If you go through the board row-by-row downwards,
@@ -435,9 +435,9 @@ setupCascade(h, 100);
 </div>
 </div>
 
-<div id="outline-container-org8ce9258" class="outline-2">
-<h2 id="org8ce9258">Maximum nullity</h2>
-<div class="outline-text-2" id="text-org8ce9258">
+<div id="outline-container-orgf9115f3" class="outline-2">
+<h2 id="orgf9115f3">Maximum nullity</h2>
+<div class="outline-text-2" id="text-orgf9115f3">
 <p>
 An interesting result from this is there is a maximum nullity for any board.
 </p>
@@ -478,9 +478,9 @@ nullity is \(min(m,n)\).
 </div>
 </div>
 
-<div id="outline-container-org68de839" class="outline-2">
-<h2 id="org68de839">Bitops</h2>
-<div class="outline-text-2" id="text-org68de839">
+<div id="outline-container-org6a88b0d" class="outline-2">
+<h2 id="org6a88b0d">Bitops</h2>
+<div class="outline-text-2" id="text-org6a88b0d">
 <p>
 In order to speed up calculating large boards, we wrote some Very Fast<sup>tm</sup> c++
 matrix code, to perform all binary field arithmetic in parallel with bitops.
@@ -511,9 +511,9 @@ This allows us to perform up to 32 'clicks' at once, in very few bit operations.
 </div>
 </div>
 
-<div id="outline-container-orgbbd7a07" class="outline-2">
-<h2 id="orgbbd7a07">Low memory cascade</h2>
-<div class="outline-text-2" id="text-orgbbd7a07">
+<div id="outline-container-org42135e0" class="outline-2">
+<h2 id="org42135e0">Low memory cascade</h2>
+<div class="outline-text-2" id="text-org42135e0">
 <p>
 Although this cascade is fast, it requires a lot of memory. In order to generate
 the matrix for, e.g. a \(4000 \times 4000\) board, it requires 4000 boards, or the
@@ -543,9 +543,9 @@ vs the pre-cascading programs and our initial python/numpy code too.
 </div>
 </div>
 
-<div id="outline-container-orgfce2f3d" class="outline-2">
-<h2 id="orgfce2f3d">Lots of boards</h2>
-<div class="outline-text-2" id="text-orgfce2f3d">
+<div id="outline-container-org7110572" class="outline-2">
+<h2 id="org7110572">Lots of boards</h2>
+<div class="outline-text-2" id="text-org7110572">
 <p>
 In order to calculate nullity for a few million boards… We could compute
 the matrices for all boards of a certain width simultaneously. Cascade once,
@@ -559,23 +559,23 @@ optimizations.
 </div>
 </div>
 
-<div id="outline-container-org9e15cd5" class="outline-2">
-<h2 id="org9e15cd5">Results!!</h2>
-<div class="outline-text-2" id="text-org9e15cd5">
+<div id="outline-container-org7fce030" class="outline-2">
+<h2 id="org7fce030">Results!!</h2>
+<div class="outline-text-2" id="text-org7fce030">
 <p>
 The resulting images for different sizes.
 </p>
 
 
-<div id="org71f53c6" class="figure">
+<div id="org0af743a" class="figure">
 <p><img src="../../images/lights_out/graph128.png" alt="graph128.png" width="500px"></p>
 </div>
 
-<div id="orgfb21bc0" class="figure">
+<div id="orgbe2b972" class="figure">
 <p><img src="../../images/lights_out/graph512.png" alt="graph512.png" width="500px"></p>
 </div>
 
-<div id="org5a51114" class="figure">
+<div id="org9b51a6d" class="figure">
 <p><img src="../../images/lights_out/graph4096.png" alt="graph4096.png" width="500px"></p>
 </div>
 
@@ -654,13 +654,13 @@ These are all surprisingly structured! Often near 2<sup>n</sup>-1 or 3*2<sup>n</
 </div>
 </div>
 
-<div id="outline-container-org968cc30" class="outline-2">
-<h2 id="org968cc30">Other…</h2>
-<div class="outline-text-2" id="text-org968cc30">
+<div id="outline-container-orgcd90cfa" class="outline-2">
+<h2 id="orgcd90cfa">Other…</h2>
+<div class="outline-text-2" id="text-orgcd90cfa">
 </div>
-<div id="outline-container-org6d742b3" class="outline-3">
-<h3 id="org6d742b3">Looping patterns?</h3>
-<div class="outline-text-3" id="text-org6d742b3">
+<div id="outline-container-org18d0b45" class="outline-3">
+<h3 id="org18d0b45">Looping patterns?</h3>
+<div class="outline-text-3" id="text-org18d0b45">
 <p>
 Since a cascade operation can be written as a matrix multiplication (if the
 board has width \(m\), the resulting cascade matrix is \(2m\times 2m\)), we can
@@ -685,9 +685,9 @@ Funnily, we both came up with this idea coincidentally within a few minutes of e
 </div>
 </div>
 
-<div id="outline-container-org61e3bbb" class="outline-3">
-<h3 id="org61e3bbb">Sequences</h3>
-<div class="outline-text-3" id="text-org61e3bbb">
+<div id="outline-container-orgf83dad9" class="outline-3">
+<h3 id="orgf83dad9">Sequences</h3>
+<div class="outline-text-3" id="text-orgf83dad9">
 <p>
 Some board widths are surprisingly solvable/ unsolvable. We found boards of size
 (\(10 \times 31n-1\)) are all unsolvable (nullity of 10) to as high as we could
@@ -700,9 +700,9 @@ Several other widths are surprisingly solvable, 10 (other than above), 81, and m
 </div>
 </div>
 
-<div id="outline-container-orge5f0b94" class="outline-3">
-<h3 id="orge5f0b94">OEIS</h3>
-<div class="outline-text-3" id="text-orge5f0b94">
+<div id="outline-container-org21b761a" class="outline-3">
+<h3 id="org21b761a">OEIS</h3>
+<div class="outline-text-3" id="text-org21b761a">
 <p>
 The Online Encyclopedia of Integer Sequences is a searchable database
 containing, well, integer sequences. After finishing up, we tried searching it
@@ -719,9 +719,9 @@ the OEIS sequence is 2363, while ours is ~4100.
 </div>
 </div>
 
-<div id="outline-container-org5d87caa" class="outline-2">
-<h2 id="org5d87caa">Conclusion</h2>
-<div class="outline-text-2" id="text-org5d87caa">
+<div id="outline-container-org2d9f490" class="outline-2">
+<h2 id="org2d9f490">Conclusion</h2>
+<div class="outline-text-2" id="text-org2d9f490">
 <p>
 I think we both agree we haven't completely figured out as much as we'd like…
 The patterns are still somewhat a mystery, even if we've found some logic in
