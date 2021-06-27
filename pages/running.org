@@ -1,0 +1,37 @@
+#+BEGIN_COMMENT
+.. title: Running
+.. slug: running
+.. date: 2021-05-03 23:08:42 UTC+01:00
+.. tags:
+.. category:
+.. link:
+.. description:
+.. type: text
+
+#+END_COMMENT
+
+
+* Intro
+
+#+BEGIN_EXPORT html
+
+
+#+BEGIN_EXPORT html
+<script type="module">
+    import init, {PhysicsStuff, setup} from "../../assets/wasm/run_pkg/run.js";
+
+    init()
+      .then(() => {
+        var PS = setup();
+        PS.step();
+
+        PS.step();
+
+        for (var i = 0; i < 100; i++) {
+            PS.step();
+            var s = PS.get_info();
+            console.log(s);
+        }
+      });
+</script>
+#+END_EXPORT
