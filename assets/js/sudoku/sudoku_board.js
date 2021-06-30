@@ -1,7 +1,4 @@
 import init, {greet, solve_board, empty_board} from './pkg/sudoku_wasm.js';
-await init();
-
-console.log(empty_board());
 
 class SudokuSolver {
     constructor(div_id) {
@@ -300,4 +297,12 @@ class SudokuSolver {
     }
 }
 
-new SudokuSolver('sudokutr');
+
+async function run() {
+    await init();
+
+    console.log(empty_board());
+    new SudokuSolver('sudokutr');
+}
+
+run();
