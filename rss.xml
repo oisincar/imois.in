@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 27 Jun 2021 02:00:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>A home for my random programming &amp; maths projects.</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 30 Jun 2021 23:09:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
 Back in 2013 I designed and made this chair! It's a fishbone chair - quite the trend of the time, but there weren't any good designs available online. The chair can be cnc-milled out of a single standard sheet of 3/4" 8'x4' mdf or plywood, and slots together with no fastners or glue!
 &lt;/p&gt;
 
@@ -53,7 +53,103 @@ If you do decide to make one, it'd be great to hear from you!
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>Woodworking</category><guid>https://imois.in/posts/fishbone-chair-free-plans/</guid><pubDate>Sat, 26 Jun 2021 23:41:12 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+</description><category>Woodworking</category><guid>https://imois.in/posts/fishbone-chair-free-plans/</guid><pubDate>Sat, 26 Jun 2021 23:41:12 GMT</pubDate></item><item><title>(Killer) Sudoku Solver</title><link>https://imois.in/posts/sudoku-solver/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org299a23a" class="outline-2"&gt;
+&lt;h2 id="org299a23a"&gt;(Killer) Sudoku Solver&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org299a23a"&gt;
+&lt;p&gt;
+A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
+&lt;/p&gt;
+
+&lt;p&gt;
+Enter digits into the grid, or add some sum-rules; a collection of cells which must sum to a given number. As in traditional killer sudoku rules, all cell values in a sum-rule must be unique. For more detailed instructions see below.
+&lt;/p&gt;
+
+&lt;div class="sudoku_container"&gt;
+    &lt;!--&lt;div&gt;
+        &lt;h2&gt;(Killer) Sudoku Solver&lt;/h2&gt;
+        &lt;div&gt;
+        &lt;p&gt;
+        A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
+        &lt;/p&gt;
+        &lt;p&gt;
+        Enter digits into the grid, or add some sum-rules. For more detailed instructions see below.
+        &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;--&gt;
+    &lt;div&gt;
+        &lt;button id="solve_button" type="button"&gt;Solve!&lt;/button&gt;
+        &lt;button id="reset_button" type="button"&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;table id="sudokutr" class="sudoku_grid"&gt;&lt;/table&gt;
+&lt;div class="sumrule_container"&gt;
+        &lt;table id="sudokurules" class="sumrule_table"&gt;&lt;tr&gt;
+&lt;th&gt;Cell ixs&lt;/th&gt;
+&lt;th&gt;Sum To&lt;/th&gt; &lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;div&gt; &lt;button id="add_rule_button" type="button"&gt;+&lt;/button&gt; &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="module" src="https://imois.in/assets/js/sudoku/sudoku_board.js"&gt;&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf912804" class="outline-3"&gt;
+&lt;h3 id="orgf912804"&gt;Fixed digits&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf912804"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgc38b9bf" class="outline-3"&gt;
+&lt;h3 id="orgc38b9bf"&gt;Sum constraints&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc38b9bf"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.&lt;/li&gt;
+&lt;li&gt;To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.&lt;/li&gt;
+&lt;li&gt;Constraints can be edited by clicking on the corresponding `Cell ixs` entry, and reselecting squares.&lt;/li&gt;
+&lt;li&gt;Unlike some other solvers, constraints can overlap arbitrarily.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0c848b0" class="outline-3"&gt;
+&lt;h3 id="org0c848b0"&gt;Solving&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0c848b0"&gt;
+&lt;p&gt;
+Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1a5804f" class="outline-3"&gt;
+&lt;h3 id="org1a5804f"&gt;The solver itself&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1a5804f"&gt;
+&lt;p&gt;
+The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
+&lt;/p&gt;
+
+&lt;p&gt;
+It uses bitsets to improve performance, where possibilities for each cell are stored as a single binary number. If [1,3,5] were candidates for a square this is stored as \(000010101\) - where the least significant digit corresponding to 1 being a candidate etc. When a number is placed in a square it can be removed as a candidate from row/column/box efficiently using binary digits.
+&lt;/p&gt;
+
+&lt;p&gt;
+Sums constraints are calculated and cached in a hashset. If a constraint required us to make 8 in 3 squares there are only two ways to do it: [1,2,5] and [1,3,4]… And is similarly stored as a mask: \(000011111\) - corresponding to all numbers that could make up a solution. This can be used to quickly mask squares. The calculation of these constraints is done quickly and lazily with some dynamic programming tricks - i.e. &lt;a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/"&gt;knapsack&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+When a digit is placed in a cell two things happen - its value is removed as a candidate from row/column/box, then sum constraints containing the cell are updated and the resulting new mask is reapplied to the remaining squares.
+&lt;/p&gt;
+
+&lt;p&gt;
+If those rules are enough to solve the puzzle - it's extremely fast. It can solve up to 2 million sudokus per second! Otherwise, it must guess a square and backtrack if it reaches a contradiction. It tries to guess the square with the fewest candidates.
+&lt;/p&gt;
+
+&lt;p&gt;
+It's lack of more complex solving techniques; hidden singles, naked pairs etc. means it struggles to compare with the &lt;a href="https://github.com/t-dillon/tdoku"&gt;fastest solvers of the day&lt;/a&gt;. For comparison it solves ~900/second of the 'puzzles5_forum_hardest' puzzles in the previous link (best=24,001/sec), while averaging a whopping 1456 guesses/puzzle (best=64 guesses). Not too bad for a weekend though… And it may in fact be the fastest killer sudoku solver!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>programming</category><guid>https://imois.in/posts/sudoku-solver/</guid><pubDate>Wed, 16 Jun 2021 22:04:35 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="The-What-of-the-What?"&gt;The What of the What?&lt;a class="anchor-link" href="https://imois.in/posts/the-chromatic-number-of-the-plane/#The-What-of-the-What?"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The Chromatic Number of the Plane, or &lt;a href="https://en.wikipedia.org/wiki/Hadwiger%E2%80%93Nelson_problem"&gt;Hadwiger-Nelson problem&lt;/a&gt; is a math problem originating in the 1950s, and one which remains unsolved. It came to my attention after a breakthrough by &lt;a href="https://arxiv.org/abs/1804.02385"&gt;Aubrey D.N.J. de Grey&lt;/a&gt; in 2018, and was subsequently the subject of &lt;a href="https://polymathprojects.org/2018/04/10/polymath-proposal-finding-simpler-unit-distance-graphs-of-chromatic-number-5/"&gt;Polymath Project 16&lt;/a&gt; - a collaborative effort from mathematicians from all over the world to improve upon this. I'll do my best to explain what all this means...&lt;/p&gt;
@@ -3919,166 +4015,4 @@ interactive animations!!).
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Sat, 27 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org683249e" class="outline-2"&gt;
-&lt;h2 id="org683249e"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org683249e"&gt;
-&lt;p&gt;
-This is the first in a 3 part series on procedural animation, all taken from a talk
-I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
-the animations interactive where possible!
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;This first post justifies and covers a general mentality I have for working on
-procedural animations, and applies it to a simple example.&lt;/li&gt;
-&lt;li&gt;
-&lt;a href="https://imois.in/posts/procedural-animation-2-functions/"&gt;The second post&lt;/a&gt; gives a more powerful and harder tool - talking about function
-shapes, and how you can build more complex behavour by combining simple movements.&lt;/li&gt;
-&lt;li&gt;The third and final post (coming soon) covers inverse kinematics, and generally how to
-approximate solutions much harder problems using gradient descent.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
-All of the animations are running in javascript canvas, so you can open the
-source code in the inspector or find it on &lt;a href="https://github.com/oisincar/imois.in/tree/src/files/assets/js/procedural_animation"&gt;my github for the site!&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orge25f408" class="outline-2"&gt;
-&lt;h2 id="orge25f408"&gt;Differences vs traditional animation.&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge25f408"&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Advantages:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Greater (infinite?) variety.
-Simulate large numbers easily.&lt;/li&gt;
-&lt;li&gt;Can react to player/ world better.&lt;/li&gt;
-&lt;li&gt;When done well: More realistic.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-&lt;li&gt;Disadvantages:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Loss of control. Can be harder to tweak.&lt;/li&gt;
-&lt;li&gt;Hard to get very charachterful movement. Can look robotic
-(Unless that's intentional…)&lt;/li&gt;
-&lt;li&gt;When it breaks it often breaks hard.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgaee2d7b" class="outline-2"&gt;
-&lt;h2 id="orgaee2d7b"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgaee2d7b"&gt;
-&lt;p&gt;
-This is the core of how I approach these animations. I find it's helpful to try
-and break down the system into 3 parts - State, Update, and Apply. These
-systems can very easily become hard to tweak and work with, and this is just one
-tool that might help with that.
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;
-&lt;b&gt;State&lt;/b&gt;:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;One or more variables, no logic.&lt;/li&gt;
-&lt;li&gt;All we need to know to draw a frame&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;b&gt;Update&lt;/b&gt;:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Changes (only) state variables on each frame or update cycle.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;b&gt;Apply&lt;/b&gt;:
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Move and/or draw stuff according to state.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
-Each part can be thought about separately, and by moving the state into a clear
-separate variable the system becomes much easier to reason about. Animations
-won't go out of sync, and it's to debug as you can just view and edit the state directly.
-&lt;/p&gt;
-
-&lt;p&gt;
-Anyway… Lets look at an example!
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgbdc9d27" class="outline-2"&gt;
-&lt;h2 id="orgbdc9d27"&gt;Example: Light&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbdc9d27"&gt;
-&lt;p&gt;
-State machines are one of the simplest forms of procedural animation. The idea
-is there is a single 'state' we're in, and also a set of
-rules for why/ when we change state. State machines are often used in game AI -
-where states might be { &lt;b&gt;Defend&lt;/b&gt;, &lt;b&gt;Rush&lt;/b&gt;, &lt;b&gt;Flank&lt;/b&gt; }, or for a character: { &lt;b&gt;Falling&lt;/b&gt;,
-&lt;b&gt;Walking&lt;/b&gt;, &lt;b&gt;Sprinting&lt;/b&gt;, &lt;b&gt;Attacking&lt;/b&gt; }.
-&lt;/p&gt;
-
-&lt;p&gt;
-Here we've just got a light, our &lt;b&gt;State&lt;/b&gt; is one of: { &lt;b&gt;On&lt;/b&gt;, &lt;b&gt;Off&lt;/b&gt; }.
-&lt;/p&gt;
-
-&lt;div class="figure"&gt;
-    &lt;canvas id="lightswitch" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 1:&lt;/span&gt; Randomly flickering light.&lt;/p&gt;
-&lt;/div&gt;
-&lt;script src="https://imois.in/assets/js/procedural_animation/LightSwitch.js"&gt;&lt;/script&gt;&lt;p&gt;
-The second part of State, Update, Apply: &lt;b&gt;Update&lt;/b&gt;, is also simple. We randomly
-choose to either stay in the current state or move to the other. I found
-a \(98\%\) chance to stay &lt;b&gt;On&lt;/b&gt; and a \(93\%\) chance to stay &lt;b&gt;Off&lt;/b&gt; works decently.
-&lt;/p&gt;
-
-&lt;p&gt;
-We can view the state and the transitions as a graph, where the arrows denote
-probabilities.
-&lt;/p&gt;
-
-
-&lt;div id="org5c652fb" class="figure"&gt;
-&lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/light_state.png" alt="light_state.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Light state diagram&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-And finally, our Apply section simply determines if we should draw a circle that
-frame, or leave the frame blank.
-&lt;/p&gt;
-
-&lt;p&gt;
-Overall, our code looks like this…
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// STATE&lt;/span&gt;
-&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// UPDATE:&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.98&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-	&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.93&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-	&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="c1"&gt;// APPLY:&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-	&lt;span class="c1"&gt;// Draw here!!&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;
-Tune in next time for some more interesting examples!
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-1-state-machines/</guid><pubDate>Thu, 25 Apr 2019 23:00:48 GMT</pubDate></item></channel></rss>
+</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Sat, 27 Apr 2019 23:00:48 GMT</pubDate></item></channel></rss>

@@ -7,6 +7,7 @@
 <title>im_oisin | im_oisin</title>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="https://imois.in/">
+<link rel="next" href="index-1.html" type="text/html">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
@@ -19,8 +20,8 @@ MathJax.Hub.Config({
     }
 });
 </script><!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-<link href="css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
-<link href="css/sudoku.css" rel="stylesheet" type="text/css">
+<link href="assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
+<link href="assets/css/sudoku.css" rel="stylesheet" type="text/css">
 <link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -84,6 +85,27 @@ MathJax.Hub.Config({
                 </div>
                 <div class="post-description">
                     A chair made from a single piece of plywood, with no glue!
+                </div>
+            </div>
+        </div>
+        <div class="post-entry">
+            <time class="post-time" datetime="2021-06-16T23:04:35+01:00">2021-06-16</time><div class="post-desc">
+                <div class="post-title">
+                    <a href="posts/sudoku-solver/">(Killer) Sudoku Solver</a>
+                </div>
+                <div class="post-tags">
+                    <div class="tag">
+                        <a href="categories/programming/" rel="tag">programming</a>
+                    </div>
+                </div>
+                <div class="num-of-comments">
+                <!--
+                     
+
+                -->
+                </div>
+                <div class="post-description">
+                    a-WASM-e solving of sudoku boards in rust and web assembly.
                 </div>
             </div>
         </div>
@@ -291,43 +313,15 @@ MathJax.Hub.Config({
                 </div>
             </div>
         </div>
-        <div class="post-entry">
-            <time class="post-time" datetime="2019-04-26T00:00:48+01:00">2019-04-26</time><div class="post-desc">
-                <div class="post-title">
-                    <a href="posts/procedural-animation-1-state-machines/">Procedural Animation 1: State Machines</a>
-                </div>
-                <div class="post-tags">
-                    <div class="tag">
-                        <a href="categories/animation/" rel="tag">animation</a>
-                    </div>
-                    <div class="tag">
-                        <a href="categories/gamedev/" rel="tag">gamedev</a>
-                    </div>
-                    <div class="tag">
-                        <a href="categories/programming/" rel="tag">programming</a>
-                    </div>
-                </div>
-                <div class="num-of-comments">
-                <!--
-                     
-
-                -->
-                </div>
-                <div class="post-description">
-                    How to make a simple flickering light!
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 
     
-
-    
-
-    
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        <nav class="postindexpager"><ul class="pager">
+<li class="next">
+                <a href="index-1.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
@@ -373,13 +367,24 @@ MathJax.Hub.Config({
     </div>
 
     
-<script src="js/cookies-eu-banner.js"></script><script>
+<script src="assets/js/cookies-eu-banner.js"></script><script>
+
+CookiesEuBanner.prototype.setCookie = function(name, value) {
+  var date = new Date();
+  date.setTime(date.getTime() + this.cookieTimeout);
+
+  document.cookie = name + '=' + value + ';expires=' + date.toGMTString() + ';path=/' + ';secure;SameSite=Lax';
+}
+
+
     new CookiesEuBanner(function () {
         // Your code to launch when user accept cookies
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        console.log("Enabling google analytics!");
 
         ga('create', 'UA-143421297-1', 'auto');
         ga('send', 'pageview');

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="description" content="a-WASM-e solving of sudoku boards in rust and web assembly.">
 <meta name="viewport" content="width=device-width">
-<title>Sudoku Solver | im_oisin</title>
+<title>(Killer) Sudoku Solver | im_oisin</title>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
-<link rel="canonical" href="https://imois.in/pages/sudoku-solver/">
+<link rel="canonical" href="https://imois.in/posts/sudoku-solver/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
@@ -24,11 +24,12 @@ MathJax.Hub.Config({
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
-<meta property="og:title" content="Sudoku Solver">
-<meta property="og:url" content="https://imois.in/pages/sudoku-solver/">
+<meta property="og:title" content="(Killer) Sudoku Solver">
+<meta property="og:url" content="https://imois.in/posts/sudoku-solver/">
 <meta property="og:description" content="a-WASM-e solving of sudoku boards in rust and web assembly.">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-06-16T23:04:35+01:00">
+<meta property="article:tag" content="programming">
 </head>
 <body>
 
@@ -56,7 +57,7 @@ MathJax.Hub.Config({
 <li><a href="../../archive.html">Archive</a></li>
                 <li><a href="../../categories/">Tags</a></li>
                 <li><a href="../../rss.xml">RSS feed</a></li>
-                <li><a href="../about-me">About Me</a></li>
+                <li><a href="../../pages/about-me">About Me</a></li>
     
     
     </ul></nav>
@@ -67,22 +68,41 @@ MathJax.Hub.Config({
     <div class="post-header">
         <div class="container">
             <div class="title">
-                Sudoku Solver
+                (Killer) Sudoku Solver
             </div>
         </div>
     </div>
 
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2021-06-16T23:04:35+01:00">2021/06/16</time><!-- 
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/posts/sudoku-solver/index.org" id="sourcelink">Source</a>
+-->
+</div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/programming/" rel="tag">programming</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org87ad5f9" class="outline-2">
-<h2 id="org87ad5f9">(Killer) Sudoku Solver</h2>
-<div class="outline-text-2" id="text-org87ad5f9">
+        <div id="outline-container-org299a23a" class="outline-2">
+<h2 id="org299a23a">(Killer) Sudoku Solver</h2>
+<div class="outline-text-2" id="text-org299a23a">
 <p>
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 </p>
 
 <p>
-Enter digits into the grid, or add some sum-rules. For more detailed instructions see below.
+Enter digits into the grid, or add some sum-rules; a collection of cells which must sum to a given number. As in traditional killer sudoku rules, all cell values in a sum-rule must be unique. For more detailed instructions see below.
 </p>
 
 <div class="sudoku_container">
@@ -113,17 +133,17 @@ Enter digits into the grid, or add some sum-rules. For more detailed instruction
 <script type="module" src="../../assets/js/sudoku/sudoku_board.js"></script>
 </div>
 
-<div id="outline-container-org3e72b2c" class="outline-3">
-<h3 id="org3e72b2c">Fixed digits</h3>
-<div class="outline-text-3" id="text-org3e72b2c">
+<div id="outline-container-orgf912804" class="outline-3">
+<h3 id="orgf912804">Fixed digits</h3>
+<div class="outline-text-3" id="text-orgf912804">
 <ul class="org-ul">
 <li>You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfd62cc7" class="outline-3">
-<h3 id="orgfd62cc7">Sum constraints</h3>
-<div class="outline-text-3" id="text-orgfd62cc7">
+<div id="outline-container-orgc38b9bf" class="outline-3">
+<h3 id="orgc38b9bf">Sum constraints</h3>
+<div class="outline-text-3" id="text-orgc38b9bf">
 <ul class="org-ul">
 <li>Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.</li>
 <li>To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.</li>
@@ -133,18 +153,18 @@ Enter digits into the grid, or add some sum-rules. For more detailed instruction
 </div>
 </div>
 
-<div id="outline-container-orgc72e9b0" class="outline-3">
-<h3 id="orgc72e9b0">Solving</h3>
-<div class="outline-text-3" id="text-orgc72e9b0">
+<div id="outline-container-org0c848b0" class="outline-3">
+<h3 id="org0c848b0">Solving</h3>
+<div class="outline-text-3" id="text-org0c848b0">
 <p>
-Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution could be found (is possible).
+Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0d1fa96" class="outline-3">
-<h3 id="org0d1fa96">The solver itself</h3>
-<div class="outline-text-3" id="text-org0d1fa96">
+<div id="outline-container-org1a5804f" class="outline-3">
+<h3 id="org1a5804f">The solver itself</h3>
+<div class="outline-text-3" id="text-org1a5804f">
 <p>
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
 </p>
@@ -166,7 +186,7 @@ If those rules are enough to solve the puzzle - it's extremely fast. It can solv
 </p>
 
 <p>
-It's lack of more complex solving techniques; hidden singles, naked pairs etc. means it struggles to compare with the <a href="https://github.com/t-dillon/tdoku">fastest solvers of the day</a>. For comparison it solves ~900/second of the 'puzzles5<sub>forum</sub><sub>hardest</sub>' puzzles in the previous link (best=24,001/sec), while averaging a whopping 1456 guesses/puzzle (best=64 guesses). Not too bad for a weekend though… And it may in fact be the fastest killer sudoku solver!
+It's lack of more complex solving techniques; hidden singles, naked pairs etc. means it struggles to compare with the <a href="https://github.com/t-dillon/tdoku">fastest solvers of the day</a>. For comparison it solves ~900/second of the 'puzzles5_forum_hardest' puzzles in the previous link (best=24,001/sec), while averaging a whopping 1456 guesses/puzzle (best=64 guesses). Not too bad for a weekend though… And it may in fact be the fastest killer sudoku solver!
 </p>
 </div>
 </div>
@@ -225,12 +245,23 @@ MathJax.Hub.Config({
 
     
 <script src="../../assets/js/cookies-eu-banner.js"></script><script>
+
+CookiesEuBanner.prototype.setCookie = function(name, value) {
+  var date = new Date();
+  date.setTime(date.getTime() + this.cookieTimeout);
+
+  document.cookie = name + '=' + value + ';expires=' + date.toGMTString() + ';path=/' + ';secure;SameSite=Lax';
+}
+
+
     new CookiesEuBanner(function () {
         // Your code to launch when user accept cookies
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        console.log("Enabling google analytics!");
 
         ga('create', 'UA-143421297-1', 'auto');
         ga('send', 'pageview');

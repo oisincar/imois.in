@@ -28,12 +28,12 @@ MathJax.Hub.Config({
 <meta property="og:description" content="About Me
 
 
-Hi, I'm Oisin,
+I'm Oisín,
 
 
 
-I'm a recent graduate of Masters Computer Engineering student in Trinity College,
-Dublin. A longtime hobbyist gamedeveloper, juggler, and machine learning enthusiast, rece">
+I'm a recent graduate of a Masters in Computer Engineering in Trinity College,
+Dublin. A longtime hobbyist game-developer, juggler, and machine learning enthusiast, recently I">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2019-12-26T22:35:28Z">
 </head>
@@ -81,16 +81,16 @@ Dublin. A longtime hobbyist gamedeveloper, juggler, and machine learning enthusi
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org7d6231b" class="outline-2">
-<h2 id="org7d6231b">About Me</h2>
-<div class="outline-text-2" id="text-org7d6231b">
+        <div id="outline-container-org5d4c388" class="outline-2">
+<h2 id="org5d4c388">About Me</h2>
+<div class="outline-text-2" id="text-org5d4c388">
 <p>
-Hi, I'm Oisin,
+I'm Oisín,
 </p>
 
 <p>
-I'm a recent graduate of Masters Computer Engineering student in Trinity College,
-Dublin. A longtime hobbyist gamedeveloper, juggler, and machine learning enthusiast, recently I've
+I'm a recent graduate of a Masters in Computer Engineering in Trinity College,
+Dublin. A longtime hobbyist game-developer, juggler, and machine learning enthusiast, recently I've
 been trying to up my pure-maths skills, too. I now work part time as a researcher at the Adapt Center,
 while balancing up some other projects on the side!
 </p>
@@ -109,8 +109,6 @@ Other bits I've worked on/am working on include:
 <a href="https://syze.ai/"><b>Syze.ai</b></a>: An AI-based startup aiming to reduce returns for online clothing stores.</li>
 <li>
 <a href="https://www.facebook.com/WizardLizardGame/"><b>WizardLizard</b></a>: A 3d puzzle game based on illusions, featuring a procedural lizard.</li>
-<li>
-<a href="https://github.com/oisincar/cnp-5"><b>CNP</b></a>: An old maths problem that is the subject of a recent <a href="http://michaelnielsen.org/polymath1/index.php?title=Hadwiger-Nelson_problem">polymath project</a>.</li>
 </ul>
 <p>
 <a href="../../misc/resume.pdf">My CV</a> is a bit outdated now but might be interesting!
@@ -118,9 +116,9 @@ Other bits I've worked on/am working on include:
 </div>
 </div>
 
-<div id="outline-container-orgd03d75e" class="outline-2">
-<h2 id="orgd03d75e">Contact</h2>
-<div class="outline-text-2" id="text-orgd03d75e">
+<div id="outline-container-org33ae97f" class="outline-2">
+<h2 id="org33ae97f">Contact</h2>
+<div class="outline-text-2" id="text-org33ae97f">
 <p>
 Feel free to contact me via email; hi@imois.in. Also, I'm told there are people
 sharing my name/background on linkedin but they're not me(!)
@@ -170,12 +168,23 @@ sharing my name/background on linkedin but they're not me(!)
 
     
 <script src="../../assets/js/cookies-eu-banner.js"></script><script>
+
+CookiesEuBanner.prototype.setCookie = function(name, value) {
+  var date = new Date();
+  date.setTime(date.getTime() + this.cookieTimeout);
+
+  document.cookie = name + '=' + value + ';expires=' + date.toGMTString() + ';path=/' + ';secure;SameSite=Lax';
+}
+
+
     new CookiesEuBanner(function () {
         // Your code to launch when user accept cookies
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        console.log("Enabling google analytics!");
 
         ga('create', 'UA-143421297-1', 'auto');
         ga('send', 'pageview');

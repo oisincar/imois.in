@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2021-04-12T23:18:00Z</lastmod>
+  <lastmod>2021-06-30T22:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
@@ -23,11 +23,11 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2021-06-26T23:42:00Z</lastmod>
+  <lastmod>2021-06-30T23:22:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
-  <lastmod>2021-06-26T23:45:00Z</lastmod>
+  <lastmod>2021-06-30T22:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/animation/</loc>
@@ -36,6 +36,10 @@
  <url>
   <loc>https://imois.in/categories/cat_math/</loc>
   <lastmod>2020-09-16T01:24:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/categories/cat_programming/</loc>
+  <lastmod>2021-06-30T22:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/gamedev/</loc>
@@ -60,6 +64,10 @@
  <url>
   <loc>https://imois.in/categories/woodworking/</loc>
   <lastmod>2021-06-26T23:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/index-1.html</loc>
+  <lastmod>2021-06-30T23:22:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/pages/about-me/</loc>
@@ -108,6 +116,10 @@
  <url>
   <loc>https://imois.in/posts/random-vectors-and-rotations-in-3d/</loc>
   <lastmod>2020-09-19T15:50:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/sudoku-solver/</loc>
+  <lastmod>2021-06-30T22:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/posts/the-chromatic-number-of-the-plane/</loc>
