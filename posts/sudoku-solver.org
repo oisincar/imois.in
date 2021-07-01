@@ -1,8 +1,8 @@
 #+BEGIN_COMMENT
-.. title: Sudoku Solver
+.. title: (Killer) Sudoku Solver
 .. slug: sudoku-solver
 .. date: 2021-06-16 23:04:35 UTC+01:00
-.. tags:
+.. tags: programming
 .. category: Programming
 .. link:
 .. description: a-WASM-e solving of sudoku boards in rust and web assembly.
@@ -14,7 +14,7 @@
 ** (Killer) Sudoku Solver
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 
-Enter digits into the grid, or add some sum-rules. For more detailed instructions see below.
+Enter digits into the grid, or add some sum-rules; a collection of cells which must sum to a given number. As in traditional killer sudoku rules, all cell values in a sum-rule must be unique. For more detailed instructions see below.
 
 #+BEGIN_EXPORT html
 <div class='sudoku_container'>
@@ -53,7 +53,7 @@ Enter digits into the grid, or add some sum-rules. For more detailed instruction
 - Unlike some other solvers, constraints can overlap arbitrarily.
 
 *** Solving
-Finally, when you have a board complete... Hit solve. The first solution found will be displayed, or a warning if no solution could be found (is possible).
+Finally, when you have a board complete... Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 
 *** The solver itself
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
@@ -66,4 +66,4 @@ When a digit is placed in a cell two things happen - its value is removed as a c
 
 If those rules are enough to solve the puzzle - it's extremely fast. It can solve up to 2 million sudokus per second! Otherwise, it must guess a square and backtrack if it reaches a contradiction. It tries to guess the square with the fewest candidates.
 
-It's lack of more complex solving techniques; hidden singles, naked pairs etc. means it struggles to compare with the [[https://github.com/t-dillon/tdoku][fastest solvers of the day]]. For comparison it solves ~900/second of the 'puzzles5_forum_hardest' puzzles in the previous link (best=24,001/sec), while averaging a whopping 1456 guesses/puzzle (best=64 guesses). Not too bad for a weekend though... And it may in fact be the fastest killer sudoku solver!
+It's lack of more complex solving techniques; hidden singles, naked pairs etc. means it struggles to compare with the [[https://github.com/t-dillon/tdoku][fastest solvers of the day]]. For comparison it solves ~900/second of the 'puzzles5\under{}forum\under{}hardest' puzzles in the previous link (best=24,001/sec), while averaging a whopping 1456 guesses/puzzle (best=64 guesses). Not too bad for a weekend though... And it may in fact be the fastest killer sudoku solver!

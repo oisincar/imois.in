@@ -1236,8 +1236,8 @@ EXTRA_HEAD_DATA = """
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/sudoku.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/sudoku.css" rel="stylesheet" type="text/css">
 """
 # <!-- Adsense code! -->
 # <script data-ad-client="ca-pub-5291127435009817" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -1246,14 +1246,25 @@ EXTRA_HEAD_DATA = """
 # in the default template (base.tmpl).
 # (translatable)
 BODY_END = """
-<script src="../../assets/js/cookies-eu-banner.js"></script>
+<script src="/assets/js/cookies-eu-banner.js"></script>
 <script>
+
+CookiesEuBanner.prototype.setCookie = function(name, value) {
+  var date = new Date();
+  date.setTime(date.getTime() + this.cookieTimeout);
+
+  document.cookie = name + '=' + value + ';expires=' + date.toGMTString() + ';path=/' + ';secure;SameSite=Lax';
+}
+
+
     new CookiesEuBanner(function () {
         // Your code to launch when user accept cookies
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        console.log("Enabling google analytics!");
 
         ga('create', 'UA-143421297-1', 'auto');
         ga('send', 'pageview');
