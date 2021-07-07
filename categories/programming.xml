@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 06 Jul 2021 22:26:23 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>(Killer) Sudoku Solver</title><link>https://imois.in/posts/sudoku-solver/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgd0877a1" class="outline-2"&gt;
-&lt;h2 id="orgd0877a1"&gt;(Killer) Sudoku Solver&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd0877a1"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Programming &amp; Software)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 07 Jul 2021 00:59:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>(Killer) Sudoku Solver</title><link>https://imois.in/posts/sudoku-solver/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org23a87ab" class="outline-2"&gt;
+&lt;h2 id="org23a87ab"&gt;(Killer) Sudoku Solver&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org23a87ab"&gt;
 &lt;p&gt;
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 &lt;/p&gt;
@@ -38,17 +38,17 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 &lt;script type="module" src="https://imois.in/assets/js/sudoku/sudoku_board.js"&gt;&lt;/script&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3cf258c" class="outline-3"&gt;
-&lt;h3 id="org3cf258c"&gt;Fixed digits&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3cf258c"&gt;
+&lt;div id="outline-container-org3b47b36" class="outline-3"&gt;
+&lt;h3 id="org3b47b36"&gt;Fixed digits&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3b47b36"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org29de35f" class="outline-3"&gt;
-&lt;h3 id="org29de35f"&gt;Sum constraints&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org29de35f"&gt;
+&lt;div id="outline-container-orge0e54b7" class="outline-3"&gt;
+&lt;h3 id="orge0e54b7"&gt;Sum constraints&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge0e54b7"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.&lt;/li&gt;
 &lt;li&gt;To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.&lt;/li&gt;
@@ -58,18 +58,18 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4491aa8" class="outline-3"&gt;
-&lt;h3 id="org4491aa8"&gt;Solving&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4491aa8"&gt;
+&lt;div id="outline-container-orgfc10d48" class="outline-3"&gt;
+&lt;h3 id="orgfc10d48"&gt;Solving&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgfc10d48"&gt;
 &lt;p&gt;
 Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7b78987" class="outline-3"&gt;
-&lt;h3 id="org7b78987"&gt;The solver itself&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7b78987"&gt;
+&lt;div id="outline-container-orgb2a69ed" class="outline-3"&gt;
+&lt;h3 id="orgb2a69ed"&gt;The solver itself&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb2a69ed"&gt;
 &lt;p&gt;
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
 &lt;/p&gt;
@@ -2514,9 +2514,9 @@ that's written in english…).
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7e80e76" class="outline-2"&gt;
-&lt;h2 id="org7e80e76"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7e80e76"&gt;
+</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org15beb8f" class="outline-2"&gt;
+&lt;h2 id="org15beb8f"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org15beb8f"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -2540,9 +2540,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc637847" class="outline-2"&gt;
-&lt;h2 id="orgc637847"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc637847"&gt;
+&lt;div id="outline-container-org3e2a604" class="outline-2"&gt;
+&lt;h2 id="org3e2a604"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3e2a604"&gt;
 &lt;p&gt;
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -2614,9 +2614,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3b66b7a" class="outline-2"&gt;
-&lt;h2 id="org3b66b7a"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3b66b7a"&gt;
+&lt;div id="outline-container-org5840599" class="outline-2"&gt;
+&lt;h2 id="org5840599"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5840599"&gt;
 &lt;p&gt;
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -2708,9 +2708,9 @@ be pretty useful to have a way to solve it!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc85299a" class="outline-2"&gt;
-&lt;h2 id="orgc85299a"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc85299a"&gt;
+&lt;div id="outline-container-org3d0e4e5" class="outline-2"&gt;
+&lt;h2 id="org3d0e4e5"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3d0e4e5"&gt;
 &lt;p&gt;
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -2741,9 +2741,9 @@ games is done.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5eaba8e" class="outline-2"&gt;
-&lt;h2 id="org5eaba8e"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5eaba8e"&gt;
+&lt;div id="outline-container-org16a3697" class="outline-2"&gt;
+&lt;h2 id="org16a3697"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org16a3697"&gt;
 &lt;p&gt;
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -2770,9 +2770,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0249f57" class="outline-2"&gt;
-&lt;h2 id="org0249f57"&gt;Forward Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0249f57"&gt;
+&lt;div id="outline-container-org563edd6" class="outline-2"&gt;
+&lt;h2 id="org563edd6"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org563edd6"&gt;
 &lt;p&gt;
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -2810,9 +2810,9 @@ Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org435760e" class="outline-2"&gt;
-&lt;h2 id="org435760e"&gt;Distance function&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org435760e"&gt;
+&lt;div id="outline-container-org5bdaf3c" class="outline-2"&gt;
+&lt;h2 id="org5bdaf3c"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5bdaf3c"&gt;
 &lt;p&gt;
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -2909,9 +2909,9 @@ the angles there will bring our arm closest to our target ball.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org37e894a" class="outline-2"&gt;
-&lt;h2 id="org37e894a"&gt;Gradient Descent&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org37e894a"&gt;
+&lt;div id="outline-container-org63ed0cf" class="outline-2"&gt;
+&lt;h2 id="org63ed0cf"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org63ed0cf"&gt;
 &lt;p&gt;
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -2960,20 +2960,23 @@ And for any number of limbs.
 &lt;/p&gt;
 
 &lt;p&gt;
-This method of improving is called 'gradient descent', because if we look at the
-surface, each time we update we travel down the surface until we reach the bottom.
+This method of improving iteratively is called 'gradient descent'. This can be visualized from Anim 2; we're essentially standing on a point on the surface, then finding the direction of steepest descent and moving a short distance.
+Repeating this process will, in many problems (including this one), always get us to a solution if it exists.
 &lt;/p&gt;
 
 &lt;p&gt;
-The demos just perform this update once per frame, but it's easy to completely
-solve the system by running for more iterations.
+Proving that this method finds the direction of steepest descent, or that this problem is convex and so will always find a possible solution is left as an exercise to the reader :)
+&lt;/p&gt;
+
+&lt;p&gt;
+The demos just perform this update once per frame, but it's easy to completely solve the system by running for more iterations.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2a3fa08" class="outline-2"&gt;
-&lt;h2 id="org2a3fa08"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2a3fa08"&gt;
+&lt;div id="outline-container-orgb29ce6b" class="outline-2"&gt;
+&lt;h2 id="orgb29ce6b"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb29ce6b"&gt;
 &lt;p&gt;
 It might help to look through the source code for the animations (embedded into
 this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,
