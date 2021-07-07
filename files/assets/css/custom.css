@@ -63,6 +63,10 @@
 
 .code-col p { margin:0; }
 
+.code-col .highlight > pre {
+  white-space: pre;
+}
+
 /* Togglable play/pause button! */
 .button-pp {
   border: 0;
@@ -86,7 +90,7 @@
 }
 
 /* Monospace block for terminal stuff */
-.terminal-code{
+.terminal-code {
   text-align: left;
   font-size: 1.25em;
   line-height:1em;  /* Make it easy to correct exactly height'd divs! */
@@ -105,8 +109,9 @@
 /* Make figures/ captions look better */
 .figure {
     text-align: center;
-    background: #f0f0f0;
-    border: 1px solid #7194b8;
+    /* background: #f0f0f0; */
+    /* background: #f4f1f0; */
+    /* border: 1px solid #7194b8; */
     padding: 10px;
     width: min-content;
     margin: 0 auto;

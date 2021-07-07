@@ -158,10 +158,6 @@ NAVIGATION_ALT_LINKS = {
 # THEME = "mdl"
 THEME = "bnw"
 
-# CODE_COLOR_SCHEME = "manni"
-# CODE_COLOR_SCHEME = "default"
-CODE_COLOR_SCHEME = "friendly"
-
 # Primary color of your theme. This will be used to customize your theme.
 # Must be a HEX value.
 # THEME_COLOR = '#5670d4'
@@ -188,8 +184,6 @@ CODE_COLOR_SCHEME = "friendly"
 #         'sidebar': ''
 #     }
 # }
-
-USE_BUNDLES = True
 
 
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
@@ -890,6 +884,7 @@ IMAGE_FOLDERS = {'images': 'images'}
 # This list MAY be incomplete since pygments adds styles every now and then.
 # Check with list(pygments.styles.get_all_styles()) in an interpreter.
 # CODE_COLOR_SCHEME = 'default'
+CODE_COLOR_SCHEME = 'murphy'
 
 # FAVICONS contains (name, file, size) tuples.
 # Used to create favicon link like this:
@@ -1362,6 +1357,7 @@ CookiesEuBanner.prototype.setCookie = function(name, value) {
 # environment but is not recommended for HTTP/2.0 when caching is used.
 # Defaults to True.
 # USE_BUNDLES = True
+USE_BUNDLES = False
 
 # Plugins you don't want to use. Be careful :-)
 # DISABLED_PLUGINS = ["render_galleries"]
@@ -1432,3 +1428,10 @@ GLOBAL_CONTEXT = {
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = []
+
+# Compiler to process LESS files.
+LESS_COMPILER = 'lessc'
+
+# A list of options to pass to the LESS compiler.
+# Final command is: LESS_COMPILER LESS_OPTIONS file.less
+LESS_OPTIONS = []

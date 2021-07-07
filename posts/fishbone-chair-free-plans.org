@@ -24,15 +24,11 @@ We've been using the chair for the past 8 years, and isn't showing any signs of 
 
 I designed it in blender, taking a rough chair model and cutting slices into it. There are 16 slices making up the main seat, with 2 more providing support along the length of the chair.
 
-#+BEGIN_EXPORT html
-<div class="figure">
-<p style="width: 600px;">
-<img src="/../images/fishbone_chair/chair_model.jpg" width="300px">
-<img src="/../images/fishbone_chair/chair_cutout.jpg" width="300px">
-</p>
-<p><span class="figure-number">Figure 3: </span> Pictures from the design - Left: Renders from blender. Right: A cardboard model cutout.</p>
-</div>
-#+END_EXPORT
+#+ATTR_HTML: :width 400px
+[[file:../images/fishbone_chair/chair_model.jpg]]
+#+ATTR_HTML: :width 400px
+#+CAPTION: Pictures from the design - Top: Renders from blender. Bottom: A cardboard model cutout.
+[[file:../images/fishbone_chair/chair_cutout.jpg]]
 
 While I'm sure it's possible to cut this out by hand, it's much easier to do it via CNC. I was able to find a local shop that cut it out for me, and this is the design I gave them. Just keep track of which piece is which! Once they get mixed up, it's hard to sort them out. Then... The whole piece fits together like a big sawdusty puzzle.
 

@@ -4,6 +4,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+
 * {
     box-sizing: border-box;
 }
@@ -280,7 +281,8 @@ footer .copyright a:hover {
 .tagline .container,
 .post-header .container {
     text-align: center;
-    font-family: 'Love Ya Like A Sister', cursive;
+    /* 'Love Ya Like A Sister', cursive; */
+    font-family: 'Inknut Antiqua', serif;
 }
 
 .post-header .post-meta {
