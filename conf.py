@@ -25,7 +25,8 @@ SITE_URL = "https://imois.in/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://imois.in/"
 BLOG_EMAIL = "oisincar@gmail.com"
-BLOG_DESCRIPTION = "A home for my random programming & maths projects."  # (translatable)
+# BLOG_DESCRIPTION = "A home for my random programming & maths projects."  # (translatable)
+BLOG_DESCRIPTION = "Programming & Math 4 Fun"  # (translatable)
 
 # Nikola is multilingual!
 #
@@ -1138,7 +1139,7 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 
 # Modify the number of Post per Index Page
 # Defaults to 10
-# INDEX_DISPLAY_POST_COUNT = 10
+INDEX_DISPLAY_POST_COUNT = 50
 
 # By default, Nikola generates RSS files for the website and for tags, and
 # links to it.  Set this to False to disable everything RSS-related.
@@ -1161,7 +1162,7 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # FEED_PLAIN = False
 
 # Number of posts in Atom and RSS feeds.
-# FEED_LENGTH = 10
+FEED_LENGTH = 10
 
 # RSS_LINK is a HTML fragment to link the RSS or Atom feeds. If set to None,
 # the base.tmpl will use the feed Nikola generates. However, you may want to
@@ -1234,6 +1235,7 @@ EXTRA_HEAD_DATA = """
 <link href="/assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/sudoku.css" rel="stylesheet" type="text/css">
 """
+
 # <!-- Adsense code! -->
 # <script data-ad-client="ca-pub-5291127435009817" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
