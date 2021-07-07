@@ -21,7 +21,11 @@ MathJax.Hub.Config({
 </script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/sudoku.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bnw.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
 <meta property="og:title" content="Procedural Animation 3: Gradient Descent">
@@ -106,9 +110,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org5624f43" class="outline-2">
-<h2 id="org5624f43">Intro</h2>
-<div class="outline-text-2" id="text-org5624f43">
+        <div id="outline-container-org7e80e76" class="outline-2">
+<h2 id="org7e80e76">Intro</h2>
+<div class="outline-text-2" id="text-org7e80e76">
 <script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script><script src="../../assets/js/TouchUtils.js"></script><script src="../../assets/js/procedural_animation/Global.js"></script><script src="../../assets/js/procedural_animation/Arm.js"></script><script src="../../assets/js/procedural_animation/ArmCanvas.js"></script><script src="../../assets/js/procedural_animation/Graph.js"></script><script src="../../assets/js/procedural_animation/GradientDescent2Link.js"></script><script src="../../assets/js/procedural_animation/TwoLinkArmAndGraph.js"></script><p>
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -132,9 +136,9 @@ source code in the inspector or find it on <a href="https://github.com/oisincar/
 </div>
 </div>
 
-<div id="outline-container-org5fdf661" class="outline-2">
-<h2 id="org5fdf661">What we'll make!</h2>
-<div class="outline-text-2" id="text-org5fdf661">
+<div id="outline-container-orgc637847" class="outline-2">
+<h2 id="orgc637847">What we'll make!</h2>
+<div class="outline-text-2" id="text-orgc637847">
 <p>
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -206,9 +210,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 </div>
 </div>
 
-<div id="outline-container-org912e555" class="outline-2">
-<h2 id="org912e555">The problem: Kinematics</h2>
-<div class="outline-text-2" id="text-org912e555">
+<div id="outline-container-org3b66b7a" class="outline-2">
+<h2 id="org3b66b7a">The problem: Kinematics</h2>
+<div class="outline-text-2" id="text-org3b66b7a">
 <p>
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -300,9 +304,9 @@ be pretty useful to have a way to solve it!
 </div>
 </div>
 
-<div id="outline-container-org3e5ef9d" class="outline-2">
-<h2 id="org3e5ef9d">Simple arms in 2d</h2>
-<div class="outline-text-2" id="text-org3e5ef9d">
+<div id="outline-container-orgc85299a" class="outline-2">
+<h2 id="orgc85299a">Simple arms in 2d</h2>
+<div class="outline-text-2" id="text-orgc85299a">
 <p>
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -333,9 +337,9 @@ games is done.
 </div>
 </div>
 
-<div id="outline-container-orgf18341e" class="outline-2">
-<h2 id="orgf18341e">Harder problems.. I.e. Arms with more joints..?</h2>
-<div class="outline-text-2" id="text-orgf18341e">
+<div id="outline-container-org5eaba8e" class="outline-2">
+<h2 id="org5eaba8e">Harder problems.. I.e. Arms with more joints..?</h2>
+<div class="outline-text-2" id="text-org5eaba8e">
 <p>
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -362,9 +366,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 </div>
 </div>
 
-<div id="outline-container-org766e385" class="outline-2">
-<h2 id="org766e385">Forward Kinematics</h2>
-<div class="outline-text-2" id="text-org766e385">
+<div id="outline-container-org0249f57" class="outline-2">
+<h2 id="org0249f57">Forward Kinematics</h2>
+<div class="outline-text-2" id="text-org0249f57">
 <p>
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -402,9 +406,9 @@ Hand_y &amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 </div>
 </div>
 
-<div id="outline-container-org99f1f36" class="outline-2">
-<h2 id="org99f1f36">Distance function</h2>
-<div class="outline-text-2" id="text-org99f1f36">
+<div id="outline-container-org435760e" class="outline-2">
+<h2 id="org435760e">Distance function</h2>
+<div class="outline-text-2" id="text-org435760e">
 <p>
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -501,9 +505,9 @@ the angles there will bring our arm closest to our target ball.
 </div>
 </div>
 
-<div id="outline-container-orgc7ad336" class="outline-2">
-<h2 id="orgc7ad336">Gradient Descent</h2>
-<div class="outline-text-2" id="text-orgc7ad336">
+<div id="outline-container-org37e894a" class="outline-2">
+<h2 id="org37e894a">Gradient Descent</h2>
+<div class="outline-text-2" id="text-org37e894a">
 <p>
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -563,9 +567,9 @@ solve the system by running for more iterations.
 </div>
 </div>
 
-<div id="outline-container-orga2d4dcf" class="outline-2">
-<h2 id="orga2d4dcf">Implementation &amp; Extras</h2>
-<div class="outline-text-2" id="text-orga2d4dcf">
+<div id="outline-container-org2a3fa08" class="outline-2">
+<h2 id="org2a3fa08">Implementation &amp; Extras</h2>
+<div class="outline-text-2" id="text-org2a3fa08">
 <p>
 It might help to look through the source code for the animations (embedded into
 this page), or available <a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js">here on Github</a>. You're free to lift this for anything,
@@ -677,7 +681,7 @@ CookiesEuBanner.prototype.setCookie = function(name, value) {
         // TODO: Set up adsense here..??
     }, true);
 
-</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script><div>
+</script><script src="../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../../assets/js/headroom.min.js" type="text/javascript"></script><script src="../../assets/js/scripts.js" type="text/javascript"></script><div>
 </div>
 </body>
 </html>

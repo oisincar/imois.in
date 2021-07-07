@@ -21,7 +21,11 @@ MathJax.Hub.Config({
 </script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/sudoku.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bnw.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
 <meta property="og:title" content="(Killer) Sudoku Solver">
@@ -94,9 +98,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org299a23a" class="outline-2">
-<h2 id="org299a23a">(Killer) Sudoku Solver</h2>
-<div class="outline-text-2" id="text-org299a23a">
+        <div id="outline-container-orgd0877a1" class="outline-2">
+<h2 id="orgd0877a1">(Killer) Sudoku Solver</h2>
+<div class="outline-text-2" id="text-orgd0877a1">
 <p>
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 </p>
@@ -133,17 +137,17 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 <script type="module" src="../../assets/js/sudoku/sudoku_board.js"></script>
 </div>
 
-<div id="outline-container-orgf912804" class="outline-3">
-<h3 id="orgf912804">Fixed digits</h3>
-<div class="outline-text-3" id="text-orgf912804">
+<div id="outline-container-org3cf258c" class="outline-3">
+<h3 id="org3cf258c">Fixed digits</h3>
+<div class="outline-text-3" id="text-org3cf258c">
 <ul class="org-ul">
 <li>You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc38b9bf" class="outline-3">
-<h3 id="orgc38b9bf">Sum constraints</h3>
-<div class="outline-text-3" id="text-orgc38b9bf">
+<div id="outline-container-org29de35f" class="outline-3">
+<h3 id="org29de35f">Sum constraints</h3>
+<div class="outline-text-3" id="text-org29de35f">
 <ul class="org-ul">
 <li>Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.</li>
 <li>To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.</li>
@@ -153,18 +157,18 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 </div>
 </div>
 
-<div id="outline-container-org0c848b0" class="outline-3">
-<h3 id="org0c848b0">Solving</h3>
-<div class="outline-text-3" id="text-org0c848b0">
+<div id="outline-container-org4491aa8" class="outline-3">
+<h3 id="org4491aa8">Solving</h3>
+<div class="outline-text-3" id="text-org4491aa8">
 <p>
 Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1a5804f" class="outline-3">
-<h3 id="org1a5804f">The solver itself</h3>
-<div class="outline-text-3" id="text-org1a5804f">
+<div id="outline-container-org7b78987" class="outline-3">
+<h3 id="org7b78987">The solver itself</h3>
+<div class="outline-text-3" id="text-org7b78987">
 <p>
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
 </p>
@@ -270,7 +274,7 @@ CookiesEuBanner.prototype.setCookie = function(name, value) {
         // TODO: Set up adsense here..??
     }, true);
 
-</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script><div>
+</script><script src="../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../../assets/js/headroom.min.js" type="text/javascript"></script><script src="../../assets/js/scripts.js" type="text/javascript"></script><div>
 </div>
 </body>
 </html>

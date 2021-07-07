@@ -11,10 +11,10 @@
 #+END_COMMENT
 
 * About Me
-I'm Oisín,
+Hi, I'm Oisin,
 
-I'm a recent graduate of a Masters in Computer Engineering in Trinity College,
-Dublin. A longtime hobbyist game-developer, juggler, and machine learning enthusiast, recently I've
+I'm a recent graduate of Masters Computer Engineering student in Trinity College,
+Dublin. A longtime hobbyist gamedeveloper, juggler, and machine learning enthusiast, recently I've
 been trying to up my pure-maths skills, too. I now work part time as a researcher at the Adapt Center,
 while balancing up some other projects on the side!
 
@@ -24,6 +24,7 @@ Other bits I've worked on/am working on include:
 - [[http://siliconsynapse.net/][*Silicone Synapse*]]: A VR exhibit with artist AlanJames Burns.
 - [[https://syze.ai/][*Syze.ai*]]: An AI-based startup aiming to reduce returns for online clothing stores.
 - [[https://www.facebook.com/WizardLizardGame/][*WizardLizard*]]: A 3d puzzle game based on illusions, featuring a procedural lizard.
+- [[https://github.com/oisincar/cnp-5][*CNP*]]: An old maths problem that is the subject of a recent [[http://michaelnielsen.org/polymath1/index.php?title=Hadwiger-Nelson_problem][polymath project]].
 
 [[../misc/resume.pdf][My CV]] is a bit outdated now but might be interesting!
 
