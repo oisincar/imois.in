@@ -241,3 +241,6 @@
 'copy_files:output/misc/secret_url_shhhHhHhhH/LizGL/TemplateData/fullscreen-button.png', (563712, 349)
 'copy_files:output/misc/secret_url_shhhHhHhhH/LizGL/TemplateData/favicon.ico', (564224, 331)
 'copy_files:output/misc/secret_url_shhhHhHhhH/LizGL/TemplateData/progress-bar-full-light.png', (564736, 360)
+'copy_files:output/misc/secret_url_shhhHhHhhH/LizGL/Build/LizGL.data', (565248, 318)
+'copy_files:output/misc/secret_url_shhhHhHhhH/LizGL/Build/LizGL.framework.js', (565760, 332)
+'copy_files:output/misc/secret_url_shhhHhHhhH/LizGL/Build/LizGL.wasm', (566272, 318)
