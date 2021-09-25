@@ -1,0 +1,49 @@
+#+BEGIN_COMMENT
+.. title: A tiny proof about some pencils
+.. slug: geometry-of-a-pencil-sculpture
+.. date: 2021-08-13 17:55:00 UTC+01:00
+.. tags: math
+.. category:
+.. link:
+.. description: The answer to a question about a pencil sculpture.
+.. type: text
+.. has_math: true
+
+#+END_COMMENT
+
+
+* 72 pencil sculpture
+The original 72 sculpture is by [[https://www.georgehart.com/sculpture/pencils.html][George W. Hart]], which features 72 pencils in a lattice.
+
+#+CAPTION: Photo credit: George W. Hart
+#+ATTR_HTML: :width 500px
+[[../images/pencils/72pencils.jpg]]
+
+It's also possible to make a 'filled' version, with a pencil in every possible location - this one was made by a friend of mine and rendered in blender.
+#+ATTR_HTML: :width 500px
+[[../images/pencils/sticks.png]]
+
+We asked... what does the inside of this shape look like? Is it solid?
+
+* It's not solid
+There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get this number, we take all pencils to be infinite in length, and the pattern to repeat indefinitely in all directions. This shape is a small part of a repeating pattern.
+
+Take any axis, and overlay a triangular grid like this. The green boxes tile the shape perfectly, and are all identical. The orange triangles are equilateral and are also identical.
+#+ATTR_HTML: :width 500px
+[[../images/pencils/sticks_diag0.png]]
+
+Zooming in, we can consider the area made up by the pencils in this axis.
+
+[[../images/pencils/sticks_diag1.png]]
+
+If the green cell has area $1$, the area of the orange hexagon - which is the end of a pencil - is $1/4 * 6/8 = 3/16$. This means the pencils in this direction fill $3/16$th of the space.
+
+Then, since there are 4 axes of pencils (if the pattern were to repeat indefinitely), the total volume of wood is just $4*3/16 = 3/4$.
+
+I.e. The pencils don't fill space in the middle, $1/4$th is air.
+
+* The empty space
+This what that looks like! It's a pretty neat geometric pattern.
+
+#+ATTR_HTML: :width 500px
+[[../images/pencils/inside.png]]
