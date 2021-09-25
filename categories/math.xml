@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 07 Jul 2021 00:59:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 13 Aug 2021 17:52:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgacf5944" class="outline-2"&gt;
+&lt;h2 id="orgacf5944"&gt;72 pencil sculpture&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgacf5944"&gt;
+&lt;p&gt;
+The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture/pencils.html"&gt;George W. Hart&lt;/a&gt;, which features 72 pencils in a lattice.
+&lt;/p&gt;
+
+
+&lt;div id="org377d96d" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/72pencils.jpg" alt="72pencils.jpg" width="500px"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Photo credit: George W. Hart&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+It's also possible to make a 'filled' version, with a pencil in every possible location - this one was made by a friend of mine and rendered in blender.
+&lt;/p&gt;
+
+&lt;div id="org4419913" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks.png" alt="sticks.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+We asked… what does the inside of this shape look like? Is it solid?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org46ba1ba" class="outline-2"&gt;
+&lt;h2 id="org46ba1ba"&gt;It's not solid&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org46ba1ba"&gt;
+&lt;p&gt;
+There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get this number, we take all pencils to be infinite in length, and the pattern to repeat indefinitely in all directions. This shape is a small part of a repeating pattern.
+&lt;/p&gt;
+
+&lt;p&gt;
+Take any axis, and overlay a triangular grid like this. The green boxes tile the shape perfectly, and are all identical. The orange triangles are equilateral and are also identical.
+&lt;/p&gt;
+
+&lt;div id="orgdcffa2d" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag0.png" alt="sticks_diag0.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Zooming in, we can consider the area made up by the pencils in this axis.
+&lt;/p&gt;
+
+
+&lt;div id="org46e80b8" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag1.png" alt="sticks_diag1.png"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+If the green cell has area \(1\), the area of the orange hexagon - which is the end of a pencil - is \(1/4 * 6/8 = 3/16\). This means the pencils in this direction fill $3/16$th of the space.
+&lt;/p&gt;
+
+&lt;p&gt;
+Then, since there are 4 axes of pencils (if the pattern were to repeat indefinitely), the total volume of wood is just \(4*3/16 = 3/4\).
+&lt;/p&gt;
+
+&lt;p&gt;
+I.e. The pencils don't fill space in the middle, $1/4$th is air.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3877b4a" class="outline-2"&gt;
+&lt;h2 id="org3877b4a"&gt;The empty space&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3877b4a"&gt;
+&lt;p&gt;
+This what that looks like! It's a pretty neat geometric pattern.
+&lt;/p&gt;
+
+
+&lt;div id="org73e072e" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/inside.png" alt="inside.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="The-What-of-the-What?"&gt;The What of the What?&lt;a class="anchor-link" href="https://imois.in/posts/the-chromatic-number-of-the-plane/#The-What-of-the-What?"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The Chromatic Number of the Plane, or &lt;a href="https://en.wikipedia.org/wiki/Hadwiger%E2%80%93Nelson_problem"&gt;Hadwiger-Nelson problem&lt;/a&gt; is a math problem originating in the 1950s, and one which remains unsolved. It came to my attention after a breakthrough by &lt;a href="https://arxiv.org/abs/1804.02385"&gt;Aubrey D.N.J. de Grey&lt;/a&gt; in 2018, and was subsequently the subject of &lt;a href="https://polymathprojects.org/2018/04/10/polymath-proposal-finding-simpler-unit-distance-graphs-of-chromatic-number-5/"&gt;Polymath Project 16&lt;/a&gt; - a collaborative effort from mathematicians from all over the world to improve upon this. I'll do my best to explain what all this means...&lt;/p&gt;
