@@ -1,0 +1,60 @@
+
+body {
+    background-color: #121213
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+}
+
+.crosswordle {
+    display: grid;
+    /* flex: 1 0 auto; */
+    width: 100%;
+    max-width: 450px;
+    /* min-width: 300px; */
+    grid-gap: 5px;
+
+    padding-bottom: 30px;
+}
+
+.cwrow {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 5px;
+}
+
+.cwcell {
+    position: relative;
+    /* flex: 1 1 0px; */
+    flex: 1;
+    text-align: center;
+}
+
+/* Cells */
+.active {
+    box-shadow:inset 0px 0px 0px 2px #3a3a3c;
+}
+
+.cwcell-info {
+    /* width: 10px; */
+    /* text-align: center; */
+    /* vertical-align: middle; */
+}
+
+/* This CSS hack ensures our variable-width cells have the same height */
+/* as their width - i.e. they stay square! */
+.cwcell:after {
+    content: "";
+    float:left;
+    display: block;
+    padding-top: 100%;
+}
+
+/* .tile:after { */
+/*     content: ""; */
+/*     float:left; */
+/*     display: block; */
+/*     padding-top: 100%; */
+/* } */

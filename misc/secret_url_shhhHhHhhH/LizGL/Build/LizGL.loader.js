@@ -499,11 +499,15 @@ Module.fetchWithProgress = function () {
       progressUpdate(urlId);
       var cacheControl = "no-store";
       var fetchImpl = Module.fetchWithProgress;
+      var url = Module[urlId];
+      var mode = /file:\/\//.exec(url) ? "same-origin" : undefined;
+
       var request = fetchImpl(Module[urlId], {
         method: "GET",
         companyName: Module.companyName,
         productName: Module.productName,
         control: cacheControl,
+        mode: mode,
         onProgress: function (event) {
           progressUpdate(urlId, event);
         }
