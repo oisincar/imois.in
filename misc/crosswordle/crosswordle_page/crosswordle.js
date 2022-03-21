@@ -1,35 +1,5 @@
-
-// +-+-+-+-+-+
-// |h|a|r|s|h|
-// +-+-+-+-+-+
-// |a|m|a|t|i|
-// +-+-+-+-+-+
-// |l|i|d|a|r|
-// +-+-+-+-+-+
-// |a|g|i|l|e|
-// +-+-+-+-+-+
-// |b|o|x|e|r|
-// +-+-+-+-+-+
-
-
-var cw = [
-  "harsh",
-  "amati",
-  "lidar",
-  "agile",
-  "boxer",
-];
-
-// TEST one to see how things look when not perfectly aligned...
-// var cw = [
-//     "   z   ",
-//     "harsh  ",
-//     "  amati",
-//     "lidar  ",
-//     " agile ",
-//     "  boxer",
-//     "   o   ",
-// ];
+// Pick out puzzle... TODO
+var cw = PUZZLES_LIST[0];
 
 var dimX = cw[0].length;
 var dimY = cw.length;
@@ -152,30 +122,31 @@ for (const [position, tile] of Object.entries(explanation_dom_tiles)) {
 //////////////////////////////////////////////////////////////////////////////////
 
 
-const WORD_LENGTH = 5
 const FLIP_ANIMATION_DURATION = 500
 const DANCE_ANIMATION_DURATION = 500
-const keyboard = document.querySelector("[data-keyboard]")
+// const keyboard = document.querySelector("[data-keyboard]")
 const alertContainer = document.querySelector("[data-alert-container]")
-const guessGrid = document.getElementById("guess_pane");
+// const guessGrid = document.getElementById("guess_pane");
 const offsetFromDate = new Date(2022, 0, 1)
 const msOffset = Date.now() - offsetFromDate
 const dayOffset = msOffset / 1000 / 60 / 60 / 24
 // const targetWord = targetWords[Math.floor(dayOffset)]
 
-startInteraction()
+var ui_interaction_enabled = true;
+// startInteraction()
 
-function startInteraction() {
-    document.addEventListener("click", handleMouseClick)
-    document.addEventListener("keydown", handleKeyPress)
-}
+// function startInteraction() {
+document.addEventListener("click", handleMouseClick)
+document.addEventListener("keydown", handleKeyPress)
+// }
 
-function stopInteraction() {
-    document.removeEventListener("click", handleMouseClick)
-    document.removeEventListener("keydown", handleKeyPress)
-}
+// function stopInteraction() {
+//     document.removeEventListener("click", handleMouseClick)
+//     document.removeEventListener("keydown", handleKeyPress)
+// }
 
 function handleTileClick(e) {
+    if (!ui_interaction_enabled) return;
     console.log("TILE CLICK");
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -186,6 +157,8 @@ function handleTileClick(e) {
 }
 
 function handleMouseClick(e) {
+    if (!ui_interaction_enabled) return;
+
     deselectTiles();
 
     // KB stuff
@@ -204,6 +177,26 @@ function handleMouseClick(e) {
     //     return
     // }
 }
+
+function handleKeyPress(e) {
+    if (!ui_interaction_enabled) return;
+
+    if (e.key === "Enter") {
+        submitGuess()
+        return
+    }
+
+    if (e.key === "Backspace" || e.key === "Delete") {
+        deleteKey()
+        return
+    }
+
+    if (e.key.match(/^[a-z]$/)) {
+        pressKey(e.key)
+        return
+    }
+}
+
 
 const checkArray = (arrays, array) => arrays.some(a => {
   return (a.length > array.length ? a : array).every((_, i) => a[i] === array[i]);
@@ -299,23 +292,6 @@ function getWord(x, y, selectRow) {
     return letters;
 }
 
-function handleKeyPress(e) {
-    if (e.key === "Enter") {
-        submitGuess()
-        return
-    }
-
-    if (e.key === "Backspace" || e.key === "Delete") {
-        deleteKey()
-        return
-    }
-
-    if (e.key.match(/^[a-z]$/)) {
-        pressKey(e.key)
-        return
-    }
-}
-
 function pressKey(key) {
     if (active_tiles.length == 0) return;
 
@@ -366,7 +342,6 @@ function deleteKey() {
 }
 
 function submitGuess() {
-
     // All letters entered...
     var is_valid_guess = active_tiles.every(tile_coord => {
         var state = game_state.tiles[tile_coord];
@@ -385,68 +360,63 @@ function submitGuess() {
         return word + letter;
     }, "");
 
-
-    // TODO: Check a word list!
-
-
-
+    if (!GUESS_LIST.has(guess)) {
+        console.log("Not a word:", guess);
+        shakeTiles(active_tiles.map(tile_coord => entry_dom_tiles[tile_coord]));
+        return;
+    }
 
     console.log("Successfully guessed:", guess);
 
-    active_tiles.map((tile_coord, letter_index) => {
-        // Animate stuff!
-        var ts = game_state.tiles[tile_coord];
+    // Disable interaction while stuff is animated.
+    ui_interaction_enabled = false;
 
-        // Nothing to do for solved tiles.
-        if (ts.solved) return;
+    // Map/filter/map to get only the tiles we want to update.
+    // This to get the correct letter_index for animating the transition.
+    var changed_letters = active_tiles
+        .map(tile_coord => game_state.tiles[tile_coord])
+        .filter(ts => !ts.solved)
+        .map((ts, letter_index) => {
 
-        console.log(ts.position[0], ts.position[1]);
-        var visible_squares = (
-            getWord(ts.position[0], ts.position[1], false)
-                .concat(getWord(ts.position[0], ts.position[1], true)));
+            // TODO: Fix how this works?
+            // Currently shows yellow if e.g.
+            // guess: books
+            // actual: otter
+            // Both o's will show as yellow.
+            // Arguably this is better as the 'info' board shows
+            // correct info always.
 
-        // TODO: Fix how this works.
-        // Currently shows yellow if e.g.
-        // guess: books
-        // actual: otter
-        // Both o's will show as yellow.
+            console.log(ts.position[0], ts.position[1]);
+            var visible_squares = (
+                getWord(ts.position[0], ts.position[1], false)
+                    .concat(getWord(ts.position[0], ts.position[1], true)));
 
-        // there's another one - other than the 'green' tile we
-        var is_elsewhere = visible_squares.some(tile_coord => {
-            return game_state.tiles[tile_coord].solution == ts.current_guess;
-        });
+            var is_elsewhere = visible_squares.some(tile_coord => {
+                return game_state.tiles[tile_coord].solution == ts.current_guess;
+            });
 
-        var guess = {
-            character: ts.current_guess,
-            is_solved: (ts.current_guess == ts.solution),
-            is_elsewhere: is_elsewhere, // TODO
-        }
-        // TODO: Check this is saved
-        ts.guesses.push(guess);
-        ts.solved = guess.is_solved;
+            var guess = {
+                character: ts.current_guess,
+                is_solved: (ts.current_guess == ts.solution),
+                is_elsewhere: is_elsewhere, // TODO
+            }
+            ts.guesses.push(guess);
+            ts.solved = guess.is_solved;
 
-        updateUI(tile_coord, letter_index, guess.character, guess.is_solved, guess.is_elsewhere);
-    })
+            // TODO: count guesses in a square and let the user 'die'.
+            updateUI(ts.position, letter_index, guess.character, guess.is_solved, guess.is_elsewhere);
 
-    // const activeTiles = [...getActiveTiles()]
-    // if (activeTiles.length !== WORD_LENGTH) {
-    //     showAlert("Not enough letters")
-    //     shakeTiles(activeTiles)
-    //     return
-    // }
+            return letter_index;
+    });
 
-    // const guess = activeTiles.reduce((word, tile) => {
-    //     return word + tile.dataset.letter
-    // }, "")
+    // This is pretty dumb... But calculate when the UI animation would finish then check if we won.
+    var time_until_animation_finishes = (changed_letters.length + 1) * FLIP_ANIMATION_DURATION * 0.5;
 
-    // if (!dictionary.includes(guess)) {
-    //     showAlert("Not in word list")
-    //     shakeTiles(activeTiles)
-    //     return
-    // }
+    setTimeout(() => {
+        ui_interaction_enabled = true;  // This may be instantly set to false in checkWinLoose.
+        checkWinLose();
+    }, time_until_animation_finishes);
 
-    // stopInteraction()
-    // activeTiles.forEach((...params) => flipTile(...params, guess))
 }
 
 // NOTE: Could modify this to allow deserialization of game state.
@@ -539,10 +509,6 @@ function flipTile(tile, letter_index, state) {
 //     )
 // }
 
-function getActiveTiles() {
-    return guessGrid.querySelectorAll('[data-state="active"]')
-}
-
 function showAlert(message, duration = 1000) {
     const alert = document.createElement("div")
     alert.textContent = message
@@ -571,19 +537,39 @@ function shakeTiles(tiles) {
     })
 }
 
-function checkWinLose(guess, tiles) {
-    if (guess === targetWord) {
-        showAlert("You Win", 5000)
-        danceTiles(tiles)
-        stopInteraction()
-        return
+function checkWinLose() {
+    game_state.tiles
+
+    var unsolved_tile = false;
+    // TODO: How do you loose? Is it running out of guesses on any one or ..?
+    // For now... Kick people if they've used up all guesses anywhere.
+    var tile_with_no_guesses = false;
+    for (const [tile_coord, state] of Object.entries(game_state.tiles)) {
+        if (!state.solved) unsolved_tile = true;
+        if (state.guesses.length == 9) tile_with_no_guesses = true;
     }
 
-    const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])")
-    if (remainingTiles.length === 0) {
-        showAlert(targetWord.toUpperCase(), null)
-        stopInteraction()
+    if (!unsolved_tile) {
+        win();
     }
+    else if (tile_with_no_guesses) {
+        loose();
+    }
+}
+
+function win() {
+    // Ya win!
+    showAlert("You Win", 5000);
+    danceTiles(Object.values(explanation_dom_tiles));
+    danceTiles(Object.values(entry_dom_tiles));
+
+    ui_interaction_enabled = false;
+}
+
+function loose() {
+    // Ya loose :c
+    showAlert("No guesses remaining :c. Better luck tommorow.", null)
+    ui_interaction_enabled = false;
 }
 
 function danceTiles(tiles) {
@@ -597,6 +583,6 @@ function danceTiles(tiles) {
                 },
                 { once: true }
             )
-        }, (index * DANCE_ANIMATION_DURATION) / 5)
+        }, (index * DANCE_ANIMATION_DURATION) / 5) % DANCE_ANIMATION_DURATION
     })
 }
