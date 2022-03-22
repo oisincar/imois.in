@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2022-03-21T06:28:00Z</lastmod>
+  <lastmod>2022-03-22T00:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
@@ -23,7 +23,7 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2022-03-21T05:04:00Z</lastmod>
+  <lastmod>2022-03-22T00:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
@@ -64,6 +64,30 @@
  <url>
   <loc>https://imois.in/categories/woodworking/</loc>
   <lastmod>2021-06-26T23:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/games/</loc>
+  <lastmod>2022-03-22T00:07:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/games/crosswordle/</loc>
+  <lastmod>2022-03-22T00:44:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/games/crosswordle/crosswordle_page/</loc>
+  <lastmod>2022-03-22T00:42:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/games/crosswordle/index.src.html</loc>
+  <lastmod>2022-03-21T05:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/games/index.src.html</loc>
+  <lastmod>2022-03-21T05:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/games2/crosswordle/crosswordle_page/</loc>
+  <lastmod>2022-03-22T00:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/misc/crosswordle/crosswordle_page/</loc>
