@@ -141,7 +141,7 @@ NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/archive.html", "Archive"),
         ("/categories/", "Tags"),
-        ("/rss.xml", "RSS feed"),
+        # ("/rss.xml", "RSS feed"),
         ("/pages/about-me", "About Me"),
         # ("/pages/privacy-policy", "Privacy Policy"),
     ),
@@ -236,6 +236,9 @@ PAGES = (
     ("pages/*.html", "pages", "page.tmpl"),
     ("pages/*.org", "pages", "story.tmpl"),
 )
+# GAMES = (
+#     ("games/crosswordle/crosswordle_page/*.html", "games", "post.tmpl"),
+# )
 
 
 # Below this point, everything is optional
@@ -279,7 +282,9 @@ TIMEZONE = "Europe/London"
 # One or more folders containing files to be copied as-is into the output.
 # The format is a dictionary of {source: relative destination}.
 # Default is:
-# FILES_FOLDERS = {'files': ''}
+FILES_FOLDERS = {
+    'games/crosswordle/crosswordle_page': 'games/crosswordle',
+}
 # Which means copy 'files' into 'output'
 
 # One or more folders containing code listings to be processed and published on
