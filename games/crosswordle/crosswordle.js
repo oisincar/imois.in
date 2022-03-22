@@ -1,5 +1,5 @@
 // Pick out puzzle... TODO
-var cw = PUZZLES_LIST[0];
+var cw = PUZZLES_LIST[2];
 
 var dimX = cw[0].length;
 var dimY = cw.length;
