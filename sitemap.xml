@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2022-03-23T22:56:00Z</lastmod>
+  <lastmod>2022-03-23T23:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
@@ -23,7 +23,7 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2022-03-23T22:56:00Z</lastmod>
+  <lastmod>2022-03-23T23:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
@@ -68,6 +68,10 @@
  <url>
   <loc>https://imois.in/games/crosswordle/</loc>
   <lastmod>2022-03-23T22:55:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/misc/secret_url_shhhHhHhhH/LizGL/</loc>
+  <lastmod>2022-03-23T23:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/pages/about-me/</loc>
