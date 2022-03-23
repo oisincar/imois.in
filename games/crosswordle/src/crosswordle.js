@@ -128,7 +128,7 @@ function handleMouseClick(e) {
 
     // KB stuff
     if (e.target.matches("[data-key]")) {
-        pressKey(e.target.dataset.key);
+        pressKey(e.target.dataset.key.toLowerCase());
     }
     else if (e.target.matches("[data-enter]")) {
         submitGuess();
@@ -345,16 +345,6 @@ function updateUI(tile_coord, letter_guessed, state, letter_ix_in_word) {
     console.log(guessSquares);
 
     guessSquares[0].textContent = letter_guessed;
-    // var state;
-    // if (is_solved) {
-    //     state = "correct";
-    // }
-    // else if (is_elsewhere) {
-    //     state = "wrong-location";
-    // }
-    // else {
-    //     state = "wrong";
-    // }
 
     flipTile(entryTile, letter_ix_in_word, state);
     flipTile(guessSquares[0], letter_ix_in_word, state);
@@ -402,15 +392,6 @@ function shakeTiles(tiles) {
         )
     })
 }
-
-// function checkWinLose() {
-//     if (!unsolved_tile) {
-//         win();
-//     }
-//     else if (tile_with_no_guesses) {
-//         loose();
-//     }
-// }
 
 function win() {
     // Ya win!
