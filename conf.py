@@ -283,6 +283,7 @@ TIMEZONE = "Europe/London"
 # The format is a dictionary of {source: relative destination}.
 # Default is:
 FILES_FOLDERS = {
+    'files': '',
     'games/crosswordle/crosswordle_page': 'games/crosswordle',
 }
 # Which means copy 'files' into 'output'
