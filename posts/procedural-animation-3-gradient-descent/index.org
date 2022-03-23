@@ -24,12 +24,6 @@
 
 #+END_EXPORT
 
-# <script src="jquery.ui.touch-punch.min.js"></script>
-
-#+REVEAL_EXTRA_CSS: https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css
-# #+REVEAL_EXTRA_CSS: ./style.css
-
-
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
 written as an equation of known variables.
@@ -388,11 +382,12 @@ The maths is exactly the same for the elbow position:
 
 And for any number of limbs.
 
-This method of improving is called 'gradient descent', because if we look at the
-surface, each time we update we travel down the surface until we reach the bottom.
+This method of improving iteratively is called 'gradient descent'. This can be visualized from Anim 2; we're essentially standing on a point on the surface, then finding the direction of steepest descent and moving a short distance.
+Repeating this process will, in many problems (including this one), always get us to a solution if it exists.
 
-The demos just perform this update once per frame, but it's easy to completely
-solve the system by running for more iterations.
+Proving that this method finds the direction of steepest descent, or that this problem is convex and so will always find a possible solution is left as an exercise to the reader :)
+
+The demos just perform this update once per frame, but it's easy to completely solve the system by running for more iterations.
 
 * Implementation & Extras
 It might help to look through the source code for the animations (embedded into

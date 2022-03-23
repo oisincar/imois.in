@@ -32,7 +32,7 @@
                             Thanks for playing!
                         </div>
                         <div class="modal-footer">
-                            <button type="button" onclick="copyResultsText()" class="btn btn-primary">Share (Copy)</button>
+                            <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary">Share</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
                         </div>
                     </div>
@@ -92,9 +92,9 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-        <script src="puzzles.js"></script>
-        <script src="guess_list.js"></script>
-        <script src="crosswordle.js"></script>
-
+        <script src="data/puzzles.js"></script>
+        <script src="data/guess_list.js"></script>
+        <script src="src/crosswordle_game.js"></script>
+        <script src="src/crosswordle.js"></script>
     </body>
 </html>

@@ -108,9 +108,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org5624f43" class="outline-2">
-<h2 id="org5624f43">Intro</h2>
-<div class="outline-text-2" id="text-org5624f43">
+        <div id="outline-container-org7ad78f1" class="outline-2">
+<h2 id="org7ad78f1">Intro</h2>
+<div class="outline-text-2" id="text-org7ad78f1">
 <script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script><script src="../../assets/js/TouchUtils.js"></script><script src="../../assets/js/procedural_animation/Global.js"></script><script src="../../assets/js/procedural_animation/Arm.js"></script><script src="../../assets/js/procedural_animation/ArmCanvas.js"></script><script src="../../assets/js/procedural_animation/Graph.js"></script><script src="../../assets/js/procedural_animation/GradientDescent2Link.js"></script><script src="../../assets/js/procedural_animation/TwoLinkArmAndGraph.js"></script><p>
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -134,9 +134,9 @@ source code in the inspector or find it on <a href="https://github.com/oisincar/
 </div>
 </div>
 
-<div id="outline-container-org5fdf661" class="outline-2">
-<h2 id="org5fdf661">What we'll make!</h2>
-<div class="outline-text-2" id="text-org5fdf661">
+<div id="outline-container-orgd32e9eb" class="outline-2">
+<h2 id="orgd32e9eb">What we'll make!</h2>
+<div class="outline-text-2" id="text-orgd32e9eb">
 <p>
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -208,9 +208,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 </div>
 </div>
 
-<div id="outline-container-org912e555" class="outline-2">
-<h2 id="org912e555">The problem: Kinematics</h2>
-<div class="outline-text-2" id="text-org912e555">
+<div id="outline-container-org919d9b9" class="outline-2">
+<h2 id="org919d9b9">The problem: Kinematics</h2>
+<div class="outline-text-2" id="text-org919d9b9">
 <p>
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -302,9 +302,9 @@ be pretty useful to have a way to solve it!
 </div>
 </div>
 
-<div id="outline-container-org3e5ef9d" class="outline-2">
-<h2 id="org3e5ef9d">Simple arms in 2d</h2>
-<div class="outline-text-2" id="text-org3e5ef9d">
+<div id="outline-container-org0990e24" class="outline-2">
+<h2 id="org0990e24">Simple arms in 2d</h2>
+<div class="outline-text-2" id="text-org0990e24">
 <p>
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -335,9 +335,9 @@ games is done.
 </div>
 </div>
 
-<div id="outline-container-orgf18341e" class="outline-2">
-<h2 id="orgf18341e">Harder problems.. I.e. Arms with more joints..?</h2>
-<div class="outline-text-2" id="text-orgf18341e">
+<div id="outline-container-orgd4619ac" class="outline-2">
+<h2 id="orgd4619ac">Harder problems.. I.e. Arms with more joints..?</h2>
+<div class="outline-text-2" id="text-orgd4619ac">
 <p>
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -364,9 +364,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 </div>
 </div>
 
-<div id="outline-container-org766e385" class="outline-2">
-<h2 id="org766e385">Forward Kinematics</h2>
-<div class="outline-text-2" id="text-org766e385">
+<div id="outline-container-org631918e" class="outline-2">
+<h2 id="org631918e">Forward Kinematics</h2>
+<div class="outline-text-2" id="text-org631918e">
 <p>
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -404,9 +404,9 @@ Hand_y &amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 </div>
 </div>
 
-<div id="outline-container-org99f1f36" class="outline-2">
-<h2 id="org99f1f36">Distance function</h2>
-<div class="outline-text-2" id="text-org99f1f36">
+<div id="outline-container-orgb4bf555" class="outline-2">
+<h2 id="orgb4bf555">Distance function</h2>
+<div class="outline-text-2" id="text-orgb4bf555">
 <p>
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -503,9 +503,9 @@ the angles there will bring our arm closest to our target ball.
 </div>
 </div>
 
-<div id="outline-container-orgc7ad336" class="outline-2">
-<h2 id="orgc7ad336">Gradient Descent</h2>
-<div class="outline-text-2" id="text-orgc7ad336">
+<div id="outline-container-org8674853" class="outline-2">
+<h2 id="org8674853">Gradient Descent</h2>
+<div class="outline-text-2" id="text-org8674853">
 <p>
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -554,20 +554,23 @@ And for any number of limbs.
 </p>
 
 <p>
-This method of improving is called 'gradient descent', because if we look at the
-surface, each time we update we travel down the surface until we reach the bottom.
+This method of improving iteratively is called 'gradient descent'. This can be visualized from Anim 2; we're essentially standing on a point on the surface, then finding the direction of steepest descent and moving a short distance.
+Repeating this process will, in many problems (including this one), always get us to a solution if it exists.
 </p>
 
 <p>
-The demos just perform this update once per frame, but it's easy to completely
-solve the system by running for more iterations.
+Proving that this method finds the direction of steepest descent, or that this problem is convex and so will always find a possible solution is left as an exercise to the reader :)
+</p>
+
+<p>
+The demos just perform this update once per frame, but it's easy to completely solve the system by running for more iterations.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga2d4dcf" class="outline-2">
-<h2 id="orga2d4dcf">Implementation &amp; Extras</h2>
-<div class="outline-text-2" id="text-orga2d4dcf">
+<div id="outline-container-org7ecd22d" class="outline-2">
+<h2 id="org7ecd22d">Implementation &amp; Extras</h2>
+<div class="outline-text-2" id="text-org7ecd22d">
 <p>
 It might help to look through the source code for the animations (embedded into
 this page), or available <a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js">here on Github</a>. You're free to lift this for anything,
@@ -599,7 +602,6 @@ ideas and shapes.
 </p>
 </div>
 </div>
-
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
