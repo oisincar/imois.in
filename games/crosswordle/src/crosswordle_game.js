@@ -8,32 +8,33 @@ const TILE_STATE_CORRECT = "correct";
 const TILE_STATE_ELSEWHERE = "wrong-location";
 const TILE_STATE_WRONG = "wrong";
 
-class CrosswordleGameState {
-    constructor(solution_array) {  // List of strings (rows), each of the same length
-        this.solution = solution_array;
+// Creates a simple dictionary to hold the game state
+function createGameState(solution_array) { // List of strings (rows), each of the same length
+    let state = {};
+    state.solution = solution_array;
 
-        this.dimX = solution_array[0].length;
-        this.dimY = solution_array.length;
+    state.dimX = solution_array[0].length;
+    state.dimY = solution_array.length;
 
-        this.tiles = {};
+    state.tiles = {};
 
-        for (let j = 0; j < this.dimY; j++) {
-            for (let i = 0; i < this.dimX; i++) {
-                var c = solution_array[j][i];
-                if (c != ' ') {
-                    this.tiles[ [i, j] ] = {
-                        solution: c,
-                        guesses: [],
-                        solved: false,
-                        position: [i, j],
-                    };
-                }
+    for (let j = 0; j < state.dimY; j++) {
+        for (let i = 0; i < state.dimX; i++) {
+            var c = solution_array[j][i];
+            if (c != ' ') {
+                state.tiles[ [i, j] ] = {
+                    solution: c,
+                    guesses: [],
+                    solved: false,
+                    position: [i, j],
+                };
             }
         }
-
-        this.gameplay_state = GAMEPLAY_STATE_ONGOING;
-        this.num_guesses = 0;
     }
+
+    state.gameplay_state = GAMEPLAY_STATE_ONGOING;
+    state.num_guesses = 0;
+    return state;
 }
 
 class CrosswordleGame {
@@ -45,18 +46,9 @@ class CrosswordleGame {
     static FromSolution(guess_list, solution_array) {
         return new CrosswordleGame(
             guess_list,
-            new CrosswordleGameState(solution_array)
+            createGameState(solution_array)
         );
     }
-
-    // static FromJson(json) {
-    //     const deserializeObject = (obj) => {
-    //         return new CrosswordleGameState(obj);
-    //     }
-    //     // const serializeObject = (obj) => {
-    //     //     return JSON.parse(JSON.stringify(rook));
-    //     // }
-    // }
 
     getTile(x, y) {
         if (!Number.isInteger(x) || !Number.isInteger(y))

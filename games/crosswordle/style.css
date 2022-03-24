@@ -72,3 +72,32 @@ body {
 /*     display: block; */
 /*     padding-top: 100%; */
 /* } */
+
+
+
+/* LOGO */
+.navbar-logo {
+  display: grid;
+  grid-template-columns: repeat(5, 12px);
+  grid-template-rows: repeat(4, 12px);
+  text-align: center;
+  /* height: 1em; */
+  /* width: 1em; */
+  gap: 1px;
+  font-size: 14px;
+  /*     W */
+  /* C r o s s */
+  /*     r     */
+  /*     d l e */
+  grid-template-areas:
+    "v v a y y"
+    "b c d e f"
+    "x x g z z"
+    "x x h i j";
+}
+.navbar-logo * {
+  display: inline-block;
+  vertical-align: middle;
+  /* line-height: normal; */
+  line-height: 10px;
+}

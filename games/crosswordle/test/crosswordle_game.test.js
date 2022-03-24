@@ -38,10 +38,6 @@ it('GameStateCreate', function () {
     assert.deepEqual(game.getTile(1, 0).position, [1, 0]);
 });
 
-
-// it('State SerializeDeserialize', function () {
-// });
-
 it('GuessNotAWord', function () {
     let game = gs.CrosswordleGame.FromSolution(gl.GUESS_LIST, [" cow"]);
 
@@ -170,4 +166,24 @@ it('Last Guess', function () {
     game.makeGuess(guess);
     assert.equal(game.state.gameplay_state, gs.GAMEPLAY_STATE_WON);
     console.log(game.getBoardBreakdown());
+});
+
+it('SerializeDeserialize', function () {
+    let game = gs.CrosswordleGame.FromSolution(gl.GUESS_LIST, ["run"]);
+
+    let guess = [
+        {'letter': 'n', 'position': [0, 0]},
+        {'letter': 'u', 'position': [1, 0]},
+        {'letter': 't', 'position': [2, 0]},
+    ];
+    // RUN
+    // NUT
+
+    var res = game.makeGuess(guess);
+
+    console.log(game.state);
+    var str = JSON.stringify(game.state);
+    console.log(str);
+    var data = JSON.parse(str);
+    console.log(data);
 });

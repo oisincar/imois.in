@@ -1,7 +1,7 @@
 "use strict";
 
 // ----------------------------------------------
-//                   SETUP
+//              LOAD PUZZLE DATA
 // ----------------------------------------------
 
 function getPuzzleNumber() {
@@ -11,17 +11,49 @@ function getPuzzleNumber() {
     return Math.floor(dayOffset) + 1;
 }
 
-let puzzle_number = getPuzzleNumber();
+let puzzle_number = getPuzzleNumber() - 1;
 console.log("Playing crosswordle #", puzzle_number);
-puzzle_number += 10;
 
-// TODO: Load from memory?
-// var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
+// Store history in dict that's json serialized
+//  {
+//     puzzle_number: ##,
+//     game_state: {..{...}}
+// }
+
+let prev_gamestate_str = localStorage.getItem('crosswordle-game-state');
+var game = null;
+
+if (prev_gamestate_str) {
+    let prev_gamestate = JSON.parse(prev_gamestate_str);
+
+    if (prev_gamestate.puzzle_number == puzzle_number) {
+        console.log("Same day! Loading");
+        console.log(prev_gamestate.game_state);
+        game = new CrosswordleGame(GUESS_LIST, prev_gamestate.game_state);
+    }
+}
+
 // var game = CrosswordleGame.FromSolution(GUESS_LIST, ["to", " r"]);
-var game = CrosswordleGame.FromSolution(GUESS_LIST, ["to"]);
 
-console.log(game);
+// No prev state found...
+if (!game) {
+    var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
+    // game = CrosswordleGame.FromSolution(GUESS_LIST, ["to"]);
+}
 
+function saveGameState() {
+    var data = {
+        "puzzle_number": puzzle_number,
+        "game_state": game.state,
+    };
+
+    localStorage.setItem('crosswordle-game-state', JSON.stringify(data));
+}
+
+
+// ---------------------------------------------------
+//                    BUILD GAME UI
+// ---------------------------------------------------
 
 function createGrid(parent_div_name) {
     const parent = document.getElementById(parent_div_name),
@@ -95,10 +127,43 @@ const jsConfetti = new JSConfetti();
 const FLIP_ANIMATION_DURATION = 500
 const DANCE_ANIMATION_DURATION = 500
 
+// ----------------------------------------
+//         LOAD GAME STATE (into UI)
+// ----------------------------------------
+
+for (const [tile_coord, tile_state] of Object.entries(game.state.tiles)) {
+    if (tile_state.guesses.length == 0) continue;
+
+    let entryTile = entry_dom_tiles[tile_coord];
+
+    let lastGuess = tile_state.guesses[tile_state.guesses.length - 1];
+    // Load only green squares
+    if (lastGuess.state == TILE_STATE_CORRECT) {
+        entryTile.textContent = lastGuess.letter;
+        entryTile.dataset.state = lastGuess.state;
+    }
+
+    // Load guesses
+    let infoTile = explanation_dom_tiles[tile_coord];
+    let guessSquares = infoTile.querySelectorAll('[data-state="empty"]');
+
+    console.log(guessSquares);
+    for (const [i, guess] of tile_state.guesses.entries()) {
+        guessSquares[i].textContent = guess.letter;
+        guessSquares[i].dataset.state = guess.state;
+    }
+}
+
+if (game.state.gameplay_state == GAMEPLAY_STATE_WON) {
+    win();
+}
+else if (game.state.gameplay_state == GAMEPLAY_STATE_LOST) {
+    loose();
+}
+
 // ----------------------------------------------
 //                   GAMEPLAY
 // ----------------------------------------------
-
 
 var ui_interaction_enabled = true;
 
@@ -277,6 +342,11 @@ function deleteKey() {
 function submitGuess() {
     // All letters entered...
 
+    // Nothing selected - do nothing
+    if (active_tiles.length == 0) {
+        return;
+    }
+
     // Reconstruct guess from changed & unchanged letters...
     let guess = [];
     for (let i = 0; i < active_tiles.length; i++) {
@@ -308,6 +378,9 @@ function submitGuess() {
     console.log(guess);
     let result = game.makeGuess(guess);
 
+    // Re-save game state
+    saveGameState();
+
     if (!result.success) {
         // Guess failed - explain why
         showAlert(result.reason);
@@ -337,7 +410,6 @@ function submitGuess() {
     }, time_until_animation_finishes);
 }
 
-// NOTE: Could modify this to allow deserialization of game state.
 function updateUI(tile_coord, letter_guessed, state, letter_ix_in_word) {
     var entryTile = entry_dom_tiles[tile_coord];
 
@@ -395,8 +467,6 @@ function shakeTiles(tiles) {
 }
 
 function win() {
-    // Ya win!
-    // showAlert("You Win", 5000);
     ui_interaction_enabled = false;
 
     jsConfetti.addConfetti({
@@ -416,7 +486,6 @@ function win() {
 }
 
 function loose() {
-    // Ya loose :c
     ui_interaction_enabled = false;
     showResultsModal(200);
 }
@@ -462,10 +531,6 @@ function share() {
     }
     let text = game.getBoardBreakdown().join("\n");
     let url = "https://imois.in/games/crosswordle";
-
-    console.log(title);
-    console.log(title + "\n" + text);
-    console.log(url);
 
     const share_button = document.getElementById("resultsModelShareButton");
 

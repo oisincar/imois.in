@@ -11,15 +11,16 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  padding: 1em;
+  /* padding: 1em; */
   font-size: clamp(.5rem, 2.5vmin, 1.5rem);
 }
 
 .keyboard {
   font-size: clamp(.5rem, 2.5vmin, 1.5rem);
   display: grid;
-  grid-template-columns: repeat(20, minmax(auto, 1.4em));
-  grid-auto-rows: 4em;
+  grid-template-columns: repeat(20, minmax(auto, 1.6em));
+  /* grid-auto-rows: 4em; */
+  grid-auto-rows: max(4em, 8vh);
   gap: .25em;
   justify-content: center;
 }
