@@ -460,7 +460,7 @@ function share() {
         title += "/?? guesses";
     }
     let text = game.getBoardBreakdown().join("\n");
-    let url = "imois.in/games/crosswordle";
+    let url = "https://imois.in/games/crosswordle";
 
 
     const share_button = document.getElementById("resultsModelShareButton");
@@ -480,7 +480,7 @@ function share() {
     if (navigator.share) {
         navigator.share({
             title: title,
-            text: title + "\n" + text + "\n",
+            text: title + "\n" + text,
             url: url,
         })
                  .then(() => resultCallback('Shared!'))
