@@ -411,13 +411,13 @@ function win() {
     danceTiles(Object.values(explanation_dom_tiles));
     danceTiles(Object.values(entry_dom_tiles));
 
-    showResultsModal(true, 1200);
+    showResultsModal(1200);
 }
 
 function loose() {
     // Ya loose :c
     ui_interaction_enabled = false;
-    showResultsModal(false, 200);
+    showResultsModal(200);
 }
 
 function showResultsModal(delay) {
@@ -448,6 +448,8 @@ function showResultsModal(delay) {
     // myModal.show();
 }
 
+var popover = null;
+
 function share() {
     console.log("share");
     let title = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses;
@@ -460,13 +462,17 @@ function share() {
     let text = game.getBoardBreakdown().join("\n");
     let url = "imois.in/games/crosswordle";
 
+
     const share_button = document.getElementById("resultsModelShareButton");
 
     let resultCallback = (msg => {
-        var popover = new bootstrap.Popover(share_button, {
+
+        if (popover) popover.dispose();
+
+        popover = new bootstrap.Popover(share_button, {
             content: msg,
             placement: "top",
-            // trigger: "focus",
+            trigger: "hover",
         });
         popover.show();
     });
@@ -474,7 +480,7 @@ function share() {
     if (navigator.share) {
         navigator.share({
             title: title,
-            text: text,
+            text: title + "\n" + text + "\n",
             url: url,
         })
                  .then(() => resultCallback('Shared!'))
