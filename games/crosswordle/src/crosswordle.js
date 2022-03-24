@@ -484,7 +484,7 @@ function share() {
         navigator.share({
             "url": url,
             "title": title,
-            "text:" title + "\n" + text,
+            "text": title + "\n" + text + "\n",
         })
                  .then(() => resultCallback('Shared!'))
                  .catch((error) => resultCallback('Sharing failed'));
