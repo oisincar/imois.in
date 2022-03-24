@@ -6,6 +6,7 @@ const GAMEPLAY_STATE_WON = "won";
 
 const TILE_STATE_CORRECT = "correct";
 const TILE_STATE_ELSEWHERE = "wrong-location";
+const TILE_STATE_ELSEWHERE_MAYBE = "wrong-location-maybe";
 const TILE_STATE_WRONG = "wrong";
 
 // Creates a simple dictionary to hold the game state
@@ -137,13 +138,43 @@ class CrosswordleGame {
             };
         });
 
-        // TODO: Update orange tiles to 'maybe orange' tiles...
+        // Update orange tiles to 'maybe orange' tiles...
+        var maybe_elsewhere_guesses = [];
+        for (let i = 0; i < guess_results.length; i++) {
+            if (guess_results[i].state == TILE_STATE_CORRECT) {
+                // This tile's being changed to correct...
+                let pos = guess_results[i].position;
+                let l = guess_results[i].letter;
+
+                let visible_letters =
+                    this.getWord(pos[0], pos[1], true).concat(
+                        this.getWord(pos[0], pos[1], false));
+
+                for (let l_ix = 0; l_ix < visible_letters.length; l_ix++) {
+                    // Go through past guesses for this tile
+                    var ts = this.state.tiles[visible_letters[l_ix]];
+                    for (let g_ix = 0; g_ix < ts.guesses.length; g_ix++) {
+                        var guess = ts.guesses[g_ix];
+                        if (guess.letter == l && guess.state == TILE_STATE_ELSEWHERE) {
+                            // Found a guess to update!
+                            guess.state = TILE_STATE_ELSEWHERE_MAYBE;
+                            maybe_elsewhere_guesses.push({
+                                'position': visible_letters[l_ix],
+                                'guess_ix': g_ix,
+                            });
+
+                        }
+                    }
+                }
+            }
+        }
 
         this.updateWinLose();
 
         return {
             "success": true,
             "tiles_changed": guess_results,
+            "maybe_elsewhere": maybe_elsewhere_guesses,
         }
     }
 

@@ -164,6 +164,20 @@ body {
   background-color: hsl(49, 51%, 47%);
 }
 
+.explanation_tile[data-state="wrong-location-maybe"] {
+  background-color: hsl(49, 51%, 47%);
+}
+.explanation_tile[data-state="wrong-location-maybe"]::after {
+  content: "?";
+}
+
+.explanation_tile[data-state="wrong-loc"] {
+  background-color: hsl(49, 51%, 47%);
+}
+.explanation_tile[data-state="wrong-loc"]::after {
+  content: "?";
+}
+
 .explanation_tile[data-state="correct"] {
   background-color: hsl(115, 29%, 43%);
 }

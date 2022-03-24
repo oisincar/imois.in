@@ -187,3 +187,21 @@ it('SerializeDeserialize', function () {
     var data = JSON.parse(str);
     console.log(data);
 });
+
+it('MaybeOrangeTile', function () {
+    let game = gs.CrosswordleGame.FromSolution(gl.GUESS_LIST, ["t ",
+                                                               "or"]);
+    // Guess 'on' vertically...
+    let guess = [
+        {'letter': 'o', 'position': [0, 0]},
+        {'letter': 'n', 'position': [0, 1]},
+    ];
+    var res = game.makeGuess(guess);
+
+    guess = [
+        {'letter': 'o', 'position': [0, 1]},
+        {'letter': 'r', 'position': [1, 1]},
+    ];
+    res = game.makeGuess(guess);
+    console.log(res);
+});

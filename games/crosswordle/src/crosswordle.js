@@ -5,10 +5,10 @@
 // ----------------------------------------------
 
 function getPuzzleNumber() {
-    // Crosswordle released 21th march 2022!
+    // Crosswordle released 21st march 2022!
     const dt = Date.now() - new Date(2022, 2, 21);
     const dayOffset = dt / (1000 * 60 * 60 * 24)
-    return Math.floor(dayOffset);
+    return Math.floor(dayOffset + 1); // Puzzle #1 on 21st..
 }
 
 let puzzle_number = getPuzzleNumber() - 0;
@@ -35,8 +35,18 @@ if (prev_gamestate_str) {
 
 // No prev state found...
 if (!game) {
-    var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
-    // game = CrosswordleGame.FromSolution(GUESS_LIST, ["to"]);
+    // var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
+    game = CrosswordleGame.FromSolution(GUESS_LIST, ["to",
+                                                     " r"]);
+}
+
+let has_warned_about_cookies = false;
+function warnAboutCookies() {
+    if (!has_warned_about_cookies) {
+        showAlert("This game requires cookies to save your progress. If you navigate away your progress will be lost!", 10000);
+
+        has_warned_about_cookies = true;
+    }
 }
 
 function saveGameState() {
@@ -44,8 +54,81 @@ function saveGameState() {
         "puzzle_number": puzzle_number,
         "game_state": game.state,
     };
+    if (typeof COOKIES_ACCEPTED !== 'undefined' && COOKIES_ACCEPTED) {
+        localStorage.setItem('crosswordle-game-state', JSON.stringify(data));
+    }
+    else {
+        warnAboutCookies();
+    }
+}
 
-    localStorage.setItem('crosswordle-game-state', JSON.stringify(data));
+function saveWinLoss(game_id, guesses, did_win) {
+    // Data is stored like:
+    // {
+    //     last_game_id: ##,
+    //     current_streak: ##,
+    //     longest_streak: ##,
+    //     win_perc: ##,
+    //     games: [{game_id: ##, num_guesses: ##, won: true/false}],
+    // }
+
+    if (typeof COOKIES_ACCEPTED === 'undefined' || !COOKIES_ACCEPTED) {
+        warnAboutCookies();
+        return;
+    }
+
+    let past_games_str = localStorage.getItem('crosswordle-past-games');
+    let past_games;
+    if (past_games_str)
+        past_games = JSON.parse(past_games_str);
+    else {
+        past_games = {
+            'last_game_id': -1,
+            'current_streak': 0,
+            'longest_streak': 0,
+            'win_perc': 0,
+            'games': [],
+        };
+    }
+
+    if (past_games.last_game_id >= game_id) {
+        console.log("Already saved...");
+    }
+    else {
+        let data = {
+            "game_id": game_id,
+            "guesses": guesses,
+            "won": did_win,
+        };
+        past_games.games.push(data);
+
+        // Update streaks...
+        if (past_games.last_game_id + 1 != game_id || !did_win) {
+            // Streak broken :c
+            past_games.current_streak = 0;
+        }
+
+        if (did_win) {
+            past_games.current_streak += 1;
+            if (past_games.current_streak > past_games.longest_streak) {
+                past_games.longest_streak = past_games.current_streak;
+            }
+        }
+
+        past_games.last_game_id = game_id;
+
+        // recalculate win%
+        let wins = 0;
+        for (var i = 0; i < past_games.games.length; i++) {
+            if (past_games.games[i].won) wins += 1;
+        }
+
+        past_games.win_perc = 100 * wins/past_games.games.length;
+
+        // Save it again!
+        localStorage.setItem('crosswordle-past-games', JSON.stringify(past_games));
+        console.log("Saved: ", past_games);
+    }
 }
 
 
@@ -145,7 +228,6 @@ for (const [tile_coord, tile_state] of Object.entries(game.state.tiles)) {
     let infoTile = explanation_dom_tiles[tile_coord];
     let guessSquares = infoTile.querySelectorAll('[data-state="empty"]');
 
-    console.log(guessSquares);
     for (const [i, guess] of tile_state.guesses.entries()) {
         guessSquares[i].textContent = guess.letter;
         guessSquares[i].dataset.state = guess.state;
@@ -392,6 +474,11 @@ function submitGuess() {
         updateUI(new_state.position, new_state.letter, new_state.state, ix);
     });
 
+    // Update orange tiles to maybe orange ones too...
+    result.maybe_elsewhere.forEach(data => {
+        updateElsewhereToMaybe(data.position, data.guess_ix);
+    });
+
     current_guess = {};
 
     var time_until_animation_finishes = (result.tiles_changed.length + 1) * FLIP_ANIMATION_DURATION * 0.5;
@@ -406,6 +493,16 @@ function submitGuess() {
             ui_interaction_enabled = true;
         }
     }, time_until_animation_finishes);
+}
+
+function updateElsewhereToMaybe(tile_coord, guess_index) {
+    console.log("Updating ", tile_coord, guess_index);
+
+    var infoTile = explanation_dom_tiles[tile_coord];
+    var guessSquares = infoTile.querySelectorAll('.explanation_tile');
+    console.log("Squares: ", guessSquares);
+
+    flipTile(guessSquares[guess_index], 0, TILE_STATE_ELSEWHERE_MAYBE);
 }
 
 function updateUI(tile_coord, letter_guessed, state, letter_ix_in_word) {
@@ -480,16 +577,32 @@ function win() {
     danceTiles(Object.values(explanation_dom_tiles));
     danceTiles(Object.values(entry_dom_tiles));
 
+    saveWinLoss(puzzle_number, game.state.num_guesses, true);
     showResultsModal(1200);
 }
 
 function loose() {
     ui_interaction_enabled = false;
+    saveWinLoss(puzzle_number, game.state.num_guesses, false);
     showResultsModal(200);
 }
 
 function showResultsModal(delay) {
     var title = document.getElementById("resultsModalTitle");
+
+    // Stats display
+    let past_games_str = localStorage.getItem('crosswordle-past-games');
+    if (past_games_str) {
+        let past_games = JSON.parse(past_games_str);
+
+        document.getElementById("resultPlayed").textContent = past_games.games.length;
+        document.getElementById("resultWinPerc").textContent = Math.round(past_games.win_perc);
+        document.getElementById("resultStreakCurrent").textContent = past_games.current_streak;
+        document.getElementById("resultStreakMax").textContent = past_games.longest_streak;
+    }
+
+    // Game results & share
+
     var txt = document.getElementById("resultsModalText");
     var emojis = document.getElementById("resultsModalEmojis");
     var share_button = document.getElementById("resultsModelShareButton");
