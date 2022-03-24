@@ -462,6 +462,9 @@ function share() {
     let text = game.getBoardBreakdown().join("\n");
     let url = "https://imois.in/games/crosswordle";
 
+    console.log(title);
+    console.log(title + "\n" + text);
+    console.log(url);
 
     const share_button = document.getElementById("resultsModelShareButton");
 
@@ -479,9 +482,9 @@ function share() {
 
     if (navigator.share) {
         navigator.share({
-            title: title,
-            text: title + "\n" + text,
-            url: "",
+            "url": url,
+            "title": title,
+            "text:" title + "\n" + text,
         })
                  .then(() => resultCallback('Shared!'))
                  .catch((error) => resultCallback('Sharing failed'));
