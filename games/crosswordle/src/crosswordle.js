@@ -8,10 +8,10 @@ function getPuzzleNumber() {
     // Crosswordle released 21th march 2022!
     const dt = Date.now() - new Date(2022, 2, 21);
     const dayOffset = dt / (1000 * 60 * 60 * 24)
-    return Math.floor(dayOffset) + 1;
+    return Math.floor(dayOffset);
 }
 
-let puzzle_number = getPuzzleNumber() - 1;
+let puzzle_number = getPuzzleNumber() - 0;
 console.log("Playing crosswordle #", puzzle_number);
 
 // Store history in dict that's json serialized
@@ -32,8 +32,6 @@ if (prev_gamestate_str) {
         game = new CrosswordleGame(GUESS_LIST, prev_gamestate.game_state);
     }
 }
-
-// var game = CrosswordleGame.FromSolution(GUESS_LIST, ["to", " r"]);
 
 // No prev state found...
 if (!game) {
@@ -494,21 +492,37 @@ function showResultsModal(delay) {
     var title = document.getElementById("resultsModalTitle");
     var txt = document.getElementById("resultsModalText");
     var emojis = document.getElementById("resultsModalEmojis");
-    // var copy_button = document.getElementById("resultsModelShareButton");
+    var share_button = document.getElementById("resultsModelShareButton");
     let modal = new bootstrap.Modal(document.getElementById('resultsModal'), {});
 
-    var did_win = (game.state.gameplay_state == GAMEPLAY_STATE_WON);
-    title.textContent = did_win ? "You WIN!" : "So close...";
+    title.textContent = "Crosswordle #" + puzzle_number + ": ";
 
-    var mainText = "Crosswordle #" + puzzle_number + ": ";
-    if (did_win) {
-        txt.textContent = mainText + game.state.num_guesses + " guesses";
+    var mainText = "";
+
+    // Game hasn't finished
+    if (game.state.gameplay_state == GAMEPLAY_STATE_ONGOING) {
+        // txt.textContent = "Current puzzle: " + game.state.num_guesses + " guesses.";
+        txt.textContent = "";
+        emojis.innerHTML = "";
+
+        // Hide share button
+        share_button.classList.add('invisible');
     }
     else {
-        txt.textContent = mainText + game.state.num_guesses + "/?? guesses";
+        var did_win = (game.state.gameplay_state == GAMEPLAY_STATE_WON);
+
+        if (did_win) {
+            txt.textContent = mainText + game.state.num_guesses + " guesses";
+        }
+        else {
+            txt.textContent = mainText + game.state.num_guesses + "/?? guesses";
+        }
+        emojis.innerHTML = game.getBoardBreakdown().join("<br>");
+
+        // Show share button
+        share_button.classList.remove('invisible');
     }
 
-    emojis.innerHTML = game.getBoardBreakdown().join("<br>");
 
     // copy_button.setAttribute("data-clipboard-text", getShareText());
 

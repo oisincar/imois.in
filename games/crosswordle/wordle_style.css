@@ -12,7 +12,7 @@ body {
   min-height: 100vh;
   margin: 0;
   /* padding: 1em; */
-  font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+  /* font-size: clamp(.5rem, 2.5vmin, 1.5rem); */
 }
 
 .keyboard {
@@ -20,13 +20,13 @@ body {
   display: grid;
   grid-template-columns: repeat(20, minmax(auto, 1.6em));
   /* grid-auto-rows: 4em; */
-  grid-auto-rows: max(4em, 8vh);
+  grid-auto-rows: max(4em, 7vh);
   gap: .25em;
   justify-content: center;
 }
 
 .keyboard-background-spacer {
-  height: 12em;  /* num_rows * grid-auto-rows */
+  height: max(12em, 21vh);  /* num_rows * grid-auto-rows */
 }
 
 .key {
