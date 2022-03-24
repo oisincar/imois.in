@@ -13,6 +13,7 @@ function getPuzzleNumber() {
 
 let puzzle_number = getPuzzleNumber();
 console.log("Playing crosswordle #", puzzle_number);
+puzzle_number += 10;
 
 // TODO: Load from memory?
 // var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
@@ -482,9 +483,8 @@ function share() {
 
     if (navigator.share) {
         navigator.share({
-            "url": url,
             "title": title,
-            "text": title + "\n" + text + "\n",
+            "text": title + "\n" + text + "\n" + url,
         })
                  .then(() => resultCallback('Shared!'))
                  .catch((error) => resultCallback('Sharing failed'));
