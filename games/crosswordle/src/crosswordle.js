@@ -35,9 +35,9 @@ if (prev_gamestate_str) {
 
 // No prev state found...
 if (!game) {
-    // var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
-    game = CrosswordleGame.FromSolution(GUESS_LIST, ["to",
-                                                     " r"]);
+    var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
+    // game = CrosswordleGame.FromSolution(GUESS_LIST, ["to",
+                                                     // " r"]);
 }
 
 let has_warned_about_cookies = false;
