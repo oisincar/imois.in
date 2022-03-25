@@ -37,7 +37,7 @@ if (prev_gamestate_str) {
 if (!game) {
     var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
     // game = CrosswordleGame.FromSolution(GUESS_LIST, ["to",
-                                                     // " r"]);
+    //                                                  " r"]);
 }
 
 let has_warned_about_cookies = false;
@@ -130,7 +130,6 @@ function saveWinLoss(game_id, guesses, did_win) {
         console.log("Saved: ", past_games);
     }
 }
-
 
 // ---------------------------------------------------
 //                    BUILD GAME UI
@@ -239,6 +238,42 @@ if (game.state.gameplay_state == GAMEPLAY_STATE_WON) {
 }
 else if (game.state.gameplay_state == GAMEPLAY_STATE_LOST) {
     loose();
+}
+
+
+// -------------------------------------------------
+//               Other UI setup
+// -------------------------------------------------
+
+// Setup share..!
+let a = document.getElementById('resultsModal');
+console.log("asotneuh", a);
+let clipboard = new ClipboardJS(document.getElementById('resultsModelCopyButton'), {
+  container: document.getElementById('resultsModal'),
+  text: function (trigger) {
+      return getShareText();
+  },
+});
+
+clipboard.on('success', function (e) {
+  console.info('Action:', e.action);
+  console.info('Text:', e.text);
+  console.info('Trigger:', e.trigger);
+
+  e.clearSelection();
+});
+
+clipboard.on('error', function (e) {
+  console.error('Action:', e.action);
+  console.error('Trigger:', e.trigger);
+});
+
+
+// Show user how to play if they haven't played before!
+if (!(localStorage.getItem('crosswordle-past-games')
+      || localStorage.getItem('crosswordle-game-state'))) {
+    let modal = new bootstrap.Modal(document.getElementById('explanationModal'), {});
+    modal.show();
 }
 
 // ----------------------------------------------
@@ -601,10 +636,11 @@ function showResultsModal(delay) {
         document.getElementById("resultStreakMax").textContent = past_games.longest_streak;
     }
 
-    // Game results & share
+    // Game results
 
     var txt = document.getElementById("resultsModalText");
     var emojis = document.getElementById("resultsModalEmojis");
+    var copy_button = document.getElementById("resultsModelCopyButton");
     var share_button = document.getElementById("resultsModelShareButton");
     let modal = new bootstrap.Modal(document.getElementById('resultsModal'), {});
 
@@ -618,7 +654,8 @@ function showResultsModal(delay) {
         txt.textContent = "";
         emojis.innerHTML = "";
 
-        // Hide share button
+        // Hide share buttons
+        copy_button.classList.add('invisible');
         share_button.classList.add('invisible');
     }
     else {
@@ -632,10 +669,13 @@ function showResultsModal(delay) {
         }
         emojis.innerHTML = game.getBoardBreakdown().join("<br>");
 
-        // Show share button
-        share_button.classList.remove('invisible');
+        // Show share buttons
+        copy_button.classList.remove('invisible');
+        if (navigator.share)
+            share_button.classList.remove('invisible');
     }
 
+    // Share
 
     // copy_button.setAttribute("data-clipboard-text", getShareText());
 
@@ -689,6 +729,18 @@ function share() {
         }, function() {
             resultCallback('Copy failed');
         });
+    }
+}
+
+function getShareText() {
+    if (game.state.gameplay_state == GAMEPLAY_STATE_WON) {
+        let text = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses + "\n";
+        text += game.getBoardBreakdown().join("\n") + "\n";
+        text += "https://imois.in/games/crosswordle";
+        return text;
+    }
+    else {
+        return "Game's not finished!";
     }
 }
 

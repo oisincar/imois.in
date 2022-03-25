@@ -122,7 +122,12 @@
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary btn-lg">Share</button>
+                            <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary btn-lg invisible">
+                                Share <i class="fa-solid fa-share-nodes"></i>
+                            </button>
+                            <button type="button" id="resultsModelCopyButton" data-clipboard-text="SANtHO" class="btn btn-primary btn-lg invisible">
+                                Copy Results <i class="fas fa-clipboard"></i>
+                            </button>
                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Done</button>
                         </div>
                     </div>
@@ -200,7 +205,7 @@
              }]
          });
         </script>
-
+        <script src="src/clipboard.min.js"></script>
 
         <script src="data/puzzles.js"></script>
         <script src="data/guess_list.js"></script>
