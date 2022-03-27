@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 23 Mar 2022 22:56:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgdf4ac53" class="outline-2"&gt;
-&lt;h2 id="orgdf4ac53"&gt;72 pencil sculpture&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdf4ac53"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 27 Mar 2022 03:29:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgacf5944" class="outline-2"&gt;
+&lt;h2 id="orgacf5944"&gt;72 pencil sculpture&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgacf5944"&gt;
 &lt;p&gt;
 The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture/pencils.html"&gt;George W. Hart&lt;/a&gt;, which features 72 pencils in a lattice.
 &lt;/p&gt;
 
 
-&lt;div id="org239648b" class="figure"&gt;
+&lt;div id="org377d96d" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/72pencils.jpg" alt="72pencils.jpg" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Photo credit: George W. Hart&lt;/p&gt;
 &lt;/div&gt;
@@ -16,7 +16,7 @@ The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture
 It's also possible to make a 'filled' version, with a pencil in every possible location - this one was made by a friend of mine and rendered in blender.
 &lt;/p&gt;
 
-&lt;div id="org2beb6d2" class="figure"&gt;
+&lt;div id="org4419913" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks.png" alt="sticks.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -26,9 +26,9 @@ We asked… what does the inside of this shape look like? Is it solid?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgff7847d" class="outline-2"&gt;
-&lt;h2 id="orgff7847d"&gt;It's not solid&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgff7847d"&gt;
+&lt;div id="outline-container-org46ba1ba" class="outline-2"&gt;
+&lt;h2 id="org46ba1ba"&gt;It's not solid&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org46ba1ba"&gt;
 &lt;p&gt;
 There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get this number, we take all pencils to be infinite in length, and the pattern to repeat indefinitely in all directions. This shape is a small part of a repeating pattern.
 &lt;/p&gt;
@@ -37,7 +37,7 @@ There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get
 Take any axis, and overlay a triangular grid like this. The green boxes tile the shape perfectly, and are all identical. The orange triangles are equilateral and are also identical.
 &lt;/p&gt;
 
-&lt;div id="org456d5ad" class="figure"&gt;
+&lt;div id="orgdcffa2d" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag0.png" alt="sticks_diag0.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -46,7 +46,7 @@ Zooming in, we can consider the area made up by the pencils in this axis.
 &lt;/p&gt;
 
 
-&lt;div id="org0eb6fd5" class="figure"&gt;
+&lt;div id="org46e80b8" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag1.png" alt="sticks_diag1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -64,19 +64,20 @@ I.e. The pencils don't fill space in the middle, $1/4$th is air.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8ae7407" class="outline-2"&gt;
-&lt;h2 id="org8ae7407"&gt;The empty space&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8ae7407"&gt;
+&lt;div id="outline-container-org3877b4a" class="outline-2"&gt;
+&lt;h2 id="org3877b4a"&gt;The empty space&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3877b4a"&gt;
 &lt;p&gt;
 This what that looks like! It's a pretty neat geometric pattern.
 &lt;/p&gt;
 
 
-&lt;div id="orgc4bcdbf" class="figure"&gt;
+&lt;div id="org73e072e" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/inside.png" alt="inside.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="The-What-of-the-What?"&gt;The What of the What?&lt;a class="anchor-link" href="https://imois.in/posts/the-chromatic-number-of-the-plane/#The-What-of-the-What?"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The Chromatic Number of the Plane, or &lt;a href="https://en.wikipedia.org/wiki/Hadwiger%E2%80%93Nelson_problem"&gt;Hadwiger-Nelson problem&lt;/a&gt; is a math problem originating in the 1950s, and one which remains unsolved. It came to my attention after a breakthrough by &lt;a href="https://arxiv.org/abs/1804.02385"&gt;Aubrey D.N.J. de Grey&lt;/a&gt; in 2018, and was subsequently the subject of &lt;a href="https://polymathprojects.org/2018/04/10/polymath-proposal-finding-simpler-unit-distance-graphs-of-chromatic-number-5/"&gt;Polymath Project 16&lt;/a&gt; - a collaborative effort from mathematicians from all over the world to improve upon this. I'll do my best to explain what all this means...&lt;/p&gt;
@@ -867,7 +868,7 @@ Wall time: 2min 58s
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/the-chromatic-number-of-the-plane/</guid><pubDate>Mon, 12 Apr 2021 21:52:03 GMT</pubDate></item><item><title>Random vectors and rotations in 3D</title><link>https://imois.in/posts/random-vectors-and-rotations-in-3d/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/the-chromatic-number-of-the-plane/</guid><pubDate>Mon, 12 Apr 2021 21:52:03 GMT</pubDate></item><item><title>Random vectors and rotations in 3D</title><link>https://imois.in/posts/random-vectors-and-rotations-in-3d/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Intro"&gt;Intro&lt;a class="anchor-link" href="https://imois.in/posts/random-vectors-and-rotations-in-3d/#Intro"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Generating truly random vectors, rotations, and more in 3 dimensions is possibly more challenging than you might think... Often the simple approach biases towards certain directions more than others.&lt;/p&gt;
@@ -1418,9 +1419,9 @@ $$g(V, \theta, \phi) = \frac{1}{2\pi^2}\sin^2{\frac{1}{2}V\sin{\theta}}$$&lt;p&g
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/random-vectors-and-rotations-in-3d/</guid><pubDate>Fri, 25 Sep 2020 15:50:23 GMT</pubDate></item><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgaf0455f" class="outline-2"&gt;
-&lt;h2 id="orgaf0455f"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgaf0455f"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/random-vectors-and-rotations-in-3d/</guid><pubDate>Fri, 25 Sep 2020 15:50:23 GMT</pubDate></item><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org03bb604" class="outline-2"&gt;
+&lt;h2 id="org03bb604"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org03bb604"&gt;
 &lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"&gt;&lt;/script&gt;&lt;p&gt;
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
@@ -1562,15 +1563,15 @@ We'll try to work out the ideal thickness of the coin in terms of it's radius (\
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org3fd483a" class="outline-2"&gt;
-&lt;h2 id="org3fd483a"&gt;Coin thickness?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3fd483a"&gt;
+&lt;div id="outline-container-orgd396326" class="outline-2"&gt;
+&lt;h2 id="orgd396326"&gt;Coin thickness?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd396326"&gt;
 &lt;p&gt;
 Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
 &lt;/p&gt;
 
 
-&lt;div id="org0edc4e8" class="figure"&gt;
+&lt;div id="org129ae31" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips.png" alt="baseline-flips.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.&lt;/p&gt;
 &lt;/div&gt;
@@ -1580,7 +1581,7 @@ Ok… Zoom and enhance! Running over 10x as many flips this time….
 &lt;/p&gt;
 
 
-&lt;div id="org8505383" class="figure"&gt;
+&lt;div id="orgc6ecd27" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The exact same as above, but over just thicknesses from 0.75r to 0.95r.&lt;/p&gt;
 &lt;/div&gt;
@@ -1591,9 +1592,9 @@ It seems our ideal coin has a thickness of \(0.85r\)! That's the point where the
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9f2545f" class="outline-2"&gt;
-&lt;h2 id="org9f2545f"&gt;Does the maths agree?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9f2545f"&gt;
+&lt;div id="outline-container-org7a13b8a" class="outline-2"&gt;
+&lt;h2 id="org7a13b8a"&gt;Does the maths agree?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7a13b8a"&gt;
 &lt;p&gt;
 Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
 &lt;/p&gt;
@@ -1614,15 +1615,15 @@ And simulating it gives an answer of \(0.85r\)?? Right in the middle… The seco
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org32a3758" class="outline-2"&gt;
-&lt;h2 id="org32a3758"&gt;The end of the story?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org32a3758"&gt;
+&lt;div id="outline-container-orgb824ea9" class="outline-2"&gt;
+&lt;h2 id="orgb824ea9"&gt;The end of the story?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb824ea9"&gt;
 &lt;p&gt;
 So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
 &lt;/p&gt;
 
 
-&lt;div id="org9697c71" class="figure"&gt;
+&lt;div id="orgb2aaf1d" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).&lt;/p&gt;
 &lt;/div&gt;
@@ -1636,7 +1637,7 @@ What about the throw spin? Can you bias a 3 sided coin by throwing it with more 
 &lt;/p&gt;
 
 
-&lt;div id="org9759774" class="figure"&gt;
+&lt;div id="orgb76b30b" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;What's going on?? The chance of sides changes dramatically with increased spin on the coin.&lt;/p&gt;
 &lt;/div&gt;
@@ -1652,9 +1653,9 @@ Maybe this could be a useful trick… Get your friends to pick between heads/tai
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1ae8e9a" class="outline-2"&gt;
-&lt;h2 id="org1ae8e9a"&gt;Disclaimer!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1ae8e9a"&gt;
+&lt;div id="outline-container-org7492aac" class="outline-2"&gt;
+&lt;h2 id="org7492aac"&gt;Disclaimer!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7492aac"&gt;
 &lt;p&gt;
 The results on this page are only as good as the physics simulation is. This page uses &lt;a href="https://lo-th.github.io/Oimo.js/#basic"&gt;Oimo.js&lt;/a&gt; for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
 &lt;/p&gt;
@@ -1665,16 +1666,17 @@ Also, picking truly random rotations is &lt;i&gt;hard&lt;/i&gt;. &lt;a href="htt
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5f57070" class="outline-2"&gt;
-&lt;h2 id="org5f57070"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5f57070"&gt;
+&lt;div id="outline-container-org22dfd10" class="outline-2"&gt;
+&lt;h2 id="org22dfd10"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org22dfd10"&gt;
 &lt;p&gt;
 After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org6f6a44b" class="outline-2"&gt;
-&lt;h2 id="org6f6a44b"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6f6a44b"&gt;
+&lt;/div&gt;
+</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8d242d0" class="outline-2"&gt;
+&lt;h2 id="org8d242d0"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8d242d0"&gt;
 &lt;p&gt;
 This game was sent to me by Lucy Deacon (Link to be added :P), who found it in &lt;a href="https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&amp;amp;hl=en_IE"&gt;Simon Tatham's Puzzles&lt;/a&gt;
 under the name 'Flip' around August of 2018. For the few months thereafter
@@ -1685,9 +1687,9 @@ boards. This post contains some of the stuff we managed to work out!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbc101ab" class="outline-2"&gt;
-&lt;h2 id="orgbc101ab"&gt;The Game&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbc101ab"&gt;
+&lt;div id="outline-container-orga55743d" class="outline-2"&gt;
+&lt;h2 id="orga55743d"&gt;The Game&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga55743d"&gt;
 &lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/utils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOut.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOutState.js"&gt;&lt;/script&gt;&lt;p&gt;
 &lt;span class="underline"&gt;Lights Out&lt;/span&gt; is a game released by Tiger
 Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
@@ -1722,9 +1724,9 @@ and instantly know how to solve it or even if can be solved at all?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb4b966c" class="outline-2"&gt;
-&lt;h2 id="orgb4b966c"&gt;Impossible boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb4b966c"&gt;
+&lt;div id="outline-container-orgac388ad" class="outline-2"&gt;
+&lt;h2 id="orgac388ad"&gt;Impossible boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgac388ad"&gt;
 &lt;p&gt;
 First of all, not all boards are solvable. A 2x1 board, for example, will never
 let you click on only a single tile. If it starts with just one light on,
@@ -1745,9 +1747,9 @@ All other boards in this page are solvable though… So don't worry :P
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7b700b5" class="outline-2"&gt;
-&lt;h2 id="org7b700b5"&gt;State&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7b700b5"&gt;
+&lt;div id="outline-container-orga7f7b2f" class="outline-2"&gt;
+&lt;h2 id="orga7f7b2f"&gt;State&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga7f7b2f"&gt;
 &lt;p&gt;
 The first thing to notice is that tapping on the same square twice is the same
 as not tapping at all, and also that the order you tap the squares doesn't make
@@ -1782,9 +1784,9 @@ We'd be able to solve the game.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd838e85" class="outline-2"&gt;
-&lt;h2 id="orgd838e85"&gt;Forward mapping&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd838e85"&gt;
+&lt;div id="outline-container-org5cb111e" class="outline-2"&gt;
+&lt;h2 id="org5cb111e"&gt;Forward mapping&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5cb111e"&gt;
 &lt;p&gt;
 It's not too hard to do the reverse: I.e. take the tapped squares (red) and work out the
 corresponding board position. There's also only one mapping from this red
@@ -1846,9 +1848,9 @@ corresponding to every board state - and all board states are solvable.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgaef5121" class="outline-2"&gt;
-&lt;h2 id="orgaef5121"&gt;Unsolvable boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgaef5121"&gt;
+&lt;div id="outline-container-org1b716d3" class="outline-2"&gt;
+&lt;h2 id="org1b716d3"&gt;Unsolvable boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1b716d3"&gt;
 &lt;p&gt;
 If there is an unsolvable configuration of the board, i.e. a board state which
 has no taps that leaves all the lights off, then it must exist in the null space
@@ -1862,7 +1864,7 @@ always solvable, and which have many configurations that make them unsolvable.
 &lt;/p&gt;
 
 
-&lt;div id="org1a9874d" class="figure"&gt;
+&lt;div id="org2ee7f63" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph20.png" alt="graph20.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;What board sizes are solvable? If a boardsize is solvable completely, it's corresponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.&lt;/p&gt;
 &lt;/div&gt;
@@ -1876,9 +1878,9 @@ boards too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge77554f" class="outline-2"&gt;
-&lt;h2 id="orge77554f"&gt;Nullity?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge77554f"&gt;
+&lt;div id="outline-container-org845c8d9" class="outline-2"&gt;
+&lt;h2 id="org845c8d9"&gt;Nullity?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org845c8d9"&gt;
 &lt;p&gt;
 It's interesting to mess around with one of the boards with maximum nullity.
 Here's a 4x4 board. It's far easier than others because if there is a solution
@@ -1906,9 +1908,9 @@ unsolvable ones.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1c1b825" class="outline-2"&gt;
-&lt;h2 id="org1c1b825"&gt;'Cascading'&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1c1b825"&gt;
+&lt;div id="outline-container-org03c6664" class="outline-2"&gt;
+&lt;h2 id="org03c6664"&gt;'Cascading'&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org03c6664"&gt;
 &lt;p&gt;
 One (human) way of trying to solve a lights-out puzzle is to always try to
 click under any light. If you go through the board row-by-row downwards,
@@ -2005,9 +2007,9 @@ setupCascade(h, 100);
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org08fbfa4" class="outline-2"&gt;
-&lt;h2 id="org08fbfa4"&gt;Maximum nullity&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org08fbfa4"&gt;
+&lt;div id="outline-container-org8ce9258" class="outline-2"&gt;
+&lt;h2 id="org8ce9258"&gt;Maximum nullity&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8ce9258"&gt;
 &lt;p&gt;
 An interesting result from this is there is a maximum nullity for any board.
 &lt;/p&gt;
@@ -2048,9 +2050,9 @@ nullity is \(min(m,n)\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga409362" class="outline-2"&gt;
-&lt;h2 id="orga409362"&gt;Bitops&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga409362"&gt;
+&lt;div id="outline-container-org68de839" class="outline-2"&gt;
+&lt;h2 id="org68de839"&gt;Bitops&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org68de839"&gt;
 &lt;p&gt;
 In order to speed up calculating large boards, we wrote some Very Fast&lt;sup&gt;tm&lt;/sup&gt; c++
 matrix code, to perform all binary field arithmetic in parallel with bitops.
@@ -2081,9 +2083,9 @@ This allows us to perform up to 32 'clicks' at once, in very few bit operations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0a990bf" class="outline-2"&gt;
-&lt;h2 id="org0a990bf"&gt;Low memory cascade&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0a990bf"&gt;
+&lt;div id="outline-container-orgbbd7a07" class="outline-2"&gt;
+&lt;h2 id="orgbbd7a07"&gt;Low memory cascade&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbbd7a07"&gt;
 &lt;p&gt;
 Although this cascade is fast, it requires a lot of memory. In order to generate
 the matrix for, e.g. a \(4000 \times 4000\) board, it requires 4000 boards, or the
@@ -2113,9 +2115,9 @@ vs the pre-cascading programs and our initial python/numpy code too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2e07cd1" class="outline-2"&gt;
-&lt;h2 id="org2e07cd1"&gt;Lots of boards&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2e07cd1"&gt;
+&lt;div id="outline-container-orgfce2f3d" class="outline-2"&gt;
+&lt;h2 id="orgfce2f3d"&gt;Lots of boards&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfce2f3d"&gt;
 &lt;p&gt;
 In order to calculate nullity for a few million boards… We could compute
 the matrices for all boards of a certain width simultaneously. Cascade once,
@@ -2129,23 +2131,23 @@ optimizations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgff1713f" class="outline-2"&gt;
-&lt;h2 id="orgff1713f"&gt;Results!!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgff1713f"&gt;
+&lt;div id="outline-container-org9e15cd5" class="outline-2"&gt;
+&lt;h2 id="org9e15cd5"&gt;Results!!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9e15cd5"&gt;
 &lt;p&gt;
 The resulting images for different sizes.
 &lt;/p&gt;
 
 
-&lt;div id="org98958da" class="figure"&gt;
+&lt;div id="org71f53c6" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph128.png" alt="graph128.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="org4f0767c" class="figure"&gt;
+&lt;div id="orgfb21bc0" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph512.png" alt="graph512.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="org52cb7e0" class="figure"&gt;
+&lt;div id="org5a51114" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph4096.png" alt="graph4096.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -2224,13 +2226,13 @@ These are all surprisingly structured! Often near 2&lt;sup&gt;n&lt;/sup&gt;-1 or
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgea24323" class="outline-2"&gt;
-&lt;h2 id="orgea24323"&gt;Other…&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgea24323"&gt;
+&lt;div id="outline-container-org968cc30" class="outline-2"&gt;
+&lt;h2 id="org968cc30"&gt;Other…&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org968cc30"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5fac6ac" class="outline-3"&gt;
-&lt;h3 id="org5fac6ac"&gt;Looping patterns?&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5fac6ac"&gt;
+&lt;div id="outline-container-org6d742b3" class="outline-3"&gt;
+&lt;h3 id="org6d742b3"&gt;Looping patterns?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6d742b3"&gt;
 &lt;p&gt;
 Since a cascade operation can be written as a matrix multiplication (if the
 board has width \(m\), the resulting cascade matrix is \(2m\times 2m\)), we can
@@ -2255,9 +2257,9 @@ Funnily, we both came up with this idea coincidentally within a few minutes of e
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4df23e9" class="outline-3"&gt;
-&lt;h3 id="org4df23e9"&gt;Sequences&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4df23e9"&gt;
+&lt;div id="outline-container-org61e3bbb" class="outline-3"&gt;
+&lt;h3 id="org61e3bbb"&gt;Sequences&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org61e3bbb"&gt;
 &lt;p&gt;
 Some board widths are surprisingly solvable/ unsolvable. We found boards of size
 (\(10 \times 31n-1\)) are all unsolvable (nullity of 10) to as high as we could
@@ -2270,9 +2272,9 @@ Several other widths are surprisingly solvable, 10 (other than above), 81, and m
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org908eedb" class="outline-3"&gt;
-&lt;h3 id="org908eedb"&gt;OEIS&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org908eedb"&gt;
+&lt;div id="outline-container-orge5f0b94" class="outline-3"&gt;
+&lt;h3 id="orge5f0b94"&gt;OEIS&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge5f0b94"&gt;
 &lt;p&gt;
 The Online Encyclopedia of Integer Sequences is a searchable database
 containing, well, integer sequences. After finishing up, we tried searching it
@@ -2289,9 +2291,9 @@ the OEIS sequence is 2363, while ours is ~4100.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd9fc0b2" class="outline-2"&gt;
-&lt;h2 id="orgd9fc0b2"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd9fc0b2"&gt;
+&lt;div id="outline-container-org5d87caa" class="outline-2"&gt;
+&lt;h2 id="org5d87caa"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5d87caa"&gt;
 &lt;p&gt;
 I think we both agree we haven't completely figured out as much as we'd like…
 The patterns are still somewhat a mystery, even if we've found some logic in
@@ -2304,9 +2306,10 @@ on &lt;a href="https://github.com/oisincar/imois.in/tree/master/assets/js/lights
 that's written in english…).
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7ad78f1" class="outline-2"&gt;
-&lt;h2 id="org7ad78f1"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7ad78f1"&gt;
+&lt;/div&gt;
+</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org15beb8f" class="outline-2"&gt;
+&lt;h2 id="org15beb8f"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org15beb8f"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -2330,9 +2333,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd32e9eb" class="outline-2"&gt;
-&lt;h2 id="orgd32e9eb"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd32e9eb"&gt;
+&lt;div id="outline-container-org3e2a604" class="outline-2"&gt;
+&lt;h2 id="org3e2a604"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3e2a604"&gt;
 &lt;p&gt;
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -2404,9 +2407,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org919d9b9" class="outline-2"&gt;
-&lt;h2 id="org919d9b9"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org919d9b9"&gt;
+&lt;div id="outline-container-org5840599" class="outline-2"&gt;
+&lt;h2 id="org5840599"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5840599"&gt;
 &lt;p&gt;
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -2498,9 +2501,9 @@ be pretty useful to have a way to solve it!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0990e24" class="outline-2"&gt;
-&lt;h2 id="org0990e24"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0990e24"&gt;
+&lt;div id="outline-container-org3d0e4e5" class="outline-2"&gt;
+&lt;h2 id="org3d0e4e5"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3d0e4e5"&gt;
 &lt;p&gt;
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -2531,9 +2534,9 @@ games is done.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd4619ac" class="outline-2"&gt;
-&lt;h2 id="orgd4619ac"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd4619ac"&gt;
+&lt;div id="outline-container-org16a3697" class="outline-2"&gt;
+&lt;h2 id="org16a3697"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org16a3697"&gt;
 &lt;p&gt;
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -2560,9 +2563,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org631918e" class="outline-2"&gt;
-&lt;h2 id="org631918e"&gt;Forward Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org631918e"&gt;
+&lt;div id="outline-container-org563edd6" class="outline-2"&gt;
+&lt;h2 id="org563edd6"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org563edd6"&gt;
 &lt;p&gt;
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -2600,9 +2603,9 @@ Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb4bf555" class="outline-2"&gt;
-&lt;h2 id="orgb4bf555"&gt;Distance function&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb4bf555"&gt;
+&lt;div id="outline-container-org5bdaf3c" class="outline-2"&gt;
+&lt;h2 id="org5bdaf3c"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5bdaf3c"&gt;
 &lt;p&gt;
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -2699,9 +2702,9 @@ the angles there will bring our arm closest to our target ball.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8674853" class="outline-2"&gt;
-&lt;h2 id="org8674853"&gt;Gradient Descent&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8674853"&gt;
+&lt;div id="outline-container-org63ed0cf" class="outline-2"&gt;
+&lt;h2 id="org63ed0cf"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org63ed0cf"&gt;
 &lt;p&gt;
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -2764,9 +2767,9 @@ The demos just perform this update once per frame, but it's easy to completely s
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7ecd22d" class="outline-2"&gt;
-&lt;h2 id="org7ecd22d"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7ecd22d"&gt;
+&lt;div id="outline-container-orgb29ce6b" class="outline-2"&gt;
+&lt;h2 id="orgb29ce6b"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb29ce6b"&gt;
 &lt;p&gt;
 It might help to look through the source code for the animations (embedded into
 this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,
@@ -2797,9 +2800,10 @@ some core ideas and a light animation, or &lt;a href="https://imois.in/posts/pro
 ideas and shapes.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org3063849" class="outline-2"&gt;
-&lt;h2 id="org3063849"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3063849"&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7535a17" class="outline-2"&gt;
+&lt;h2 id="org7535a17"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7535a17"&gt;
 &lt;p&gt;
 At EJC last year (2018), I came across Jack Boyce's siteswap questions, which
 can be found &lt;a href="http://www.juggling.org/help/siteswap/tests/test-boyce.html"&gt;HERE!&lt;/a&gt; I'd highly recommend giving them a go. They start off doable,
@@ -2820,9 +2824,9 @@ it up and posting it now… 9 months later.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcd0ba78" class="outline-2"&gt;
-&lt;h2 id="orgcd0ba78"&gt;q1&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcd0ba78"&gt;
+&lt;div id="outline-container-org877c961" class="outline-2"&gt;
+&lt;h2 id="org877c961"&gt;q1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org877c961"&gt;
 &lt;p&gt;
 &lt;i&gt;I am juggling \(868671\) with clubs (yeah, right).  How many do I have?&lt;/i&gt;
 &lt;/p&gt;
@@ -2842,9 +2846,9 @@ Answer: 6
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org829b131" class="outline-2"&gt;
-&lt;h2 id="org829b131"&gt;q2&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org829b131"&gt;
+&lt;div id="outline-container-org0cc68a8" class="outline-2"&gt;
+&lt;h2 id="org0cc68a8"&gt;q2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0cc68a8"&gt;
 &lt;p&gt;
 &lt;i&gt;I have a bowling ball that I can only throw as a site swap '\(3\)' throw. Which&lt;/i&gt;
 &lt;i&gt;of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:&lt;/i&gt;
@@ -2867,9 +2871,9 @@ This is only c).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org94b5d65" class="outline-2"&gt;
-&lt;h2 id="org94b5d65"&gt;q3&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org94b5d65"&gt;
+&lt;div id="outline-container-org1227dbf" class="outline-2"&gt;
+&lt;h2 id="org1227dbf"&gt;q3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1227dbf"&gt;
 &lt;p&gt;
 &lt;i&gt;You are doing a 4 ball fountain and decide you want to switch into&lt;/i&gt;
 &lt;i&gt;741, an excited state site swap.  You can't just start throwing:&lt;/i&gt;
@@ -2883,14 +2887,14 @@ A 4 ball base fountain occurs in the base state of 4 balls, which can be written
 as:
 &lt;/p&gt;
 
-&lt;pre class="example" id="org60f860e"&gt;
+&lt;pre class="example" id="orgb0607d1"&gt;
 4|xxxx
 &lt;/pre&gt;
 
 &lt;p&gt;
 741 occurs in state:
 &lt;/p&gt;
-&lt;pre class="example" id="orgee44443"&gt;
+&lt;pre class="example" id="org103bd87"&gt;
 7|xx_x__x
 4|x_xx_x
 1|xxx_x
@@ -2903,9 +2907,9 @@ away from the base state.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgee19fe1" class="outline-2"&gt;
-&lt;h2 id="orgee19fe1"&gt;q4&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgee19fe1"&gt;
+&lt;div id="outline-container-org6961d82" class="outline-2"&gt;
+&lt;h2 id="org6961d82"&gt;q4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6961d82"&gt;
 &lt;p&gt;
 &lt;i&gt;You want to get back into the fountain, from 741.  What is the&lt;/i&gt;
 &lt;i&gt;shortest connecting (ending) sequence in this direction?&lt;/i&gt;
@@ -2925,9 +2929,9 @@ into and out of any siteswap must be, itself, a valid (ground state) pattern.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6efd705" class="outline-2"&gt;
-&lt;h2 id="org6efd705"&gt;q5&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6efd705"&gt;
+&lt;div id="outline-container-org57e4d42" class="outline-2"&gt;
+&lt;h2 id="org57e4d42"&gt;q5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org57e4d42"&gt;
 &lt;p&gt;
 &lt;i&gt;Go from the 4 ball fountain to 714.  What are the shortest&lt;/i&gt;
 &lt;i&gt;connecting sequences (both directions)?&lt;/i&gt;
@@ -2938,7 +2942,7 @@ As before we can work out the state that 714 starts in.
 &lt;/p&gt;
 
 
-&lt;pre class="example" id="orgec9c830"&gt;
+&lt;pre class="example" id="orgc6a7cc9"&gt;
 7|x_xx__x
 1|xxx__x
 4|xx_xx
@@ -2954,7 +2958,7 @@ single throw, so lets look at transitions of length 2.
 &lt;p&gt;
 I.e. finding the throws a, b here:
 &lt;/p&gt;
-&lt;pre class="example" id="org244a88e"&gt;
+&lt;pre class="example" id="orgf86f391"&gt;
 4|xxxx
 a|
 b|xx_xx
@@ -2971,9 +2975,9 @@ will work because \(552\) and \(642\) are valid siteswaps.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org19b945f" class="outline-2"&gt;
-&lt;h2 id="org19b945f"&gt;q6&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org19b945f"&gt;
+&lt;div id="outline-container-orgd38efc3" class="outline-2"&gt;
+&lt;h2 id="orgd38efc3"&gt;q6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd38efc3"&gt;
 &lt;p&gt;
 &lt;i&gt;You are already doing \(741\) and want to switch directly into \(714\).&lt;/i&gt;
 &lt;i&gt;What is the shortest sequence for doing so?  [You could just&lt;/i&gt;
@@ -2994,9 +2998,9 @@ an extra \(5\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge274faa" class="outline-2"&gt;
-&lt;h2 id="orge274faa"&gt;q7&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge274faa"&gt;
+&lt;div id="outline-container-orgfa31f32" class="outline-2"&gt;
+&lt;h2 id="orgfa31f32"&gt;q7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfa31f32"&gt;
 &lt;p&gt;
 &lt;i&gt;Is the trick \(66671777161\) simple?  If not, which portion of the&lt;/i&gt;
 &lt;i&gt;pattern can be repeated within the larger trick?&lt;/i&gt;
@@ -3062,16 +3066,16 @@ Then, we can get the tables for both siteswaps we're interested in.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga80e251" class="outline-3"&gt;
-&lt;h3 id="orga80e251"&gt;66671777161&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga80e251"&gt;
+&lt;div id="outline-container-orgb6c50d7" class="outline-3"&gt;
+&lt;h3 id="orgb6c50d7"&gt;66671777161&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb6c50d7"&gt;
 &lt;p&gt;
 Here, there are two states that occur more than once. I've marked the pairs here
 as a and b. This means you can juggle the patterns between the As (I.e. 6671,
 and 7771616), and Bs (717771, and 61666)
 &lt;/p&gt;
 
-&lt;pre class="example" id="orgdeb976e"&gt;
+&lt;pre class="example" id="orga627b7a"&gt;
 1| xxxxx__
 6| xxxx_x_ A
 6| xxx_xx_
@@ -3087,13 +3091,13 @@ and 7771616), and Bs (717771, and 61666)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge1dfcc8" class="outline-3"&gt;
-&lt;h3 id="orge1dfcc8"&gt;6316131&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge1dfcc8"&gt;
+&lt;div id="outline-container-orgf66ea7b" class="outline-3"&gt;
+&lt;h3 id="orgf66ea7b"&gt;6316131&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf66ea7b"&gt;
 &lt;p&gt;
 Here, this siteswap has no duplicated states, and is therefore prime.
 &lt;/p&gt;
-&lt;pre class="example" id="orge6c37b6"&gt;
+&lt;pre class="example" id="orge1ee381"&gt;
 1| xxx___
 6| xx___x
 3| x_x_x_
@@ -3116,7 +3120,7 @@ resulting graphs are shown below.
 
 
 
-&lt;div id="orge5ecf39" class="figure"&gt;
+&lt;div id="orgc4999f2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss1.png" alt="ss1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Siteswap map for 66671777161. We can see the two states we found (labeled A and B) before in the nodes with 2 input and output edges.&lt;/p&gt;
 &lt;/div&gt;
@@ -3127,7 +3131,7 @@ siteswap, which are (hopefully) just the 4 we found before. Pretty neat!
 &lt;/p&gt;
 
 
-&lt;div id="org1a20e98" class="figure"&gt;
+&lt;div id="orgaa97953" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss2.png" alt="ss2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;Siteswap map for 6316131&lt;/p&gt;
 &lt;/div&gt;
@@ -3139,9 +3143,9 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc50eaf4" class="outline-2"&gt;
-&lt;h2 id="orgc50eaf4"&gt;q8&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc50eaf4"&gt;
+&lt;div id="outline-container-orgce95e95" class="outline-2"&gt;
+&lt;h2 id="orgce95e95"&gt;q8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgce95e95"&gt;
 &lt;p&gt;
 &lt;i&gt;There is 1 ground state 5 ball trick of length 1 (5), 2 of length 2&lt;/i&gt;
 &lt;i&gt;(55, 64), 6 of length 3 (555, 564, 645, 663, 744, 753), 24 of length&lt;/i&gt;
@@ -3152,7 +3156,7 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/p&gt;
 
 
-&lt;div id="org91340cc" class="figure"&gt;
+&lt;div id="org9376d96" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_1.png" alt="q8_1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;A continuous 5 ball cascade, breaking for a period 4 siteswap, before resuming.&lt;/p&gt;
 &lt;/div&gt;
@@ -3175,7 +3179,7 @@ the following 5 because they already have arrows connecting to them.
 &lt;/p&gt;
 
 
-&lt;div id="org3bc7d07" class="figure"&gt;
+&lt;div id="org1267acc" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_2.png" alt="q8_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;There are 4 possible values for a, shown in red.&lt;/p&gt;
 &lt;/div&gt;
@@ -3190,9 +3194,9 @@ of throws (until we start getting 0s… See next q).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6c2484e" class="outline-2"&gt;
-&lt;h2 id="org6c2484e"&gt;q9&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6c2484e"&gt;
+&lt;div id="outline-container-org31fdbde" class="outline-2"&gt;
+&lt;h2 id="org31fdbde"&gt;q9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org31fdbde"&gt;
 &lt;p&gt;
 &lt;i&gt;There are not 7! = 5040 ground state 5 ball patterns of length 7,&lt;/i&gt;
 &lt;i&gt;as the above pattern would suggest (the actual number is around&lt;/i&gt;
@@ -3218,7 +3222,7 @@ be directed.
 &lt;/p&gt;
 
 
-&lt;div id="org7aceed3" class="figure"&gt;
+&lt;div id="org5c017a3" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_1.png" alt="q9_1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -3233,7 +3237,7 @@ Where this falls apart however is for longer sequences..
 &lt;/p&gt;
 
 
-&lt;div id="org4a91092" class="figure"&gt;
+&lt;div id="org9458d55" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_2.png" alt="q9_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;f or g could be a 0, and so the arrows in blue may not be possible. This is the problem with our current method.&lt;/p&gt;
 &lt;/div&gt;
@@ -3257,11 +3261,11 @@ Here's an example of this insertion… We can create all siteswaps with 0s
 similarly by adding gaps into siteswaps without 0s.
 &lt;/p&gt;
 
-&lt;div id="org450f8af" class="figure"&gt;
+&lt;div id="orgc161356" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_3.png" alt="q9_3.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="org0277f17" class="figure"&gt;
+&lt;div id="org7000636" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_4.png" alt="q9_4.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 8: &lt;/span&gt;Siteswap 504 has exactly the same arrow placement as 33, but with an added 0. All siteswaps with 0s have exactly one siteswap without 0s they map to.&lt;/p&gt;
 &lt;/div&gt;
@@ -3278,9 +3282,9 @@ So with this in mind, we can calculate the total number of siteswaps of length
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5431f1e" class="outline-3"&gt;
-&lt;h3 id="org5431f1e"&gt;Arrow permutations:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5431f1e"&gt;
+&lt;div id="outline-container-orgabb1da5" class="outline-3"&gt;
+&lt;h3 id="orgabb1da5"&gt;Arrow permutations:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgabb1da5"&gt;
 &lt;p&gt;
 To work out the permutations of length l, we can use the method we had before.
 We go through the catches, and work out where the throw could've come from. Now
@@ -3294,7 +3298,7 @@ point.
 &lt;/p&gt;
 
 
-&lt;div id="org7d67479" class="figure"&gt;
+&lt;div id="orgbd1be75" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_5.png" alt="q9_5.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 9: &lt;/span&gt;The n (n = 5 here) throws that could arrive at f. After picking the throw to arrive at f, we'll still have n choices for g - since f is now a possible source.&lt;/p&gt;
 &lt;/div&gt;
@@ -3329,9 +3333,9 @@ Since we already know how many ground state siteswaps there are for \(l &amp;lt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org673d841" class="outline-3"&gt;
-&lt;h3 id="org673d841"&gt;Gap insertion&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org673d841"&gt;
+&lt;div id="outline-container-org70ebc60" class="outline-3"&gt;
+&lt;h3 id="org70ebc60"&gt;Gap insertion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org70ebc60"&gt;
 &lt;p&gt;
 Given a siteswap of length \(l\) with no gaps, we're looking to insert them so as
 to end up with one of length \(L, L &amp;gt;= l\).
@@ -3351,9 +3355,9 @@ number of balls.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbb85882" class="outline-3"&gt;
-&lt;h3 id="orgbb85882"&gt;Putting it all together:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgbb85882"&gt;
+&lt;div id="outline-container-org249ec3c" class="outline-3"&gt;
+&lt;h3 id="org249ec3c"&gt;Putting it all together:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org249ec3c"&gt;
 &lt;p&gt;
 Lets insert what we have into the equation.
 &lt;/p&gt;
@@ -3393,9 +3397,9 @@ length 7 there are:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf30710c" class="outline-3"&gt;
-&lt;h3 id="orgf30710c"&gt;Simplify&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf30710c"&gt;
+&lt;div id="outline-container-org5652571" class="outline-3"&gt;
+&lt;h3 id="org5652571"&gt;Simplify&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5652571"&gt;
 &lt;p&gt;
 We can simplify this formula a lot further! First taking \(n!\) out side the sum.
 &lt;/p&gt;
@@ -3452,4 +3456,5 @@ Which… FINALLY gives us the the answer! Phew!
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;
+</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item></channel></rss>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about math)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 23 Mar 2022 22:56:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgaf0455f" class="outline-2"&gt;
-&lt;h2 id="orgaf0455f"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgaf0455f"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about math)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 27 Mar 2022 03:29:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org03bb604" class="outline-2"&gt;
+&lt;h2 id="org03bb604"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org03bb604"&gt;
 &lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"&gt;&lt;/script&gt;&lt;p&gt;
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
@@ -143,15 +143,15 @@ We'll try to work out the ideal thickness of the coin in terms of it's radius (\
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org3fd483a" class="outline-2"&gt;
-&lt;h2 id="org3fd483a"&gt;Coin thickness?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3fd483a"&gt;
+&lt;div id="outline-container-orgd396326" class="outline-2"&gt;
+&lt;h2 id="orgd396326"&gt;Coin thickness?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd396326"&gt;
 &lt;p&gt;
 Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
 &lt;/p&gt;
 
 
-&lt;div id="org0edc4e8" class="figure"&gt;
+&lt;div id="org129ae31" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips.png" alt="baseline-flips.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.&lt;/p&gt;
 &lt;/div&gt;
@@ -161,7 +161,7 @@ Ok… Zoom and enhance! Running over 10x as many flips this time….
 &lt;/p&gt;
 
 
-&lt;div id="org8505383" class="figure"&gt;
+&lt;div id="orgc6ecd27" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The exact same as above, but over just thicknesses from 0.75r to 0.95r.&lt;/p&gt;
 &lt;/div&gt;
@@ -172,9 +172,9 @@ It seems our ideal coin has a thickness of \(0.85r\)! That's the point where the
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9f2545f" class="outline-2"&gt;
-&lt;h2 id="org9f2545f"&gt;Does the maths agree?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9f2545f"&gt;
+&lt;div id="outline-container-org7a13b8a" class="outline-2"&gt;
+&lt;h2 id="org7a13b8a"&gt;Does the maths agree?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7a13b8a"&gt;
 &lt;p&gt;
 Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
 &lt;/p&gt;
@@ -195,15 +195,15 @@ And simulating it gives an answer of \(0.85r\)?? Right in the middle… The seco
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org32a3758" class="outline-2"&gt;
-&lt;h2 id="org32a3758"&gt;The end of the story?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org32a3758"&gt;
+&lt;div id="outline-container-orgb824ea9" class="outline-2"&gt;
+&lt;h2 id="orgb824ea9"&gt;The end of the story?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb824ea9"&gt;
 &lt;p&gt;
 So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
 &lt;/p&gt;
 
 
-&lt;div id="org9697c71" class="figure"&gt;
+&lt;div id="orgb2aaf1d" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).&lt;/p&gt;
 &lt;/div&gt;
@@ -217,7 +217,7 @@ What about the throw spin? Can you bias a 3 sided coin by throwing it with more 
 &lt;/p&gt;
 
 
-&lt;div id="org9759774" class="figure"&gt;
+&lt;div id="orgb76b30b" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;What's going on?? The chance of sides changes dramatically with increased spin on the coin.&lt;/p&gt;
 &lt;/div&gt;
@@ -233,9 +233,9 @@ Maybe this could be a useful trick… Get your friends to pick between heads/tai
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1ae8e9a" class="outline-2"&gt;
-&lt;h2 id="org1ae8e9a"&gt;Disclaimer!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1ae8e9a"&gt;
+&lt;div id="outline-container-org7492aac" class="outline-2"&gt;
+&lt;h2 id="org7492aac"&gt;Disclaimer!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7492aac"&gt;
 &lt;p&gt;
 The results on this page are only as good as the physics simulation is. This page uses &lt;a href="https://lo-th.github.io/Oimo.js/#basic"&gt;Oimo.js&lt;/a&gt; for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
 &lt;/p&gt;
@@ -246,11 +246,12 @@ Also, picking truly random rotations is &lt;i&gt;hard&lt;/i&gt;. &lt;a href="htt
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5f57070" class="outline-2"&gt;
-&lt;h2 id="org5f57070"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5f57070"&gt;
+&lt;div id="outline-container-org22dfd10" class="outline-2"&gt;
+&lt;h2 id="org22dfd10"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org22dfd10"&gt;
 &lt;p&gt;
 After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;
+</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item></channel></rss>

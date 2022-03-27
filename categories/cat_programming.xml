@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about Programming)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 23 Mar 2022 22:56:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>(Killer) Sudoku Solver</title><link>https://imois.in/posts/sudoku-solver/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orga90fb1a" class="outline-2"&gt;
-&lt;h2 id="orga90fb1a"&gt;(Killer) Sudoku Solver&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga90fb1a"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about Programming)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_programming.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 27 Mar 2022 03:29:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>(Killer) Sudoku Solver</title><link>https://imois.in/posts/sudoku-solver/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org23a87ab" class="outline-2"&gt;
+&lt;h2 id="org23a87ab"&gt;(Killer) Sudoku Solver&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org23a87ab"&gt;
 &lt;p&gt;
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 &lt;/p&gt;
@@ -38,17 +38,17 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 &lt;script type="module" src="https://imois.in/assets/js/sudoku/sudoku_board.js"&gt;&lt;/script&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org080f13a" class="outline-3"&gt;
-&lt;h3 id="org080f13a"&gt;Fixed digits&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org080f13a"&gt;
+&lt;div id="outline-container-org3b47b36" class="outline-3"&gt;
+&lt;h3 id="org3b47b36"&gt;Fixed digits&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3b47b36"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org0befaa8" class="outline-3"&gt;
-&lt;h3 id="org0befaa8"&gt;Sum constraints&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0befaa8"&gt;
+&lt;div id="outline-container-orge0e54b7" class="outline-3"&gt;
+&lt;h3 id="orge0e54b7"&gt;Sum constraints&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge0e54b7"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.&lt;/li&gt;
 &lt;li&gt;To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.&lt;/li&gt;
@@ -58,18 +58,18 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org42e101a" class="outline-3"&gt;
-&lt;h3 id="org42e101a"&gt;Solving&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org42e101a"&gt;
+&lt;div id="outline-container-orgfc10d48" class="outline-3"&gt;
+&lt;h3 id="orgfc10d48"&gt;Solving&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgfc10d48"&gt;
 &lt;p&gt;
 Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2573525" class="outline-3"&gt;
-&lt;h3 id="org2573525"&gt;The solver itself&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2573525"&gt;
+&lt;div id="outline-container-orgb2a69ed" class="outline-3"&gt;
+&lt;h3 id="orgb2a69ed"&gt;The solver itself&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb2a69ed"&gt;
 &lt;p&gt;
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
 &lt;/p&gt;
