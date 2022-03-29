@@ -447,7 +447,7 @@
 'copy_files:output/games/crosswordle/crosswordle_game.js', (780800, 315)
 'copy_files:output/games/crosswordle/src/puzzles.js', (781312, 307)
 'copy_files:output/games/crosswordle/src/crosswordle_game.js', (781824, 325)
-'copy_files:output/games/crosswordle/src/crosswordle.js', (782336, 317)
+'copy_files:output/games/crosswordle/src/crosswordle.js', (782336, 316)
 'copy_files:output/games/crosswordle/src/guess_list.js', (782848, 316)
 'copy_files:output/games/crosswordle/data/puzzles.js', (783360, 312)
 'copy_files:output/games/crosswordle/data/guess_list.js', (783872, 317)
