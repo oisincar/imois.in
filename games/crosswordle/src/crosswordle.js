@@ -739,6 +739,12 @@ function getShareText() {
         text += "https://imois.in/games/crosswordle";
         return text;
     }
+    else if (game.state.gameplay_state == GAMEPLAY_STATE_LOST) {
+        let text = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses + "/???\n";
+        text += game.getBoardBreakdown().join("\n") + "\n";
+        text += "https://imois.in/games/crosswordle";
+        return text;
+    }
     else {
         return "Game's not finished!";
     }
