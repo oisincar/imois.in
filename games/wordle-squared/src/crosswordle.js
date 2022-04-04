@@ -12,7 +12,7 @@ function getPuzzleNumber() {
 }
 
 let puzzle_number = getPuzzleNumber() - 0;
-console.log("Playing crosswordle #", puzzle_number);
+console.log("Playing wordle-squared #", puzzle_number);
 
 // Store history in dict that's json serialized
 //  {
@@ -689,7 +689,7 @@ function showResultsModal(delay) {
     var share_button = document.getElementById("resultsModelShareButton");
     let modal = new bootstrap.Modal(document.getElementById('resultsModal'), {});
 
-    title.textContent = "Crosswordle #" + puzzle_number + ": ";
+    title.textContent = "wordle-squared #" + puzzle_number + ": ";
 
     var mainText = "";
 
@@ -734,7 +734,7 @@ var popover = null;
 
 function share() {
     console.log("share");
-    let title = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses;
+    let title = "wordle-squared #" + puzzle_number + ": " + game.state.num_guesses;
     if (game.state.gameplay_state == GAMEPLAY_STATE_WON) {
         title += " guesses";
     }
@@ -742,7 +742,7 @@ function share() {
         title += "/?? guesses";
     }
     let text = game.getBoardBreakdown().join("\n");
-    let url = "https://imois.in/games/crosswordle";
+    let url = "https://imois.in/games/wordle-squared";
 
     const share_button = document.getElementById("resultsModelShareButton");
 
@@ -779,15 +779,15 @@ function share() {
 
 function getShareText() {
     if (game.state.gameplay_state == GAMEPLAY_STATE_WON) {
-        let text = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses + "\n";
+        let text = "wordle-squared #" + puzzle_number + ": " + game.state.num_guesses + "\n";
         text += game.getBoardBreakdown().join("\n") + "\n";
-        text += "https://imois.in/games/crosswordle";
+        text += "https://imois.in/games/wordle-squared";
         return text;
     }
     else if (game.state.gameplay_state == GAMEPLAY_STATE_LOST) {
-        let text = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses + "/???\n";
+        let text = "wordle-squared #" + puzzle_number + ": " + game.state.num_guesses + "/???\n";
         text += game.getBoardBreakdown().join("\n") + "\n";
-        text += "https://imois.in/games/crosswordle";
+        text += "https://imois.in/games/wordle-squared";
         return text;
     }
     else {
