@@ -1,215 +1,33 @@
 <!doctype html>
-<html lang="en">
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Crosswordle</title>
-        <meta name="An estranged lovechild of wordle and crosswords" content="">
+        <title>Crosswordle..?</title>
+        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta http-equiv="refresh" content="3;url=/games/wordle-square" />
         <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
         <!-- Place favicon.ico in the root directory -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/bd68d721d7.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="wordle_style.css">
-        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-            <div class="container-fluid">
-                <div class="navbar-brand navbar-logo">
-                    <div style="grid-area: a">W</div>
-                    <div style="grid-area: b">C</div>
-                    <div style="grid-area: c">R</div>
-                    <div style="grid-area: d">O</div>
-                    <div style="grid-area: e">S</div>
-                    <div style="grid-area: f">S</div>
-                    <div style="grid-area: g">R</div>
-                    <div style="grid-area: h">D</div>
-                    <div style="grid-area: i">L</div>
-                    <div style="grid-area: j">E</div>
-                </div>
+        <h1>Crosswordle is now Wordle-Squared!</h1>
+        You'll be redirected in 3 seconds. If that doesn't work click <a href="/games/wordle-squared">here</a>.
 
-                <form class="justify-content-end">
-                    <button onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
-                        <span class="fa-solid fa-chart-simple"></span>
-                    </button>
-                    <button class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
-                        <span class="fa-solid fa-question"></span>
-                    </button>
-                </form>
-            </div>
-        </nav>
-        <div class="container">
+        <!-- <script>
+             var timer = setTimeout(function() {
+             console.log("Redirecting");
+             window.location='http://example.com';
+             }, 3000);
+             </script> -->
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">
+            You are using an <strong>outdated</strong> browser. Please
+            <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+            your experience.
+            </p>
+        <![endif]-->
 
 
-            <!-- Explanation modal -->
-            <div class="modal fade" id="explanationModal" tabindex="-1" aria-labelledby="explanationModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="explanationModalLabel">How to Play</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <p>
-                                Select a word by clicking on a space in the grid. Click again to toggle between vertical and horizontal words.
-                                Guess a word and find out how well each letter fits.
-                            </p>
-                            <p>This works just like Wordle!</p>
-
-                            <div class="explanation-grid container">
-                                <div class="row">
-                                    <div class="col-3"> <div class="cwcell tile" data-state="correct">C</div> </div>
-                                    <div class="col">Letter is correct. This square is uncovered in the solution.</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-3"> <div class="cwcell tile" data-state="wrong-location">A</div> </div>
-                                    <div class="col">Letter is a hidden tile in this (vertical or horizontal) word.</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-3"> <div class="cwcell tile" data-state="wrong">T</div> </div>
-                                    <div class="col">Letter isn't in any word containing this cell.</div>
-                                </div>
-                            </div>
-
-                            <p>The board to the right (below on mobile) shows previous guesses & their results, and adds: </p>
-
-                            <div class="explanation-grid container">
-                                <div class="row">
-                                    <!-- TODO: WHat the fuck CSS?? Why can't I put wrong-location-maybe here... -->
-                                    <div class="col-3"> <div class="cwcell tile" data-state="wrong-location">A?</div> </div>
-                                    <div class="col">Letter <i>may</i> be in a word containing this cell. This is an orange tile from a previous guess, but that letter has been uncovered since.</div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Ok</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Results modal -->
-            <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalTitle" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content results-modal">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="resultsModalTitle">You ?</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" id="resultsModalContent">
-
-                            <div class="results-grid container">
-                                <div class="row"><div class="col statistics-text">Statistics</div></div>
-                                <div class="row">
-                                    <div class="col-3"><div class="num" id="resultPlayed">0</div><div class="txt">Played</div></div>
-                                    <div class="col-3"><div class="num" id="resultWinPerc">0</div><div class="txt">Win %</div></div>
-                                    <div class="col-3"><div class="num" id="resultStreakCurrent">0</div><div class="txt">Current Streak</div></div>
-                                    <div class="col-3"><div class="num" id="resultStreakMax">0</div><div class="txt">Max Streak</div></div>
-                                </div>
-                            </div>
-
-                            <div id="resultsModalText">Crosswordle #?: ?? guesses</div>
-                            <p class="results-emoji-breakdown" id="resultsModalEmojis">
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary btn-lg invisible">
-                                Share <i class="fa-solid fa-share-nodes"></i>
-                            </button>
-                            <button type="button" id="resultsModelCopyButton" data-clipboard-text="SANtHO" class="btn btn-primary btn-lg invisible">
-                                Copy Results <i class="fas fa-clipboard"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Done</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="alert-container" data-alert-container></div>
-
-            <br/>
-            <div class="row" id="guess_pane">
-                <div class="col-md-6 justify-center" id="entry_view"></div>
-                <div class="col-md-6 justify-center" id="explanation_view"></div>
-            </div>
-        </div>
-        <div class="keyboard-background-spacer"></div>
-        <div class="fixed-bottom">
-        <div data-keyboard class="keyboard">
-            <button class="key" data-key="Q">Q</button>
-            <button class="key" data-key="W">W</button>
-            <button class="key" data-key="E">E</button>
-            <button class="key" data-key="R">R</button>
-            <button class="key" data-key="T">T</button>
-            <button class="key" data-key="Y">Y</button>
-            <button class="key" data-key="U">U</button>
-            <button class="key" data-key="I">I</button>
-            <button class="key" data-key="O">O</button>
-            <button class="key" data-key="P">P</button>
-            <div class="space"></div>
-            <button class="key" data-key="A">A</button>
-            <button class="key" data-key="S">S</button>
-            <button class="key" data-key="D">D</button>
-            <button class="key" data-key="F">F</button>
-            <button class="key" data-key="G">G</button>
-            <button class="key" data-key="H">H</button>
-            <button class="key" data-key="J">J</button>
-            <button class="key" data-key="K">K</button>
-            <button class="key" data-key="L">L</button>
-            <div class="space"></div>
-            <button data-enter class="key large">Enter</button>
-            <button class="key" data-key="Z">Z</button>
-            <button class="key" data-key="X">X</button>
-            <button class="key" data-key="C">C</button>
-            <button class="key" data-key="V">V</button>
-            <button class="key" data-key="B">B</button>
-            <button class="key" data-key="N">N</button>
-            <button class="key" data-key="M">M</button>
-            <button data-delete class="key large">
-                <svg data-delete xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                    <path data-delete fill="var(--color-tone-1)" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
-                </svg>
-            </button>
-        </div>
-        </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-
-        <!-- Glow Cookies v3.0.1 -->
-        <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
-        <script>
-         glowCookies.start('en', {
-             style: 1,
-             analytics: 'UA-143421297-1',
-             bannerDescription: 'We use our own and third party cookies to store game data and analyize web traffic.',
-             // facebookPixel: '990955817632355',
-             policyLink: '/pages/privacy-policy/',
-
-             hideAfterClick: true,
-             customScript: [{
-                 type: 'custom',
-                 position: 'body',
-                 content: 'console.log("Cookies accepted!"); let COOKIES_ACCEPTED = true;',
-             }]
-         });
-        </script>
-        <script src="src/clipboard.min.js"></script>
-
-        <script src="data/puzzles.js"></script>
-        <script src="data/guess_list.js"></script>
-        <script src="src/crosswordle_game.js"></script>
-        <script src="src/crosswordle.js"></script>
     </body>
 </html>

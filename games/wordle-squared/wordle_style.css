@@ -64,20 +64,17 @@ body {
   --lightness-offset: 10%;
 }
 
-.key.wrong {
+.key[data-state="letter-not-present"] {
   --lightness: 23%;
 }
 
-.key.wrong-location {
+.key[data-state="letter-maybe"] {
   --hue: 49;
   --saturation: 51%;
   --lightness: 47%;
-}
-
-.key.correct {
-  --hue: 115;
-  --saturation: 29%;
-  --lightness: 43%;
+  /* --hue: 115; */
+  /* --saturation: 29%; */
+  /* --lightness: 43%; */
 }
 
 .guess-grid {

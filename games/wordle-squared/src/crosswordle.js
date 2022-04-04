@@ -276,6 +276,8 @@ if (!(localStorage.getItem('crosswordle-past-games')
     modal.show();
 }
 
+const keyboard = document.querySelector("[data-keyboard]");
+
 // ----------------------------------------------
 //                   GAMEPLAY
 // ----------------------------------------------
@@ -365,16 +367,42 @@ function handleTileClicked(x, y) {
         word = game.getWord(x, y, should_select_row);
     }
 
-    selectTiles(word);
-
     active_is_row = should_select_row;
-    active_tiles = word;
-
-    console.log(word);
+    selectTiles(word);
 }
 
+function updateKeyboard() {
+    console.log("hi");
+    // Find next tile in a guess...
+    var next_unsolved_tile = getNextUnsolvedTile();
+    var known_tiles = [];
+    if (next_unsolved_tile) {
+        known_tiles = game.getLetterStates(next_unsolved_tile[0], next_unsolved_tile[1]);
+    }
+    else {
+        console.log("No guess");
+    }
+    console.log(known_tiles);
+
+    for (var i = 0; i < 26; i++) {
+        let l = "abcdefghijklmnopqrstuvwxyz".charAt(i);
+        // TODO: Don't query each one each time...
+        const key = keyboard.querySelector(`[data-key="${l}"i]`);
+
+        if (l in known_tiles) {
+            console.log("ye");
+            key.dataset.state = known_tiles[l];
+        }
+        else {
+            delete key.dataset.state;
+        }
+    }
+
+}
 
 function deselectTiles() {
+    if (active_tiles.length == 0) return;
+
     active_tiles.map(t => {
         // Remove selection css
         entry_dom_tiles[t].classList.remove("selected");
@@ -393,9 +421,14 @@ function deselectTiles() {
         entry_tile.textContent = "";
     })
     active_tiles = [];
+
+    updateKeyboard();
 }
 
 function selectTiles(tileCoords) {
+    console.log("Select");
+
+    active_tiles = tileCoords;
     var explan = tileCoords.map(letter_coord => {
         var t = explanation_dom_tiles[letter_coord];
         t.classList.add("selected");
@@ -406,15 +439,13 @@ function selectTiles(tileCoords) {
         t.classList.add("selected");
         // t.dataset.state = "selected";
     });
+
+    updateKeyboard();
 }
 
-function pressKey(key) {
-    if (active_tiles.length == 0) return;
-
-    // Find the first unsolved tile we don't have a guess for...
-    var unsolved_tile_pos = null;
+function getNextUnsolvedTile() {
+    let unsolved_tile_pos = null;
     for (var i = 0; i < active_tiles.length; i++) {
-
         if (!game.state.tiles[active_tiles[i]].solved
             && !(active_tiles[i] in current_guess))
         {
@@ -422,6 +453,14 @@ function pressKey(key) {
             break;
         }
     }
+    return unsolved_tile_pos;
+}
+
+function pressKey(key) {
+    if (active_tiles.length == 0) return;
+
+    // Find the first unsolved tile we don't have a guess for...
+    var unsolved_tile_pos = getNextUnsolvedTile();
 
     if (!unsolved_tile_pos) {
         console.log("No unsolved tiles");
@@ -431,6 +470,8 @@ function pressKey(key) {
     var tile = entry_dom_tiles[unsolved_tile_pos];
     tile.textContent = key;
     current_guess[unsolved_tile_pos] = key;
+
+    updateKeyboard();
 }
 
 function deleteKey() {
@@ -452,6 +493,8 @@ function deleteKey() {
     // Clear that tile..
     var tile = entry_dom_tiles[last_letter_guess];
     tile.textContent = "";
+
+    updateKeyboard();
 }
 
 function submitGuess() {
@@ -528,6 +571,8 @@ function submitGuess() {
             ui_interaction_enabled = true;
         }
     }, time_until_animation_finishes);
+
+    updateKeyboard();
 }
 
 function updateElsewhereToMaybe(tile_coord, guess_index) {
