@@ -284,7 +284,8 @@ TIMEZONE = "Europe/London"
 # Default is:
 FILES_FOLDERS = {
     'files': '',
-    'games/crosswordle/crosswordle_page': 'games/crosswordle',
+    'games/crosswordle/crosswordle_page': 'games/wordle-squared',
+    'games/crosswordle_redirect': 'games/crosswordle',
 }
 # Which means copy 'files' into 'output'
 
