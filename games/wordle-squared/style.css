@@ -42,12 +42,6 @@ body {
     box-shadow:inset 0px 0px 0px 2px #3a3a3c;
 }
 
-.cwcell-info {
-    /* width: 10px; */
-    /* text-align: center; */
-    /* vertical-align: middle; */
-}
-
 /* This CSS hack ensures our variable-width cells have the same height */
 /* as their width - i.e. they stay square! */
 .cwcell:after {
@@ -66,14 +60,6 @@ body {
     font-size: 2em;
     /* padding-left: 15px; */
 }
-
-/* .tile:after { */
-/*     content: ""; */
-/*     float:left; */
-/*     display: block; */
-/*     padding-top: 100%; */
-/* } */
-
 
 
 /* LOGO */
@@ -140,7 +126,15 @@ body {
   /* background-color: hsl(240, 3%, 7%); */
 }
 
+#guess_counter {
+  color: hsl(200, 1%, 34%);
 
+  font-size: 2rem;
+  /* font-size: clamp(.5rem, 2.5vmin, 1.5rem); */
+  margin-left: auto;
+  margin-bottom: 0.6rem;
+  width: auto;
+}
 
 .explanation-grid {
   margin-bottom: 20px;

@@ -107,15 +107,6 @@ body {
     box-shadow:inset 0px 0px 0px 3px hsl(200, 1%, 34%);
 }
 
-/* .tile[data-state="selected"] { */
-/*   box-shadow:inset 0px 0px 0px 3px hsl(200, 1%, 34%); */
-/*   /\* border-color: hsl(200, 1%, 34%); *\/ */
-/* } */
-
-/* .tile[data-state="active"] { */
-/*   border-color: hsl(200, 1%, 34%); */
-/* } */
-
 .tile[data-state="wrong"] {
   border: none;
   box-shadow: none;
@@ -149,7 +140,7 @@ body {
 }
 
 .explanation_tile[data-state="empty"] {
-    border: 1px solid hsl(200, 1%, 34%);
+    border: 1px solid #3a3a3c; /* hsl(200, 1%, 34%); */
   /* background-color: hsl(240, 2%, 23%); */
 }
 

@@ -539,6 +539,9 @@ function submitGuess() {
     // Re-save game state
     saveGameState();
 
+    // Update guess counter
+    document.getElementById("guess_counter").innerText = "Guesses: " + game.state.num_guesses;
+
     if (!result.success) {
         // Guess failed - explain why
         showAlert(result.reason);
@@ -667,6 +670,11 @@ function loose() {
     showResultsModal(200);
 }
 
+function loose_dbg() {
+    game.state.gameplay_state = GAMEPLAY_STATE_LOST;
+    loose();
+}
+
 function showResultsModal(delay) {
     var title = document.getElementById("resultsModalTitle");
 
@@ -695,7 +703,6 @@ function showResultsModal(delay) {
 
     // Game hasn't finished
     if (game.state.gameplay_state == GAMEPLAY_STATE_ONGOING) {
-        // txt.textContent = "Current puzzle: " + game.state.num_guesses + " guesses.";
         txt.textContent = "";
         emojis.innerHTML = "";
 
@@ -712,7 +719,13 @@ function showResultsModal(delay) {
         else {
             txt.textContent = mainText + game.state.num_guesses + "/?? guesses";
         }
-        emojis.innerHTML = game.getBoardBreakdown().join("<br>");
+        let emojis_txt = game.getBoardBreakdown().join("<br>");
+
+        if (!did_win) {
+            emojis_txt += "<br><br>";
+            emojis_txt += game.getSolutionBreakdown().join("<br>");
+        }
+        emojis.innerHTML = emojis_txt;
 
         // Show share buttons
         copy_button.classList.remove('invisible');
@@ -761,7 +774,7 @@ function share() {
     if (navigator.share) {
         navigator.share({
             "title": title,
-            "text": title + "\n" + text + "\n" + url,
+            "text": title + "\n" + text + "\n" + url, // TODO: Change to getShareText()
         })
                  .then(() => resultCallback('Shared!'))
                  .catch((error) => resultCallback('Sharing failed'));

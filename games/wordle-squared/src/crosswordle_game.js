@@ -269,6 +269,29 @@ class CrosswordleGame {
         }
     }
 
+    getSolutionBreakdown() {
+        let letters = ["🇦​","🇧​","🇨​","🇩​","🇪​","🇫​","🇬​","🇭​","🇮​","🇯​","🇰​","🇱​","🇲​","🇳​","🇴​","🇵​","🇶​","🇷​","🇸​","🇹​","🇺​","🇻​","🇼​","🇽​","🇾​","🇿​"];
+        let a_ix = "a".charCodeAt(0);
+
+        var desc = [];
+        for (var j = 0; j < this.state.dimY; j++) {
+            var row = "";
+            for (var i = 0; i < this.state.dimX; i++) {
+                if ([i, j] in this.state.tiles) {
+                    var l_ix = this.state.tiles[[i, j]].solution.charCodeAt(0);
+                    console.log(l_ix - a_ix);
+                    row += letters[l_ix - a_ix];
+                    // row += " ";
+                }
+                else {
+                    row += "⬛";
+                }
+            }
+            desc.push(row);
+        }
+        return desc;
+    }
+
     // The sharable description of the game...
     // Returns a list of rows
     getBoardBreakdown() {
