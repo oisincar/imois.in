@@ -636,4 +636,4 @@
 'copy_files:output/games/wordle-squared/style.css', (1035776, 297)
 'copy_files:output/games/wordle-squared/index.html', (1036288, 301)
 'copy_files:output/games/wordle-squared/data/guess_list.js', (1036800, 317)
-'copy_files:output/games/wordle-squared/src/crosswordle_game.js', (1037312, 327)
+'copy_files:output/games/wordle-squared/src/crosswordle_game.js', (1037312, 325)
