@@ -3,33 +3,33 @@
   font-family: 'McLaren';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/mclaren/v11/2EbnL-ZuAXFqZFXIeYEV9w.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/mclaren/v13/2EbnL-ZuAXFqZFXIeYEV9w.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Love Ya Like A Sister';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/loveyalikeasister/v14/R70EjzUBlOqPeouhFDfR80-0FhOqJubN-BeL9XxY.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/loveyalikeasister/v16/R70EjzUBlOqPeouhFDfR80-0FhOqJubN-BeL9XxY.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/robotoslab/v22/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjojISmb2Rm.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/robotoslab/v23/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjojISmb2Rm.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
   font-stretch: normal;
-  src: url(https://fonts.gstatic.com/s/opensans/v28/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v29/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Inknut Antiqua';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inknutantiqua/v12/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwrj5.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/inknutantiqua/v14/Y4GRYax7VC4ot_qNB4nYpBdaKU2vwrj5.ttf) format('truetype');
 }
 /* Color Theme Swatches in Hex */
 /* Font Mixins */

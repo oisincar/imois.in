@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Wordle-Squared</title>
+        <title>Crosswordle</title>
         <meta name="An estranged lovechild of wordle and crosswords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,28 +20,15 @@
             <div class="container-fluid">
                 <div class="navbar-brand navbar-logo">
                     <div style="grid-area: a">W</div>
-                    <div style="grid-area: b">O</div>
-                    <div style="grid-area: c">S</div>
-                    <div style="grid-area: d">Q</div>
-                    <div style="grid-area: e">U</div>
-                    <div style="grid-area: f">A</div>
+                    <div style="grid-area: b">C</div>
+                    <div style="grid-area: c">R</div>
+                    <div style="grid-area: d">O</div>
+                    <div style="grid-area: e">S</div>
+                    <div style="grid-area: f">S</div>
                     <div style="grid-area: g">R</div>
-                    <div style="grid-area: h">E</div>
-                    <div style="grid-area: i">D</div>
-                    <div style="grid-area: j">D</div>
-                    <div style="grid-area: k">L</div>
-                    <div style="grid-area: l">E</div>
-
-                    <!-- <div style="grid-area: a">W</div>
-                         <div style="grid-area: b">C</div>
-                         <div style="grid-area: c">R</div>
-                         <div style="grid-area: d">O</div>
-                         <div style="grid-area: e">S</div>
-                         <div style="grid-area: f">S</div>
-                         <div style="grid-area: g">R</div>
-                         <div style="grid-area: h">D</div>
-                         <div style="grid-area: i">L</div>
-                         <div style="grid-area: j">E</div> -->
+                    <div style="grid-area: h">D</div>
+                    <div style="grid-area: i">L</div>
+                    <div style="grid-area: j">E</div>
                 </div>
 
                 <form class="justify-content-end">
@@ -66,32 +53,27 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>
-                                If you've played wordle - just give wordle-squared a go!
-                                Check back here for more info using the <span class="fa-solid fa-question"></span> button (top-right ↗️) if you're stuck.
-                            </p>
 
                             <p>
-                                Select a word by clicking on a space in the grid, and click again to toggle between vertical and horizontal words.
-                                You have 9 guesses per cell to guess all letters in the grid. Each guess tells you how well each letter fits in the grid:
+                                Select a word by clicking on a space in the grid. Click again to toggle between vertical and horizontal words.
+                                Guess a word and find out how well each letter fits.
                             </p>
+                            <p>This works just like Wordle!</p>
 
                             <div class="explanation-grid container">
                                 <div class="row">
                                     <div class="col-3"> <div class="cwcell tile" data-state="correct">C</div> </div>
-                                    <div class="col"><span>Letter is <b>correct</b>. This square is uncovered in the solution.</span></div>
+                                    <div class="col">Letter is correct. This square is uncovered in the solution.</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-3"> <div class="cwcell tile" data-state="wrong-location">A</div> </div>
-                                    <div class="col"><span>Letter isn't in this position but is <b>still hidden</b>
-                                        in <b>either</b> word that contains this cell.</span>
-                                    </div>
+                                    <div class="col">Letter is a hidden tile in this (vertical or horizontal) word.</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-3"> <div class="cwcell tile" data-state="wrong">T</div> </div>
-                                    <div class="col"><span>Letter is not in this vertical-word or column-word.</span></div>
+                                    <div class="col">Letter isn't in any word containing this cell.</div>
                                 </div>
                             </div>
 
@@ -101,25 +83,11 @@
                                 <div class="row">
                                     <!-- TODO: WHat the fuck CSS?? Why can't I put wrong-location-maybe here... -->
                                     <div class="col-3"> <div class="cwcell tile" data-state="wrong-location">A?</div> </div>
-                                    <div class="col"><span>Letter <b>may</b> be in a word containing this cell. This is an orange tile from a previous guess, but that letter has been uncovered since.</span></div>
+                                    <div class="col">Letter <i>may</i> be in a word containing this cell. This is an orange tile from a previous guess, but that letter has been uncovered since.</div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="modal-header">
-                            <h5 class="modal-title">Misc</h5>
-                        </div>
-                            <!-- <h5 class="modal-title" id="explanationModalLabel">How to Play</h5> -->
 
-                        <div class="modal-body">
-                            <p>Wordle-Squared is made by me, Oisin Carroll. If you enjoyed the game it'd be awesome if you shared it!
-                                If you've any thoughts/improvements email me at
-                                <a href="mailto: hi@imois.in">hi@imois.in</a> or find me on Twitter <a href="https://twitter.com/onemoremoose">@onemoremoose</a>.
-                                Thanks for playing!
-                            </p>
-                            <p>
-                                Credit to WebDevSimplified for some of the <a href="https://www.youtube.com/watch?v=Wak7iN4JZzU">wordle & keyboard CSS</a>.
-                            </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Ok</button>
@@ -149,7 +117,7 @@
                                 </div>
                             </div>
 
-                            <div id="resultsModalText">wordle-squared #?: ?? guesses</div>
+                            <div id="resultsModalText">Crosswordle #?: ?? guesses</div>
                             <p class="results-emoji-breakdown" id="resultsModalEmojis">
                             </p>
                         </div>
@@ -166,12 +134,11 @@
                 </div>
             </div>
 
+
+
             <div class="alert-container" data-alert-container></div>
 
             <br/>
-            <div class="row">
-                <span id="guess_counter">Guesses: 0</span>
-            </div>
             <div class="row" id="guess_pane">
                 <div class="col-md-6 justify-center" id="entry_view"></div>
                 <div class="col-md-6 justify-center" id="explanation_view"></div>
@@ -180,35 +147,35 @@
         <div class="keyboard-background-spacer"></div>
         <div class="fixed-bottom">
         <div data-keyboard class="keyboard">
-            <button class="key" data-key="q">Q</button>
-            <button class="key" data-key="w">W</button>
-            <button class="key" data-key="e">E</button>
-            <button class="key" data-key="r">R</button>
-            <button class="key" data-key="t">T</button>
-            <button class="key" data-key="y">Y</button>
-            <button class="key" data-key="u">U</button>
-            <button class="key" data-key="i">I</button>
-            <button class="key" data-key="o">O</button>
-            <button class="key" data-key="p">P</button>
+            <button class="key" data-key="Q">Q</button>
+            <button class="key" data-key="W">W</button>
+            <button class="key" data-key="E">E</button>
+            <button class="key" data-key="R">R</button>
+            <button class="key" data-key="T">T</button>
+            <button class="key" data-key="Y">Y</button>
+            <button class="key" data-key="U">U</button>
+            <button class="key" data-key="I">I</button>
+            <button class="key" data-key="O">O</button>
+            <button class="key" data-key="P">P</button>
             <div class="space"></div>
-            <button class="key" data-key="a">A</button>
-            <button class="key" data-key="s">S</button>
-            <button class="key" data-key="d">D</button>
-            <button class="key" data-key="f">F</button>
-            <button class="key" data-key="g">G</button>
-            <button class="key" data-key="h">H</button>
-            <button class="key" data-key="j">J</button>
-            <button class="key" data-key="k">K</button>
-            <button class="key" data-key="l">L</button>
+            <button class="key" data-key="A">A</button>
+            <button class="key" data-key="S">S</button>
+            <button class="key" data-key="D">D</button>
+            <button class="key" data-key="F">F</button>
+            <button class="key" data-key="G">G</button>
+            <button class="key" data-key="H">H</button>
+            <button class="key" data-key="J">J</button>
+            <button class="key" data-key="K">K</button>
+            <button class="key" data-key="L">L</button>
             <div class="space"></div>
             <button data-enter class="key large">Enter</button>
-            <button class="key" data-key="z">Z</button>
-            <button class="key" data-key="x">X</button>
-            <button class="key" data-key="c">C</button>
-            <button class="key" data-key="v">V</button>
-            <button class="key" data-key="b">B</button>
-            <button class="key" data-key="n">N</button>
-            <button class="key" data-key="m">M</button>
+            <button class="key" data-key="Z">Z</button>
+            <button class="key" data-key="X">X</button>
+            <button class="key" data-key="C">C</button>
+            <button class="key" data-key="V">V</button>
+            <button class="key" data-key="B">B</button>
+            <button class="key" data-key="N">N</button>
+            <button class="key" data-key="M">M</button>
             <button data-delete class="key large">
                 <svg data-delete xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                     <path data-delete fill="var(--color-tone-1)" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>

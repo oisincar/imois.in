@@ -58,7 +58,8 @@ MathJax.Hub.Config({
 
             
     <nav class="navbar-collapse collapse"><ul class="nav">
-<li><a href="../../archive.html">Archive</a></li>
+<li><a href="../../games">Games</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
                 <li><a href="../../categories/">Tags</a></li>
                 <li><a href="../../pages/about-me">About Me</a></li>
     
@@ -97,9 +98,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org740bddb" class="outline-2">
-<h2 id="org740bddb">(Killer) Sudoku Solver</h2>
-<div class="outline-text-2" id="text-org740bddb">
+        <div id="outline-container-orgf52b3de" class="outline-2">
+<h2 id="orgf52b3de">(Killer) Sudoku Solver</h2>
+<div class="outline-text-2" id="text-orgf52b3de">
 <p>
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 </p>
@@ -136,17 +137,17 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 <script type="module" src="../../assets/js/sudoku/sudoku_board.js"></script>
 </div>
 
-<div id="outline-container-orgc47ada8" class="outline-3">
-<h3 id="orgc47ada8">Fixed digits</h3>
-<div class="outline-text-3" id="text-orgc47ada8">
+<div id="outline-container-orgbd7894d" class="outline-3">
+<h3 id="orgbd7894d">Fixed digits</h3>
+<div class="outline-text-3" id="text-orgbd7894d">
 <ul class="org-ul">
 <li>You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org78d89eb" class="outline-3">
-<h3 id="org78d89eb">Sum constraints</h3>
-<div class="outline-text-3" id="text-org78d89eb">
+<div id="outline-container-orgcc0d3c8" class="outline-3">
+<h3 id="orgcc0d3c8">Sum constraints</h3>
+<div class="outline-text-3" id="text-orgcc0d3c8">
 <ul class="org-ul">
 <li>Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.</li>
 <li>To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.</li>
@@ -156,18 +157,18 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 </div>
 </div>
 
-<div id="outline-container-orgc3740e9" class="outline-3">
-<h3 id="orgc3740e9">Solving</h3>
-<div class="outline-text-3" id="text-orgc3740e9">
+<div id="outline-container-org59fa050" class="outline-3">
+<h3 id="org59fa050">Solving</h3>
+<div class="outline-text-3" id="text-org59fa050">
 <p>
 Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org071e0a3" class="outline-3">
-<h3 id="org071e0a3">The solver itself</h3>
-<div class="outline-text-3" id="text-org071e0a3">
+<div id="outline-container-org669fa77" class="outline-3">
+<h3 id="org669fa77">The solver itself</h3>
+<div class="outline-text-3" id="text-org669fa77">
 <p>
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
 </p>

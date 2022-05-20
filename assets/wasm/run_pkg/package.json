@@ -1,0 +1,12 @@
+{
+  "name": "run",
+  "version": "0.1.0",
+  "files": [
+    "run_bg.wasm",
+    "run.js",
+    "run.d.ts"
+  ],
+  "module": "run.js",
+  "types": "run.d.ts",
+  "sideEffects": false
+}

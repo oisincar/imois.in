@@ -60,7 +60,8 @@ MathJax.Hub.Config({
 
             
     <nav class="navbar-collapse collapse"><ul class="nav">
-<li><a href="../../archive.html">Archive</a></li>
+<li><a href="../../games">Games</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
                 <li><a href="../../categories/">Tags</a></li>
                 <li><a href="../../pages/about-me">About Me</a></li>
     
@@ -105,9 +106,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgff60f20" class="outline-2">
-<h2 id="orgff60f20">Intro</h2>
-<div class="outline-text-2" id="text-orgff60f20">
+        <div id="outline-container-orgfff10ec" class="outline-2">
+<h2 id="orgfff10ec">Intro</h2>
+<div class="outline-text-2" id="text-orgfff10ec">
 <p>
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: <i>Here be graphs</i>.
@@ -125,9 +126,9 @@ source code in the inspector or find it on <a href="https://github.com/oisincar/
 </div>
 </div>
 
-<div id="outline-container-org74bc843" class="outline-2">
-<h2 id="org74bc843">Bouncing ball</h2>
-<div class="outline-text-2" id="text-org74bc843">
+<div id="outline-container-orgb4234a0" class="outline-2">
+<h2 id="orgb4234a0">Bouncing ball</h2>
+<div class="outline-text-2" id="text-orgb4234a0">
 <p>
 How to make this?
 </p>
@@ -210,7 +211,7 @@ lot of these animations can be thought of as the <b>Apply</b> function reshaping
 
 
 
-<div id="orgf316d7a" class="figure">
+<div id="orgeab6cc5" class="figure">
 <p><img src="../../images/procedural_anim/animation_perc.png" alt="animation_perc.png"></p>
 <p><span class="figure-number">Figure 1: </span>The shape of _animationPerc over time, where d is the duration of the animation, makes a sawtooth shape.</p>
 </div>
@@ -222,7 +223,7 @@ then the y offset of the ball for that frame, as shown in the animation above.
 </p>
 
 
-<div id="org03bd94c" class="figure">
+<div id="org09ef474" class="figure">
 <p><img src="../../images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"></p>
 <p><span class="figure-number">Figure 2: </span>Here, the input <b>State</b> (Blue), is scaled to give the ball's positional offset by the <b>Apply</b> function (Orange).</p>
 </div>
@@ -230,9 +231,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 </div>
 
 
-<div id="outline-container-org554ae28" class="outline-2">
-<h2 id="org554ae28">Different Applications (heh)</h2>
-<div class="outline-text-2" id="text-org554ae28">
+<div id="outline-container-org6b3557e" class="outline-2">
+<h2 id="org6b3557e">Different Applications (heh)</h2>
+<div class="outline-text-2" id="text-org6b3557e">
 <p>
 By just changing the <b>Apply</b> function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -285,16 +286,16 @@ a way very similar to above ^. That's a whole different blog post though!
 </p>
 
 
-<div id="orgaf5c96a" class="figure">
+<div id="org24d0640" class="figure">
 <p><img src="../../images/procedural_anim/1lissajous.gif" alt="1lissajous.gif" width="400px"></p>
 <p><span class="figure-number">Figure 3: </span>The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.</p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgcaa93c6" class="outline-2">
-<h2 id="orgcaa93c6">Zigzag</h2>
-<div class="outline-text-2" id="text-orgcaa93c6">
+<div id="outline-container-org4ce14fb" class="outline-2">
+<h2 id="org4ce14fb">Zigzag</h2>
+<div class="outline-text-2" id="text-org4ce14fb">
 <p>
 This is a slighly harder example for the idea of manipulating function shapes.
 </p>
@@ -304,7 +305,7 @@ We start off with our input shape as before… And keeping in mind our goal outp
 the animation above).
 </p>
 
-<div id="org446f093" class="figure">
+<div id="org2f13dae" class="figure">
 <p><img src="../../images/procedural_anim/zigzag0.png" alt="zigzag0.png"></p>
 <p><span class="figure-number">Figure 4: </span>Input _animationPerc (Blue), compared to the shape we need (Orange).</p>
 </div>
@@ -315,7 +316,7 @@ up by 2 and moving it down by 1 (Orange). Then we can take the absolute value of
 this (Green).
 </p>
 
-<div id="orgc036e44" class="figure">
+<div id="orgb8b82cf" class="figure">
 <p><img src="../../images/procedural_anim/zigzag1.png" alt="zigzag1.png"></p>
 <p><span class="figure-number">Figure 5: </span>Input (Blue), scaled &amp; transformed (Orange), result (Green)</p>
 </div>
@@ -326,9 +327,9 @@ this (Green).
 </pre></div>
 </div>
 </div>
-<div id="outline-container-org1c39486" class="outline-2">
-<h2 id="org1c39486">Bouncing balls</h2>
-<div class="outline-text-2" id="text-org1c39486">
+<div id="outline-container-org3157488" class="outline-2">
+<h2 id="org3157488">Bouncing balls</h2>
+<div class="outline-text-2" id="text-org3157488">
 <p>
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -336,7 +337,7 @@ a Parabola: Some function of \(t^2\).
 </p>
 
 
-<div id="orgb282e89" class="figure">
+<div id="orgae3f25e" class="figure">
 <p><img src="../../images/procedural_anim/bounce0.png" alt="bounce0.png"></p>
 <p><span class="figure-number">Figure 6: </span>Input (Blue), vs bounce shape (Orange)</p>
 </div>
@@ -356,9 +357,9 @@ extra transformation: 1-zigzag<sup>2</sup>.
 </div>
 </div>
 
-<div id="outline-container-orgd55c7ab" class="outline-2">
-<h2 id="orgd55c7ab">More Ideas</h2>
-<div class="outline-text-2" id="text-orgd55c7ab">
+<div id="outline-container-org6f4e843" class="outline-2">
+<h2 id="org6f4e843">More Ideas</h2>
+<div class="outline-text-2" id="text-org6f4e843">
 <p>
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -366,7 +367,7 @@ be an animation for a slime NPC?
 </p>
 
 
-<div id="org733f35e" class="figure">
+<div id="org3a6e248" class="figure">
 <p><img src="../../images/procedural_anim/bounce1.png" alt="bounce1.png"></p>
 <p><span class="figure-number">Figure 7: </span>Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).</p>
 </div>
@@ -390,9 +391,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 </div>
 </div>
 
-<div id="outline-container-orgef7f402" class="outline-2">
-<h2 id="orgef7f402">Other applications</h2>
-<div class="outline-text-2" id="text-orgef7f402">
+<div id="outline-container-org42f856b" class="outline-2">
+<h2 id="org42f856b">Other applications</h2>
+<div class="outline-text-2" id="text-org42f856b">
 <p>
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.
@@ -405,7 +406,6 @@ interactive animations!!).
 </p>
 </div>
 </div>
-
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
