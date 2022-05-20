@@ -139,6 +139,7 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
+        ("/games", "Games"),
         ("/archive.html", "Archive"),
         ("/categories/", "Tags"),
         # ("/rss.xml", "RSS feed"),
@@ -233,6 +234,11 @@ PAGES = (
     ("pages/*.rst", "pages", "page.tmpl"),
     ("pages/*.md", "pages", "page.tmpl"),
     ("pages/*.txt", "pages", "page.tmpl"),
+
+    # Put games.html in the root dir. WARNING this could break other things :x
+    # NOTE: games will also be built to /pages/games
+    ("pages/games.html", "", "page.tmpl"),
+
     ("pages/*.html", "pages", "page.tmpl"),
     ("pages/*.org", "pages", "story.tmpl"),
 )

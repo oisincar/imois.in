@@ -1,0 +1,76 @@
+#+BEGIN_COMMENT
+.. title: Hockey Bots - Creating AI for Slapshot-Rebound
+.. slug: hockey-bots-creating-ai-for-slapshot-rebound
+.. date: 2022-05-20 00:57:49 UTC+01:00
+.. tags:
+.. category:
+.. link:
+.. has_math: true
+.. description:
+.. type: text
+.. status: draft
+
+#+END_COMMENT
+
+# #+TITLE: Slapshot Rebound Bots
+
+* Introduction
+  Earlier in the year I developed the bots for Oddshot Games' title Slapshot Rebound. I've kindly been given permission to share some of the more interesting parts. This includes a new (afaik at least) method for performing spacial queries (e.g. distance to goal, direction to nearest wall, distance puck is from wall), as well as a novel architecture for game AI I found effective and more scaleable than state machines or behavior trees. If that sounds interesting... Stay tuned!
+
+  < TODO: AI Gifs >
+
+  The bots can accurately control the puck, including executing maneuvers to lift the puck off the edges of the rink, as well as pass and shoot.
+
+  I'm by no means an expert in the area, but I managed to adapt some interesting physics and maths for the task. Hopefully if you're developing something similar, this'll provide some inspiration!
+
+* Character movement (PD Controller)
+Before working on the brain of the bots, it's nice to get a good foundation - give the bots good mechanics. This covers simple movement of the characters and control of the puck itself.
+
+** Movement
+We'd like to be able to move the character to any point on the pitch, without overshooting. Ideally the character moves smoothly as fast as possible - slowing to a stop on the target point.
+
+A simple solution might look something like - if we're to the left of the target then move the control stick to the left, otherwise if we're to the right then move the control stick to the right. This is simply a proportional controller, where the output (left or right button) is directly proportional to the error term (signed distance to the target).
+
+Formally we write the error at time t as $e(t)$, so the control function of this controller is written as.
+
+$$
+u(t) = K_pe(t)
+$$
+
+where $K_p$ is a constant weight - determining 'how much' we'd like to move the stick.
+
+Unfortunately, this causes the character to overshoot. We'll continue to accelerate right up until we reach the target and blaze right past it.
+
+<TODO: GIF of character overshooting>
+
+It needs to de-accelerate before reaching the target, based on how fast it's moving. We introduce another term - the current velocity towards the target. Similarly this gets it's own linear weighting - $K_d$, as the $d$ denotes that velocity is the derivative of distance. This is a PD Controller.
+
+$$
+u(t) = K_pe(t) + K_de'(t)
+$$
+
+The bots use a vectorized version of this to control movement in the 2d plane of the pitch, and with some 'very scientific' tuning of $K_p$ and $K_d$, the bots move perfectly!
+
+<TODO: Some GIF of movement>
+
+An extension of this - a PID controller introduces another 'integral' term to correct steady state errors, and is extremely common across robotics, electronics and more.
+
+** Puck control
+
+* Fast approximate spatial queries
+** Distances
+** Gradients
+** Collisions
+** Fast puck predictions
+
+* Behaviour state tree architecture
+Creating complex game AI is hard. An ideal system has modular code that can be reused, it's easy to interpret and track down bugs, it's easy to test, it's scalable, and it's possible to write complex code.
+The AI for Slapshot had an additional constraint, it should play equally well with human and AI teammates.
+
+** Why not a behaviour tree
+** Why not a state machine
+** Best of both worlds!
+
+* AI Test Framework
+
+* 'Posture' behaviour
