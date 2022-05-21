@@ -42,12 +42,6 @@ body {
     box-shadow:inset 0px 0px 0px 2px #3a3a3c;
 }
 
-.cwcell-info {
-    /* width: 10px; */
-    /* text-align: center; */
-    /* vertical-align: middle; */
-}
-
 /* This CSS hack ensures our variable-width cells have the same height */
 /* as their width - i.e. they stay square! */
 .cwcell:after {
@@ -67,41 +61,36 @@ body {
     /* padding-left: 15px; */
 }
 
-/* .tile:after { */
-/*     content: ""; */
-/*     float:left; */
-/*     display: block; */
-/*     padding-top: 100%; */
-/* } */
-
-
 
 /* LOGO */
 .navbar-logo {
   display: grid;
-  grid-template-columns: repeat(5, 12px);
+  grid-template-columns: repeat(7, 12px);
   grid-template-rows: repeat(4, 12px);
-  text-align: center;
+  align-items: center;
+  margin-left: 20px;
   /* height: 1em; */
   /* width: 1em; */
   gap: 1px;
   font-size: 14px;
-  /*     W */
-  /* C r o s s */
-  /*     r     */
-  /*     d l e */
+
+/*         W   */
+/*         O   */
+/* S Q U A R E D */
+/*         D L E */
+
   grid-template-areas:
-    "v v a y y"
-    "b c d e f"
-    "x x g z z"
-    "x x h i j";
+    "v v v v a y y"
+    "v v v v b y y"
+    "c d e f g h i"
+    "x x x x j k l";
 }
 .navbar-logo * {
   display: inline-block;
   vertical-align: middle;
   /* line-height: normal; */
   line-height: 10px;
-  margin-left: 20px;
+  text-align: center;
 }
 
 /* navbar */
@@ -137,13 +126,26 @@ body {
   /* background-color: hsl(240, 3%, 7%); */
 }
 
+#guess_counter {
+  color: hsl(200, 1%, 34%);
 
+  font-size: 2rem;
+  /* font-size: clamp(.5rem, 2.5vmin, 1.5rem); */
+  margin-left: auto;
+  margin-bottom: 0.6rem;
+  width: auto;
+}
 
 .explanation-grid {
   margin-bottom: 20px;
 }
 .explanation-grid div {
   margin-top: 3px;
+}
+/* Center explanation text */
+.explanation-grid .row .col {
+    display: flex;
+    align-items: center;
 }
 
 .results-grid {

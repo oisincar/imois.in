@@ -9,6 +9,10 @@ const TILE_STATE_ELSEWHERE = "wrong-location";
 const TILE_STATE_ELSEWHERE_MAYBE = "wrong-location-maybe";
 const TILE_STATE_WRONG = "wrong";
 
+const LETTER_STATE_MAYBE = "letter-maybe";
+const LETTER_STATE_NO = "letter-not-present";
+// const LETTER_STATE_UNKNOWN = "letter-unknown";
+
 // Creates a simple dictionary to hold the game state
 function createGameState(solution_array) { // List of strings (rows), each of the same length
     let state = {};
@@ -198,6 +202,55 @@ class CrosswordleGame {
         return coords;
     }
 
+    // Grid coord -> things we know about about it.
+    getLetterStates(x, y) {
+        if (!([x,y] in this.state.tiles)) {
+            console.log("INVALID letter state query");
+            return null;
+        }
+        let letters = new Set();
+        this.getWord(x, y, true).forEach(pos => letters.add(pos))
+        this.getWord(x, y, false).forEach(pos => letters.add(pos))
+        letters.delete([x, y]);
+
+        let res_set = {};
+        var self = this;
+        letters.forEach(pos => {
+            var ts = self.state.tiles[pos];
+            ts.guesses.forEach(guess => {
+
+                var l = guess.letter;
+
+                if (guess.state == TILE_STATE_WRONG) {
+                    res_set[l] = LETTER_STATE_NO;
+                }
+                else if ((guess.state == TILE_STATE_ELSEWHERE
+                         || guess.state == TILE_STATE_ELSEWHERE_MAYBE) && !(pos in res_set))
+                {
+                    // Maybe! (and we haven't previously marked this tile)
+                    res_set[l] = LETTER_STATE_MAYBE;
+                }
+            });
+        });
+
+        // Guesses we know aren't correct from the current tile.
+        self.state.tiles[[x, y]].guesses.forEach(guess => {
+            if (guess.state == TILE_STATE_ELSEWHERE || guess.state == TILE_STATE_ELSEWHERE_MAYBE || TILE_STATE_WRONG) {
+                res_set[guess.letter] = LETTER_STATE_NO;
+            }
+        });
+
+        // let res = [];
+        // for (const [letter, state] of Object.entries(res_set)) {
+        //     res.push({
+        //         "letter": letter,
+        //         "state": state,
+        //     });
+        // }
+
+        return res_set;
+    }
+
     updateWinLose() {
         var unsolved_tile = false;
         // TODO: How do you loose? Is it running out of guesses on any one or ..?
@@ -214,6 +267,29 @@ class CrosswordleGame {
         else if (tile_with_no_guesses) {
             this.state.gameplay_state = GAMEPLAY_STATE_LOST;
         }
+    }
+
+    getSolutionBreakdown() {
+        let letters = ["🇦​","🇧​","🇨​","🇩​","🇪​","🇫​","🇬​","🇭​","🇮​","🇯​","🇰​","🇱​","🇲​","🇳​","🇴​","🇵​","🇶​","🇷​","🇸​","🇹​","🇺​","🇻​","🇼​","🇽​","🇾​","🇿​"];
+        let a_ix = "a".charCodeAt(0);
+
+        var desc = [];
+        for (var j = 0; j < this.state.dimY; j++) {
+            var row = "";
+            for (var i = 0; i < this.state.dimX; i++) {
+                if ([i, j] in this.state.tiles) {
+                    var l_ix = this.state.tiles[[i, j]].solution.charCodeAt(0);
+                    console.log(l_ix - a_ix);
+                    row += letters[l_ix - a_ix];
+                    // row += " ";
+                }
+                else {
+                    row += "⬛";
+                }
+            }
+            desc.push(row);
+        }
+        return desc;
     }
 
     // The sharable description of the game...

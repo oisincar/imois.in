@@ -12,7 +12,7 @@ function getPuzzleNumber() {
 }
 
 let puzzle_number = getPuzzleNumber() - 0;
-console.log("Playing crosswordle #", puzzle_number);
+console.log("Playing Wordle-Squared #", puzzle_number);
 
 // Store history in dict that's json serialized
 //  {
@@ -37,7 +37,7 @@ if (prev_gamestate_str) {
 if (!game) {
     var game = CrosswordleGame.FromSolution(GUESS_LIST, PUZZLES_LIST[puzzle_number - 1]);
     // game = CrosswordleGame.FromSolution(GUESS_LIST, ["to",
-    //                                                  " r"]);
+                                                     // " r"]);
 }
 
 let has_warned_about_cookies = false;
@@ -276,6 +276,8 @@ if (!(localStorage.getItem('crosswordle-past-games')
     modal.show();
 }
 
+const keyboard = document.querySelector("[data-keyboard]");
+
 // ----------------------------------------------
 //                   GAMEPLAY
 // ----------------------------------------------
@@ -365,16 +367,42 @@ function handleTileClicked(x, y) {
         word = game.getWord(x, y, should_select_row);
     }
 
-    selectTiles(word);
-
     active_is_row = should_select_row;
-    active_tiles = word;
-
-    console.log(word);
+    selectTiles(word);
 }
 
+function updateKeyboard() {
+    console.log("hi");
+    // Find next tile in a guess...
+    var next_unsolved_tile = getNextUnsolvedTile();
+    var known_tiles = [];
+    if (next_unsolved_tile) {
+        known_tiles = game.getLetterStates(next_unsolved_tile[0], next_unsolved_tile[1]);
+    }
+    else {
+        console.log("No guess");
+    }
+    console.log(known_tiles);
+
+    for (var i = 0; i < 26; i++) {
+        let l = "abcdefghijklmnopqrstuvwxyz".charAt(i);
+        // TODO: Don't query each one each time...
+        const key = keyboard.querySelector(`[data-key="${l}"i]`);
+
+        if (l in known_tiles) {
+            console.log("ye");
+            key.dataset.state = known_tiles[l];
+        }
+        else {
+            delete key.dataset.state;
+        }
+    }
+
+}
 
 function deselectTiles() {
+    if (active_tiles.length == 0) return;
+
     active_tiles.map(t => {
         // Remove selection css
         entry_dom_tiles[t].classList.remove("selected");
@@ -393,9 +421,14 @@ function deselectTiles() {
         entry_tile.textContent = "";
     })
     active_tiles = [];
+
+    updateKeyboard();
 }
 
 function selectTiles(tileCoords) {
+    console.log("Select");
+
+    active_tiles = tileCoords;
     var explan = tileCoords.map(letter_coord => {
         var t = explanation_dom_tiles[letter_coord];
         t.classList.add("selected");
@@ -406,15 +439,13 @@ function selectTiles(tileCoords) {
         t.classList.add("selected");
         // t.dataset.state = "selected";
     });
+
+    updateKeyboard();
 }
 
-function pressKey(key) {
-    if (active_tiles.length == 0) return;
-
-    // Find the first unsolved tile we don't have a guess for...
-    var unsolved_tile_pos = null;
+function getNextUnsolvedTile() {
+    let unsolved_tile_pos = null;
     for (var i = 0; i < active_tiles.length; i++) {
-
         if (!game.state.tiles[active_tiles[i]].solved
             && !(active_tiles[i] in current_guess))
         {
@@ -422,6 +453,14 @@ function pressKey(key) {
             break;
         }
     }
+    return unsolved_tile_pos;
+}
+
+function pressKey(key) {
+    if (active_tiles.length == 0) return;
+
+    // Find the first unsolved tile we don't have a guess for...
+    var unsolved_tile_pos = getNextUnsolvedTile();
 
     if (!unsolved_tile_pos) {
         console.log("No unsolved tiles");
@@ -431,6 +470,8 @@ function pressKey(key) {
     var tile = entry_dom_tiles[unsolved_tile_pos];
     tile.textContent = key;
     current_guess[unsolved_tile_pos] = key;
+
+    updateKeyboard();
 }
 
 function deleteKey() {
@@ -452,6 +493,8 @@ function deleteKey() {
     // Clear that tile..
     var tile = entry_dom_tiles[last_letter_guess];
     tile.textContent = "";
+
+    updateKeyboard();
 }
 
 function submitGuess() {
@@ -496,6 +539,9 @@ function submitGuess() {
     // Re-save game state
     saveGameState();
 
+    // Update guess counter
+    document.getElementById("guess_counter").innerText = "Guesses: " + game.state.num_guesses;
+
     if (!result.success) {
         // Guess failed - explain why
         showAlert(result.reason);
@@ -528,6 +574,8 @@ function submitGuess() {
             ui_interaction_enabled = true;
         }
     }, time_until_animation_finishes);
+
+    updateKeyboard();
 }
 
 function updateElsewhereToMaybe(tile_coord, guess_index) {
@@ -622,6 +670,11 @@ function loose() {
     showResultsModal(200);
 }
 
+function loose_dbg() {
+    game.state.gameplay_state = GAMEPLAY_STATE_LOST;
+    loose();
+}
+
 function showResultsModal(delay) {
     var title = document.getElementById("resultsModalTitle");
 
@@ -644,13 +697,12 @@ function showResultsModal(delay) {
     var share_button = document.getElementById("resultsModelShareButton");
     let modal = new bootstrap.Modal(document.getElementById('resultsModal'), {});
 
-    title.textContent = "Crosswordle #" + puzzle_number + ": ";
+    title.textContent = "Wordle-Squared #" + puzzle_number + ": ";
 
     var mainText = "";
 
     // Game hasn't finished
     if (game.state.gameplay_state == GAMEPLAY_STATE_ONGOING) {
-        // txt.textContent = "Current puzzle: " + game.state.num_guesses + " guesses.";
         txt.textContent = "";
         emojis.innerHTML = "";
 
@@ -667,7 +719,13 @@ function showResultsModal(delay) {
         else {
             txt.textContent = mainText + game.state.num_guesses + "/?? guesses";
         }
-        emojis.innerHTML = game.getBoardBreakdown().join("<br>");
+        let emojis_txt = game.getBoardBreakdown().join("<br>");
+
+        if (!did_win) {
+            emojis_txt += "<br><br>";
+            emojis_txt += game.getSolutionBreakdown().join("<br>");
+        }
+        emojis.innerHTML = emojis_txt;
 
         // Show share buttons
         copy_button.classList.remove('invisible');
@@ -689,7 +747,7 @@ var popover = null;
 
 function share() {
     console.log("share");
-    let title = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses;
+    let title = "Wordle-Squared #" + puzzle_number + ": " + game.state.num_guesses;
     if (game.state.gameplay_state == GAMEPLAY_STATE_WON) {
         title += " guesses";
     }
@@ -697,7 +755,7 @@ function share() {
         title += "/?? guesses";
     }
     let text = game.getBoardBreakdown().join("\n");
-    let url = "https://imois.in/games/crosswordle";
+    let url = "https://imois.in/games/wordle-squared";
 
     const share_button = document.getElementById("resultsModelShareButton");
 
@@ -716,7 +774,7 @@ function share() {
     if (navigator.share) {
         navigator.share({
             "title": title,
-            "text": title + "\n" + text + "\n" + url,
+            "text": title + "\n" + text + "\n" + url, // TODO: Change to getShareText()
         })
                  .then(() => resultCallback('Shared!'))
                  .catch((error) => resultCallback('Sharing failed'));
@@ -734,9 +792,15 @@ function share() {
 
 function getShareText() {
     if (game.state.gameplay_state == GAMEPLAY_STATE_WON) {
-        let text = "Crosswordle #" + puzzle_number + ": " + game.state.num_guesses + "\n";
+        let text = "Wordle-Squared #" + puzzle_number + ": " + game.state.num_guesses + "\n";
         text += game.getBoardBreakdown().join("\n") + "\n";
-        text += "https://imois.in/games/crosswordle";
+        text += "https://imois.in/games/wordle-squared";
+        return text;
+    }
+    else if (game.state.gameplay_state == GAMEPLAY_STATE_LOST) {
+        let text = "Wordle-Squared #" + puzzle_number + ": " + game.state.num_guesses + "/???\n";
+        text += game.getBoardBreakdown().join("\n") + "\n";
+        text += "https://imois.in/games/wordle-squared";
         return text;
     }
     else {
