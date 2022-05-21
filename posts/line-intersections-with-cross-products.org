@@ -1,0 +1,141 @@
+#+BEGIN_COMMENT
+.. title: Line Intersections with Cross Products
+.. slug: line-intersections-with-cross-products
+.. date: 2022-05-21 02:46:09 UTC+01:00
+.. tags: math
+.. category:
+.. link:
+.. description: Elegant intersections using ideas from projective geometry.
+.. type: text
+.. has_math: true
+#+END_COMMENT
+
+* Introduction
+Projective Geometry is a field of mathematics most commonly used for anything to do with cameras - rendering, 3d reconstruction etc. I've only a weak knowledge of it, but this method of calculating the intersection of two lines falls out of the first chapter or two in a standard textbook. I found it very surprising, and hopefully you find it interesting, too!
+
+First off - a demo of the code itself:
+
+#+BEGIN_SRC python
+import numpy as np
+
+def intersectLines(s1, e1, s2, e2):  # start of line 1/ end of line 1 etc
+    # Append 1 to all points. Make them (x, y, 1)
+    s1, e1, s2, e2 = [np.append(p, 1) for p in [s1, e1, s2, e2]]
+    # Solve - just cross product everything (!)
+    kx, ky, k = np.cross(np.cross(s1, e1), np.cross(s2, e2))
+    return ([kx/k, ky/k] if k != 0 else None)
+#+END_SRC
+
+If you're thinking 'why does that work???', or 'where's the bit with the equations?' you're not alone! Cross products are usually only seen when trying to find orthogonal vectors. Here we're appending a 1 to some points, cross producting them twice, and somehow ending up with the intersection of the lines.
+
+Let's start off by working out the inner cross products: =np.cross(s1, e1)= and =np.cross(s2, e2)=. Each are simply taking the product of two points which both lie along the same line.
+
+** Points -> Lines
+Here we'll show that these products calculate a line equation. Consider two points $\vec{S}$ and $\vec{E}$.
+
+$$
+\begin{bmatrix} S_x \\ S_y \\ 1 \end{bmatrix} \
+\times \
+\begin{bmatrix} E_x \\ E_y \\ 1 \end{bmatrix} \
+= \
+\begin{bmatrix} S_y - E_y \\ E_x - S_x \\ S_xE_y - S_yE_x \end{bmatrix} \
+= \
+\begin{bmatrix} a \\ b \\ c \end{bmatrix} \
+$$
+
+This first cross product actually gives the equation of the line defined by $\vec{S}$ and $\vec{E}$ in the form $ax + by + c = 0$. Let's quickly verify...
+
+\begin{align}
+ax + by + c = 0 \\
+(S_y - E_y)x + (E_x - S_x)y + S_xE_y - S_yE_x = 0
+\end{align}
+Verifying $\vec{S}$ lies on the line $ax + by + c = 0$:
+\begin{align}
+\require{cancel} (S_y - E_y)S_x + (E_x - S_x)S_y + S_xE_y - S_yE_x = 0 \\
+S_xS_y - S_xE_y + S_yE_x - S_xS_y + S_xE_y - S_yE_x = 0 \\
+\cancel{S_xS_y - S_xS_y} + \cancel{S_xE_y - S_xE_y} + \cancel{S_yE_x - S_yE_x} = 0 \\
+0 = 0
+\end{align}
+
+Verifying $\vec{E}$ lies on the line $ax + by + c = 0$:
+\begin{align}
+(S_y - E_y)E_x + (E_x - S_x)E_y + S_xE_y - S_yE_x = 0 \\
+S_yE_x - E_xE_y + E_xE_y - S_xE_y + S_xE_y - S_yE_x = 0 \\
+\cancel{S_yE_x - S_yE_x} + \cancel{E_xE_y - E_xE_y} + \cancel{S_xE_y - S_xE_y} = 0 \\
+0 = 0
+\end{align}
+
+Hence $ax + by + c = 0$ is an equation of the line passing through $\vec{S}$ and $\vec{E}$.
+
+
+** Lines -> Intersection
+The cross product of two line equations gives their intersection... Let's check.
+
+Take two lines: $a_1x + b_1y + c_1 = 0$ defined by $\begin{bmatrix} a_1 \\ b_1 \\ c_1 \end{bmatrix}$ and $a_2x + b_2y + c_2 = 0$ defined by $\begin{bmatrix} a_2 \\ b_2 \\ c_2 \end{bmatrix}$.
+
+$$
+\begin{bmatrix} a_1 \\ b_1 \\ c_1 \end{bmatrix} \times \begin{bmatrix} a_2 \\ b_2 \\ c_2 \end{bmatrix} \
+= \
+\begin{bmatrix} b_1c_2 - c_1b_2 \\ c_1a_2 - a_1c_2 \\ a_1b_2 - b_1a_2 \end{bmatrix} \
+$$
+Now, convert to the $\begin{bmatrix}x \\ y \\ 1 \end{bmatrix}$ format. This means we must divide by $a_1b_2 - b_1a_2$. We quickly check this is non-zero.
+Assuming the lines have an intersection $\implies$ their slopes are different $\implies$ $\frac{a_1}{b_1} \neq \frac{a_2}{b_2} \implies \frac{a_1}{b_1} - \frac{a_2}{b_2} \neq 0 \implies a_1b_2 - b_1a_2 \neq 0$. Conversely if $a_1b_2 - b_1a_2 = 0$ then the lines are parallel and have no intersection.
+
+$$
+\begin{bmatrix} P \\ 1 \end{bmatrix} = \begin{bmatrix} (b_1c_2 - c_1b_2)/(a_1b_2 - b_1a_2) \\ (c_1a_2 - a_1c_2)/(a_1b_2 - b_1a_2) \\ 1 \end{bmatrix} \
+$$
+Finally the vector $P \in \mathbb{R}^2$ is the first values of this vector, and is the intersection of the lines! It's worth noting in projective geometry the point $(x, y, 1)$ is equilivant to $(kx, ky, k)$
+
+To quickly verify this:
+
+$P$ lies on $a_1x + b_1y + c_1 = 0$:
+\begin{align}
+a_1\frac{b_1c_2 - c_1b_2}{a_1b_2 - b_1a_2} + b_1\frac{c_1a_2 - a_1c_2}{a_1b_2 - b_1a_2} + c_1 = 0 \\
+a_1(b_1c_2 - c_1b_2) + b_1(c_2a_2 - a_1c_2) + c_1(a_1b_2 - b_1a_2) = 0 \\
+a_1b_1c_2 - a_1c_1b_2 + b_1c_1a_2 - a_1b_1c_2 + a_1c_1b_2 - b_1c_1a_2 = 0 \\
+\cancel{a_1b_1c_2 - a_1b_1c_2} + \cancel{a_1c_1b_2 - a_1c_1b_2} + \cancel{b_1c_1a_2 - b_1c_1a_2} = 0 \\
+0 = 0
+\end{align}
+In the same way it's straightforward to show $P$ lies on $a_2x + b_2y + c_2 = 0$.
+Hence $P$ is an intersection of the lines (provided one exists)!
+
+** Sample code in C#
+This is a handy snippet to have for Unity. It's worth noting, however, that this isn't the most numerically stable or fastest way I'm sure. I use it because it's short, neat and I don't require any higher accuracy or speed from it.
+
+#+BEGIN_SRC java
+private static bool TryIntersectLines(Vector2 start1, Vector2 end1, Vector2 start2, Vector2 end2, out Vector2 intersection) {
+    // Append 1 to all points. (x, y) -> (x, y, 1)
+    Vector3 toProjPlane(Vector2 p) => new Vector3(p.x, p.y, 1);
+
+    // Get equations of lines using cross product & solve
+    Vector3 l1 = Vector3.Cross(toProjPlane(start1), toProjPlane(end1));
+    Vector3 l2 = Vector3.Cross(toProjPlane(start2), toProjPlane(end2));
+    Vector3 sol = Vector3.Cross(l1, l2);
+
+    if (sol.z == 0) {
+        // No solution - result 'at infinity' in projective space.
+        intersection = default(Vector2);
+        return false;
+    }
+    else {
+        intersection = new Vector2(sol.x/sol.z, sol.y/sol.z);
+        return true;  //** See below!
+    }
+}
+#+END_SRC
+
+
+** A note on line _segments_
+The previous examples only deal with the intersection of lines defined by two points on them. If you require intersection of two line _segments_ defined by start and end points, you'll need an extra condition.
+Checking if the intersection is bounded in x and y by the ends of each line is sufficient - e.g.
+
+#+BEGIN_SRC java
+        // return true;  // <-- replace this with...
+        // Check the intersection is within the boundaries of both lines
+        return (
+            (intersection.x < start1.x) != (intersection.x < end1.x)     // Bounded in x by line 1
+            && (intersection.y < start1.y) != (intersection.y < end1.y)  // Bounded in y by line 1
+            && (intersection.x < start2.x) != (intersection.x < end2.x)  //  ...            line 2
+            && (intersection.y < start2.y) != (intersection.y < end2.y)  //  ...            line 2
+        );
+#+END_SRC
