@@ -2,8 +2,8 @@
 .. title: (Killer) Sudoku Solver
 .. slug: sudoku-solver
 .. date: 2021-06-16 23:04:35 UTC+01:00
-.. tags: programming
-.. category: Programming
+.. tags: gamedev, programming
+.. category: i-made
 .. link:
 .. description: a-WASM-e solving of sudoku boards in rust and web assembly.
 .. type: text

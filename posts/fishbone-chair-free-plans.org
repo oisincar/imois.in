@@ -2,8 +2,8 @@
 .. title: Fishbone Chair [Free Plans!]
 .. slug: fishbone-chair-free-plans
 .. date: 2021-06-27 00:41:12 UTC+01:00
-.. tags: Woodworking
-.. category:
+.. tags: woodworking
+.. category: i-made
 .. link:
 .. description: A chair made from a single piece of plywood, with no glue!
 .. type: text

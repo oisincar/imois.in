@@ -3,7 +3,7 @@
 .. slug: geometry-of-a-pencil-sculpture
 .. date: 2021-08-13 17:55:00 UTC+01:00
 .. tags: math
-.. category:
+.. category: research
 .. link:
 .. description: The answer to a question about a pencil sculpture.
 .. type: text

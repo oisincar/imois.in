@@ -140,10 +140,11 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/games", "Games"),
-        ("/archive.html", "Archive"),
+        # ("/archive.html", "Archive"),
         ("/categories/", "Tags"),
         # ("/rss.xml", "RSS feed"),
         ("/pages/about-me", "About Me"),
+        ("/pages/freelance", "Freelance"),
         # ("/pages/privacy-policy", "Privacy Policy"),
     ),
 }

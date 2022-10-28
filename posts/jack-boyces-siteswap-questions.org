@@ -3,7 +3,7 @@
 .. slug: jack-boyces-siteswap-questions
 .. date: 2019-05-06 19:47:08 UTC+01:00
 .. tags: juggling, math
-.. category:
+.. category: research
 .. link:
 .. has_math: true
 .. description: Solutions to a set of juggling notation/maths problems set by jugglinglab creator Jack Boyce.
