@@ -3,7 +3,7 @@
 .. slug: card-network
 .. date: 2020-05-24 23:36:12 UTC+01:00
 .. tags: programming, machine-learning
-.. category:
+.. category: i-made
 .. link:
 .. has_math: true
 .. description: A tiny neural network in c++
@@ -230,6 +230,117 @@ Output: Choose different chars based on how high/low the value predicted is. The
 </div>
 #+END_EXPORT
 
-On reddit =/u/pm_me_P_vs_NP_papers= managed to shorten the code even further - by 50 bytes! Making the final length only 828 bytes and 22 lines. You can read about their optimizations [[https://www.reddit.com/r/tinycode/comments/hiscpb/business_card_neural_network/fwkg9i9?utm_source=share&utm_medium=web2x][HERE!]]
+
+* Optimizations:
+On reddit =/u/pm_me_P_vs_NP_papers= managed to shorten the code even further - by 50 bytes! They used some fantastically clever byte packing, improved loops and more. Their final length is only 828 bytes and 22 lines. You can read about their optimizations [[https://www.reddit.com/r/tinycode/comments/hiscpb/business_card_neural_network/fwkg9i9?utm_source=share&utm_medium=web2x][HERE!]]
+
+UPDATE (OCT/2022). I decided to replicate their updates here, in case their post gets deleted in the future.
+
+** =/u/pm_me_P_vs_NP_papers=' reddit post:
+Awesome demo! I managed to get it from 878 bytes 23 lines down to 828 bytes 22 lines:
+
+#+BEGIN_SRC cpp
+#include <bits/stdc++.h>
+
+using f=float;using v=std::vector<f>;f K,
+R=K=.01,Z;struct L{int w,h,i;v W,x,z;L(int
+i,int o){W.resize(i*o);for(f&a:W)a=(rand(
+)/(1.1-(1<<31))-.5)/sqrt(i+o+0.);w=i;h=o;
+}v F(v X){x=X;v a(h);for(i=h*w;i--;)a[i/w
+]+=W[i]*x[i%w];z=a;for(f&i:a)i=K>i?K:i;
+return a;}v B(v Y){v X(w);for(i=h*w;i
+--;X[i%w]+=Z*W[i],W[i]-=R*Z*x[i%w])Z=Y[i/
+w]*(z[i/w]>0?1:K);return X;}};int main(){
+L n[]{L(40,50),L(50,50),L(50,1)};int T[]=
+{30,66,67093636,16795915,38212120,9438256
+,18874273,66,128,128},i=500337,z,k;while(
+i--){z=242-i%243;k=40;v x(k),y;while(k--)
+x[k]=sin((k%2?z/27/3.:z%27/5.)+.307*k);y=
+x;for(L&l:n)y=l.F(y);v Y{2*(y[0]-(T[z/26]
+>>z%26&1))};for(z=3;z--;)Y=n[z].B(Y);
+putchar(" .,-*oO##"[(int)(y[0]*8)%9]);if(
+i%27<1)puts(i?i%243?"":"\033[9A":"\r\
+   --- Oisin Carroll ---\n\
+ gh:Oisincar  web:imois.in");}}
+ #+END_SRC
+
+By far the biggest shave was compressing the "training data" string. My first idea was to store an array of 16 bit integers instead of a string of inefficiently encoded 8 bit values, but then I figured there might be some other even more efficient number of bits per value, and with this python script:
+
+#+BEGIN_SRC python
+data = b"\x1e\0\0\b\x01\0@H\374\377B\x12@\x18\x12G\302\x10@\x12\372\377\221\x10\0\0\200\0\0\0\x02" + b"\0"*32
+
+data_bits = ""
+for c in data:
+	data_bits += bin(c+256)[-8:][::-1] # reverse each byte so we can reverse again later (gah endianness)
+
+for bits_per in range(1, 32):
+	v = []
+	for i in range(0, len(data_bits), bits_per):
+		v.append(int(data_bits[i:i+bits_per][::-1], 2))
+	while v[-1] == 0: v = v[:-1] # shave trailing zeros
+	s = "{"
+	for x in v:
+		if len(str(x)) < len(hex(x)):
+			s += str(x) + ","
+		else:
+			s += hex(x) + ","
+	s = s[:-1] + "}"
+	print(bits_per, s)
+#+END_SRC
+
+I found the most efficient encoding was 26 bits / element, with this array: {30,66,67093636,16795915,38212120,9438256,18874273,66,128,128} which I called T in main. The lookup was also slightly adjusted to T[z/26]>>z%26&1.
+
+Some other less dramatic shaves are:
+
+Shorter type aliases:
+
+#+BEGIN_SRC c++
+typedef float f;typedef std::vector<f> v;
+using f=float;using v=std::vector<f>;
+#+END_SRC
+
+Shorter float declarations (including changing some 0.5 to .5, etc.):
+
+#+BEGIN_SRC c++
+f K=0.01,R=0.01;
+f K,R=K=.01;
+#+END_SRC
+
+Shorter loops:
+
+#+BEGIN_SRC c++
+i=h*w;while(i--)
+for(i=h*w;i--;)
+#+END_SRC
+
+Shorter loops v2:
+
+#+BEGIN_SRC c++
+for(l=0;l<3;l++)y=n[l].F(y); [snip] while(l--)Y=n[l].B(Y);
+for(l=0;l<3;)y=n[l++].F(y); [snip] while(l--)Y=n[l].B(Y);
+for(L&l:n)y=l.F(y); [snip] for(l=3;l--;)Y=n[l].B(Y);
+//                             ^ reuse z here instead of l -> one less declaration
+#+END_SRC
+
+Shorter constants:
+
+#+BEGIN_SRC c++
+6.14*k/20
+.307*k
+#+END_SRC
+
+Shorter loops v3: (get rid of brackets by bunching expression statements in the increment field)
+
+The only downside is that Z must be declared outside the for loop, and you can either play it safe by declaring it right before the loop, or play it slightly risky and declare Z globally (because there was already a global float declaration which we can take advantage of)
+
+#+BEGIN_SRC c++
+for(i=h*w;i--;){f Z=Y[i/w]*(z[i/w]>0?1:K);X[i%w]+=Z*W[i];W[i]-=R*Z*x[i%w];}
+f Z;for(i=h*w;i--;X[i%w]+=Z*W[i],W[i]-=R*Z*x[i%w])Z=Y[i/w]*(z[i/w]>0?1:K);
+#+END_SRC
+-> declare Z globally since there are never going to be two instances of this
+function ever running recursively (-4+2 chars)
+
+
+* End...
 
 Thanks for reading! I'd love to hear suggestions on how to make it shorter, or any other ideas.

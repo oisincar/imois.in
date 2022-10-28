@@ -3,7 +3,7 @@
 .. slug: the-properties-of-lights-out-the-game
 .. date: 2019-12-19 16:59:29 UTC
 .. tags: programming, gamedev, math
-.. category:
+.. category: research
 .. link:
 .. has_math: true
 .. description: When is a lights out board solvable or not?

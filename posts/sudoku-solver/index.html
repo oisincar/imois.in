@@ -33,6 +33,7 @@ MathJax.Hub.Config({
 <meta property="og:description" content="a-WASM-e solving of sudoku boards in rust and web assembly.">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-06-16T23:04:35+01:00">
+<meta property="article:tag" content="gamedev">
 <meta property="article:tag" content="programming">
 </head>
 <body>
@@ -59,9 +60,9 @@ MathJax.Hub.Config({
             
     <nav class="navbar-collapse collapse"><ul class="nav">
 <li><a href="../../games">Games</a></li>
-                <li><a href="../../archive.html">Archive</a></li>
                 <li><a href="../../categories/">Tags</a></li>
                 <li><a href="../../pages/about-me">About Me</a></li>
+                <li><a href="../../pages/freelance">Freelance</a></li>
     
     
     </ul></nav>
@@ -88,6 +89,9 @@ MathJax.Hub.Config({
 </div>
 	  <div class="post-tags">
 	    <div class="tag">
+	      <a href="../../categories/gamedev/" rel="tag">gamedev</a>
+	    </div>
+	    <div class="tag">
 	      <a href="../../categories/programming/" rel="tag">programming</a>
 	    </div>
 	  </div>
@@ -98,9 +102,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgf52b3de" class="outline-2">
-<h2 id="orgf52b3de">(Killer) Sudoku Solver</h2>
-<div class="outline-text-2" id="text-orgf52b3de">
+        <div id="outline-container-org96c7507" class="outline-2">
+<h2 id="org96c7507">(Killer) Sudoku Solver</h2>
+<div class="outline-text-2" id="text-org96c7507">
 <p>
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 </p>
@@ -137,17 +141,17 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 <script type="module" src="../../assets/js/sudoku/sudoku_board.js"></script>
 </div>
 
-<div id="outline-container-orgbd7894d" class="outline-3">
-<h3 id="orgbd7894d">Fixed digits</h3>
-<div class="outline-text-3" id="text-orgbd7894d">
+<div id="outline-container-org26d7a58" class="outline-3">
+<h3 id="org26d7a58">Fixed digits</h3>
+<div class="outline-text-3" id="text-org26d7a58">
 <ul class="org-ul">
 <li>You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcc0d3c8" class="outline-3">
-<h3 id="orgcc0d3c8">Sum constraints</h3>
-<div class="outline-text-3" id="text-orgcc0d3c8">
+<div id="outline-container-orgfe2077e" class="outline-3">
+<h3 id="orgfe2077e">Sum constraints</h3>
+<div class="outline-text-3" id="text-orgfe2077e">
 <ul class="org-ul">
 <li>Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.</li>
 <li>To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.</li>
@@ -157,18 +161,18 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 </div>
 </div>
 
-<div id="outline-container-org59fa050" class="outline-3">
-<h3 id="org59fa050">Solving</h3>
-<div class="outline-text-3" id="text-org59fa050">
+<div id="outline-container-org714213c" class="outline-3">
+<h3 id="org714213c">Solving</h3>
+<div class="outline-text-3" id="text-org714213c">
 <p>
 Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org669fa77" class="outline-3">
-<h3 id="org669fa77">The solver itself</h3>
-<div class="outline-text-3" id="text-org669fa77">
+<div id="outline-container-org9962247" class="outline-3">
+<h3 id="org9962247">The solver itself</h3>
+<div class="outline-text-3" id="text-org9962247">
 <p>
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
 </p>

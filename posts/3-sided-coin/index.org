@@ -3,7 +3,7 @@
 .. slug: 3-sided-coin
 .. date: 2020-08-23 22:30:01 UTC+01:00
 .. tags: math, programming
-.. category: math
+.. category: research
 .. link:
 .. has_math: true
 .. description: A simulation to try and find the properties of a fair 3-sided coin; One which has equal chance of landing on heads, tails and sides.

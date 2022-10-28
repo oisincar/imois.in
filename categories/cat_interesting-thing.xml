@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about interesting-thing)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_interesting-thing.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 28 Oct 2022 11:33:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Line Intersections with Cross Products</title><link>https://imois.in/posts/line-intersections-with-cross-products/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org6fce339" class="outline-2"&gt;
+&lt;h2 id="org6fce339"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6fce339"&gt;
+&lt;p&gt;
+Projective Geometry is a field of mathematics most commonly used for anything to do with cameras - rendering, 3d reconstruction etc. I've only a weak knowledge of it, but this method of calculating the intersection of two lines falls out of the first chapter or two in a standard textbook. I found it very surprising, and hopefully you find it interesting, too!
+&lt;/p&gt;
+
+&lt;p&gt;
+First off - a demo of the code itself:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;intersectLines&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;  &lt;span class="c1"&gt;# start of line 1/ end of line 1 etc&lt;/span&gt;
+    &lt;span class="c1"&gt;# Append 1 to all points. Make them (x, y, 1)&lt;/span&gt;
+    &lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e2&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+    &lt;span class="c1"&gt;# Solve - just cross product everything (!)&lt;/span&gt;
+    &lt;span class="n"&gt;kx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ky&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;kx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ky&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+If you're thinking 'why does that work???', or 'where's the bit with the equations?' you're not alone! Cross products are usually only seen when trying to find orthogonal vectors. Here we're appending a 1 to some points, cross producting them twice, and somehow ending up with the intersection of the lines.
+&lt;/p&gt;
+
+&lt;p&gt;
+Let's start off by working out the inner cross products: &lt;code&gt;np.cross(s1, e1)&lt;/code&gt; and &lt;code&gt;np.cross(s2, e2)&lt;/code&gt;. Each are simply taking the product of two points which both lie along the same line.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf8aafcb" class="outline-3"&gt;
+&lt;h3 id="orgf8aafcb"&gt;Points -&amp;gt; Lines&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf8aafcb"&gt;
+&lt;p&gt;
+Here we'll show that these products calculate a line equation. Consider two points \(\vec{S}\) and \(\vec{E}\).
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\begin{bmatrix} S_x \\ S_y \\ 1 \end{bmatrix} \
+\times \
+\begin{bmatrix} E_x \\ E_y \\ 1 \end{bmatrix} \
+= \
+\begin{bmatrix} S_y - E_y \\ E_x - S_x \\ S_xE_y - S_yE_x \end{bmatrix} \
+= \
+\begin{bmatrix} a \\ b \\ c \end{bmatrix} \
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+This first cross product actually gives the equation of the line defined by \(\vec{S}\) and \(\vec{E}\) in the form \(ax + by + c = 0\). Let's quickly verify…
+&lt;/p&gt;
+
+\begin{align}
+ax + by + c = 0 \\
+(S_y - E_y)x + (E_x - S_x)y + S_xE_y - S_yE_x = 0
+\end{align}
+&lt;p&gt;
+Verifying \(\vec{S}\) lies on the line \(ax + by + c = 0\):
+&lt;/p&gt;
+\begin{align}
+\require{cancel} (S_y - E_y)S_x + (E_x - S_x)S_y + S_xE_y - S_yE_x = 0 \\
+S_xS_y - S_xE_y + S_yE_x - S_xS_y + S_xE_y - S_yE_x = 0 \\
+\cancel{S_xS_y - S_xS_y} + \cancel{S_xE_y - S_xE_y} + \cancel{S_yE_x - S_yE_x} = 0 \\
+0 = 0
+\end{align}
+
+&lt;p&gt;
+Verifying \(\vec{E}\) lies on the line \(ax + by + c = 0\):
+&lt;/p&gt;
+\begin{align}
+(S_y - E_y)E_x + (E_x - S_x)E_y + S_xE_y - S_yE_x = 0 \\
+S_yE_x - E_xE_y + E_xE_y - S_xE_y + S_xE_y - S_yE_x = 0 \\
+\cancel{S_yE_x - S_yE_x} + \cancel{E_xE_y - E_xE_y} + \cancel{S_xE_y - S_xE_y} = 0 \\
+0 = 0
+\end{align}
+
+&lt;p&gt;
+Hence \(ax + by + c = 0\) is an equation of the line passing through \(\vec{S}\) and \(\vec{E}\).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org44d26fa" class="outline-3"&gt;
+&lt;h3 id="org44d26fa"&gt;Lines -&amp;gt; Intersection&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org44d26fa"&gt;
+&lt;p&gt;
+The cross product of two line equations gives their intersection… Let's check.
+&lt;/p&gt;
+
+&lt;p&gt;
+Take two lines: \(a_1x + b_1y + c_1 = 0\) defined by \(\begin{bmatrix} a_1 \\ b_1 \\ c_1 \end{bmatrix}\) and \(a_2x + b_2y + c_2 = 0\) defined by \(\begin{bmatrix} a_2 \\ b_2 \\ c_2 \end{bmatrix}\).
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\begin{bmatrix} a_1 \\ b_1 \\ c_1 \end{bmatrix} \times \begin{bmatrix} a_2 \\ b_2 \\ c_2 \end{bmatrix} \
+= \
+\begin{bmatrix} b_1c_2 - c_1b_2 \\ c_1a_2 - a_1c_2 \\ a_1b_2 - b_1a_2 \end{bmatrix} \
+\]
+Now, convert to the \(\begin{bmatrix}x \\ y \\ 1 \end{bmatrix}\) format. This means we must divide by \(a_1b_2 - b_1a_2\). We quickly check this is non-zero.
+Assuming the lines have an intersection \(\implies\) their slopes are different \(\implies\) \(\frac{a_1}{b_1} \neq \frac{a_2}{b_2} \implies \frac{a_1}{b_1} - \frac{a_2}{b_2} \neq 0 \implies a_1b_2 - b_1a_2 \neq 0\). Conversely if \(a_1b_2 - b_1a_2 = 0\) then the lines are parallel and have no intersection.
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\begin{bmatrix} P \\ 1 \end{bmatrix} = \begin{bmatrix} (b_1c_2 - c_1b_2)/(a_1b_2 - b_1a_2) \\ (c_1a_2 - a_1c_2)/(a_1b_2 - b_1a_2) \\ 1 \end{bmatrix} \
+\]
+Finally the vector \(P \in \mathbb{R}^2\) is the first values of this vector, and is the intersection of the lines! It's worth noting in projective geometry the point \((x, y, 1)\) is equilivant to \((kx, ky, k)\)
+&lt;/p&gt;
+
+&lt;p&gt;
+To quickly verify this:
+&lt;/p&gt;
+
+&lt;p&gt;
+\(P\) lies on \(a_1x + b_1y + c_1 = 0\):
+&lt;/p&gt;
+\begin{align}
+a_1\frac{b_1c_2 - c_1b_2}{a_1b_2 - b_1a_2} + b_1\frac{c_1a_2 - a_1c_2}{a_1b_2 - b_1a_2} + c_1 = 0 \\
+a_1(b_1c_2 - c_1b_2) + b_1(c_2a_2 - a_1c_2) + c_1(a_1b_2 - b_1a_2) = 0 \\
+a_1b_1c_2 - a_1c_1b_2 + b_1c_1a_2 - a_1b_1c_2 + a_1c_1b_2 - b_1c_1a_2 = 0 \\
+\cancel{a_1b_1c_2 - a_1b_1c_2} + \cancel{a_1c_1b_2 - a_1c_1b_2} + \cancel{b_1c_1a_2 - b_1c_1a_2} = 0 \\
+0 = 0
+\end{align}
+&lt;p&gt;
+In the same way it's straightforward to show \(P\) lies on \(a_2x + b_2y + c_2 = 0\).
+Hence \(P\) is an intersection of the lines (provided one exists)!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb7732ac" class="outline-3"&gt;
+&lt;h3 id="orgb7732ac"&gt;Sample code in C#&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb7732ac"&gt;
+&lt;p&gt;
+This is a handy snippet to have for Unity. It's worth noting, however, that this isn't the most numerically stable or fastest way I'm sure. I use it because it's short, neat and I don't require any higher accuracy or speed from it.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;TryIntersectLines&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;start1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;end1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;start2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;end2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Append 1 to all points. (x, y) -&amp;gt; (x, y, 1)&lt;/span&gt;
+    &lt;span class="n"&gt;Vector3&lt;/span&gt; &lt;span class="nf"&gt;toProjPlane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector3&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Get equations of lines using cross product &amp;amp; solve&lt;/span&gt;
+    &lt;span class="n"&gt;Vector3&lt;/span&gt; &lt;span class="n"&gt;l1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Vector3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;toProjPlane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;toProjPlane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;end1&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;Vector3&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Vector3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;toProjPlane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start2&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;toProjPlane&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;end2&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="n"&gt;Vector3&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Vector3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="c1"&gt;// No solution - result 'at infinity' in projective space.&lt;/span&gt;
+	&lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//** See below!&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgbc19a5d" class="outline-3"&gt;
+&lt;h3 id="orgbc19a5d"&gt;A note on line &lt;span class="underline"&gt;segments&lt;/span&gt;
+&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgbc19a5d"&gt;
+&lt;p&gt;
+The previous examples only deal with the intersection of lines defined by two points on them. If you require intersection of two line &lt;span class="underline"&gt;segments&lt;/span&gt; defined by start and end points, you'll need an extra condition.
+Checking if the intersection is bounded in x and y by the ends of each line is sufficient - e.g.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// return true;  // &amp;lt;-- replace this with...&lt;/span&gt;
+&lt;span class="c1"&gt;// Check the intersection is within the boundaries of both lines&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;start1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;end1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;     &lt;span class="c1"&gt;// Bounded in x by line 1&lt;/span&gt;
+    &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;start1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;end1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;// Bounded in y by line 1&lt;/span&gt;
+    &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;start2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;end2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;//  ...            line 2&lt;/span&gt;
+    &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;start2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;end2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;//  ...            line 2&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/line-intersections-with-cross-products/</guid><pubDate>Sat, 21 May 2022 01:46:09 GMT</pubDate></item></channel></rss>

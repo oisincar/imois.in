@@ -62,9 +62,9 @@ MathJax.Hub.Config({
             
     <nav class="navbar-collapse collapse"><ul class="nav">
 <li><a href="../../games">Games</a></li>
-                <li><a href="../../archive.html">Archive</a></li>
                 <li><a href="../../categories/">Tags</a></li>
                 <li><a href="../../pages/about-me">About Me</a></li>
+                <li><a href="../../pages/freelance">Freelance</a></li>
     
     
     </ul></nav>
@@ -110,9 +110,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org83aaba2" class="outline-2">
-<h2 id="org83aaba2">Intro</h2>
-<div class="outline-text-2" id="text-org83aaba2">
+        <div id="outline-container-orga3f26d4" class="outline-2">
+<h2 id="orga3f26d4">Intro</h2>
+<div class="outline-text-2" id="text-orga3f26d4">
 <script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script><script src="../../assets/js/TouchUtils.js"></script><script src="../../assets/js/procedural_animation/Global.js"></script><script src="../../assets/js/procedural_animation/Arm.js"></script><script src="../../assets/js/procedural_animation/ArmCanvas.js"></script><script src="../../assets/js/procedural_animation/Graph.js"></script><script src="../../assets/js/procedural_animation/GradientDescent2Link.js"></script><script src="../../assets/js/procedural_animation/TwoLinkArmAndGraph.js"></script><p>
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -136,9 +136,9 @@ source code in the inspector or find it on <a href="https://github.com/oisincar/
 </div>
 </div>
 
-<div id="outline-container-orgfcaca62" class="outline-2">
-<h2 id="orgfcaca62">What we'll make!</h2>
-<div class="outline-text-2" id="text-orgfcaca62">
+<div id="outline-container-orgf576120" class="outline-2">
+<h2 id="orgf576120">What we'll make!</h2>
+<div class="outline-text-2" id="text-orgf576120">
 <p>
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -210,9 +210,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 </div>
 </div>
 
-<div id="outline-container-org9ce98de" class="outline-2">
-<h2 id="org9ce98de">The problem: Kinematics</h2>
-<div class="outline-text-2" id="text-org9ce98de">
+<div id="outline-container-orgeada9a0" class="outline-2">
+<h2 id="orgeada9a0">The problem: Kinematics</h2>
+<div class="outline-text-2" id="text-orgeada9a0">
 <p>
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -304,9 +304,9 @@ be pretty useful to have a way to solve it!
 </div>
 </div>
 
-<div id="outline-container-org68b9dfd" class="outline-2">
-<h2 id="org68b9dfd">Simple arms in 2d</h2>
-<div class="outline-text-2" id="text-org68b9dfd">
+<div id="outline-container-org0dbb4a0" class="outline-2">
+<h2 id="org0dbb4a0">Simple arms in 2d</h2>
+<div class="outline-text-2" id="text-org0dbb4a0">
 <p>
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -337,9 +337,9 @@ games is done.
 </div>
 </div>
 
-<div id="outline-container-org50563bd" class="outline-2">
-<h2 id="org50563bd">Harder problems.. I.e. Arms with more joints..?</h2>
-<div class="outline-text-2" id="text-org50563bd">
+<div id="outline-container-orga034fd5" class="outline-2">
+<h2 id="orga034fd5">Harder problems.. I.e. Arms with more joints..?</h2>
+<div class="outline-text-2" id="text-orga034fd5">
 <p>
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -366,9 +366,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 </div>
 </div>
 
-<div id="outline-container-org84fbf4c" class="outline-2">
-<h2 id="org84fbf4c">Forward Kinematics</h2>
-<div class="outline-text-2" id="text-org84fbf4c">
+<div id="outline-container-orgc5882dd" class="outline-2">
+<h2 id="orgc5882dd">Forward Kinematics</h2>
+<div class="outline-text-2" id="text-orgc5882dd">
 <p>
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -406,9 +406,9 @@ Hand_y &amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 </div>
 </div>
 
-<div id="outline-container-orgc57d170" class="outline-2">
-<h2 id="orgc57d170">Distance function</h2>
-<div class="outline-text-2" id="text-orgc57d170">
+<div id="outline-container-orgb289745" class="outline-2">
+<h2 id="orgb289745">Distance function</h2>
+<div class="outline-text-2" id="text-orgb289745">
 <p>
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -505,9 +505,9 @@ the angles there will bring our arm closest to our target ball.
 </div>
 </div>
 
-<div id="outline-container-org625c145" class="outline-2">
-<h2 id="org625c145">Gradient Descent</h2>
-<div class="outline-text-2" id="text-org625c145">
+<div id="outline-container-orgaa11ec2" class="outline-2">
+<h2 id="orgaa11ec2">Gradient Descent</h2>
+<div class="outline-text-2" id="text-orgaa11ec2">
 <p>
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -570,9 +570,9 @@ The demos just perform this update once per frame, but it's easy to completely s
 </div>
 </div>
 
-<div id="outline-container-org5b7195d" class="outline-2">
-<h2 id="org5b7195d">Implementation &amp; Extras</h2>
-<div class="outline-text-2" id="text-org5b7195d">
+<div id="outline-container-org04efb00" class="outline-2">
+<h2 id="org04efb00">Implementation &amp; Extras</h2>
+<div class="outline-text-2" id="text-org04efb00">
 <p>
 It might help to look through the source code for the animations (embedded into
 this page), or available <a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js">here on Github</a>. You're free to lift this for anything,
@@ -604,6 +604,7 @@ ideas and shapes.
 </p>
 </div>
 </div>
+
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">

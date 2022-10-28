@@ -1,0 +1,1624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about research)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_research.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 28 Oct 2022 11:33:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org6749bc4" class="outline-2"&gt;
+&lt;h2 id="org6749bc4"&gt;72 pencil sculpture&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6749bc4"&gt;
+&lt;p&gt;
+The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture/pencils.html"&gt;George W. Hart&lt;/a&gt;, which features 72 pencils in a lattice.
+&lt;/p&gt;
+
+
+&lt;div id="org6ef1b33" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/72pencils.jpg" alt="72pencils.jpg" width="500px"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Photo credit: George W. Hart&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+It's also possible to make a 'filled' version, with a pencil in every possible location - this one was made by a friend of mine and rendered in blender.
+&lt;/p&gt;
+
+&lt;div id="org507582f" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks.png" alt="sticks.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+We asked… what does the inside of this shape look like? Is it solid?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga651476" class="outline-2"&gt;
+&lt;h2 id="orga651476"&gt;It's not solid&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga651476"&gt;
+&lt;p&gt;
+There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get this number, we take all pencils to be infinite in length, and the pattern to repeat indefinitely in all directions. This shape is a small part of a repeating pattern.
+&lt;/p&gt;
+
+&lt;p&gt;
+Take any axis, and overlay a triangular grid like this. The green boxes tile the shape perfectly, and are all identical. The orange triangles are equilateral and are also identical.
+&lt;/p&gt;
+
+&lt;div id="org8c3ec37" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag0.png" alt="sticks_diag0.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Zooming in, we can consider the area made up by the pencils in this axis.
+&lt;/p&gt;
+
+
+&lt;div id="org476e0eb" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag1.png" alt="sticks_diag1.png"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+If the green cell has area \(1\), the area of the orange hexagon - which is the end of a pencil - is \(1/4 * 6/8 = 3/16\). This means the pencils in this direction fill $3/16$th of the space.
+&lt;/p&gt;
+
+&lt;p&gt;
+Then, since there are 4 axes of pencils (if the pattern were to repeat indefinitely), the total volume of wood is just \(4*3/16 = 3/4\).
+&lt;/p&gt;
+
+&lt;p&gt;
+I.e. The pencils don't fill space in the middle, $1/4$th is air.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6c9971a" class="outline-2"&gt;
+&lt;h2 id="org6c9971a"&gt;The empty space&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6c9971a"&gt;
+&lt;p&gt;
+This what that looks like! It's a pretty neat geometric pattern.
+&lt;/p&gt;
+
+
+&lt;div id="orgc5d01c6" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/pencils/inside.png" alt="inside.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8eb6fd1" class="outline-2"&gt;
+&lt;h2 id="org8eb6fd1"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8eb6fd1"&gt;
+&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"&gt;&lt;/script&gt;&lt;p&gt;
+A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
+it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
+&lt;/p&gt;
+
+&lt;p&gt;
+I learned about this problem in &lt;a href="https://www.youtube.com/watch?v=-qqPKKOU-yY"&gt;this video by Matt Parker&lt;/a&gt;, who looks at some mathematical ways to solve it. Instead of relying on maths or 'thinking' (pfft), why not just simulate it? We can vary the thicknesses of coins and see how that changes the chances of heads, tails and sides. We can also vary their coefficients of restitution (bounciness), how much we spin the coins, and other things and see how that affects our results too!
+&lt;/p&gt;
+
+&lt;p&gt;
+We'll try to work out the ideal thickness of the coin in terms of it's radius (\(r\)).
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+
+    &lt;canvas id="physics-sim" class="light_border" width="600" height="600"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;span style="display:flex; padding-bottom:20px"&gt;
+    &lt;div id="num_heads_box" class="stacked_bar_chart" style=" background:#ffa324"&gt;
+    #Heads: &lt;b id="num_heads_val"&gt;0&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div id="num_tails_box" class="stacked_bar_chart" style="background:#ff4546"&gt;
+    #Tails: &lt;b id="num_tails_val"&gt;0&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div id="num_sides_box" class="stacked_bar_chart" style="background:#48abf0"&gt;
+    #Sides: &lt;b id="num_sides_val"&gt;0&lt;/b&gt;
+    &lt;/div&gt;
+
+    &lt;/span&gt;
+
+    &lt;!-- Sliders --&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Coin Thickness&lt;/span&gt;
+        &lt;span id="coin_width" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="coin_width_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Restitution (Bounce)&lt;/span&gt;
+        &lt;span id="coin_bounce" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="coin_bounce_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Maximum Throw Spin&lt;/span&gt;
+        &lt;span id="throw_spin" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="throw_spin_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Drop Height&lt;/span&gt;
+        &lt;span id="throw_height" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="throw_height_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Num Coins &lt;b&gt;x&lt;/b&gt;&lt;/span&gt;
+        &lt;span id="num_coins_x" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="num_coins_x_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+
+    &lt;span class="slider_row"&gt;
+        &lt;span class="slider_label"&gt;Num Coins &lt;b&gt;y&lt;/b&gt;&lt;/span&gt;
+        &lt;span id="num_coins_y" class="flat-slider"&gt;&lt;/span&gt;
+        &lt;span type="text" id="num_coins_y_val" class="slider_text"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+
+    &lt;div id="interface"&gt;
+        &lt;input type="button" value="Reset Counters" onclick="reset_counts()"&gt;&lt;input type="button" value="Restart Simulation" onclick="populate()"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script src="https://imois.in/assets/js/3_sided_coin/PhysicsSim.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;
+{
+    $("#coin_width").slider({
+        // 100x the ratio of the diameter
+        min: 10,
+        max: 250, // 250
+        values: [coin_thickness*100],
+        slide: function(event, ui) {
+            $("#coin_width_val").text(ui.values[0]/100.0 + "*r");
+            coin_thickness = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_width_val").text(coin_thickness + "*r");
+
+    $("#coin_bounce").slider({
+        min: 0,
+        max: 90, // 80
+        values: [coin_bounce*100],
+        slide: function(event, ui) {
+            $("#coin_bounce_val").text(ui.values[0]/100.0);
+            coin_bounce = ui.values[0]/100.0;
+        },
+    });
+    $("#coin_bounce_val").text(coin_bounce);
+
+    $("#throw_spin").slider({
+        min: 0,
+        max: 100, // 50
+        values: [throw_spin],
+        slide: function(event, ui) {
+            $("#throw_spin_val").text(ui.values[0]/10 + " spins/s");
+            throw_spin = ui.values[0];
+        },
+    });
+    $("#throw_spin_val").text(throw_spin/10 + " spins/s");
+
+    $("#throw_height").slider({
+        min: 10,
+        max: 500,
+        values: [throw_height],
+        slide: function(event, ui) {
+            $("#throw_height_val").text(ui.values[0]);
+            throw_height = ui.values[0];
+        },
+    });
+    $("#throw_height_val").text(throw_height);
+
+    // slider
+    $("#num_coins_x").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_x],
+        slide: function(event, ui) {
+            $("#num_coins_x_val").text(ui.values[0]);
+            num_coins_x = ui.values[0];
+        },
+    });
+    $("#num_coins_x_val").text(num_coins_x);
+
+    $("#num_coins_y").slider({
+        min: 1,
+        max: 12,
+        values: [num_coins_y],
+        slide: function(event, ui) {
+            $("#num_coins_y_val").text(ui.values[0]);
+            num_coins_y = ui.values[0];
+        }
+    });
+    $("#num_coins_y_val").text(num_coins_y);
+}
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org2457c06" class="outline-2"&gt;
+&lt;h2 id="org2457c06"&gt;Coin thickness?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2457c06"&gt;
+&lt;p&gt;
+Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
+&lt;/p&gt;
+
+
+&lt;div id="org55e749a" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips.png" alt="baseline-flips.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Ok… Zoom and enhance! Running over 10x as many flips this time….
+&lt;/p&gt;
+
+
+&lt;div id="org55c75b0" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The exact same as above, but over just thicknesses from 0.75r to 0.95r.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+It seems our ideal coin has a thickness of \(0.85r\)! That's the point where there's exactly 1/3rd chance of heads, 1/3rd chance of tails, and 1/3rd chance of sides.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcebb608" class="outline-2"&gt;
+&lt;h2 id="orgcebb608"&gt;Does the maths agree?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgcebb608"&gt;
+&lt;p&gt;
+Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
+&lt;/p&gt;
+
+&lt;p&gt;
+The first considers the coin as inscribed in a sphere. There's equal chance that any point on the sphere could be touching the ground, and so what's the dimensions of the coin such that it divides the area of the sphere perfectly into 3…
+This gives \(t = \frac{r}{\sqrt{2}} \approx 0.707r\).
+&lt;/p&gt;
+
+&lt;p&gt;
+The second approach thinks of the coin as being placed on the ground at a random angle. We can ignore one axis of rotation, and think of it as a box. The box will either tip towards heads/tails or sides based on the center of gravity.
+This gives the thickness, \(t\) as \(t = \frac{2r}{\sqrt{3}} \approx 1.154r\).
+&lt;/p&gt;
+
+&lt;p&gt;
+And simulating it gives an answer of \(0.85r\)?? Right in the middle… The second approach interestingly works in our simulation, if we ignore the fact the coin may move. Try entering a coin with a thickness \(1.15r\), and \(0\) for restitution and spin. (Note: This is due to a simplification of how random coin rotations are sampled and may not be entirely correct.)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org78e4570" class="outline-2"&gt;
+&lt;h2 id="org78e4570"&gt;The end of the story?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org78e4570"&gt;
+&lt;p&gt;
+So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
+&lt;/p&gt;
+
+
+&lt;div id="orgd19b948" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+That's a strange curve! It looks like pepsi… But also, it seems bouncy coins are less likely to land on their side — At least up to a point. Interesting!
+&lt;/p&gt;
+
+&lt;p&gt;
+What about the throw spin? Can you bias a 3 sided coin by throwing it with more or less spin? Maybe something similar applies. The coin is thrown starting at a random angle, so this shouldn't affect anything… In theory. We change the maximum throw spin, and each coin's spin is randomly sampled less than this.
+&lt;/p&gt;
+
+
+&lt;div id="org63d5dd2" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;What's going on?? The chance of sides changes dramatically with increased spin on the coin.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Nope! The opposite happens. More spin seems to make the coin more likely to land on it's side.
+With low spin the coin seems likely to bounce once and then land on a face. As the spin increases there actually becomes more of a chance to land on it's side since the coin can reach it in more ways. Rather than needing to perfectly hit the 'double bounce' on the side, they instead often 'roll' up to sit on the edge. At high spins the coins seem to somehow spin up to sit on the edge fairly consistently. Try it!
+&lt;/p&gt;
+
+&lt;p&gt;
+Maybe this could be a useful trick… Get your friends to pick between heads/tails or sides of your coin, then change how you throw it accordingly. A gentle toss if you want sides or lots of spin for faces.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6c6fd72" class="outline-2"&gt;
+&lt;h2 id="org6c6fd72"&gt;Disclaimer!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6c6fd72"&gt;
+&lt;p&gt;
+The results on this page are only as good as the physics simulation is. This page uses &lt;a href="https://lo-th.github.io/Oimo.js/#basic"&gt;Oimo.js&lt;/a&gt; for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
+&lt;/p&gt;
+
+&lt;p&gt;
+Also, picking truly random rotations is &lt;i&gt;hard&lt;/i&gt;. &lt;a href="https://en.wikipedia.org/wiki/Rotation_matrix#Uniform_random_rotation_matrices"&gt;Surprisingly hard&lt;/a&gt;. This simulation makes some approximations for what a random rotation for a coin looks like (similar to those made in Matt's video) that should be sufficient, at least given how chaoitic the movement is… But mightn't satisfy those looking for a perfect sampling of \(SO(3)\) :). You're welcome to dig through the source code for the simulation (and rest of the site) either here in the debug console or &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/3_sided_coin/PhysicsSim.js"&gt;on my github&lt;/a&gt; and check I'm doing things right!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5d70cb3" class="outline-2"&gt;
+&lt;h2 id="org5d70cb3"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5d70cb3"&gt;
+&lt;p&gt;
+After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgd3607eb" class="outline-2"&gt;
+&lt;h2 id="orgd3607eb"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd3607eb"&gt;
+&lt;p&gt;
+This game was sent to me by Lucy Deacon (Link to be added :P), who found it in &lt;a href="https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&amp;amp;hl=en_IE"&gt;Simon Tatham's Puzzles&lt;/a&gt;
+under the name 'Flip' around August of 2018. For the few months thereafter
+we went down the rabbit-hole on how to solve the game, when it's solvable, and
+wrote some fast programs and algorithms to check the properties of some very big
+boards. This post contains some of the stuff we managed to work out!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0662c6d" class="outline-2"&gt;
+&lt;h2 id="org0662c6d"&gt;The Game&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0662c6d"&gt;
+&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/utils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOut.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOutState.js"&gt;&lt;/script&gt;&lt;p&gt;
+&lt;span class="underline"&gt;Lights Out&lt;/span&gt; is a game released by Tiger
+Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
+some not, and your task is to turn them all off. The problem is that toggling
+each light also toggles all the surrounding lights…
+&lt;/p&gt;
+
+&lt;p&gt;
+Unfortunately, we didn't know the game had a name, much less a Wikipedia
+article, until we'd finished…
+&lt;/p&gt;
+
+&lt;p&gt;
+I've made a little version of it here… The game works equally well (or does
+it!!) on different board sizes. Try to turn all 'lights' off.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 1:&lt;/span&gt; The game of Lights-Out in it's original size: 5x5. Click to flip the blue 'lights'! &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var g = new LightsOut(document.getElementById('lights-out0'), 5, 5);
+g.randomize();
+&lt;/script&gt;&lt;p&gt;
+The question is… How can you solve it? Is there a way to look at a position
+and instantly know how to solve it or even if can be solved at all?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7e03c1c" class="outline-2"&gt;
+&lt;h2 id="org7e03c1c"&gt;Impossible boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7e03c1c"&gt;
+&lt;p&gt;
+First of all, not all boards are solvable. A 2x1 board, for example, will never
+let you click on only a single tile. If it starts with just one light on,
+there's never a way to turn it off… However, is the same true for bigger boards?
+&lt;/p&gt;
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out2x1" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 2:&lt;/span&gt; A simple 'parity' case for lights-out. &lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var g = new LightsOut(document.getElementById('lights-out2x1'), 2, 1, maxwidth=300, parity=true);
+g.randomize();
+&lt;/script&gt;&lt;p&gt;
+All other boards in this page are solvable though… So don't worry :P
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org969ed36" class="outline-2"&gt;
+&lt;h2 id="org969ed36"&gt;State&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org969ed36"&gt;
+&lt;p&gt;
+The first thing to notice is that tapping on the same square twice is the same
+as not tapping at all, and also that the order you tap the squares doesn't make
+a difference. The solution then will never require pressing any square more than
+once - and since we don't care about order, we can store just a yes or no for
+whether we need to toggle that square.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's the same game board (in blue, below), but also the solution for it; the
+red squares are the ones to tap to solve the board.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out-state0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;canvas id="lights-out-game0" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 3:&lt;/span&gt; The corresponding hidden 'state'/solution (red) for the game board (blue).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var g = new LightsOutState(document.getElementById('lights-out-state0'),
+                           document.getElementById('lights-out-game0'),
+                           5, 5);
+g.randomize();
+&lt;/script&gt;&lt;p&gt;
+If we could work out the corresponding red board for a new unseen blue one…
+We'd be able to solve the game.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4d61892" class="outline-2"&gt;
+&lt;h2 id="org4d61892"&gt;Forward mapping&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4d61892"&gt;
+&lt;p&gt;
+It's not too hard to do the reverse: I.e. take the tapped squares (red) and work out the
+corresponding board position. There's also only one mapping from this red
+'solution' board to the blue 'game' board: A light will be on if and only if
+it's surrounded by an odd number of 'taps'.
+&lt;/p&gt;
+
+&lt;p&gt;
+In fact, it's possible to represent this as matrix multiplication. If the
+board is \(m \times n\), we can write the board-state as a single vector \(\vec{b}\) with \(m*n\)
+elements. Each element is 1 if the corresponding light is on and 0 otherwise.
+The taps on each square - i.e. the solution for that board can be written similarly as
+\(\vec{t}\).
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ \vec{b} = M\vec{t} \pmod 2 \]
+&lt;/p&gt;
+
+&lt;p&gt;
+We can also consider the whole problem over a binary field - so that all
+arithmetic is carried out modulo 2 anyway.
+&lt;/p&gt;
+
+&lt;p&gt;
+This matrix \(M\) is a kind of strange 'thick' diagonal matrix. For a 3x3 board it
+looks like this:
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+M_{3\times3} = \begin{Bmatrix}
+1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+1 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 1 \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 \\
+\end{Bmatrix}
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+In order to find a solution for our board, we can find the inverse of this
+matrix (if it exists!) and solve the equation.
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ \vec{t} = M^{-1}\vec{b} \]
+&lt;/p&gt;
+
+&lt;p&gt;
+If an inverse exists, then for that board there is exactly one solution
+corresponding to every board state - and all board states are solvable.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org962dc33" class="outline-2"&gt;
+&lt;h2 id="org962dc33"&gt;Unsolvable boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org962dc33"&gt;
+&lt;p&gt;
+If there is an unsolvable configuration of the board, i.e. a board state which
+has no taps that leaves all the lights off, then it must exist in the null space
+of this matrix. A board is completely solvable iff the matrix has no null space.
+&lt;/p&gt;
+
+&lt;p&gt;
+Hacking out some very bad row-echelon reduction we could graph the nullity of
+these matrices for different size boards, this shows which sizes of board are
+always solvable, and which have many configurations that make them unsolvable.
+&lt;/p&gt;
+
+
+&lt;div id="orge4e512d" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph20.png" alt="graph20.png" width="500px"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;What board sizes are solvable? If a boardsize is solvable completely, it's corresponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+We can see from this that as expected a \(1\times1\) board is always solvable, but
+interestingly a \(4\times 4\) is not. There's also interesting patterns forming
+already… It looks very regular, and there are lines forming for \(11\times n\)
+boards too.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8be8d49" class="outline-2"&gt;
+&lt;h2 id="org8be8d49"&gt;Nullity?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8be8d49"&gt;
+&lt;p&gt;
+It's interesting to mess around with one of the boards with maximum nullity.
+Here's a 4x4 board. It's far easier than others because if there is a solution
+at all for a position, then there are many.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out4x4" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 4:&lt;/span&gt; A 4x4 board has the maximum nullity, making it much easier to solve. &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var g = new LightsOut(document.getElementById('lights-out4x4'), 4, 4);
+g.randomize();
+&lt;/script&gt;&lt;p&gt;
+Similar to a Rubik's cube, where flipping a single piece makes the puzzle
+unsolvable, lights-out boards of many dimensions have similar 'parity' cases.
+The nullity of the mapping matrix effectively counts these. For a \(4\times 4\)
+board, which has a nullity of 4, there are 4 pieces which are fully determined
+by the remaining 12. Also, for every solvable board, there are \(2^4 -1\)
+unsolvable ones.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org56a5193" class="outline-2"&gt;
+&lt;h2 id="org56a5193"&gt;'Cascading'&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org56a5193"&gt;
+&lt;p&gt;
+One (human) way of trying to solve a lights-out puzzle is to always try to
+click under any light. If you go through the board row-by-row downwards,
+and always click below any 'on' lights, you can take any game state and 'cascade'
+all remaining lights into the bottom row.
+&lt;/p&gt;
+
+&lt;p&gt;
+At this point, you can click a few times in the top row, and repeat the process.
+&lt;/p&gt;
+
+&lt;p&gt;
+Clicking just
+one square in the top row and cascading it to the bottom will cause some of the
+squares in the bottom row to flip. This means that each square in the top row corresponds (after
+cascade) to some subset of the bottom row being flipped. If we work out what
+these correspondences are, we have another way of solving the board.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out-cascade" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 5:&lt;/span&gt; An animation of cascading. Pick a random square in the top row, then 'cascade' it downwards. Eventually, this will solve the board!&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var g = new LightsOut(document.getElementById('lights-out-cascade'), 4, 6);
+
+function setupCascade(g, delay) {
+    // Add timer to perform cascade...
+    window.setInterval(function(){
+        // Find highest point under
+        var found = false;
+        var j = 1, i = 0;
+        for (j; j &lt; g.squaresY; j++) {
+            for (i=0; i &lt; g.squaresX; i++) {
+                // If there's a square above it, we've found where to click.
+                if (g.squares[i + (j-1)*g.squaresX] == 1) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+        }
+
+        // If we haven't found one, just click anywhere in the top row.
+        if (!found) {
+            j = 0;
+            i = Math.floor(Math.random() * g.squaresX);
+        }
+
+        // Click that square
+        g.click(i,j);
+    }, delay); // 1000ms = 1 sec
+}
+
+setupCascade(g, 1000);
+&lt;/script&gt;&lt;p&gt;
+Since it's possible to always reduce any board (via cascade) to having lights
+only in the bottom row, another way to ask if a boardsize is solvable if it's
+possible to reach &lt;span class="underline"&gt;any&lt;/span&gt; bottom row configuration by click/cascading. This is
+true because cascades commute.
+&lt;/p&gt;
+
+&lt;p&gt;
+If we construct a matrix from the resulting bottom rows of all possible
+click-a-square/cascade ops, it will span all solvable bottom rows.
+Then, the boardsize will always be solvable iff that matrix has a nullity of 0.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is far more efficient than our previous method. Since we can equally
+perform cascading left-to-right as well as downwards the matrices we need to
+check are only
+\(min(m,n)\times min(m,n)\) rather than \(mn \times mn\) as before.
+&lt;/p&gt;
+
+&lt;p&gt;
+It's interesting that a 4x4 board is always solvable in one try via cascading,
+since it's nullity spans the entire bottom row.
+&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;!-- Arm --&gt;
+    &lt;canvas id="lights-out-cascade-big" class="light_border" width="400" height="300" style="max-width: 85vw;"&gt;
+        Your browser doesn't support html5 canvas :c.
+    &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Game 6:&lt;/span&gt; For fun, here's a very large game cascading. Note the patterns left in the last row. We're interested if it's possible to construct any pattern here by click/cascading any number of times. &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var h = new LightsOut(document.getElementById('lights-out-cascade-big'), 20, 20, maxwidth=450);
+setupCascade(h, 100);
+&lt;/script&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org81537d6" class="outline-2"&gt;
+&lt;h2 id="org81537d6"&gt;Maximum nullity&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org81537d6"&gt;
+&lt;p&gt;
+An interesting result from this is there is a maximum nullity for any board.
+&lt;/p&gt;
+
+&lt;p&gt;
+Namely, since we can cascade any board into a single row, the nullity
+of the mapping between solution and boardstate cannot be larger than \(m\). Also,
+we can equally perform the cascade left-to-right, giving an upper bound of \(min(m,n)\).
+&lt;/p&gt;
+
+&lt;p&gt;
+This can also be proven by looking at the structure of our original mapping matrix \(M\).
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+M_{3\times3} = \begin{Bmatrix}
+1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+1 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\
+{ \color{red}1 } &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 \\
+0 &amp;amp; { \color{red}1 } &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; { \color{red}1 } &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; { \color{red}1 } &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; { \color{red}1 } &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 1 \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; { \color{red}1 } &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 \\
+\end{Bmatrix}
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+This diagonal (shown in red) will always run from \((0,m)\) to \((n*(m-1), mn)\),
+and can be used to construct the first \(n*(m-1)\) columns of a matrix in row-echelon
+form. The maximum nullity of this matrix therefore is \(n\). Similarly to before,
+the board can be rotated prior to constructing the matrix, and so the maximum
+nullity is \(min(m,n)\).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4913227" class="outline-2"&gt;
+&lt;h2 id="org4913227"&gt;Bitops&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4913227"&gt;
+&lt;p&gt;
+In order to speed up calculating large boards, we wrote some Very Fast&lt;sup&gt;tm&lt;/sup&gt; c++
+matrix code, to perform all binary field arithmetic in parallel with bitops.
+The vectors, as well as matrix rows are encoded as several unsigned
+integers, each storing 32 binary values. Multiplication can then simply be performed
+using xor. Similarly row-echelon reduction and calculation of the rank/nullity
+of each matrix can be done extremely quickly.
+&lt;/p&gt;
+
+&lt;p&gt;
+The cascade operation can also be treated with bit-ops. We take
+the current highest non-zero row. This is the row we need to 'click under', so
+to speak, and denote it as the top row. We take the row below it (the middle row) and xor
+it in-place with the top row. This forms the center of the cross.
+&lt;/p&gt;
+
+&lt;p&gt;
+Next, we can xor the middle row once again with the top row bitshifted once
+left, and once right (being careful to handle overlaps), forming the left/right
+arms of the cross. We can then xor the row further below (the bottom
+row) in-place with the top row, forming the base of the cross. Finally the top
+row can be set to 0s, which is effectively the top of the cross.
+&lt;/p&gt;
+
+&lt;p&gt;
+This allows us to perform up to 32 'clicks' at once, in very few bit operations.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc7c82c3" class="outline-2"&gt;
+&lt;h2 id="orgc7c82c3"&gt;Low memory cascade&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc7c82c3"&gt;
+&lt;p&gt;
+Although this cascade is fast, it requires a lot of memory. In order to generate
+the matrix for, e.g. a \(4000 \times 4000\) board, it requires 4000 boards, or the
+same board to be used 4000 times. This is getting very large!
+&lt;/p&gt;
+
+&lt;p&gt;
+If we consider click-cascading only on an empty board, we only ever have 3 rows with
+non-zero entries at a time. We can perform the operation only with 3 rows,
+shuffling them around on each iteration.
+&lt;/p&gt;
+
+&lt;p&gt;
+We can do better though. With the bottom row starting empty, it really just
+becomes set equal to the top row. This means we can store just 2 rows, and
+treat them as top/middle. We can perform each cascade iteration with 3 xors and
+two bitshifts for up to 32 clicks. It's also close in memory which should reduce
+cache misses.
+&lt;/p&gt;
+
+&lt;p&gt;
+All in all, this sped up our program by from taking almost
+20 hours to calculate all boards up to \(512\times 512\) to just 12 seconds. It's
+6000 times faster, without parallelization. The speedup is even more significant
+vs the pre-cascading programs and our initial python/numpy code too.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org386bb44" class="outline-2"&gt;
+&lt;h2 id="org386bb44"&gt;Lots of boards&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org386bb44"&gt;
+&lt;p&gt;
+In order to calculate nullity for a few million boards… We could compute
+the matrices for all boards of a certain width simultaneously. Cascade once,
+grab the new bottom row for each board, copy it into a matrix, reduce it in-place
+and calculate nullity, and discard it. We can then iterate to calculate the
+nullity of a board that is \((m+1)\times n\). To parallelize, each core just takes a
+width of board and calculates the nullity of all boards of that width up to a
+maximum. This took a few days to run on a HPC cluster, even with all of our
+optimizations.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org27463ba" class="outline-2"&gt;
+&lt;h2 id="org27463ba"&gt;Results!!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org27463ba"&gt;
+&lt;p&gt;
+The resulting images for different sizes.
+&lt;/p&gt;
+
+
+&lt;div id="orgae877df" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph128.png" alt="graph128.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="orgb3ed09e" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph512.png" alt="graph512.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="org6f086ce" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph4096.png" alt="graph4096.png" width="500px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Here we can see the patterns that continue even for very large boards. In the
+512x512 image, there's a faint grid forming at near powers of 2: 127 and 255.
+Above it, there's a similar line around 63. The largest size: 4096 requires
+zooming for the 'constellations' to be even visible, but they're there, with
+several big spots also scattered around.
+&lt;/p&gt;
+
+&lt;p&gt;
+It's interesting that, as you move further 'out', the boards are relatively more
+solvable. The intuition is that, for a board to have a very high nullity, many
+it's click/cascade vectors must align. This becomes increasingly more unlikely to
+happen as these vectors increase in size and number.
+&lt;/p&gt;
+
+&lt;p&gt;
+There're very few large boards which loose all dimensions. These are the only
+ones larger than 1024*1024 (not including rotations).
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+&lt;col class="org-right"&gt;
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;height&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;width&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;percentage nullity&lt;/th&gt;
+&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1023&lt;/td&gt;
+&lt;td class="org-right"&gt;1535&lt;/td&gt;
+&lt;td class="org-right"&gt;1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1023&lt;/td&gt;
+&lt;td class="org-right"&gt;3071&lt;/td&gt;
+&lt;td class="org-right"&gt;1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1279&lt;/td&gt;
+&lt;td class="org-right"&gt;3839&lt;/td&gt;
+&lt;td class="org-right"&gt;1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1791&lt;/td&gt;
+&lt;td class="org-right"&gt;2303&lt;/td&gt;
+&lt;td class="org-right"&gt;1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2047&lt;/td&gt;
+&lt;td class="org-right"&gt;3071&lt;/td&gt;
+&lt;td class="org-right"&gt;1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1407&lt;/td&gt;
+&lt;td class="org-right"&gt;3967&lt;/td&gt;
+&lt;td class="org-right"&gt;0.9097370291400142&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;1535&lt;/td&gt;
+&lt;td class="org-right"&gt;3071&lt;/td&gt;
+&lt;td class="org-right"&gt;0.9993485342019544&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+These are all surprisingly structured! Often near 2&lt;sup&gt;n&lt;/sup&gt;-1 or 3*2&lt;sup&gt;n&lt;/sup&gt;-1 (i.e. 3071).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga4fc3a0" class="outline-2"&gt;
+&lt;h2 id="orga4fc3a0"&gt;Other…&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga4fc3a0"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgacd0256" class="outline-3"&gt;
+&lt;h3 id="orgacd0256"&gt;Looping patterns?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgacd0256"&gt;
+&lt;p&gt;
+Since a cascade operation can be written as a matrix multiplication (if the
+board has width \(m\), the resulting cascade matrix is \(2m\times 2m\)), we can
+consider powers of it instead of repeatedly cascading.
+&lt;/p&gt;
+
+&lt;p&gt;
+The question becomes, what power of this matrix results in the identity matrix
+(or the same cascade matrix again)? This would mean the nullity of boards of a
+certain width would form a long repeating pattern based on their height.
+&lt;/p&gt;
+
+&lt;p&gt;
+The period of small cascade matrices; less than 40, are all about/below 8000-16000,
+but it blows up from there… The period of the cascade over a board of width 40
+is over one million iterations.
+&lt;/p&gt;
+
+&lt;p&gt;
+Funnily, we both came up with this idea coincidentally within a few minutes of each other.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org12174d3" class="outline-3"&gt;
+&lt;h3 id="org12174d3"&gt;Sequences&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org12174d3"&gt;
+&lt;p&gt;
+Some board widths are surprisingly solvable/ unsolvable. We found boards of size
+(\(10 \times 31n-1\)) are all unsolvable (nullity of 10) to as high as we could
+calculate at the time.
+&lt;/p&gt;
+
+&lt;p&gt;
+Several other widths are surprisingly solvable, 10 (other than above), 81, and many more.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org117e9ea" class="outline-3"&gt;
+&lt;h3 id="org117e9ea"&gt;OEIS&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org117e9ea"&gt;
+&lt;p&gt;
+The Online Encyclopedia of Integer Sequences is a searchable database
+containing, well, integer sequences. After finishing up, we tried searching it
+for our sequence. It turns out square boards have their own entry &lt;a href="https://oeis.org/A093614"&gt;here!&lt;/a&gt; This was
+the first time we knew the game by it's proper name, and found the game's
+relation to other areas of cellular automata.
+&lt;/p&gt;
+
+&lt;p&gt;
+We'd generated almost twice as far as the furthest though! The highest term in
+the OEIS sequence is 2363, while ours is ~4100.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2aee572" class="outline-2"&gt;
+&lt;h2 id="org2aee572"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2aee572"&gt;
+&lt;p&gt;
+I think we both agree we haven't completely figured out as much as we'd like…
+The patterns are still somewhat a mystery, even if we've found some logic in
+them! It's one to revisit for sure :P.
+&lt;/p&gt;
+
+&lt;p&gt;
+As always, feel free to dig through the source code for this page either here or
+on &lt;a href="https://github.com/oisincar/imois.in/tree/master/assets/js/lights_out"&gt;my Github for the site&lt;/a&gt;! It's written in pure javascript/html canvas (apart from the english,
+that's written in english…).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org4a0c2fa" class="outline-2"&gt;
+&lt;h2 id="org4a0c2fa"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4a0c2fa"&gt;
+&lt;p&gt;
+At EJC last year (2018), I came across Jack Boyce's siteswap questions, which
+can be found &lt;a href="http://www.juggling.org/help/siteswap/tests/test-boyce.html"&gt;HERE!&lt;/a&gt; I'd highly recommend giving them a go. They start off doable,
+and at the end work up to a derivation of how many siteswaps of a given length
+there are.
+&lt;/p&gt;
+
+&lt;p&gt;
+I ended up getting a bit carried away, and writing some programs to visualize
+parts of the questions, and take some ideas further. The full source for generating
+the graphs can be found &lt;a href="https://github.com/oisincar/siteswap_graph"&gt;on my Github.&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+I wrote almost all of this at the time, but I'm only getting around to cleaning
+it up and posting it now… 9 months later.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgde0dab9" class="outline-2"&gt;
+&lt;h2 id="orgde0dab9"&gt;q1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgde0dab9"&gt;
+&lt;p&gt;
+&lt;i&gt;I am juggling \(868671\) with clubs (yeah, right).  How many do I have?&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The number of objects in a given siteswap is just the average value, I.e. The
+sum of the numbers divided by the length.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Answer: 6
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgdc8fd65" class="outline-2"&gt;
+&lt;h2 id="orgdc8fd65"&gt;q2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdc8fd65"&gt;
+&lt;p&gt;
+&lt;i&gt;I have a bowling ball that I can only throw as a site swap '\(3\)' throw. Which&lt;/i&gt;
+&lt;i&gt;of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:&lt;/i&gt;
+&lt;/p&gt;
+&lt;div class="org-center"&gt;
+&lt;p&gt;
+&lt;i&gt;a) \(53\)     b) \(6631\)    c) \(633\)    d) \(577131\)&lt;/i&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+This is a question about orbits. A siteswap throw is thrown it's value number of
+beats later (e.g. a \(6\) is thrown 6 beats later). Therefore we're looking for
+siteswaps which have a \(3\) every 3 beats (wrapping).
+&lt;/p&gt;
+
+&lt;p&gt;
+This is only c).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org86e62d4" class="outline-2"&gt;
+&lt;h2 id="org86e62d4"&gt;q3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org86e62d4"&gt;
+&lt;p&gt;
+&lt;i&gt;You are doing a 4 ball fountain and decide you want to switch into&lt;/i&gt;
+&lt;i&gt;741, an excited state site swap.  You can't just start throwing:&lt;/i&gt;
+&lt;i&gt;4444741741… Since the last fountain throw (4) will collide with the&lt;/i&gt;
+&lt;i&gt;first 1 you do.  Some connecting throws are needed.  What is the&lt;/i&gt;
+&lt;i&gt;shortest starting sequence for 741?&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+A 4 ball base fountain occurs in the base state of 4 balls, which can be written
+as:
+&lt;/p&gt;
+
+&lt;pre class="example" id="orgc5a2f77"&gt;
+4|xxxx
+&lt;/pre&gt;
+
+&lt;p&gt;
+741 occurs in state:
+&lt;/p&gt;
+&lt;pre class="example" id="org9d1102c"&gt;
+7|xx_x__x
+4|x_xx_x
+1|xxx_x
+&lt;/pre&gt;
+
+&lt;p&gt;
+Before the 7 is thrown, we're in state &lt;code&gt;xxx_x&lt;/code&gt;, which is simply a \(5\)
+away from the base state.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1c8169c" class="outline-2"&gt;
+&lt;h2 id="org1c8169c"&gt;q4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1c8169c"&gt;
+&lt;p&gt;
+&lt;i&gt;You want to get back into the fountain, from 741.  What is the&lt;/i&gt;
+&lt;i&gt;shortest connecting (ending) sequence in this direction?&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+From &lt;code&gt;xxx_x_&lt;/code&gt; to &lt;code&gt;xxxx___&lt;/code&gt;, we can throw a \(3\).
+&lt;/p&gt;
+
+&lt;p&gt;
+It's not a coincidence that the the transition into \(741\) (\(5\)) and out (\(3\))
+together make a valid siteswap (\(53\)). The intuition here is that you can
+transition into any siteswap, repeat that siteswap any number of times, and
+transition back. That includes repeating it 0 times. Therefore the transition
+into and out of any siteswap must be, itself, a valid (ground state) pattern.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org794b059" class="outline-2"&gt;
+&lt;h2 id="org794b059"&gt;q5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org794b059"&gt;
+&lt;p&gt;
+&lt;i&gt;Go from the 4 ball fountain to 714.  What are the shortest&lt;/i&gt;
+&lt;i&gt;connecting sequences (both directions)?&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+As before we can work out the state that 714 starts in.
+&lt;/p&gt;
+
+
+&lt;pre class="example" id="org969f92b"&gt;
+7|x_xx__x
+1|xxx__x
+4|xx_xx
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+Before the 7 is thrown, we're in state \(xx\_xx\). This is where we need our
+transition to leave us. We can see it won't be possible to transition in a
+single throw, so lets look at transitions of length 2.
+&lt;/p&gt;
+
+&lt;p&gt;
+I.e. finding the throws a, b here:
+&lt;/p&gt;
+&lt;pre class="example" id="orga059471"&gt;
+4|xxxx
+a|
+b|xx_xx
+&lt;/pre&gt;
+&lt;p&gt;
+For a and b, (and therefore the transition into the pattern) both \(55\) and \(64\) work.
+&lt;/p&gt;
+
+&lt;p&gt;
+As for the transition back, a \(2\) works. Without having to check, we know this
+will work because \(552\) and \(642\) are valid siteswaps.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgbd9577d" class="outline-2"&gt;
+&lt;h2 id="orgbd9577d"&gt;q6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbd9577d"&gt;
+&lt;p&gt;
+&lt;i&gt;You are already doing \(741\) and want to switch directly into \(714\).&lt;/i&gt;
+&lt;i&gt;What is the shortest sequence for doing so?  [You could just&lt;/i&gt;
+&lt;i&gt;concatenate the ending sequence found in (4) above and the starting&lt;/i&gt;
+&lt;i&gt;sequence in (5), but this is not the shortest solution.]&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Here, we're looking for the transition from \(xxx\_x\) to \(xx\_xx\). This is just a
+\(5\).
+&lt;/p&gt;
+
+&lt;p&gt;
+We can also see this by looking at the transitions we found into the siteswap.
+For \(741\) we found \(5\), and for \(714\) we found \(55\). The difference here is just
+an extra \(5\).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org67db845" class="outline-2"&gt;
+&lt;h2 id="org67db845"&gt;q7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org67db845"&gt;
+&lt;p&gt;
+&lt;i&gt;Is the trick \(66671777161\) simple?  If not, which portion of the&lt;/i&gt;
+&lt;i&gt;pattern can be repeated within the larger trick?&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;i&gt;Is the trick \(6316131\) simple?  If not, which portion can be repeated?&lt;/i&gt;
+&lt;/p&gt;
+
+
+&lt;p&gt;
+Here 'simple' (more commonly 'prime') refers to simple cycles in graph theory.
+These are siteswaps where each state is only visited once. We could find answers
+by working out all the states in each siteswaps, and look for duplicates. If
+there's any duplicate, then the siteswap isn't simple, and the throws between
+these duplicated states can be repeated. This can be done by brute force as
+follows by generating the table by hand. I'm too lazy to do this so I'll write a
+much longer program to do it instead… :thinking:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- Function mapping from current state to next state.&lt;/span&gt;
+&lt;span class="c1"&gt;-- E.g. throw "xxxx___" 5 gives "xxx_x__"&lt;/span&gt;
+&lt;span class="nf"&gt;throw&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;xs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="sc"&gt;'x'&lt;/span&gt; &lt;span class="kt"&gt;:&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;
+    &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;splitAt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xs&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;"_"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- Juggle pattern 100 times, then take the next (length ss) state changes.&lt;/span&gt;
+&lt;span class="c1"&gt;-- This creates a list of maps between starting state&lt;/span&gt;
+&lt;span class="c1"&gt;-- (say, xxxx___), throw (e.g. 5), and resulting state (xxx_x__)&lt;/span&gt;
+&lt;span class="nf"&gt;grEdges&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;drop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;scanl&lt;/span&gt; &lt;span class="n"&gt;nextEdge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;[]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;emptyState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;repeat&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="n"&gt;nextEdge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;startState&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;endState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;endState&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;throw&lt;/span&gt; &lt;span class="n"&gt;endState&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="n"&gt;emptyState&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;replicate&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maximum&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="sc"&gt;'_'&lt;/span&gt;
+
+&lt;span class="c1"&gt;-- Print table for a given siteswap&lt;/span&gt;
+&lt;span class="nf"&gt;printTable&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;putStrLn&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;unlines&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grEdges&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;"|"&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Then, we can get the tables for both siteswaps we're interested in.
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;printTable&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;digitToInt&lt;/span&gt; &lt;span class="s"&gt;"66671777161"&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxxxx__&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxxx_x_&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxx_xx_&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_xxx_&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_xxx_x&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxxx_x_&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxx_x_x&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_x_xx&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_x_xxx&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_xxx_&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_xxxx_&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;printTable&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;digitToInt&lt;/span&gt; &lt;span class="s"&gt;"6316131"&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxx___&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx___x&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_x_x_&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_x__&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_x__x&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx__x_&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_xx__&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8678d9c" class="outline-3"&gt;
+&lt;h3 id="org8678d9c"&gt;66671777161&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8678d9c"&gt;
+&lt;p&gt;
+Here, there are two states that occur more than once. I've marked the pairs here
+as a and b. This means you can juggle the patterns between the As (I.e. 6671,
+and 7771616), and Bs (717771, and 61666)
+&lt;/p&gt;
+
+&lt;pre class="example" id="orgcb644b0"&gt;
+1| xxxxx__
+6| xxxx_x_ A
+6| xxx_xx_
+6| xx_xxx_ B
+7| x_xxx_x
+1| xxxx_x_ A
+7| xxx_x_x
+7| xx_x_xx
+7| x_x_xxx
+1| xx_xxx_ B
+6| x_xxxx_
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org03b6732" class="outline-3"&gt;
+&lt;h3 id="org03b6732"&gt;6316131&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org03b6732"&gt;
+&lt;p&gt;
+Here, this siteswap has no duplicated states, and is therefore prime.
+&lt;/p&gt;
+&lt;pre class="example" id="orge2e3a1a"&gt;
+1| xxx___
+6| xx___x
+3| x_x_x_
+1| xx_x__
+6| x_x__x
+1| xx__x_
+3| x_xx__
+&lt;/pre&gt;
+
+&lt;p&gt;
+We can also use this to make a graph of these patterns. Graphing them using
+graphviz. This code prints into pretty much the Dot format used by graphviz, and the
+resulting graphs are shown below.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;printGraph&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;putStrLn&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;unlines&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grEdges&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;startSt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;endSt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"  "&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;startSt&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;" -&amp;gt; "&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;endSt&lt;/span&gt;
+	  &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;" [label=&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;]"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;div id="org6485460" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss1.png" alt="ss1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Siteswap map for 66671777161. We can see the two states we found (labeled A and B) before in the nodes with 2 input and output edges.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Here we can see the results for our first part, 66671777161. Any closed loop in this is a valid
+siteswap, which are (hopefully) just the 4 we found before. Pretty neat!
+&lt;/p&gt;
+
+
+&lt;div id="orgdb99566" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss2.png" alt="ss2.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;Siteswap map for 6316131&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+As expected, \(6316131\) is prime so the graph is simply a loop with no repeated states.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2e182a5" class="outline-2"&gt;
+&lt;h2 id="org2e182a5"&gt;q8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2e182a5"&gt;
+&lt;p&gt;
+&lt;i&gt;There is 1 ground state 5 ball trick of length 1 (5), 2 of length 2&lt;/i&gt;
+&lt;i&gt;(55, 64), 6 of length 3 (555, 564, 645, 663, 744, 753), 24 of length&lt;/i&gt;
+&lt;i&gt;4, 120 of length 5, and 720 of length 6.  Clearly the pattern is N =&lt;/i&gt;
+&lt;i&gt;L!, which is a big hint that L elements are being permuted.  What L&lt;/i&gt;
+&lt;i&gt;things are permuted by ground state site swaps of length L?  (Bear in&lt;/i&gt;
+&lt;i&gt;mind that L is not the number of balls.)&lt;/i&gt;
+&lt;/p&gt;
+
+
+&lt;div id="orgfb2a074" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_1.png" alt="q8_1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;A continuous 5 ball cascade, breaking for a period 4 siteswap, before resuming.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Looking at siteswaps of length 4, for example. Here, we can assign a, b, c, d to
+whatever we want, but we're limited with what we can connect to. The question
+becomes: How many ways can we connect up the arrows to form valid patterns.
+&lt;/p&gt;
+
+&lt;p&gt;
+Any way that we can connect up these, so that every node has 0 or 1 throws going
+to it, and the same number of throws leaving it will be a valid pattern.
+&lt;/p&gt;
+
+&lt;p&gt;
+We can look at each throw in turn, and see what it's possible to connect it to.
+a already receives a throw, so it can't be a 0. It can't connect to b, c, d, or
+the following 5 because they already have arrows connecting to them.
+&lt;/p&gt;
+
+
+&lt;div id="org03365da" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_2.png" alt="q8_2.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;There are 4 possible values for a, shown in red.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Here, in red, are the possible throws from \(a\). \(a \in \{5,6,7,8\}\). It can be seen that b, c, and d,
+can also throw to these same 4 positions. However, only one can throw to each.
+We need to choose an ordering for these 4 throws to land. The number of ways to
+order 4 objects is 4!. By this logic, we can see how it'll be \(l!\) for any number
+of throws (until we start getting 0s… See next q).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9ac68f7" class="outline-2"&gt;
+&lt;h2 id="org9ac68f7"&gt;q9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9ac68f7"&gt;
+&lt;p&gt;
+&lt;i&gt;There are not 7! = 5040 ground state 5 ball patterns of length 7,&lt;/i&gt;
+&lt;i&gt;as the above pattern would suggest (the actual number is around&lt;/i&gt;
+&lt;i&gt;4300). Why does the pattern break down?  Can you calculate (not by&lt;/i&gt;
+&lt;i&gt;brute force!) how many ground state patterns there are for L =&lt;/i&gt;
+&lt;i&gt;7,8,9,…?&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+This is due to there being 0s in the pattern. As before we can connect these
+arrows in any way, but sometimes in later throws we won't have a ball to throw.
+&lt;/p&gt;
+
+&lt;p&gt;
+Another way of approaching the previous question is to reverse it. Instead of
+looking at the throws being made at a point, look instead at the number of
+places the throws can come from.
+look at the throws landing at a
+point. a,b,c,d,e already have their throws chosen, so we're looking at the
+subsequent 5 throws. Since we require a ball to land at
+each of these times, we can just times together all the ways these arrows could
+be directed.
+&lt;/p&gt;
+
+
+&lt;div id="org853d8c3" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_1.png" alt="q9_1.png"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Here, there are a choice of 5 throws that can land at this time. For the
+following throw, there are only 4 left, and after is 3 etc. This approach leads
+us to the same answer as before: n!.
+&lt;/p&gt;
+
+&lt;p&gt;
+Where this falls apart however is for longer sequences..
+&lt;/p&gt;
+
+
+&lt;div id="orgbfa2c5f" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_2.png" alt="q9_2.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;f or g could be a 0, and so the arrows in blue may not be possible. This is the problem with our current method.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Here, this method falls apart - we don't know if f or g will even 'contain' a
+ball for us to throw. Because of this, if we were to continue the previous
+method - we'd overestimate the number of siteswaps of any given length.
+&lt;/p&gt;
+
+&lt;p&gt;
+However, having a 0 in a pattern is pretty much the same as inserting a space
+into a shorter siteswap. If we were able to work out the number of siteswaps of
+a shorter length with no 0s, and then multiply it by the number of ways we could
+'insert' a 0 into that siteswap… We'd be able to work out the number of
+siteswaps of any given length despite there being 0s.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here's an example of this insertion… We can create all siteswaps with 0s
+similarly by adding gaps into siteswaps without 0s.
+&lt;/p&gt;
+
+&lt;div id="orgb25c256" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_3.png" alt="q9_3.png"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="org05f73bf" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_4.png" alt="q9_4.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 8: &lt;/span&gt;Siteswap 504 has exactly the same arrow placement as 33, but with an added 0. All siteswaps with 0s have exactly one siteswap without 0s they map to.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+So with this in mind, we can calculate the total number of siteswaps of length
+\(L\) by:
+&lt;/p&gt;
+
+&lt;div class="org-center"&gt;
+&lt;p&gt;
+\(\sum_{l=1}^{L}\) (arrow permutations of length \(l\)) \(*\) (ways to insert \(L-l\) gaps into a siteswap of length \(l\))
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge5f4471" class="outline-3"&gt;
+&lt;h3 id="orge5f4471"&gt;Arrow permutations:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge5f4471"&gt;
+&lt;p&gt;
+To work out the permutations of length l, we can use the method we had before.
+We go through the catches, and work out where the throw could've come from. Now
+that we've no 0s, any unassigned throw before can be used.
+&lt;/p&gt;
+
+&lt;p&gt;
+The first \(n\), where \(n\) is the number of balls are already determined by the
+incoming cascade throws. After that, we have n throws that can land at any
+point.
+&lt;/p&gt;
+
+
+&lt;div id="orgfe12f3f" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_5.png" alt="q9_5.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 9: &lt;/span&gt;The n (n = 5 here) throws that could arrive at f. After picking the throw to arrive at f, we'll still have n choices for g - since f is now a possible source.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+As long as the pattern is going, we have \(n\) places the throw could've been
+made. We go through the siteswap from left to right, picking each throw source
+in turn. Therefore, the number of possible sources remains the same - \(n\).
+&lt;/p&gt;
+
+&lt;p&gt;
+From the previous question, for \(n\) throws following the pattern we have one
+less choice each time, totalling \(n!\).
+&lt;/p&gt;
+
+&lt;p&gt;
+The total number of arrow permutations therefore is
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ p = \begin{cases}
+      l! &amp;amp; l &amp;lt;= n \\
+      n! * n^{l-n} &amp;amp; otherwise
+   \end{cases}
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+Since we already know how many ground state siteswaps there are for \(l &amp;lt;= n\),
+(I.e. l!) we'll ignore this case for now.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2b1fe25" class="outline-3"&gt;
+&lt;h3 id="org2b1fe25"&gt;Gap insertion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2b1fe25"&gt;
+&lt;p&gt;
+Given a siteswap of length \(l\) with no gaps, we're looking to insert them so as
+to end up with one of length \(L, L &amp;gt;= l\).
+&lt;/p&gt;
+
+&lt;p&gt;
+Another way to phrase this is to say given a sequence of length \(L\), we have to
+choose positions for the \(L-l\) gaps. We can't choose
+the first \(n\) places though, since the siteswap is ground state.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is just \({L-n \choose L-l}\), as long as \({ L-n \geq L-l } \implies { l \geq
+n }\). There is no way to insert gaps into a siteswap that's shorter than the
+number of balls.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgfbfb6d7" class="outline-3"&gt;
+&lt;h3 id="orgfbfb6d7"&gt;Putting it all together:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgfbfb6d7"&gt;
+&lt;p&gt;
+Lets insert what we have into the equation.
+&lt;/p&gt;
+&lt;div class="org-center"&gt;
+&lt;p&gt;
+\(\sum_{l=1}^{L}\) (arrow permutations of length \(l\)) \(*\) (ways to insert \(L-l\) gaps into a siteswap of length \(l\))
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Since there are 0 ways to insert gaps into siteswaps where \(n &amp;lt; L\), and we already know
+from the previous question that the number of siteswaps in this case is \(L!\),
+we'll omit this case and come back to it.
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ s(L, n) = \sum_{l=1}^{L} \bigg[ \begin{cases}
+      l! &amp;amp; l &amp;lt;= n \\
+      n! * n^{l-n} &amp;amp; otherwise
+   \end{cases} * {L \choose l} \bigg] \]
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ = \sum_{l=n}^{L} \bigg[n! * n^{l-n} * {L-n \choose L-l} \bigg], l \geq n \]
+&lt;/p&gt;
+
+&lt;p&gt;
+Which gives us the number of ground state siteswaps for a given number of balls (\(n\)) and
+length (\(l, l \geq n\))! We can test it to get an answer for how many siteswaps of
+length 7 there are:
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ s(7, 5) = \sum_{l=5}^{7} \bigg[5! * 5^{l-5} * {2 \choose 7-l} \bigg] =
+5!(5^0*1 + 5^1*2 + 5^2*1) = 4320 \]
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5846cc5" class="outline-3"&gt;
+&lt;h3 id="org5846cc5"&gt;Simplify&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5846cc5"&gt;
+&lt;p&gt;
+We can simplify this formula a lot further! First taking \(n!\) out side the sum.
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ = n! * \sum_{l=n}^{L} \bigg[n^{l-n} * {L-n \choose L-l} \bigg] \]
+&lt;/p&gt;
+
+&lt;p&gt;
+Substitute \(k+n = l\)
+\[ = n! * \sum_{k=0}^{L-n} \bigg[n^{k} * {L-n \choose L-k-n} \bigg] \]
+&lt;/p&gt;
+
+&lt;p&gt;
+Next, substitute \(L-n = d\)
+\[ = n! * \sum_{k=0}^{d} \bigg[n^{k} * {d \choose d-k} \bigg] \]
+&lt;/p&gt;
+
+&lt;p&gt;
+Then we have:
+\[ { d \choose d-k } = \frac{d!}{k!(d-k)!} = { d \choose k } \]
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ \therefore s(l, n) = n! * \sum_{k=0}^{d} \bigg[n^{k} * {d \choose k} \bigg],
+l \geq n \]
+&lt;/p&gt;
+
+&lt;p&gt;
+This can be simplified with the binomial theorem identity, with n = d, a = 1, b
+= n.
+\[ \sum_{i=0}^{n} {n \choose i} a^{n-i}b^{i} = (a+b)^n \]
+&lt;/p&gt;
+
+&lt;p&gt;
+\[ \therefore s(L, n) = n! * (n+1)^d \]
+&lt;/p&gt;
+
+&lt;p&gt;
+And reverting the substitutions
+\[ \therefore s(L, n) = n! * (n+1)^{(L-n)} \]
+&lt;/p&gt;
+
+&lt;p&gt;
+And adding back in the case for l &amp;lt;= n.
+\[ \therefore s(L, n) = \begin{cases}
+      l! &amp;amp; l &amp;lt;= n \\
+      n! * (n+1)^{L-n} &amp;amp; otherwise
+   \end{cases} \]
+&lt;/p&gt;
+
+&lt;p&gt;
+Which… FINALLY gives us the the answer! Phew!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item></channel></rss>

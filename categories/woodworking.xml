@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about Woodworking)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/woodworking.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 20 May 2022 00:52:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about woodworking)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/woodworking.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 28 Oct 2022 11:28:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
 Back in 2013 I designed and made this chair! It's a fishbone chair - quite the trend of the time, but there weren't any good designs available online. The chair can be cnc-milled out of a single standard sheet of 3/4" 8'x4' mdf or plywood, and slots together with no fastners or glue!
 &lt;/p&gt;
 
 
-&lt;div id="org679e6e3" class="figure"&gt;
+&lt;div id="orge3c1fa6" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair1.jpg" alt="chair1.jpg" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The chair, feat. a small paper model in the top left.&lt;/p&gt;
 &lt;/div&gt;
@@ -14,7 +14,7 @@ We've been using the chair for the past 8 years, and isn't showing any signs of 
 &lt;/p&gt;
 
 
-&lt;div id="orgbfaa043" class="figure"&gt;
+&lt;div id="orga8986e0" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair2.jpg" alt="chair2.jpg" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;From the back. Each brace piece is unique.&lt;/p&gt;
 &lt;/div&gt;
@@ -24,13 +24,13 @@ I designed it in blender, taking a rough chair model and cutting slices into it.
 &lt;/p&gt;
 
 
-&lt;div id="orgd046c26" class="figure"&gt;
+&lt;div id="org32b3199" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair_model.jpg" alt="chair_model.jpg" width="400px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="orgafd7bf3" class="figure"&gt;
+&lt;div id="org4192a61" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair_cutout.jpg" alt="chair_cutout.jpg" width="400px"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;Pictures from the design - Top: Renders from blender. Bottom: A cardboard model cutout.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;Pictures from the design - Top: Renders from blender. Bottom: A cardboard model cutout.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -38,14 +38,16 @@ While I'm sure it's possible to cut this out by hand, it's much easier to do it 
 &lt;/p&gt;
 
 
-&lt;div id="org2eead26" class="figure"&gt;
-&lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/fishbone_chair.svg" alt="fishbone_chair.svg" class="org-svg" width="400px" style="background:white"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;The pieces layed out for CNC cutting from an 8'x4' plywood sheet.&lt;/p&gt;
+&lt;div id="orgd273c5d" class="figure"&gt;
+&lt;p&gt;&lt;object type="image/svg+xml" data="https://imois.in/images/fishbone_chair/fishbone_chair.svg" class="org-svg" width="400px" style="background:white"&gt;
+Sorry, your browser does not support SVG.&lt;/object&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 5: &lt;/span&gt;The pieces layed out for CNC cutting from an 8'x4' plywood sheet.&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org91476d2" class="outline-2"&gt;
-&lt;h2 id="org91476d2"&gt;Download!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org91476d2"&gt;
+&lt;div id="outline-container-org261fe9c" class="outline-2"&gt;
+&lt;h2 id="org261fe9c"&gt;Download!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org261fe9c"&gt;
 &lt;p&gt;
 You can download the designs as &lt;a href="https://imois.in/images/fishbone_chair/fishbone_chair.svg"&gt;.SVG format&lt;/a&gt; (right-click &amp;gt; Save Link As) or &lt;a href="https://imois.in/misc/chair/fishbone_chair.dxf"&gt;.DXF format&lt;/a&gt;, which are both provided under a &lt;a href="https://creativecommons.org/licenses/by-nc/3.0/ie/"&gt;Creative Commons Attribution-NonCommercial License&lt;/a&gt;. That means you're free to make the chair as-is, or modify the designs… But you cannot sell them and give credit when they're used.
 &lt;/p&gt;
@@ -54,4 +56,5 @@ You can download the designs as &lt;a href="https://imois.in/images/fishbone_cha
 If you do decide to make one, it'd be great to hear from you!
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>Woodworking</category><guid>https://imois.in/posts/fishbone-chair-free-plans/</guid><pubDate>Sat, 26 Jun 2021 23:41:12 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;
+</description><category>woodworking</category><guid>https://imois.in/posts/fishbone-chair-free-plans/</guid><pubDate>Sat, 26 Jun 2021 23:41:12 GMT</pubDate></item></channel></rss>

@@ -3,7 +3,7 @@
 .. slug: hockey-bots-creating-ai-for-slapshot-rebound
 .. date: 2022-05-20 00:57:49 UTC+01:00
 .. tags:
-.. category:
+.. category: research
 .. link:
 .. has_math: true
 .. description:

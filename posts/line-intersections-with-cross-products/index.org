@@ -3,7 +3,7 @@
 .. slug: line-intersections-with-cross-products
 .. date: 2022-05-21 02:46:09 UTC+01:00
 .. tags: math
-.. category:
+.. category: interesting-thing
 .. link:
 .. description: Elegant intersections using ideas from projective geometry.
 .. type: text
