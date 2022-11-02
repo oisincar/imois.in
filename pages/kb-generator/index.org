@@ -1,0 +1,92 @@
+#+BEGIN_COMMENT
+.. title: Puzzle Keyboard Layout Generator
+.. slug: kb-generator
+.. date: 2022-10-30 17:04:14 UTC
+.. tags:
+.. category:
+.. link:
+.. description:
+.. type: text
+
+#+END_COMMENT
+
+This is a generator for the puzzle keyboard. It creates a =.svg= file that can be laser cut out of acrylic and assembled.
+
+# Sliders to add...
+# u (key spacing)
+# hole_width
+# kerf
+# board_padding
+# hole_width
+# hole_type (circular, hex)?
+# number of layers
+
+* Configuration
+#+BEGIN_EXPORT html
+<script src="../assets/js/kb-designer/designer.js"></script>
+
+<form name="rebuildform">
+  <label>Config - Left Half</label>
+  <br>
+  <textarea name="leftconfig" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
+[{x:0.5},"¬\nEsc\n\n\n\n\n`","!\n1","\"\n2","£\n3","$\n4","%\n5","^\n6"],
+[{x:1},"Tab","Q","W","E","R","T"],
+[{x:0.25,a:7},"",{a:4},"Caps Lock","A","S","D","F","G"],
+[{x:0.75},"Shift","|\n\\","Z","X","C","V"],
+[{x:0.5,w:1.25},"Ctrl",{a:7,w:1.25},"",{a:4,w:1.25},"Super",{w:1.25},"Alt",{a:7,w:1.75},""]</textarea>
+  <br>
+  <label>Config - Right Half</label>
+  <br>
+  <textarea name="rightconfig" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
+[{x:0.75},"&\n7","*\n8","(\n9",")\n0","_\n-","+\n=","⌫"],
+[{x:0.25},"Y","U","I","O","P","{\n[","}\n]"],
+[{x:0.5},"H","J","K","L",":\n;","@\n'","~\nEnter\n\n\n\n\n#"],
+["B","N","M","<\n,",">\n.","?\n/","Shift"],
+[{x:0.5,a:7,w:1.75},"",{a:4,w:1.25},"Alt",{a:7,w:1.25},"",{w:1.25},"",{a:4,w:1.25},"Ctrl"]</textarea>
+  <br>
+
+  <label>Center split offsets</label>
+  <input type="text" name="center_offsets" value="-0.5, 0.25, -0.5, 0.5" /><br>
+
+  <label>Kerf (laser diameter)</label>
+  <input type="number" name="kerf" min="0" max="1.0" value="0.105" step="0.001"/><br>
+
+  <label>Screw diameter</label>
+  <input type="number" name="screw_diam" min="0.5" max="4.0" value="2.1" step="0.01"/><br>
+
+  <button type="submit">Rebuild SVG</button>
+</form>
+
+<div>
+  <p id="svg_result">
+  </p>
+</div>
+
+#+END_EXPORT
+
+#+BEGIN_SRC inline-js
+function rebuildFromForm() {
+  var formResArray = $("form").serializeArray();
+  // Convert to dict
+  var formRes = Object.assign({}, ...formResArray.map((x) => ({[x.name]: x.value}) ));
+  console.log(formRes);
+
+  var leftConfig = formRes['leftconfig'];
+  var rightConfig = formRes['rightconfig'];
+  kerf = formRes['kerf'];
+  screw_size_small = formRes['screw_diam'];
+
+
+  var fullSvg = getFullKbSVG(leftConfig, rightConfig);
+
+  $("#svg_result").html(fullSvg);
+}
+
+$("form").on('submit', function (e) {
+  rebuildFromForm();
+
+  e.preventDefault();
+});
+
+rebuildFromForm();
+#+END_SRC

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about tutorial)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_tutorial.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 28 Oct 2022 11:32:56 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orga3f26d4" class="outline-2"&gt;
-&lt;h2 id="orga3f26d4"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga3f26d4"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about tutorial)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_tutorial.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sun, 30 Oct 2022 17:29:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgd6c88a4" class="outline-2"&gt;
+&lt;h2 id="orgd6c88a4"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd6c88a4"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -25,9 +25,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf576120" class="outline-2"&gt;
-&lt;h2 id="orgf576120"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf576120"&gt;
+&lt;div id="outline-container-org0d864df" class="outline-2"&gt;
+&lt;h2 id="org0d864df"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0d864df"&gt;
 &lt;p&gt;
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -99,9 +99,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgeada9a0" class="outline-2"&gt;
-&lt;h2 id="orgeada9a0"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgeada9a0"&gt;
+&lt;div id="outline-container-org4ea21b3" class="outline-2"&gt;
+&lt;h2 id="org4ea21b3"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4ea21b3"&gt;
 &lt;p&gt;
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -193,9 +193,9 @@ be pretty useful to have a way to solve it!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0dbb4a0" class="outline-2"&gt;
-&lt;h2 id="org0dbb4a0"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0dbb4a0"&gt;
+&lt;div id="outline-container-org270054b" class="outline-2"&gt;
+&lt;h2 id="org270054b"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org270054b"&gt;
 &lt;p&gt;
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -226,9 +226,9 @@ games is done.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga034fd5" class="outline-2"&gt;
-&lt;h2 id="orga034fd5"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga034fd5"&gt;
+&lt;div id="outline-container-org2ec0de8" class="outline-2"&gt;
+&lt;h2 id="org2ec0de8"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2ec0de8"&gt;
 &lt;p&gt;
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -255,9 +255,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc5882dd" class="outline-2"&gt;
-&lt;h2 id="orgc5882dd"&gt;Forward Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc5882dd"&gt;
+&lt;div id="outline-container-org1447e92" class="outline-2"&gt;
+&lt;h2 id="org1447e92"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1447e92"&gt;
 &lt;p&gt;
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -295,9 +295,9 @@ Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb289745" class="outline-2"&gt;
-&lt;h2 id="orgb289745"&gt;Distance function&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb289745"&gt;
+&lt;div id="outline-container-org3baa0e8" class="outline-2"&gt;
+&lt;h2 id="org3baa0e8"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3baa0e8"&gt;
 &lt;p&gt;
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -394,9 +394,9 @@ the angles there will bring our arm closest to our target ball.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgaa11ec2" class="outline-2"&gt;
-&lt;h2 id="orgaa11ec2"&gt;Gradient Descent&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgaa11ec2"&gt;
+&lt;div id="outline-container-orga4c3ca4" class="outline-2"&gt;
+&lt;h2 id="orga4c3ca4"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga4c3ca4"&gt;
 &lt;p&gt;
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -459,9 +459,9 @@ The demos just perform this update once per frame, but it's easy to completely s
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org04efb00" class="outline-2"&gt;
-&lt;h2 id="org04efb00"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org04efb00"&gt;
+&lt;div id="outline-container-org1c3d8a2" class="outline-2"&gt;
+&lt;h2 id="org1c3d8a2"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1c3d8a2"&gt;
 &lt;p&gt;
 It might help to look through the source code for the animations (embedded into
 this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,

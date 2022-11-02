@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Freelance | im_oisin</title>
+<title>Puzzle Keyboard Layout Generator | im_oisin</title>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
-<link rel="canonical" href="https://imois.in/pages/freelance/">
+<link rel="canonical" href="https://imois.in/pages/kb-generator/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
@@ -27,11 +27,20 @@ MathJax.Hub.Config({
 <link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
 <meta name="author" content="Oisin Carroll">
 <meta property="og:site_name" content="im_oisin">
-<meta property="og:title" content="Freelance">
-<meta property="og:url" content="https://imois.in/pages/freelance/">
-<meta property="og:description" content="Since the start of 2022 I've been taking on occasional freelance work in game development! I've had the great opportunity to work on some really interesting problems with passionate and talented peopl">
+<meta property="og:title" content="Puzzle Keyboard Layout Generator">
+<meta property="og:url" content="https://imois.in/pages/kb-generator/">
+<meta property="og:description" content='This is a generator for the puzzle keyboard. It creates a .svg file that can be laser cut out of acrylic and assembled.
+
+
+
+Configuration
+
+
+  Config - Left Half
+  
+[{x:0.5},"¬\nEsc\n\n\n\n\n`","!\n1","'>
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2022-10-25T00:00:00Z">
+<meta property="article:published_time" content="2022-10-30T17:04:14Z">
 </head>
 <body>
 
@@ -70,7 +79,7 @@ MathJax.Hub.Config({
     <div class="post-header">
         <div class="container">
             <div class="title">
-                Freelance
+                Puzzle Keyboard Layout Generator
             </div>
         </div>
     </div>
@@ -78,80 +87,62 @@ MathJax.Hub.Config({
     <div id="post-main" class="main">
         <div class="container">
         <p>
-Since the start of 2022 I've been taking on occasional freelance work in game development! I've had the great opportunity to work on some really interesting problems with passionate and talented people.
+This is a generator for the puzzle keyboard. It creates a <code>.svg</code> file that can be laser cut out of acrylic and assembled.
 </p>
 
-<div id="outline-container-org0aae02e" class="outline-2">
-<h2 id="org0aae02e">What I've done!</h2>
-<div class="outline-text-2" id="text-org0aae02e">
-<dl class="org-dl">
-<dt><b>Phone game prototype: Fabrick Boy (2022)</b></dt>
-<dd>I prototyped an iphone game for Wicked Alcamy, which included some interesting procedurally generated levels and gesture controls. (Unity3d, C#)</dd>
-<dt><b>Hockey game AI: Slapshot Rebound (2022)</b></dt>
-<dd>I wrote the bots for <a href="https://store.steampowered.com/app/1173370/Slapshot_Rebound/">Slapshot Rebound</a>, a title by <a href="https://oddshot.gg/">Oddshot Games</a>. This used some new techniques including fast approximate physics using signed distance fields, a custom behaviour/maneuver system, bot reaction times using predicted object locations, gradient descent-based positioning and more. These make bots which are good at the game, require very low computing power, and play (roughly) like humans do. I'm looking to write a paper on what I did, so if that sounds interesting, stay tuned! (Unity3d, C#, Python)</dd>
-<dt><b>Tool programming: My Familiar (2022)</b></dt>
-<dd>I solved rendering (z-sort) issues for <a href="https://www.somethingclassic.net/">Something Classic Games</a> on their title <a href="https://store.steampowered.com/app/1502750/My_Familiar/">My Familiar</a>. This included writing some tools for level-designers to use, adding features to their asset importer, as well as documenting the issues for future reference (Unity3d, C#)</dd>
-<dt><b>Water Shader: TBA (2022)</b></dt>
-<dd>I worked with <a href="https://stormcloak.games/blog">Stormcloak Games</a> to develop a water shader for their physics-based title. The novel solution uses a procedurally generated tileset to render realtime seamless water caustics and animated edges over constantly changing blocks of water. (GLSL, Python)</dd>
-<dt><b>Shader &amp; Editor work: TBA (2022)</b></dt>
-<dd>I developed stylized comic-book shaders as well as a real-time spline-based house building system for LawnFlamingo for their upcoming game. (GLSL, Unity3d, C#)</dd>
-<dt><b>Shader, SDF effects: <a href="http://siliconsynapse.net/">Silicone Synapse</a> (2017)</b></dt>
-<dd>I developed some materials and visual effects for AlanJames Burns' VR art exhibit. These included morphing creatures using raymarching, procedural animated trees, and more.</dd>
-</dl>
-</div>
+<div id="outline-container-orge4f52fe" class="outline-2">
+<h2 id="orge4f52fe">Configuration</h2>
+<div class="outline-text-2" id="text-orge4f52fe">
+<script src="../../assets/js/kb-designer/designer.js"></script><form name="rebuildform">
+  <label>Config - Left Half</label>
+  <br><textarea name="leftconfig" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
+[{x:0.5},"¬\nEsc\n\n\n\n\n`","!\n1","\"\n2","£\n3","$\n4","%\n5","^\n6"],
+[{x:1},"Tab","Q","W","E","R","T"],
+[{x:0.25,a:7},"",{a:4},"Caps Lock","A","S","D","F","G"],
+[{x:0.75},"Shift","|\n\\","Z","X","C","V"],
+[{x:0.5,w:1.25},"Ctrl",{a:7,w:1.25},"",{a:4,w:1.25},"Super",{w:1.25},"Alt",{a:7,w:1.75},""]</textarea><br><label>Config - Right Half</label>
+  <br><textarea name="rightconfig" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
+[{x:0.75},"&amp;\n7","*\n8","(\n9",")\n0","_\n-","+\n=","⌫"],
+[{x:0.25},"Y","U","I","O","P","{\n[","}\n]"],
+[{x:0.5},"H","J","K","L",":\n;","@\n'","~\nEnter\n\n\n\n\n#"],
+["B","N","M","\n.","?\n/","Shift"],
+[{x:0.5,a:7,w:1.75},"",{a:4,w:1.25},"Alt",{a:7,w:1.25},"",{w:1.25},"",{a:4,w:1.25},"Ctrl"]</textarea><br><label>Center split offsets</label>
+  <input type="text" name="center_offsets" value="-0.5, 0.25, -0.5, 0.5"><br><label>Kerf (laser diameter)</label>
+  <input type="number" name="kerf" min="0" max="1.0" value="0.105" step="0.001"><br><label>Screw diameter</label>
+  <input type="number" name="screw_diam" min="0.5" max="4.0" value="2.1" step="0.01"><br><button type="submit">Rebuild SVG</button>
+</form>
+
+<div>
+  <p id="svg_result">
+  </p>
 </div>
 
+<script type="text/javascript">
+function rebuildFromForm() {
+  var formResArray = $("form").serializeArray();
+  // Convert to dict
+  var formRes = Object.assign({}, ...formResArray.map((x) => ({[x.name]: x.value}) ));
+  console.log(formRes);
 
-<div id="outline-container-org4d3123c" class="outline-2">
-<h2 id="org4d3123c">If you're interested in hiring me…</h2>
-<div class="outline-text-2" id="text-org4d3123c">
-<p>
-Please get in touch! My main areas are Unity3D/ GLSL work, as well as Machine Learning (Deep Learning, NLP, Image Segmentation, Game AI).
-</p>
-</div>
+  var leftConfig = formRes['leftconfig'];
+  var rightConfig = formRes['rightconfig'];
+  kerf = formRes['kerf'];
+  screw_size_small = formRes['screw_diam'];
 
-<div id="outline-container-orgae948ff" class="outline-3">
-<h3 id="orgae948ff">What I'm best at:</h3>
-<div class="outline-text-3" id="text-orgae948ff">
-<dl class="org-dl">
-<dt><b>Research</b></dt>
-<dd>I can read papers, run tests, and report how I think you and/or your team should approach a problem.</dd>
-<dt><b>Deep features</b></dt>
-<dd>I can implement solutions to well defined problems.</dd>
-<dt><b>Programming</b></dt>
-<dd>Expect well architected code that's flexible and thought through.</dd>
-<dt><b>Unity3d</b></dt>
-<dd>although I'm a strong c++, python, java and javascript programmer too.</dd>
-<dt><b>Shaders, AI (neural networks, behaviour trees…), procedural animation, optimization</b></dt>
-<dd>I also have a degree in engineering (read: maths, physics).</dd>
-<dt><b>Honesty!</b></dt>
-<dd>If I don't think I can do something or I'm not a good fit for the problem, I'll tell you.</dd>
-</dl>
-</div>
-</div>
 
-<div id="outline-container-org26ba869" class="outline-3">
-<h3 id="org26ba869">What I'm less good at but can still do:</h3>
-<div class="outline-text-3" id="text-org26ba869">
-<dl class="org-dl">
-<dt><b>Full game rapid prototyping</b></dt>
-<dd>especially when it could be assembled using prebuilt Unity/Unreal engine features.</dd>
-<dt><b>Server things</b></dt>
-<dd>I've worked with AWS stack and built some APIs, but it's not my strength.</dd>
-<dt><b>Databases</b></dt>
-<dd>I've used mongodb &amp; elasticsearch in the past, but again it's not something I know particularly well.</dd>
-</dl>
-</div>
-</div>
+  var fullSvg = getFullKbSVG(leftConfig, rightConfig);
 
-<div id="outline-container-org47eb7e6" class="outline-3">
-<h3 id="org47eb7e6">What I can't do:</h3>
-<div class="outline-text-3" id="text-org47eb7e6">
-<dl class="org-dl">
-<dt><b>Work for free or for revshare!</b></dt>
-<dd>Sorry.</dd>
-</dl>
-</div>
+  $("#svg_result").html(fullSvg);
+}
+
+$("form").on('submit', function (e) {
+  rebuildFromForm();
+
+  e.preventDefault();
+});
+
+rebuildFromForm();
+</script>
 </div>
 </div>
 

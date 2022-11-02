@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://imois.in/</loc>
-  <lastmod>2022-10-28T10:39:00Z</lastmod>
+  <lastmod>2022-10-30T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/2019/</loc>
@@ -30,8 +30,12 @@
   <lastmod>2022-10-28T11:54:00Z</lastmod>
  </url>
  <url>
+  <loc>https://imois.in/assets/js/kb-designer/designer.html</loc>
+  <lastmod>2022-10-30T16:58:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://imois.in/categories/</loc>
-  <lastmod>2022-10-28T11:30:00Z</lastmod>
+  <lastmod>2022-10-28T11:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/animation/</loc>
@@ -44,18 +48,6 @@
  <url>
   <loc>https://imois.in/categories/cat_interesting-thing/</loc>
   <lastmod>2022-10-28T11:27:00Z</lastmod>
- </url>
- <url>
-  <loc>https://imois.in/categories/cat_math/</loc>
-  <lastmod>2022-04-04T11:47:00Z</lastmod>
- </url>
- <url>
-  <loc>https://imois.in/categories/cat_programming/</loc>
-  <lastmod>2022-04-04T11:47:00Z</lastmod>
- </url>
- <url>
-  <loc>https://imois.in/categories/cat_real-life/</loc>
-  <lastmod>2022-10-28T11:26:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/cat_research/</loc>
@@ -95,7 +87,7 @@
  </url>
  <url>
   <loc>https://imois.in/games/crosswordle/</loc>
-  <lastmod>2022-04-04T15:15:00Z</lastmod>
+  <lastmod>2022-10-30T17:24:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/games/wordle-squared/</loc>
@@ -114,8 +106,8 @@
   <lastmod>2022-10-28T10:19:00Z</lastmod>
  </url>
  <url>
-  <loc>https://imois.in/pages/games/</loc>
-  <lastmod>2022-10-28T10:19:00Z</lastmod>
+  <loc>https://imois.in/pages/kb-generator/</loc>
+  <lastmod>2022-10-30T17:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/pages/privacy-policy/</loc>
@@ -180,5 +172,17 @@
  <url>
   <loc>https://imois.in/posts/the-properties-of-lights-out-the-game/</loc>
   <lastmod>2022-04-04T11:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/webapps/designer/</loc>
+  <lastmod>2022-10-30T16:56:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/webapps/designer/index.src.html</loc>
+  <lastmod>2022-10-30T16:55:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/webapps/games/index.src.html</loc>
+  <lastmod>2022-10-30T16:58:00Z</lastmod>
  </url>
 </urlset>

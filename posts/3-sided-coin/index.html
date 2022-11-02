@@ -102,9 +102,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org8eb6fd1" class="outline-2">
-<h2 id="org8eb6fd1">Intro</h2>
-<div class="outline-text-2" id="text-org8eb6fd1">
+        <div id="outline-container-org453d9d7" class="outline-2">
+<h2 id="org453d9d7">Intro</h2>
+<div class="outline-text-2" id="text-org453d9d7">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script><p>
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
@@ -246,15 +246,15 @@ We'll try to work out the ideal thickness of the coin in terms of it's radius (\
 </div>
 
 
-<div id="outline-container-org2457c06" class="outline-2">
-<h2 id="org2457c06">Coin thickness?</h2>
-<div class="outline-text-2" id="text-org2457c06">
+<div id="outline-container-orga6e041b" class="outline-2">
+<h2 id="orga6e041b">Coin thickness?</h2>
+<div class="outline-text-2" id="text-orga6e041b">
 <p>
 Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
 </p>
 
 
-<div id="org55e749a" class="figure">
+<div id="org0ba1ca9" class="figure">
 <p><img src="../../images/learning-dice/baseline-flips.png" alt="baseline-flips.png"></p>
 <p><span class="figure-number">Figure 1: </span>The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.</p>
 </div>
@@ -264,7 +264,7 @@ Ok… Zoom and enhance! Running over 10x as many flips this time….
 </p>
 
 
-<div id="org55c75b0" class="figure">
+<div id="orgabac797" class="figure">
 <p><img src="../../images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"></p>
 <p><span class="figure-number">Figure 2: </span>The exact same as above, but over just thicknesses from 0.75r to 0.95r.</p>
 </div>
@@ -275,9 +275,9 @@ It seems our ideal coin has a thickness of \(0.85r\)! That's the point where the
 </div>
 </div>
 
-<div id="outline-container-orgcebb608" class="outline-2">
-<h2 id="orgcebb608">Does the maths agree?</h2>
-<div class="outline-text-2" id="text-orgcebb608">
+<div id="outline-container-org8f4a966" class="outline-2">
+<h2 id="org8f4a966">Does the maths agree?</h2>
+<div class="outline-text-2" id="text-org8f4a966">
 <p>
 Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
 </p>
@@ -298,15 +298,15 @@ And simulating it gives an answer of \(0.85r\)?? Right in the middle… The seco
 </div>
 </div>
 
-<div id="outline-container-org78e4570" class="outline-2">
-<h2 id="org78e4570">The end of the story?</h2>
-<div class="outline-text-2" id="text-org78e4570">
+<div id="outline-container-orgeca6d7d" class="outline-2">
+<h2 id="orgeca6d7d">The end of the story?</h2>
+<div class="outline-text-2" id="text-orgeca6d7d">
 <p>
 So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
 </p>
 
 
-<div id="orgd19b948" class="figure">
+<div id="orga06b271" class="figure">
 <p><img src="../../images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"></p>
 <p><span class="figure-number">Figure 3: </span>How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).</p>
 </div>
@@ -320,7 +320,7 @@ What about the throw spin? Can you bias a 3 sided coin by throwing it with more 
 </p>
 
 
-<div id="org63d5dd2" class="figure">
+<div id="org079da42" class="figure">
 <p><img src="../../images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"></p>
 <p><span class="figure-number">Figure 4: </span>What's going on?? The chance of sides changes dramatically with increased spin on the coin.</p>
 </div>
@@ -336,9 +336,9 @@ Maybe this could be a useful trick… Get your friends to pick between heads/tai
 </div>
 </div>
 
-<div id="outline-container-org6c6fd72" class="outline-2">
-<h2 id="org6c6fd72">Disclaimer!</h2>
-<div class="outline-text-2" id="text-org6c6fd72">
+<div id="outline-container-orgbd7bcc6" class="outline-2">
+<h2 id="orgbd7bcc6">Disclaimer!</h2>
+<div class="outline-text-2" id="text-orgbd7bcc6">
 <p>
 The results on this page are only as good as the physics simulation is. This page uses <a href="https://lo-th.github.io/Oimo.js/#basic">Oimo.js</a> for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
 </p>
@@ -349,9 +349,9 @@ Also, picking truly random rotations is <i>hard</i>. <a href="https://en.wikiped
 </div>
 </div>
 
-<div id="outline-container-org5d70cb3" class="outline-2">
-<h2 id="org5d70cb3">Conclusion</h2>
-<div class="outline-text-2" id="text-org5d70cb3">
+<div id="outline-container-orgf7c9dfc" class="outline-2">
+<h2 id="orgf7c9dfc">Conclusion</h2>
+<div class="outline-text-2" id="text-orgf7c9dfc">
 <p>
 After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
 </p>
