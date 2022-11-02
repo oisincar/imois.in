@@ -1,7 +1,7 @@
 #+BEGIN_COMMENT
 .. title: Freelance
 .. slug: freelance
-.. date: 2022-4-25 00:00:00 UTC
+.. date: 2022-10-25 00:00:00 UTC
 .. tags:
 .. category:
 .. link:

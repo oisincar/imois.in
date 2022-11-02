@@ -21,7 +21,6 @@
 <script src="../assets/js/procedural_animation/Graph.js"></script>
 <script src="../assets/js/procedural_animation/GradientDescent2Link.js"></script>
 <script src="../assets/js/procedural_animation/TwoLinkArmAndGraph.js"></script>
-
 #+END_EXPORT
 
 In this third and final section, we'll cover how to solve harder problems that don't

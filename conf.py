@@ -291,8 +291,10 @@ TIMEZONE = "Europe/London"
 # Default is:
 FILES_FOLDERS = {
     'files': '',
-    'games/crosswordle/crosswordle_page': 'games/wordle-squared',
-    'games/crosswordle_redirect': 'games/crosswordle',
+    'webapps/crosswordle/crosswordle_page': 'games/wordle-squared',
+    'webapps/crosswordle_redirect': 'games/crosswordle',
+
+    'webapps/PuzzleKeyboard/designer': 'assets/js/kb-designer',
 }
 # Which means copy 'files' into 'output'
 

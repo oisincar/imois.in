@@ -9,7 +9,6 @@
 .. description: A simulation to try and find the properties of a fair 3-sided coin; One which has equal chance of landing on heads, tails and sides.
 .. type: text
 #+END_COMMENT
-# .. status: draft
 
 * Intro
 #+BEGIN_EXPORT html
