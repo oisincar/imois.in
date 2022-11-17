@@ -154,7 +154,7 @@ function buildFormFromConfig() {
       $(`[name="${p}"]`).val(v);
     }
   }
- var other_side = c.b_key_on_right ? "right" : "left";
+ var other_side = c.b_key_on_right ? "left" : "right";
  $("#toggle_b_button").text(`Change B button to ${other_side} side`);
 }
 
