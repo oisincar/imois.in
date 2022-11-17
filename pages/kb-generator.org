@@ -10,16 +10,10 @@
 
 #+END_COMMENT
 
+* Introduction
 This is a generator for the puzzle keyboard. It creates a =.svg= file that can be laser cut out of acrylic and assembled.
 
-# Sliders to add...
-# u (key spacing)
-# hole_width
-# kerf
-# board_padding
-# hole_width
-# hole_type (circular, hex)?
-# number of layers
+You may wish to update the kerf field, which is the diameter of the laser used to cut the keyboard, to ensure a snug fit with your switches. We used Ponoko which (at the time of order) had a kerf of 0.105mm.
 
 * Configuration
 #+BEGIN_EXPORT html
@@ -28,65 +22,185 @@ This is a generator for the puzzle keyboard. It creates a =.svg= file that can b
 <form name="rebuildform">
   <label>Config - Left Half</label>
   <br>
-  <textarea name="leftconfig" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
-[{x:0.5},"¬\nEsc\n\n\n\n\n`","!\n1","\"\n2","£\n3","$\n4","%\n5","^\n6"],
-[{x:1},"Tab","Q","W","E","R","T"],
-[{x:0.25,a:7},"",{a:4},"Caps Lock","A","S","D","F","G"],
-[{x:0.75},"Shift","|\n\\","Z","X","C","V"],
-[{x:0.5,w:1.25},"Ctrl",{a:7,w:1.25},"",{a:4,w:1.25},"Super",{w:1.25},"Alt",{a:7,w:1.75},""]</textarea>
+  <textarea name="left_text" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
+  </textarea>
   <br>
   <label>Config - Right Half</label>
   <br>
-  <textarea name="rightconfig" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
-[{x:0.75},"&\n7","*\n8","(\n9",")\n0","_\n-","+\n=","⌫"],
-[{x:0.25},"Y","U","I","O","P","{\n[","}\n]"],
-[{x:0.5},"H","J","K","L",":\n;","@\n'","~\nEnter\n\n\n\n\n#"],
-["B","N","M","<\n,",">\n.","?\n/","Shift"],
-[{x:0.5,a:7,w:1.75},"",{a:4,w:1.25},"Alt",{a:7,w:1.25},"",{w:1.25},"",{a:4,w:1.25},"Ctrl"]</textarea>
+  <textarea name="right_text" rows="5" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%;">
+  </textarea>
   <br>
 
-  <label>Center split offsets</label>
-  <input type="text" name="center_offsets" value="-0.5, 0.25, -0.5, 0.5" /><br>
+  <p style="width: 100%; text-align: center">
+    <button id="toggle_b_button" style="font: 1.0rem/2rem 'Open Sans', 'Microsoft Yahei', 'DejaVu Sans', sans-serif">Toggle B Button Position</button><br>
+  </p>
 
-  <label>Kerf (laser diameter)</label>
-  <input type="number" name="kerf" min="0" max="1.0" value="0.105" step="0.001"/><br>
+  <div class="form-table">
+    <p>
+      <label>Center split offsets</label>
+      <input type="text" name="edge_offsets"/>
+    </p>
 
-  <label>Screw diameter</label>
-  <input type="number" name="screw_diam" min="0.5" max="4.0" value="2.1" step="0.01"/><br>
+    <p>
+      <label>Key Spacing (mm)</label>
+      <input type="number" name="u" step="any"/>
+    </p>
 
-  <button type="submit">Rebuild SVG</button>
+    <p>
+      <label>Keyswitch Hole Size (mm)</label>
+      <input type="number" name="hole_width" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Laser Diameter (kerf) (mm)</label>
+      <input type="number" name="kerf" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Board Padding (space around outside)</label>
+      <input type="number" name="board_padding" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Board Top Padding (additional top leeway)</label>
+      <input type="number" name="board_padding" step="any"/><br>
+    </p>
+
+    <p>
+      <label># keys in each half (x axis)</label>
+      <input type="number" name="board_key_width" step="any"/><br>
+    </p>
+
+    <p>
+      <label># keys in each half (y axis)</label>
+      <input type="number" name="board_key_height" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Corner Radius</label>
+      <input type="number" name="corner_radius" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Outer Screw Hole Diameter</label>
+      <input type="number" name="screw_size_small" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Internal Spacer Hole Diameter</label>
+      <input type="number" name="screw_size_big" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Screw Square Dimensions</label>
+      <input type="number" name="screw_square" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Create Extra Layer</label>
+      <input type="checkbox" name="create_extra_layer" value="true"/><br>
+    </p>
+
+    <p>
+      <label>Final Layout External Padding</label>
+      <input type="number" name="board_offset_padding_external" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Final Layout Packing Margin X</label>
+      <input type="number" name="board_offset_padding_x" step="any"/><br>
+    </p>
+
+    <p>
+      <label>Final Layout Packing Margin Y</label>
+      <input type="number" name="board_offset_padding_y" step="any"/><br>
+    </p>
+  </div>
+
+  <p style="width: 100%; text-align: center">
+    <button type="submit" style="font: 1.0rem/2rem 'Open Sans', 'Microsoft Yahei', 'DejaVu Sans', sans-serif">Rebuild SVG</button>
+  </p>
+
 </form>
 
 <div>
-  <p id="svg_result">
-  </p>
+  <!-- I've no idea why setting a large font size here makes a difference, but it does... -->
+  <div id="svg_result" style="border: 1px solid black; font-size: 100px;"></div>
 </div>
 
 #+END_EXPORT
 
 #+BEGIN_SRC inline-js
-function rebuildFromForm() {
+
+$("#toggle_b_button").on('click', function() {
+  c.update_params_for_b_key(!c.b_key_on_right);
+  buildFormFromConfig();
+});
+
+// Initilize form data based on the config data.
+function buildFormFromConfig() {
+  var props = Object.getOwnPropertyNames(c);
+  for (p of props) {
+    console.log(p);
+    var v = c[p];
+    if (typeof(v) === "number") {
+      // Note +: Hack to conv to number & remove trailing 0s.
+      v = +v.toFixed(4);
+    }
+    if (typeof(v) === "boolean") {
+      $(`[name="${p}"]`).prop("checked", v);
+    }
+    else {
+      $(`[name="${p}"]`).val(v);
+    }
+  }
+ var other_side = c.b_key_on_right ? "right" : "left";
+ $("#toggle_b_button").text(`Change B button to ${other_side} side`);
+}
+
+buildFormFromConfig();
+
+function rebuildConfigFromForm() {
   var formResArray = $("form").serializeArray();
-  // Convert to dict
-  var formRes = Object.assign({}, ...formResArray.map((x) => ({[x.name]: x.value}) ));
-  console.log(formRes);
 
-  var leftConfig = formRes['leftconfig'];
-  var rightConfig = formRes['rightconfig'];
-  kerf = formRes['kerf'];
-  screw_size_small = formRes['screw_diam'];
+  // Checkboxes aren't in serializeArray unless they're checked. Default to false...
+  c.create_extra_layer = false;
 
+  for (var res of formResArray) {
+    var prop = res.name;
+    var val = res.value;
 
-  var fullSvg = getFullKbSVG(leftConfig, rightConfig);
+    var prev_val = c[prop];
+    console.log(prev_val);
 
+    if (typeof(prev_val) === "number") {
+      val = Number(val);
+    }
+    else if (typeof(prev_val) === "boolean") {
+      val = true;
+    }
+    else if (prop === "edge_offsets") {
+      // special case to handle list of offsets
+      val = val.split(",").map(n => Number(n));
+    }
+
+    c[prop] = val;
+  }
+  c.update();
+}
+
+function regenerateKbSVG() {
+  var fullSvg = getFullKbSVG();
   $("#svg_result").html(fullSvg);
 }
 
 $("form").on('submit', function (e) {
-  rebuildFromForm();
-
   e.preventDefault();
+
+  rebuildConfigFromForm();
+  regenerateKbSVG();
 });
 
-rebuildFromForm();
+rebuildConfigFromForm();
+regenerateKbSVG();
 #+END_SRC
