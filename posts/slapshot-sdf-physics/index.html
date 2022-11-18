@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html prefix="" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Part 1 of a series on the physics-based hockey game AI. Fast approximate spacial queries &amp; physics using Signed Distance Fields - a novel application of some math.">
+<meta name="viewport" content="width=device-width">
+<title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups. | im_oisin</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://imois.in/posts/slapshot-sdf-physics/">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script><link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/cookies-eu-banner.default.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/sudoku.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bnw.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<meta name="author" content="Oisin Carroll">
+<meta property="og:site_name" content="im_oisin">
+<meta property="og:title" content="Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups.">
+<meta property="og:url" content="https://imois.in/posts/slapshot-sdf-physics/">
+<meta property="og:description" content="Part 1 of a series on the physics-based hockey game AI. Fast approximate spacial queries &amp; physics using Signed Distance Fields - a novel application of some math.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-11-17T18:05:31Z">
+<meta property="article:tag" content="gamedev">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="programming">
+</head>
+<body>
+
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://imois.in/" title="im_oisin" rel="home">
+                im_oisin
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../games">Games</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../pages/about-me">About Me</a></li>
+                <li><a href="../../pages/freelance">Freelance</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups.
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2022-11-17T18:05:31+00:00">2022/11/17</time><!-- 
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/posts/slapshot-sdf-physics/index.org" id="sourcelink">Source</a>
+-->
+</div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/gamedev/" rel="tag">gamedev</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/math/" rel="tag">math</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/programming/" rel="tag">programming</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-orgf8b0b9d" class="outline-2">
+<h2 id="orgf8b0b9d">Introduction</h2>
+<div class="outline-text-2" id="text-orgf8b0b9d">
+<script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script><script src="../../assets/js/slapshot/slapshot_sdf_graph.js"></script><script src="../../assets/js/math/Vector.js"></script><p>
+Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match.
+</p>
+
+<p>
+In this part I'll show how I used some fancy math to perform some lookups much faster than I've seen elsewhere.
+</p>
+
+<p>
+Something that came up repeatedly is 'how far is this point from the edge?'. I wanted to move bots away from the edges to put them in the action, and bots needed to know if the puck was near the edge so they could approach it correctly. Additionally, it was important to quickly check points were in bounds, so the bots weren't attempting to walk into the wall.
+</p>
+
+<p>
+The problem surfaces again when considering more advanced behaviours: The bots simulate puck rebounds off the rink and goals, and predict accordingly. Knowing where and when the puck would collide is a difficult problem.
+</p>
+
+<p>
+It's possible to use lots of raycasts to check for nearby obsticles, but this gets expensive. For predicting puck paths, the solution used by the open source <a href="https://rlbot.org">Rocket League Bots</a> I looked it is to use a full physics engine: Bullet, to occasionally simulate the ball path and interaction with objects. This is very accurate, but it's slow and complicated.
+</p>
+
+<p>
+Instead, I used an idea from graphics: Signed Distance Functions. It's much faster, and (approximately) handles all of the above in just a few cpu cycles.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org06c6ef7" class="outline-2">
+<h2 id="org06c6ef7">What is a Signed Distance Function?</h2>
+<div class="outline-text-2" id="text-org06c6ef7">
+<p>
+The idea of a signed distance field is to provide a function \(f(\vec{p}) = d\) which gives the distance from some point \(p\) to a surface.
+</p>
+
+<p>
+The signed distance function (SDF) for a circle of radius \(r\) centered on the origin is:
+</p>
+
+<p>
+\[
+\mathit{sdf\_circle}(\vec{p}) = \lVert \vec{p} \rVert - \vec{r};
+\]
+</p>
+
+<p>
+This is shown in Plot 1, below. Click and drag to pan, scroll to zoom.
+</p>
+
+<div class="figure" style="width: auto">
+  <div id="mygraph" style="max-width: 85vw;"></div>
+  <p><span class="figure-number">Plot 1:</span>
+    The signed distance function for a circle with radius 1. The function is negative inside the shape, and positive elsewhere. Where the function is 0 denotes the perimiter of the cicle.
+  </p>
+</div>
+
+<script>
+
+function sdf_circle_r1(x, y) {
+    var v = new Vector(x, y);
+    return v.getLength() - 1;
+}
+
+this.graph = new SDFGraph(document.getElementById('mygraph'),
+                          sdf_circle_r1,
+                          3,
+                          3,
+                          50);
+</script><p>
+Where things get interesting though is combining SDFs. You can take the \(min\) of two functions to find the intersection of two shapes, and \(max\) to find the union.
+</p>
+
+<p>
+You can also negate a function to find the inverse of the shape: To find the shape cut into a plane.
+</p>
+
+<p>
+By combining these, it's also possible to subtract one shape from another, for example subtracting a circle from a square.
+</p>
+
+<p>
+First, the SDF for a rectangle:
+</p>
+
+<p>
+\[
+\begin{aligned}
+\mathit{sdf\_box}(p) &amp;= \max(\vec{v}, \vec{0}) + \min(\max(\vec{v}_x,
+\vec{v}_y), 0) \\
+\text{where } b &amp;\text{ is bounds of the box},\\
+\max(\vec{v}) &amp;\text{ is the element-wise minimum of a vector},\\
+\text{abs} &amp;\text{ is the element-wise absolute value of a vector},\\
+v &amp;= \text{abs}(p) - \frac{b}{2} \\
+\end{aligned}\notag
+\]
+</p>
+
+<p>
+Or, more intuitively, written in GLSL:
+</p>
+
+<div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">sdf_box</span><span class="p">(</span><span class="n">in</span><span class="w"> </span><span class="n">vec2</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">vec2</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">vec2</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+
+<p>
+Then the combined equation, including translating the circle for subtraction is:
+</p>
+
+<p>
+\[
+\mathit{sdf\_eg}(p) = \min(\mathit{sdf\_box}(p), -\mathit{sdf\_circle}(p - 1))
+\]
+</p>
+
+<p>
+Which gives the following shape: A square with a circle cut out of the top corner.
+</p>
+
+<div class="figure" style="width: auto">
+  <div id="mygraph2" style="max-width: 85vw;"></div>
+  <p><span class="figure-number">Plot 2:</span>
+    A SDF of a square missing a corner. Once again, the shape is bounded by where the function is 0.
+  </p>
+</div>
+
+<script>
+function sdf_square(x, y) {
+    var p = new Vector(x, y);
+    var v = p.abs().subtract(new Vector(1,1));
+
+    return v.max(new Vector()).getLength() + Math.min(Math.max(v.x, v.y), 0);
+}
+
+function sdf_eg(x, y) {
+    return Math.max(
+        sdf_square(x, y),
+        -sdf_circle_r1(x - 1, y - 1)
+    );
+}
+
+this.graph = new SDFGraph(document.getElementById('mygraph2'),
+                          sdf_eg,
+                          5,
+                          5,
+                          50);
+</script><p>
+It's worth noting SDFs work equally well in 3D as well as 2D. Inigo Quilez has compiled a list of useful <a href="https://iquilezles.org/articles/distfunctions/">SDFs in 3D</a> as well as <a href="https://iquilezles.org/articles/distfunctions2d/">in 2D</a> which I've constantly used for reference. He's also created some incredible art using SDFs which you can see <a href="https://www.shadertoy.com/user/iq">on shadertoy</a>. His work has been a big inspiration for me too, check it out!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org16523ad" class="outline-2">
+<h2 id="org16523ad">A Slapshot SDF:</h2>
+<div class="outline-text-2" id="text-org16523ad">
+<p>
+Onto something more useful… A signed distance function for the slapshot rink. This combines a rounded square for the outer perimiter with a capsule for each goal.
+</p>
+
+<div class="figure" style="width: auto">
+  <div id="mygraph3" style="max-width: 85vw;"></div>
+  <p><span class="figure-number">Plot 3:</span>
+    A SDF of the Slapshot: Rebound ice rink.
+  </p>
+</div>
+
+<script>
+
+function sdf_slapshot(x, y) {
+    return distanceToEdgeOfRink(new Vector(x, y));
+}
+
+this.graph = new SDFGraph(document.getElementById('mygraph3'),
+                          sdf_slapshot,
+                          110,
+                          164,
+                          70);
+</script>
+</div>
+</div>
+
+<div id="outline-container-org2746a23" class="outline-2">
+<h2 id="org2746a23">Gradients, normals and nearest points</h2>
+<div class="outline-text-2" id="text-org2746a23">
+<p>
+As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivitive of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
+</p>
+
+<p>
+In a more mathy term we can write the gradient at a point p as:
+\[
+\text{grad} f = \nabla f =
+\langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \rangle
+\]
+Which is essentially saying the gradient is a vector defined by the partial derivitives in each axis.
+</p>
+
+<p>
+In some cases it's possbile to work these out emperically, but that's challenging for more complicated examples. Instead, we sample a couple of points nearby and calculate the gradient from those.
+</p>
+
+<p>
+\[
+\frac{\partial f}{\partial x} \approx \frac{(f(p + k*\vec{x}) - f(p - k*\vec{x}))}{2k}
+\]
+</p>
+
+<p>
+This is known as the <a href="https://en.wikipedia.org/wiki/Symmetric_derivative">symmetric derivitive</a> when taken as the limit as \(k\) tends to \(0\)
+</p>
+
+<p>
+Taking a smaller k theoretically gives more accurate results, but in reality you run into numeric precision issues. For Slapshot we sample 4 points that are .5 units in each direction.
+</p>
+
+<p>
+A nice property of this is that we can calculate surface normals and tangents for free. The normals are simply the gradient at some point on the surface, and the tangents are orthagonal to that. This is useful for calculating how to approach a puck near the edge, but in other cases it's useful for calculating lighting of objects for example.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb390bd5" class="outline-2">
+<h2 id="orgb390bd5">Nearest points</h2>
+<div class="outline-text-2" id="text-orgb390bd5">
+<p>
+What's the nearest point on a surface? It's simply the direction to the nearest point times the distance. We know both of those, so we can plug them in.
+</p>
+
+<p>
+\[
+  p_{surface} = \nabla f(p) * f(p)
+\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org993791b" class="outline-2">
+<h2 id="org993791b">Ray intersection (raymarching)</h2>
+<div class="outline-text-2" id="text-org993791b">
+<p>
+When does a ray intersect with a SDF surface? Raymarching is an itterative process. Given a ray origin and direction, you advance along the ray until you've reached a given number of iterations. How do you know how far along the ray you can advance? Well, there's one simple observation: The intersection point can't be closer than the nearest point, and we know the distance to the nearest point - we just evaluate the SDF.
+</p>
+
+
+<div id="org6b37815" class="figure">
+<p><img src="../../images/slapshot/sdf_raymarching.png" alt="sdf_raymarching.png" width="500px"></p>
+<p><span class="figure-number">Figure 1: </span>The calculation at each iteration of raymarching. Credit: Wikipedia.</p>
+</div>
+
+<p>
+We start off at a point: the ray origin, then evaluate the SDF. If the resulting distance is smaller than some error value, we're already at an edge. Otherwise, we update that point to be point + distance*ray\<sub>direction</sub>. It's easy to give the ray some thickness by subtracting the radius from the raw distance, too.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84e5b27" class="outline-2">
+<h2 id="org84e5b27">Puck physics</h2>
+<div class="outline-text-2" id="text-org84e5b27">
+<p>
+Along with some simple physics (i.e. restution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
+</p>
+
+<p>
+One slight got'cha is that if the ray origin is very close to the wall, you spend lots of iterations making little headway. We simply say that the puck isn't likely to collide again within a small distance after a collision with the wall, and so begin raymarching a small distance after this has taken place.
+</p>
+
+<p>
+This is all extremely fast in code: The bots can each calculate puck predictions for up to 15 seconds into the future on every iteration of the 120hz servers, without breaking a sweat. It would be nice to cache predictions and only recalculate upon collisions, but it's not worth it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9360437" class="outline-2">
+<h2 id="org9360437">Misc…</h2>
+<div class="outline-text-2" id="text-org9360437">
+<p>
+Some other uses for this…
+</p>
+</div>
+<div id="outline-container-org059d1a3" class="outline-3">
+<h3 id="org059d1a3">Randomness</h3>
+<div class="outline-text-3" id="text-org059d1a3">
+<p>
+Sometimes it's useful to pick a random point in the pitch… Simple! Just loop until we find one. This succeeds on the first try a vast majority of times.
+</p>
+
+<div class="highlight"><pre><span></span>public static Vector2 RandomPointInRink(float minDistToEdge=0) {
+    Vector2 p;
+    do {
+	p = new Vector2(
+	    Random.Range(-Constants.PITCH_X_EXTENTS2, Constants.PITCH_X_EXTENTS2),
+	    Random.Range(-Constants.PITCH_Y_EXTENTS2, Constants.PITCH_Y_EXTENTS2));
+    } while (DistanceToEdgeOfRink(p, minDistToEdge) &lt; 0);
+
+    return p;
+}
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgf077189" class="outline-3">
+<h3 id="orgf077189">Player posturing</h3>
+<div class="outline-text-3" id="text-orgf077189">
+<p>
+I might write a different post on this, but the bots use these distances to decide where they should stand.
+</p>
+
+<p>
+As a quick teaser… This shows 3 members of the red team (red dots, playing downward), and 3 members of the blue team (blue dots, playing upward). The puck (green dot) is being controled by a member of the blue team. The arrows show, if there was a 4th member of the red team standing somewhere on the pitch, which direction it would be moving in.
+</p>
+
+
+<div id="org84be997" class="figure">
+<p><img src="../../images/slapshot/bots_posturing.png" alt="bots_posturing.png" width="500px"></p>
+<p><span class="figure-number">Figure 2: </span>How a 4th member of the red team would move from it's current position.</p>
+</div>
+
+<p>
+For example, a member of the red team standing near the blue goal would be rapidly trying to make it's way back up the pitch. That's because the bots really don't 'like' being in front of the puck when the enemy team has possession of it. You can also see between the puck and red goal, there are lots of arrows which converge. This is because bots 'like' standing between the puck and the goal.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9267e35" class="outline-2">
+<h2 id="org9267e35">Conclusion</h2>
+<div class="outline-text-2" id="text-org9267e35">
+<p>
+This has been part 1 of a series talking about the bots in Slapshot: Rebound. There's lots more novel ideas in there I'd like to write about, so hopefully this was interesting!
+</p>
+</div>
+</div>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script>
+</div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+                <div class="social-entry">
+                    <a href="mailto:oisincar@gmail.com" target="_blank">
+                        <i class="fa fa-envelope-o"></i>
+                    </a>
+                </div>
+
+
+                <div class="social-entry">
+                    <a href="https://github.com/oisincar" target="_blank">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </div>
+
+                <div class="social-entry">
+                    <a href="../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2022         <a href="mailto:oisincar@gmail.com">Oisin Carroll</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><div id="cookies-eu-banner" style="display: none; position:fixed; bottom: 0;">
+        By continuing to visit this site, you accept the use of cookies by Google Analytics and Google Adsense.
+        <a href="https://imois.in/pages/privacy-policy/" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
+    
+<script src="../../assets/js/cookies-eu-banner.js"></script><script>
+
+CookiesEuBanner.prototype.setCookie = function(name, value) {
+  var date = new Date();
+  date.setTime(date.getTime() + this.cookieTimeout);
+
+  document.cookie = name + '=' + value + ';expires=' + date.toGMTString() + ';path=/' + ';secure;SameSite=Lax';
+}
+
+
+    new CookiesEuBanner(function () {
+        // Your code to launch when user accept cookies
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        console.log("Enabling google analytics!");
+
+        ga('create', 'UA-143421297-1', 'auto');
+        ga('send', 'pageview');
+
+
+        // TODO: Set up adsense here..??
+    }, true);
+
+</script><script src="../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../../assets/js/headroom.min.js" type="text/javascript"></script><script src="../../assets/js/scripts.js" type="text/javascript"></script><div>
+</div>
+</body>
+</html>
