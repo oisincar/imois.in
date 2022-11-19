@@ -20,7 +20,7 @@
 Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although I'm a noob.
 
 # #+ATTR_HTML: :width 500px
-#+CAPTION: A some gameplay from a 2v2 bot game in slapshot.
+#+CAPTION: A some gameplay from a 2v2 bot game in slapshot. All players are bots.
 [[../images/slapshot/slapshot_bots_demo.gif]]
 
 This first part covers a novel method for how the bots handle spacial queries, and perform some physics-based predictions.
