@@ -1,5 +1,348 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about i-made)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_i-made.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 18 Nov 2022 16:56:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about i-made)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_i-made.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 19 Nov 2022 15:30:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups</title><link>https://imois.in/posts/slapshot-sdf-physics/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org893573e" class="outline-2"&gt;
+&lt;h2 id="org893573e"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org893573e"&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/slapshot/slapshot_sdf_graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/math/Vector.js"&gt;&lt;/script&gt;&lt;p&gt;
+Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although I'm a noob.
+&lt;/p&gt;
+
+
+&lt;div id="org0d60ec0" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/slapshot/slapshot_bots_demo.gif" alt="slapshot_bots_demo.gif"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;A some gameplay from a 2v2 bot game in slapshot.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+This first part covers a novel method for how the bots handle spacial queries, and perform some physics-based predictions.
+&lt;/p&gt;
+
+&lt;p&gt;
+Something that came up repeatedly is 'how far is this point from the edge?'. I wanted to move bots away from the edges to put them in the action, and bots needed to know if the puck was near the edge so they could approach it correctly. Additionally, it was important to quickly check points were in bounds, so the bots weren't attempting to walk into the wall.
+&lt;/p&gt;
+
+&lt;p&gt;
+The problem surfaces again when considering more advanced behaviours: The bots simulate puck rebounds off the rink and goals, and predict accordingly. Knowing where and when the puck would collide is a difficult problem.
+&lt;/p&gt;
+
+&lt;p&gt;
+It's possible to use lots of raycasts to check for nearby obsticles, but this gets expensive. For predicting puck paths, the solution used by the open source &lt;a href="https://rlbot.org"&gt;Rocket League Bots&lt;/a&gt; I looked it is to use a full physics engine: Bullet, to occasionally simulate the ball path and interaction with objects. This is very accurate, but it's slow and complicated.
+&lt;/p&gt;
+
+&lt;p&gt;
+Instead, I used an idea from graphics: Signed Distance Functions. It's much faster, and (approximately) handles all of the above in just a few cpu cycles.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4d93005" class="outline-2"&gt;
+&lt;h2 id="org4d93005"&gt;What is a Signed Distance Function?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4d93005"&gt;
+&lt;p&gt;
+The idea of a signed distance field is to provide a function \(f(\vec{p}) = d\) which gives the distance from some point \(p\) to a surface.
+&lt;/p&gt;
+
+&lt;p&gt;
+The signed distance function (SDF) for a circle of radius \(r\) centered on the origin is:
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\mathit{sdf\_circle}(\vec{p}) = \lVert \vec{p} \rVert - \vec{r};
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+This is shown in Plot 1, below. Click and drag to pan, scroll to zoom.
+&lt;/p&gt;
+
+&lt;div class="figure" style="width: auto"&gt;
+  &lt;div id="mygraph" style="max-width: 85vw;"&gt;&lt;/div&gt;
+  &lt;p&gt;&lt;span class="figure-number"&gt;Plot 1:&lt;/span&gt;
+    The signed distance function for a circle with radius 1. The function is negative inside the shape, and positive elsewhere. Where the function is 0 denotes the perimiter of the cicle.
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+
+function sdf_circle_r1(x, y) {
+    var v = new Vector(x, y);
+    return v.getLength() - 1;
+}
+
+this.graph = new SDFGraph(document.getElementById('mygraph'),
+                          sdf_circle_r1,
+                          3,
+                          3,
+                          50);
+&lt;/script&gt;&lt;p&gt;
+Where things get interesting though is combining SDFs. You can take the \(min\) of two functions to find the intersection of two shapes, and \(max\) to find the union.
+&lt;/p&gt;
+
+&lt;p&gt;
+You can also negate a function to find the inverse of the shape: To find the shape cut into a plane.
+&lt;/p&gt;
+
+&lt;p&gt;
+By combining these, it's also possible to subtract one shape from another, for example subtracting a circle from a square.
+&lt;/p&gt;
+
+&lt;p&gt;
+First, the SDF for a rectangle:
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\begin{aligned}
+\mathit{sdf\_box}(p) &amp;amp;= \lVert \max(\vec{v}, \vec{0}) \rVert + \min(\max(\vec{v}_x,
+\vec{v}_y), 0) \\
+\text{where } b &amp;amp;\text{ is bounds of the box},\\
+\max(\vec{v}) &amp;amp;\text{ is the element-wise minimum of a vector},\\
+\text{abs} &amp;amp;\text{ is the element-wise absolute value of a vector},\\
+v &amp;amp;= \text{abs}(p) - \frac{b}{2} \\
+\end{aligned}\notag
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+Or, more intuitively, written in GLSL:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;sdf_box&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Then the combined equation, including translating the circle for subtraction is:
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\mathit{sdf\_eg}(p) = \min(\mathit{sdf\_box}(p), -\mathit{sdf\_circle}(p - 1))
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+Which gives the following shape: A square with a circle cut out of the top corner.
+&lt;/p&gt;
+
+&lt;div class="figure" style="width: auto"&gt;
+  &lt;div id="mygraph2" style="max-width: 85vw;"&gt;&lt;/div&gt;
+  &lt;p&gt;&lt;span class="figure-number"&gt;Plot 2:&lt;/span&gt;
+    A SDF of a square missing a corner. Once again, the shape is bounded by where the function is 0.
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function sdf_square(x, y) {
+    var p = new Vector(x, y);
+    var v = p.abs().subtract(new Vector(1,1));
+
+    return v.max(new Vector()).getLength() + Math.min(Math.max(v.x, v.y), 0);
+}
+
+function sdf_eg(x, y) {
+    return Math.max(
+        sdf_square(x, y),
+        -sdf_circle_r1(x - 1, y - 1)
+    );
+}
+
+this.graph = new SDFGraph(document.getElementById('mygraph2'),
+                          sdf_eg,
+                          5,
+                          5,
+                          50);
+&lt;/script&gt;&lt;p&gt;
+It's worth noting SDFs work equally well in 3D as well as 2D. Inigo Quilez has compiled a list of useful &lt;a href="https://iquilezles.org/articles/distfunctions/"&gt;SDFs in 3D&lt;/a&gt; as well as &lt;a href="https://iquilezles.org/articles/distfunctions2d/"&gt;in 2D&lt;/a&gt; which I've constantly used for reference. He's also created some incredible art using SDFs which you can see &lt;a href="https://www.shadertoy.com/user/iq"&gt;on shadertoy&lt;/a&gt;. His work has been a big inspiration for me too, check it out!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org38d0dac" class="outline-2"&gt;
+&lt;h2 id="org38d0dac"&gt;A Slapshot SDF:&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org38d0dac"&gt;
+&lt;p&gt;
+Onto something more useful… A signed distance function for the slapshot rink. This combines a rounded square for the outer perimiter with a capsule for each goal.
+&lt;/p&gt;
+
+&lt;div class="figure" style="width: auto"&gt;
+  &lt;div id="mygraph3" style="max-width: 85vw;"&gt;&lt;/div&gt;
+  &lt;p&gt;&lt;span class="figure-number"&gt;Plot 3:&lt;/span&gt;
+    A SDF of the Slapshot: Rebound ice rink.
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+
+function sdf_slapshot(x, y) {
+    return distanceToEdgeOfRink(new Vector(x, y));
+}
+
+this.graph = new SDFGraph(document.getElementById('mygraph3'),
+                          sdf_slapshot,
+                          110,
+                          164,
+                          70);
+&lt;/script&gt;&lt;p&gt;
+The function is most positive near the center of the pitch - these are the points furthest from the edges of the rink. The function is 0 outside the outer perimiter, as well as inside the goals: We don't want bots pathing in there.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5b3a47e" class="outline-2"&gt;
+&lt;h2 id="org5b3a47e"&gt;Gradients, normals and nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5b3a47e"&gt;
+&lt;p&gt;
+As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivitive of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
+&lt;/p&gt;
+
+&lt;p&gt;
+In a more mathy term we can write the gradient at a point p as:
+\[
+\text{grad} f = \nabla f =
+\langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \rangle
+\]
+Which is essentially saying the gradient is a vector defined by the partial derivitives in each axis.
+&lt;/p&gt;
+
+&lt;p&gt;
+In some cases it's possbile to work these out emperically, but that's challenging for more complicated examples. Instead, we sample a couple of points nearby and calculate the gradient from those.
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+\frac{\partial f}{\partial x} \approx \frac{(f(p + k*\vec{x}) - f(p - k*\vec{x}))}{2k}
+\]
+&lt;/p&gt;
+
+&lt;p&gt;
+This is known as the &lt;a href="https://en.wikipedia.org/wiki/Symmetric_derivative"&gt;symmetric derivitive&lt;/a&gt; when taken as the limit as \(k\) tends to \(0\)
+&lt;/p&gt;
+
+&lt;p&gt;
+Taking a smaller k theoretically gives more accurate results, but in reality you run into numeric precision issues. For Slapshot we sample 4 points that are .5 units in each direction.
+&lt;/p&gt;
+
+&lt;p&gt;
+A nice property of this is that we can calculate surface normals and tangents for free. The normals are simply the gradient at some point on the surface, and the tangents are orthagonal to that. This is useful for calculating how to approach a puck near the edge, but in other cases it's useful for calculating lighting of objects for example.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3698a8b" class="outline-2"&gt;
+&lt;h2 id="org3698a8b"&gt;Nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3698a8b"&gt;
+&lt;p&gt;
+What's the nearest point on a surface? It's simply the direction to the nearest point times the distance. We know both of those, so we can plug them in.
+&lt;/p&gt;
+
+&lt;p&gt;
+\[
+  p_{surface} = \nabla f(p) * f(p)
+\]
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org07ddc41" class="outline-2"&gt;
+&lt;h2 id="org07ddc41"&gt;Ray intersection (raymarching)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org07ddc41"&gt;
+&lt;p&gt;
+When does a ray first intersect with a SDF surface? One solution is raymarching, which is an itterative process. Given a ray origin and direction, you advance along the ray until you can't anymore (or you've reached a certain level af accuracy). How do you know how far along the ray you can advance? Well, there's one simple observation: The ray can't intersect at a point which is nearer than the nearest point on the surface, and we know the distance to the nearest point - just evaluate the SDF.
+&lt;/p&gt;
+
+
+&lt;div id="orga259cdb" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/slapshot/sdf_raymarching.png" alt="sdf_raymarching.png" width="500px"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The calculation at each iteration of raymarching. Credit: Wikipedia.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Start off at a point: The ray origin, then evaluate the SDF. If the resulting distance is smaller than some error value, we're already at an edge. Otherwise, we update that point to be point + distance*ray\&lt;sub&gt;direction&lt;/sub&gt;. It's easy to give the ray some thickness by subtracting the radius from the raw distance, too.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org63eef70" class="outline-2"&gt;
+&lt;h2 id="org63eef70"&gt;Puck physics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org63eef70"&gt;
+&lt;p&gt;
+Along with some simple physics (i.e. restution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
+&lt;/p&gt;
+
+&lt;p&gt;
+One slight got'cha is that if the ray origin is very close to the wall, you spend lots of iterations making little headway. We simply say that the puck isn't likely to collide again within a small distance after a collision with the wall, and so begin raymarching a small distance after this has taken place.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is all extremely fast in code: The bots can each calculate puck predictions for up to 15 seconds into the future on every iteration of the 120hz servers, without breaking a sweat. It would be nice to cache predictions and only recalculate upon collisions, but it's not worth it.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orged48715" class="outline-2"&gt;
+&lt;h2 id="orged48715"&gt;Other uses for SDF&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orged48715"&gt;
+&lt;p&gt;
+Having a quick way to query points is useful for other reasons, too…
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org4122584" class="outline-3"&gt;
+&lt;h3 id="org4122584"&gt;Randomness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4122584"&gt;
+&lt;p&gt;
+Sometimes it's useful to pick a random point in the pitch… Simple! Just loop until we find one. This succeeds on the first try a vast majority of times.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;public static Vector2 RandomPointInRink(float minDistToEdge=0) {
+    Vector2 p;
+    do {
+	p = new Vector2(
+	    Random.Range(-Constants.PITCH_X_EXTENTS2, Constants.PITCH_X_EXTENTS2),
+	    Random.Range(-Constants.PITCH_Y_EXTENTS2, Constants.PITCH_Y_EXTENTS2));
+    } while (DistanceToEdgeOfRink(p, minDistToEdge) &amp;lt; 0);
+
+    return p;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org415febc" class="outline-3"&gt;
+&lt;h3 id="org415febc"&gt;Player posturing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org415febc"&gt;
+&lt;p&gt;
+I might write a different post on this, but the bots use these distances to decide where they should stand.
+&lt;/p&gt;
+
+&lt;p&gt;
+As a quick teaser… This shows 3 members of the red team (red dots, playing downward), and 3 members of the blue team (blue dots, playing upward). The puck (green dot) is being controled by a member of the blue team. The arrows show, if there was a 4th member of the red team standing somewhere on the pitch, which direction it would be moving in.
+&lt;/p&gt;
+
+
+&lt;div id="org664d847" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/slapshot/bots_posturing.png" alt="bots_posturing.png" width="500px"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How a 4th member of the red team would move from it's current position.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+For example, a member of the red team standing near the blue goal would be rapidly trying to make it's way back up the pitch. That's because the bots really don't 'like' being in front of the puck when the enemy team has possession of it. You can also see between the puck and red goal, there are lots of arrows which converge. This is because bots 'like' standing between the puck and the goal.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgecbf19e" class="outline-2"&gt;
+&lt;h2 id="orgecbf19e"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgecbf19e"&gt;
+&lt;p&gt;
+This has been part 1 of a series talking about the bots in Slapshot: Rebound. There's lots more novel ideas in there I'd like to write about, so hopefully this was interesting!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/slapshot-sdf-physics/</guid><pubDate>Thu, 17 Nov 2022 18:05:31 GMT</pubDate></item><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
 Back in 2013 I designed and made this chair! It's a fishbone chair - quite the trend of the time, but there weren't any good designs available online. The chair can be cnc-milled out of a single standard sheet of 3/4" 8'x4' mdf or plywood, and slots together with no fastners or glue!
 &lt;/p&gt;
 

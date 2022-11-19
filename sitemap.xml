@@ -27,7 +27,7 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2022-11-18T16:56:00Z</lastmod>
+  <lastmod>2022-11-19T15:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/assets/js/kb-designer/designer.html</loc>
@@ -160,6 +160,10 @@
  <url>
   <loc>https://imois.in/posts/random-vectors-and-rotations-in-3d/</loc>
   <lastmod>2022-11-02T22:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/slapshot-sdf-physics/</loc>
+  <lastmod>2022-11-17T18:27:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/posts/sudoku-solver/</loc>
