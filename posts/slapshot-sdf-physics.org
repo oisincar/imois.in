@@ -17,10 +17,10 @@
 <script src="../assets/js/math/Vector.js"></script>
 #+END_EXPORT
 
-Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although I'm a noob.
+Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
 
 # #+ATTR_HTML: :width 500px
-#+CAPTION: A some gameplay from a 2v2 bot game in slapshot. All players are bots.
+#+CAPTION: A some gameplay from a 2v2 game in slapshot. All players are bots.
 [[../images/slapshot/slapshot_bots_demo.gif]]
 
 This first part covers a novel method for how the bots handle spacial queries, and perform some physics-based predictions.
@@ -31,7 +31,7 @@ The problem surfaces again when considering more advanced behaviours: The bots s
 
 It's possible to use lots of raycasts to check for nearby obsticles, but this gets expensive. For predicting puck paths, the solution used by the open source [[https://rlbot.org][Rocket League Bots]] I looked it is to use a full physics engine: Bullet, to occasionally simulate the ball path and interaction with objects. This is very accurate, but it's slow and complicated.
 
-Instead, I used an idea from graphics: Signed Distance Functions. It's much faster, and (approximately) handles all of the above in just a few cpu cycles.
+Instead, I used an idea from graphics: Signed Distance Functions. It's much faster, and (approximately) handles all of the above in just ~50 lines of code.
 
 * What is a Signed Distance Function?
 The idea of a signed distance field is to provide a function $f(\vec{p}) = d$ which gives the distance from some point $p$ to a surface.
@@ -48,7 +48,7 @@ This is shown in Plot 1, below. Click and drag to pan, scroll to zoom.
 <div class="figure" style="width: auto">
   <div id="mygraph" style="max-width: 85vw;"></div>
   <p><span class="figure-number">Plot 1:</span>
-    The signed distance function for a circle with radius 1. The function is negative inside the shape, and positive elsewhere. Where the function is 0 denotes the perimiter of the cicle.
+    The signed distance function for a circle with radius 1. The function is negative inside the shape, and positive elsewhere. Where the function is 0 denotes the perimiter of the circle.
   </p>
 </div>
 
