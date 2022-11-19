@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>Programming &amp; Math 4 Fun</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 19 Nov 2022 15:54:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups</title><link>https://imois.in/posts/slapshot-sdf-physics/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgd0b482b" class="outline-2"&gt;
-&lt;h2 id="orgd0b482b"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd0b482b"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>Programming &amp; Math 4 Fun</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 19 Nov 2022 16:12:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups</title><link>https://imois.in/posts/slapshot-sdf-physics/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org4c9556b" class="outline-2"&gt;
+&lt;h2 id="org4c9556b"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4c9556b"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/slapshot/slapshot_sdf_graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/math/Vector.js"&gt;&lt;/script&gt;&lt;p&gt;
-Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although I'm a noob.
+Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
 &lt;/p&gt;
 
 
-&lt;div id="org36d5907" class="figure"&gt;
+&lt;div id="orgfbdc7b7" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/slapshot_bots_demo.gif" alt="slapshot_bots_demo.gif"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;A some gameplay from a 2v2 bot game in slapshot. All players are bots.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;A some gameplay from a 2v2 game in slapshot. All players are bots.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -29,14 +29,14 @@ It's possible to use lots of raycasts to check for nearby obsticles, but this ge
 &lt;/p&gt;
 
 &lt;p&gt;
-Instead, I used an idea from graphics: Signed Distance Functions. It's much faster, and (approximately) handles all of the above in just a few cpu cycles.
+Instead, I used an idea from graphics: Signed Distance Functions. It's much faster, and (approximately) handles all of the above in just ~50 lines of code.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org62e3035" class="outline-2"&gt;
-&lt;h2 id="org62e3035"&gt;What is a Signed Distance Function?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org62e3035"&gt;
+&lt;div id="outline-container-orgbd86997" class="outline-2"&gt;
+&lt;h2 id="orgbd86997"&gt;What is a Signed Distance Function?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbd86997"&gt;
 &lt;p&gt;
 The idea of a signed distance field is to provide a function \(f(\vec{p}) = d\) which gives the distance from some point \(p\) to a surface.
 &lt;/p&gt;
@@ -58,7 +58,7 @@ This is shown in Plot 1, below. Click and drag to pan, scroll to zoom.
 &lt;div class="figure" style="width: auto"&gt;
   &lt;div id="mygraph" style="max-width: 85vw;"&gt;&lt;/div&gt;
   &lt;p&gt;&lt;span class="figure-number"&gt;Plot 1:&lt;/span&gt;
-    The signed distance function for a circle with radius 1. The function is negative inside the shape, and positive elsewhere. Where the function is 0 denotes the perimiter of the cicle.
+    The signed distance function for a circle with radius 1. The function is negative inside the shape, and positive elsewhere. Where the function is 0 denotes the perimiter of the circle.
   &lt;/p&gt;
 &lt;/div&gt;
 
@@ -161,9 +161,9 @@ It's worth noting SDFs work equally well in 3D as well as 2D. Inigo Quilez has c
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org660121b" class="outline-2"&gt;
-&lt;h2 id="org660121b"&gt;A Slapshot SDF:&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org660121b"&gt;
+&lt;div id="outline-container-org2217779" class="outline-2"&gt;
+&lt;h2 id="org2217779"&gt;A Slapshot SDF:&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2217779"&gt;
 &lt;p&gt;
 Onto something more useful… A signed distance function for the slapshot rink. This combines a rounded square for the outer perimiter with a capsule for each goal.
 &lt;/p&gt;
@@ -192,9 +192,9 @@ The function is most positive near the center of the pitch - these are the point
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9ece0e6" class="outline-2"&gt;
-&lt;h2 id="org9ece0e6"&gt;Gradients, normals and nearest points&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9ece0e6"&gt;
+&lt;div id="outline-container-org7b4279c" class="outline-2"&gt;
+&lt;h2 id="org7b4279c"&gt;Gradients, normals and nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7b4279c"&gt;
 &lt;p&gt;
 As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivitive of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
 &lt;/p&gt;
@@ -232,9 +232,9 @@ A nice property of this is that we can calculate surface normals and tangents fo
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge951af5" class="outline-2"&gt;
-&lt;h2 id="orge951af5"&gt;Nearest points&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge951af5"&gt;
+&lt;div id="outline-container-org69d2fa2" class="outline-2"&gt;
+&lt;h2 id="org69d2fa2"&gt;Nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org69d2fa2"&gt;
 &lt;p&gt;
 What's the nearest point on a surface? It's simply the direction to the nearest point times the distance. We know both of those, so we can plug them in.
 &lt;/p&gt;
@@ -247,15 +247,15 @@ What's the nearest point on a surface? It's simply the direction to the nearest 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga01313e" class="outline-2"&gt;
-&lt;h2 id="orga01313e"&gt;Ray intersection (raymarching)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga01313e"&gt;
+&lt;div id="outline-container-org0a3b369" class="outline-2"&gt;
+&lt;h2 id="org0a3b369"&gt;Ray intersection (raymarching)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0a3b369"&gt;
 &lt;p&gt;
 When does a ray first intersect with a SDF surface? One solution is raymarching, which is an itterative process. Given a ray origin and direction, you advance along the ray until you can't anymore (or you've reached a certain level af accuracy). How do you know how far along the ray you can advance? Well, there's one simple observation: The ray can't intersect at a point which is nearer than the nearest point on the surface, and we know the distance to the nearest point - just evaluate the SDF.
 &lt;/p&gt;
 
 
-&lt;div id="orgce362d3" class="figure"&gt;
+&lt;div id="org65140f0" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/sdf_raymarching.png" alt="sdf_raymarching.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The calculation at each iteration of raymarching. Credit: Wikipedia.&lt;/p&gt;
 &lt;/div&gt;
@@ -266,9 +266,9 @@ Start off at a point: The ray origin, then evaluate the SDF. If the resulting di
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org210d301" class="outline-2"&gt;
-&lt;h2 id="org210d301"&gt;Puck physics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org210d301"&gt;
+&lt;div id="outline-container-orgee26451" class="outline-2"&gt;
+&lt;h2 id="orgee26451"&gt;Puck physics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgee26451"&gt;
 &lt;p&gt;
 Along with some simple physics (i.e. restution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
 &lt;/p&gt;
@@ -283,16 +283,16 @@ This is all extremely fast in code: The bots can each calculate puck predictions
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdc9aff9" class="outline-2"&gt;
-&lt;h2 id="orgdc9aff9"&gt;Other uses for SDF&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdc9aff9"&gt;
+&lt;div id="outline-container-org3b2e940" class="outline-2"&gt;
+&lt;h2 id="org3b2e940"&gt;Other uses for SDF&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3b2e940"&gt;
 &lt;p&gt;
 Having a quick way to query points is useful for other reasons, too…
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org8c0b443" class="outline-3"&gt;
-&lt;h3 id="org8c0b443"&gt;Randomness&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org8c0b443"&gt;
+&lt;div id="outline-container-org5f5ae65" class="outline-3"&gt;
+&lt;h3 id="org5f5ae65"&gt;Randomness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5f5ae65"&gt;
 &lt;p&gt;
 Sometimes it's useful to pick a random point in the pitch… Simple! Just loop until we find one. This succeeds on the first try a vast majority of times.
 &lt;/p&gt;
@@ -311,9 +311,9 @@ Sometimes it's useful to pick a random point in the pitch… Simple! Just loop u
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgea5b09a" class="outline-3"&gt;
-&lt;h3 id="orgea5b09a"&gt;Player posturing&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgea5b09a"&gt;
+&lt;div id="outline-container-orgda05270" class="outline-3"&gt;
+&lt;h3 id="orgda05270"&gt;Player posturing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgda05270"&gt;
 &lt;p&gt;
 I might write a different post on this, but the bots use these distances to decide where they should stand.
 &lt;/p&gt;
@@ -323,7 +323,7 @@ As a quick teaser… This shows 3 members of the red team (red dots, playing dow
 &lt;/p&gt;
 
 
-&lt;div id="org8e82f96" class="figure"&gt;
+&lt;div id="org4705072" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/bots_posturing.png" alt="bots_posturing.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How a 4th member of the red team would move from it's current position.&lt;/p&gt;
 &lt;/div&gt;
@@ -335,9 +335,9 @@ For example, a member of the red team standing near the blue goal would be rapid
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5b0ae5b" class="outline-2"&gt;
-&lt;h2 id="org5b0ae5b"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5b0ae5b"&gt;
+&lt;div id="outline-container-org0bef458" class="outline-2"&gt;
+&lt;h2 id="org0bef458"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0bef458"&gt;
 &lt;p&gt;
 This has been part 1 of a series talking about the bots in Slapshot: Rebound. There's lots more novel ideas in there I'd like to write about, so hopefully this was interesting!
 &lt;/p&gt;
