@@ -5,7 +5,7 @@
 'scale_images:output/images/puzzle-kb/demo.svg', (2048, 230)
 'render_sources:output/posts/procedural-animation-3-gradient-descent/index.org', (2560, 306)
 'render_posts:cache/posts/line-intersections-with-cross-products.html', (3072, 445)
-'sitemap:output/sitemap.xml', (654336, 9349)
+'sitemap:output/sitemap.xml', (654336, 9346)
 'render_posts:cache/posts/hockey-bots-creating-ai-for-slapshot-rebound.html', (11264, 463)
 'scale_images:output/images/procedural_anim/zigzag0.png', (11776, 247)
 'copy_files:output/assets/js/sudoku/pkg/sudoku_wasm.d.ts', (12288, 296)
