@@ -17,7 +17,7 @@
 <script src="../assets/js/math/Vector.js"></script>
 #+END_EXPORT
 
-Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
+Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced ice hockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
 
 # #+ATTR_HTML: :width 500px
 #+CAPTION: A some gameplay from a 2v2 game in slapshot. All players are bots.
@@ -25,11 +25,11 @@ Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, s
 
 This first part covers a novel method for how the bots handle spacial queries, and perform some physics-based predictions.
 
-Something that came up repeatedly is 'how far is this point from the edge?'. I wanted to move bots away from the edges to put them in the action, and bots needed to know if the puck was near the edge so they could approach it correctly. Additionally, it was important to quickly check points were in bounds, so the bots weren't attempting to walk into the wall.
+Something that came up repeatedly is 'how far is this point from the edge?'. I wanted to move bots away from the edges to put them in the action, and bots needed to know if the puck was near the edge so they could approach it correctly. Additionally, it was important to quickly check if points were in bounds, so the bots weren't attempting to skate into the wall.
 
 The problem surfaces again when considering more advanced behaviours: The bots simulate puck rebounds off the rink and goals, and predict accordingly. Knowing where and when the puck would collide is a difficult problem.
 
-It's possible to use lots of raycasts to check for nearby obsticles, but this gets expensive. For predicting puck paths, the solution used by the open source [[https://rlbot.org][Rocket League Bots]] I looked it is to use a full physics engine: Bullet, to occasionally simulate the ball path and interaction with objects. This is very accurate, but it's slow and complicated.
+It's possible to use lots of raycasts to check for nearby obstacles, but this gets expensive. For predicting puck paths, the solution used by the open source [[https://rlbot.org][Rocket League Bots]] I looked at is to use a full physics engine: Bullet, to occasionally simulate the ball path and interaction with objects. This is very accurate, but it's slow and complicated.
 
 Instead, I used an idea from graphics: Signed Distance Functions. It's much faster, and (approximately) handles all of the above in just ~50 lines of code.
 
@@ -162,10 +162,10 @@ this.graph = new SDFGraph(document.getElementById('mygraph3'),
 </script>
 #+END_EXPORT
 
-The function is most positive near the center of the pitch - these are the points furthest from the edges of the rink. The function is 0 outside the outer perimiter, as well as inside the goals: We don't want bots pathing in there.
+The function is most positive near the center of the pitch - these are the points furthest from the edges of the rink. The function is 0 outside the outer perimeter, as well as inside the goals: We don't want bots pathing in there.
 
 * Gradients, normals and nearest points
-As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivitive of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
+As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivative of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
 
 In a more mathy term we can write the gradient at a point p as:
 $$
@@ -174,7 +174,7 @@ $$
 $$
 Which is essentially saying the gradient is a vector defined by the partial derivitives in each axis.
 
-In some cases it's possbile to work these out emperically, but that's challenging for more complicated examples. Instead, we sample a couple of points nearby and calculate the gradient from those.
+In some cases it's possible to work these out mathematically, but that's challenging for more complicated examples. Instead, we sample a couple of points nearby and calculate the gradient from those.
 
 $$
 \frac{\partial f}{\partial x} \approx \frac{(f(p + k*\vec{x}) - f(p - k*\vec{x}))}{2k}
@@ -184,7 +184,7 @@ This is known as the [[https://en.wikipedia.org/wiki/Symmetric_derivative][symme
 
 Taking a smaller k theoretically gives more accurate results, but in reality you run into numeric precision issues. For Slapshot we sample 4 points that are .5 units in each direction.
 
-A nice property of this is that we can calculate surface normals and tangents for free. The normals are simply the gradient at some point on the surface, and the tangents are orthagonal to that. This is useful for calculating how to approach a puck near the edge, but in other cases it's useful for calculating lighting of objects for example.
+A nice property of this is that we can calculate surface normals and tangents for free. The normals are simply the gradient at some point on the surface, and the tangents are orthogonal to that. This is useful for calculating how to approach a puck near the edge, but in other cases it's useful for calculating lighting of objects for example.
 
 * Nearest points
 What's the nearest point on a surface? It's simply the direction to the nearest point times the distance. We know both of those, so we can plug them in.
@@ -203,7 +203,7 @@ When does a ray first intersect with a SDF surface? One solution is raymarching,
 Start off at a point: The ray origin, then evaluate the SDF. If the resulting distance is smaller than some error value, we're already at an edge. Otherwise, we update that point to be point + distance*ray\_direction. It's easy to give the ray some thickness by subtracting the radius from the raw distance, too.
 
 * Puck physics
-Along with some simple physics (i.e. restution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
+Along with some simple physics (i.e. restitution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
 
 One slight got'cha is that if the ray origin is very close to the wall, you spend lots of iterations making little headway. We simply say that the puck isn't likely to collide again within a small distance after a collision with the wall, and so begin raymarching a small distance after this has taken place.
 
@@ -230,7 +230,7 @@ public static Vector2 RandomPointInRink(float minDistToEdge=0) {
 ** Player posturing
 I might write a different post on this, but the bots use these distances to decide where they should stand.
 
-As a quick teaser... This shows 3 members of the red team (red dots, playing downward), and 3 members of the blue team (blue dots, playing upward). The puck (green dot) is being controled by a member of the blue team. The arrows show, if there was a 4th member of the red team standing somewhere on the pitch, which direction it would be moving in.
+As a quick teaser... This shows 3 members of the red team (red dots, playing downward), and 3 members of the blue team (blue dots, playing upward). The puck (green dot) is being controlled by a member of the blue team. The arrows show, if there was a 4th member of the red team standing somewhere on the pitch, which direction it would be moving in.
 
 #+CAPTION: How a 4th member of the red team would move from it's current position.
 #+ATTR_HTML: :width 500px

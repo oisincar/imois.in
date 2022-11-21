@@ -5,7 +5,7 @@
 .. tags: hardware
 .. category: i-made
 .. link:
-.. description: A new & open source split keyboard, designed for lazer cut acrylic.
+.. description: A new & open source split keyboard, designed for laser cut acrylic.
 .. type: text
 .. status: draft
 

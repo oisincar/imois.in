@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about tutorial)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_tutorial.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Wed, 02 Nov 2022 22:52:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org675d9b6" class="outline-2"&gt;
-&lt;h2 id="org675d9b6"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org675d9b6"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about tutorial)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_tutorial.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 21 Nov 2022 13:18:47 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgd6c88a4" class="outline-2"&gt;
+&lt;h2 id="orgd6c88a4"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd6c88a4"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -25,9 +25,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org66ade00" class="outline-2"&gt;
-&lt;h2 id="org66ade00"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org66ade00"&gt;
+&lt;div id="outline-container-org0d864df" class="outline-2"&gt;
+&lt;h2 id="org0d864df"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0d864df"&gt;
 &lt;p&gt;
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -99,9 +99,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc84506f" class="outline-2"&gt;
-&lt;h2 id="orgc84506f"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc84506f"&gt;
+&lt;div id="outline-container-org4ea21b3" class="outline-2"&gt;
+&lt;h2 id="org4ea21b3"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4ea21b3"&gt;
 &lt;p&gt;
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -193,9 +193,9 @@ be pretty useful to have a way to solve it!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org05a2bdb" class="outline-2"&gt;
-&lt;h2 id="org05a2bdb"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org05a2bdb"&gt;
+&lt;div id="outline-container-org270054b" class="outline-2"&gt;
+&lt;h2 id="org270054b"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org270054b"&gt;
 &lt;p&gt;
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -226,9 +226,9 @@ games is done.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6552dd3" class="outline-2"&gt;
-&lt;h2 id="org6552dd3"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6552dd3"&gt;
+&lt;div id="outline-container-org2ec0de8" class="outline-2"&gt;
+&lt;h2 id="org2ec0de8"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2ec0de8"&gt;
 &lt;p&gt;
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -255,9 +255,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7ef9d30" class="outline-2"&gt;
-&lt;h2 id="org7ef9d30"&gt;Forward Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7ef9d30"&gt;
+&lt;div id="outline-container-org1447e92" class="outline-2"&gt;
+&lt;h2 id="org1447e92"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1447e92"&gt;
 &lt;p&gt;
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -295,9 +295,9 @@ Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdd13d57" class="outline-2"&gt;
-&lt;h2 id="orgdd13d57"&gt;Distance function&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdd13d57"&gt;
+&lt;div id="outline-container-org3baa0e8" class="outline-2"&gt;
+&lt;h2 id="org3baa0e8"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3baa0e8"&gt;
 &lt;p&gt;
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -394,9 +394,9 @@ the angles there will bring our arm closest to our target ball.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc610ec3" class="outline-2"&gt;
-&lt;h2 id="orgc610ec3"&gt;Gradient Descent&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc610ec3"&gt;
+&lt;div id="outline-container-orga4c3ca4" class="outline-2"&gt;
+&lt;h2 id="orga4c3ca4"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga4c3ca4"&gt;
 &lt;p&gt;
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -459,9 +459,9 @@ The demos just perform this update once per frame, but it's easy to completely s
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb5610ce" class="outline-2"&gt;
-&lt;h2 id="orgb5610ce"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb5610ce"&gt;
+&lt;div id="outline-container-org1c3d8a2" class="outline-2"&gt;
+&lt;h2 id="org1c3d8a2"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1c3d8a2"&gt;
 &lt;p&gt;
 It might help to look through the source code for the animations (embedded into
 this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,
@@ -492,9 +492,10 @@ some core ideas and a light animation, or &lt;a href="https://imois.in/posts/pro
 ideas and shapes.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ba683e" class="outline-2"&gt;
-&lt;h2 id="org8ba683e"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8ba683e"&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Procedural Animation 2: Functions</title><link>https://imois.in/posts/procedural-animation-2-functions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org1626ffd" class="outline-2"&gt;
+&lt;h2 id="org1626ffd"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1626ffd"&gt;
 &lt;p&gt;
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: &lt;i&gt;Here be graphs&lt;/i&gt;.
@@ -512,9 +513,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6b04486" class="outline-2"&gt;
-&lt;h2 id="org6b04486"&gt;Bouncing ball&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6b04486"&gt;
+&lt;div id="outline-container-orgfb9776c" class="outline-2"&gt;
+&lt;h2 id="orgfb9776c"&gt;Bouncing ball&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfb9776c"&gt;
 &lt;p&gt;
 How to make this?
 &lt;/p&gt;
@@ -547,40 +548,40 @@ In code this looks like:
 &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// CONFIG:&lt;/span&gt;
 &lt;span class="c1"&gt;// 'scale in time', length of animation&lt;/span&gt;
-&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.0f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;_duration&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;5.0f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="c1"&gt;// 'scale in space', distance ball moves&lt;/span&gt;
-&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;40.0f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;40.0f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="c1"&gt;// 'offset in space'&lt;/span&gt;
-&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_offset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(..);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt; &lt;span class="n"&gt;_offset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(..);&lt;/span&gt;
 
 &lt;span class="c1"&gt;// STATE:&lt;/span&gt;
-&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// dt is the change in time.&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// UPDATE state:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 1_|&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;//   | /| /| /| /|....&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 0_|/ |/ |/ |/ |&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// dt is the change in time.&lt;/span&gt;
+    &lt;span class="c1"&gt;// UPDATE state:&lt;/span&gt;
+    &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="c1"&gt;// 1_|&lt;/span&gt;
+    &lt;span class="c1"&gt;//   | /| /| /| /|....&lt;/span&gt;
+    &lt;span class="c1"&gt;// 0_|/ |/ |/ |/ |&lt;/span&gt;
 
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_offset&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+    &lt;span class="c1"&gt;// APPLY&lt;/span&gt;
+    &lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_offset&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
 The update line can be a bit confusing, but might make more sense when split up a bit more.
 &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="c1"&gt;// Equilivent to (all of):&lt;/span&gt;
 &lt;span class="c1"&gt;// The change in how far we are through the animation.&lt;/span&gt;
-&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;dPerc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;_duration&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="c1"&gt;// Added to _animationPerc&lt;/span&gt;
-&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dPerc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;dPerc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="c1"&gt;// And wrap back to 0 if we're &amp;gt; 1;&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
@@ -597,7 +598,7 @@ lot of these animations can be thought of as the &lt;b&gt;Apply&lt;/b&gt; functi
 
 
 
-&lt;div id="org566ba37" class="figure"&gt;
+&lt;div id="org750b17f" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/animation_perc.png" alt="animation_perc.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The shape of _animationPerc over time, where d is the duration of the animation, makes a sawtooth shape.&lt;/p&gt;
 &lt;/div&gt;
@@ -609,7 +610,7 @@ then the y offset of the ball for that frame, as shown in the animation above.
 &lt;/p&gt;
 
 
-&lt;div id="orgb0faa3b" class="figure"&gt;
+&lt;div id="org44ed7f5" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;Here, the input &lt;b&gt;State&lt;/b&gt; (Blue), is scaled to give the ball's positional offset by the &lt;b&gt;Apply&lt;/b&gt; function (Orange).&lt;/p&gt;
 &lt;/div&gt;
@@ -617,9 +618,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org0563353" class="outline-2"&gt;
-&lt;h2 id="org0563353"&gt;Different Applications (heh)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0563353"&gt;
+&lt;div id="outline-container-orgbfa9d9b" class="outline-2"&gt;
+&lt;h2 id="orgbfa9d9b"&gt;Different Applications (heh)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbfa9d9b"&gt;
 &lt;p&gt;
 By just changing the &lt;b&gt;Apply&lt;/b&gt; function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -646,7 +647,7 @@ variable by that so it loops properly.
 In code, this is as easy as:
 &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
-&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
@@ -660,8 +661,8 @@ By doing this to both the x and y axis at the same time, offset by a bit, we can
 Which, again, in code is just:
 &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
-&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="c1"&gt;// NOTE Equilivent to: ball.y = sin(2 * Math.PI * _animationPerc + Math.PI);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -672,16 +673,16 @@ a way very similar to above ^. That's a whole different blog post though!
 &lt;/p&gt;
 
 
-&lt;div id="org2dea393" class="figure"&gt;
+&lt;div id="org37f5eb8" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/1lissajous.gif" alt="1lissajous.gif" width="400px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5948b58" class="outline-2"&gt;
-&lt;h2 id="org5948b58"&gt;Zigzag&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5948b58"&gt;
+&lt;div id="outline-container-org965e229" class="outline-2"&gt;
+&lt;h2 id="org965e229"&gt;Zigzag&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org965e229"&gt;
 &lt;p&gt;
 This is a slighly harder example for the idea of manipulating function shapes.
 &lt;/p&gt;
@@ -691,7 +692,7 @@ We start off with our input shape as before… And keeping in mind our goal outp
 the animation above).
 &lt;/p&gt;
 
-&lt;div id="org3dc3799" class="figure"&gt;
+&lt;div id="orgb0a955e" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/zigzag0.png" alt="zigzag0.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;Input _animationPerc (Blue), compared to the shape we need (Orange).&lt;/p&gt;
 &lt;/div&gt;
@@ -702,20 +703,20 @@ up by 2 and moving it down by 1 (Orange). Then we can take the absolute value of
 this (Green).
 &lt;/p&gt;
 
-&lt;div id="org3099b46" class="figure"&gt;
+&lt;div id="org03d548a" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/zigzag1.png" alt="zigzag1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 5: &lt;/span&gt;Input (Blue), scaled &amp;amp; transformed (Orange), result (Green)&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
-&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Mathf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;zigzag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mathf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;zigzag&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf1897ab" class="outline-2"&gt;
-&lt;h2 id="orgf1897ab"&gt;Bouncing balls&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf1897ab"&gt;
+&lt;div id="outline-container-org58c58c2" class="outline-2"&gt;
+&lt;h2 id="org58c58c2"&gt;Bouncing balls&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org58c58c2"&gt;
 &lt;p&gt;
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -723,7 +724,7 @@ a Parabola: Some function of \(t^2\).
 &lt;/p&gt;
 
 
-&lt;div id="org8f63f56" class="figure"&gt;
+&lt;div id="org22ac3d6" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/bounce0.png" alt="bounce0.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;Input (Blue), vs bounce shape (Orange)&lt;/p&gt;
 &lt;/div&gt;
@@ -737,15 +738,15 @@ extra transformation: 1-zigzag&lt;sup&gt;2&lt;/sup&gt;.
     &lt;canvas id="balls4" class="light_border" width="400" height="300"&gt; Your browser sucks :c. &lt;/canvas&gt;&lt;p&gt;&lt;span class="figure-number"&gt;Anim 5:&lt;/span&gt; Bouncing balls&lt;/p&gt;
 &lt;/div&gt;
 &lt;script&gt; new BouncingBalls('balls4', 4, 1); &lt;/script&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// APPLY&lt;/span&gt;
-&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Mathf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;zigzag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mathf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;_animationPerc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;ball&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;zigzag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;_dist&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5d46d18" class="outline-2"&gt;
-&lt;h2 id="org5d46d18"&gt;More Ideas&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5d46d18"&gt;
+&lt;div id="outline-container-orgef7c59b" class="outline-2"&gt;
+&lt;h2 id="orgef7c59b"&gt;More Ideas&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgef7c59b"&gt;
 &lt;p&gt;
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -753,7 +754,7 @@ be an animation for a slime NPC?
 &lt;/p&gt;
 
 
-&lt;div id="orgb14508d" class="figure"&gt;
+&lt;div id="orgbd2d55b" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/bounce1.png" alt="bounce1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 7: &lt;/span&gt;Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).&lt;/p&gt;
 &lt;/div&gt;
@@ -777,9 +778,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb1721b1" class="outline-2"&gt;
-&lt;h2 id="orgb1721b1"&gt;Other applications&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb1721b1"&gt;
+&lt;div id="outline-container-orgc65c1a7" class="outline-2"&gt;
+&lt;h2 id="orgc65c1a7"&gt;Other applications&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc65c1a7"&gt;
 &lt;p&gt;
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.
@@ -791,9 +792,10 @@ gradient descent for solving constraints in procedural animation (but with fun
 interactive animations!!).
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Sat, 27 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8ef5f84" class="outline-2"&gt;
-&lt;h2 id="org8ef5f84"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8ef5f84"&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-2-functions/</guid><pubDate>Sat, 27 Apr 2019 23:00:48 GMT</pubDate></item><item><title>Procedural Animation 1: State Machines</title><link>https://imois.in/posts/procedural-animation-1-state-machines/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8331e2e" class="outline-2"&gt;
+&lt;h2 id="org8331e2e"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8331e2e"&gt;
 &lt;p&gt;
 This is the first in a 3 part series on procedural animation, all taken from a talk
 I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
@@ -816,9 +818,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc60bf89" class="outline-2"&gt;
-&lt;h2 id="orgc60bf89"&gt;Differences vs traditional animation.&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc60bf89"&gt;
+&lt;div id="outline-container-org12b62b3" class="outline-2"&gt;
+&lt;h2 id="org12b62b3"&gt;Differences vs traditional animation.&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org12b62b3"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Advantages:
 &lt;ul class="org-ul"&gt;
@@ -841,9 +843,9 @@ Simulate large numbers easily.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga27ed73" class="outline-2"&gt;
-&lt;h2 id="orga27ed73"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga27ed73"&gt;
+&lt;div id="outline-container-org1a3dd81" class="outline-2"&gt;
+&lt;h2 id="org1a3dd81"&gt;State, Update &amp;amp; Apply&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1a3dd81"&gt;
 &lt;p&gt;
 This is the core of how I approach these animations. I find it's helpful to try
 and break down the system into 3 parts - State, Update, and Apply. These
@@ -886,9 +888,9 @@ Anyway… Lets look at an example!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org94521d4" class="outline-2"&gt;
-&lt;h2 id="org94521d4"&gt;Example: Light&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org94521d4"&gt;
+&lt;div id="outline-container-org41064e4" class="outline-2"&gt;
+&lt;h2 id="org41064e4"&gt;Example: Light&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org41064e4"&gt;
 &lt;p&gt;
 State machines are one of the simplest forms of procedural animation. The idea
 is there is a single 'state' we're in, and also a set of
@@ -916,7 +918,7 @@ probabilities.
 &lt;/p&gt;
 
 
-&lt;div id="org1551f50" class="figure"&gt;
+&lt;div id="orga8b4c05" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/procedural_anim/light_state.png" alt="light_state.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Light state diagram&lt;/p&gt;
 &lt;/div&gt;
@@ -930,26 +932,27 @@ frame, or leave the frame blank.
 Overall, our code looks like this…
 &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// STATE&lt;/span&gt;
-&lt;span class="kt"&gt;bool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// UPDATE:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.98&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.93&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// UPDATE:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.98&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.93&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="n"&gt;_on&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// APPLY:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="c1"&gt;// Draw here!!&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+    &lt;span class="c1"&gt;// APPLY:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="c1"&gt;// Draw here!!&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
 Tune in next time for some more interesting examples!
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-1-state-machines/</guid><pubDate>Thu, 25 Apr 2019 23:00:48 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-1-state-machines/</guid><pubDate>Thu, 25 Apr 2019 23:00:48 GMT</pubDate></item></channel></rss>
