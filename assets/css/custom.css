@@ -250,3 +250,20 @@
 .org-center p {
   margin-top: -20px;
 }
+
+.form-table {
+  display: table;
+  width: 100%;
+}
+.form-table p {
+  display: table-row;
+}
+.form-table p label {
+  text-align: right;
+  display: table-cell;
+  padding-right: 10px;
+  width: 60%;
+}
+.form-table p input {
+  display: table-cell;
+}
