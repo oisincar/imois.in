@@ -1,24 +1,36 @@
 #+BEGIN_COMMENT
-.. title: Puzzle Keyboard
+.. title: Puzzle Keyboard: A 60% split acrylic mechanical keyboard
 .. slug: puzzle-keyboard
-.. date: 2022-05-21 01:34:02 UTC+01:00
+.. date: 2022-11-22 01:34:02 UTC+01:00
 .. tags: hardware
 .. category: i-made
 .. link:
 .. description: A new & open source split keyboard, designed for lazer cut acrylic.
 .. type: text
-.. status: draft
 
 #+END_COMMENT
 
 #+ATTR_HTML: :width 600px
 [[file:../images/puzzle-kb/demo.svg]]
 
-# TODO: Images of built kb!
-
-* The TL;DR
-- The puzzle keyboard can be used as a *60% normal layout* keyboard as well as a *split* keyboard.
+* TL;DR
+- Can be used as a *60% normal layout* keyboard as well as a *split* keyboard.
 - It's designed to be lazer-cut in layered acrylic cheaply - no need for expensive metal plates, PCBs or other custom metal hardware.
-- Controversial: The 'b' key is on the opposite side! I've always hit that with my right hand, and I'm not going to start now...
-- No wasted _space_ in the bottom row (pun intended, apologies). Lots of room for modifiers.
-- Hand wired so I can admire the pretty wire patterns while trying to avoid looking closely at the results my poor soldering skills.
+- Configurable: I wanted the 'b' key is on the opposite side, but you don't have to.
+- No wasted _space_ in the bottom row (pun intended, apologies). Lots of room for modifiers and layer keys.
+- Hand wired so I can admire the pretty wire patterns (while ignoring some poor soldering).
+- Designed by a friend (who chose to remain unnamed) and myself! He wrote lots of the schematic generation code for a fully split keyboard, while I added in merge-again functionality.
+
+#+ATTR_HTML: :width 600px
+[[file:../images/puzzle-kb/kb_split_clean.png]]
+
+#+ATTR_HTML: :width 600px
+[[file:../images/puzzle-kb/kb_top_clean.png]]
+
+#+ATTR_HTML: :width 600px
+[[file:../images/puzzle-kb/kb_underside_clean.png]]
+
+
+
+* Make your own!
+First, create the [[./pages/kb-generator][schematic to cut here]], and cut it out of 4mm acrylic. Solder it, and install the firmware [[https://github.com/oisincar/PuzzleKeyboard][from here!]]
