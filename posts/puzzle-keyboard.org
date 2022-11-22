@@ -33,4 +33,4 @@
 
 
 * Make your own!
-First, create the [[./pages/kb-generator][schematic to cut here]], and cut it out of 4mm acrylic. Solder it, and install the firmware [[https://github.com/oisincar/PuzzleKeyboard][from here!]]
+First, create the [[../pages/kb-generator][schematic to cut here]], and cut it out of 4mm acrylic. Solder it, and install the firmware [[https://github.com/oisincar/PuzzleKeyboard][from here!]]
