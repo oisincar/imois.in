@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about i-made)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_i-made.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 22 Nov 2022 18:10:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Puzzle Keyboard: A 60% split acrylic mechanical keyboard</title><link>https://imois.in/posts/puzzle-keyboard/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="org33e09b7" class="figure"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about i-made)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/cat_i-made.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Tue, 22 Nov 2022 18:20:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Puzzle Keyboard: A 60% split acrylic mechanical keyboard</title><link>https://imois.in/posts/puzzle-keyboard/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="orge40c33a" class="figure"&gt;
 &lt;p&gt;&lt;object type="image/svg+xml" data="https://imois.in/images/puzzle-kb/demo.svg" class="org-svg" width="600px"&gt;
 Sorry, your browser does not support SVG.&lt;/object&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8a1fd1f" class="outline-2"&gt;
-&lt;h2 id="org8a1fd1f"&gt;TL;DR&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8a1fd1f"&gt;
+&lt;div id="outline-container-org48158d9" class="outline-2"&gt;
+&lt;h2 id="org48158d9"&gt;TL;DR&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org48158d9"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Can be used as a &lt;b&gt;60% normal layout&lt;/b&gt; keyboard as well as a &lt;b&gt;split&lt;/b&gt; keyboard.&lt;/li&gt;
 &lt;li&gt;It's designed to be lazer-cut in layered acrylic cheaply - no need for expensive metal plates, PCBs or other custom metal hardware.&lt;/li&gt;
@@ -16,17 +16,17 @@ Sorry, your browser does not support SVG.&lt;/object&gt;
 &lt;li&gt;Hand wired so I can admire the pretty wire patterns (while ignoring some poor soldering).&lt;/li&gt;
 &lt;li&gt;Designed by a friend (who chose to remain unnamed) and myself! He wrote lots of the schematic generation code for a fully split keyboard, while I added in merge-again functionality.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div id="org3a2dbac" class="figure"&gt;
+&lt;div id="orgf509ff2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_split_clean.png" alt="kb_split_clean.png" width="600px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
 
-&lt;div id="orgabdb7f2" class="figure"&gt;
+&lt;div id="orgc748bed" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_top_clean.png" alt="kb_top_clean.png" width="600px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
 
-&lt;div id="orgb0310d5" class="figure"&gt;
+&lt;div id="org0e60de3" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_underside_clean.png" alt="kb_underside_clean.png" width="600px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -34,11 +34,11 @@ Sorry, your browser does not support SVG.&lt;/object&gt;
 
 
 
-&lt;div id="outline-container-org9712d94" class="outline-2"&gt;
-&lt;h2 id="org9712d94"&gt;Make your own!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9712d94"&gt;
+&lt;div id="outline-container-org889a391" class="outline-2"&gt;
+&lt;h2 id="org889a391"&gt;Make your own!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org889a391"&gt;
 &lt;p&gt;
-First, create the &lt;a href="https://imois.in/posts/pages/kb-generator"&gt;schematic to cut here&lt;/a&gt;, and cut it out of 4mm acrylic. Solder it, and install the firmware &lt;a href="https://github.com/oisincar/PuzzleKeyboard"&gt;from here!&lt;/a&gt;
+First, create the &lt;a href="https://imois.in/pages/kb-generator"&gt;schematic to cut here&lt;/a&gt;, and cut it out of 4mm acrylic. Solder it, and install the firmware &lt;a href="https://github.com/oisincar/PuzzleKeyboard"&gt;from here!&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
