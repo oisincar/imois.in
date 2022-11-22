@@ -27,7 +27,7 @@
  </url>
  <url>
   <loc>https://imois.in/archive.html</loc>
-  <lastmod>2022-11-21T13:18:00Z</lastmod>
+  <lastmod>2022-11-22T18:08:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/assets/js/kb-designer/designer.html</loc>
@@ -35,7 +35,7 @@
  </url>
  <url>
   <loc>https://imois.in/categories/</loc>
-  <lastmod>2022-10-28T11:56:00Z</lastmod>
+  <lastmod>2022-11-22T18:08:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/animation/</loc>
@@ -60,6 +60,10 @@
  <url>
   <loc>https://imois.in/categories/gamedev/</loc>
   <lastmod>2022-04-04T11:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/categories/hardware/</loc>
+  <lastmod>2022-11-22T18:08:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/categories/juggling/</loc>
@@ -152,6 +156,10 @@
  <url>
   <loc>https://imois.in/posts/procedural-animation-3-gradient-descent/</loc>
   <lastmod>2022-04-04T11:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/posts/puzzle-keyboard/</loc>
+  <lastmod>2022-10-28T10:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/posts/python-trie/</loc>
