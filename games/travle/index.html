@@ -1,0 +1,185 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Travle</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="https://d3js.org/d3.v6.js"></script>
+        <!-- <script src="https://d3js.org/d3-geo-projection.v3.min.js"></script> -->
+        <script type="text/javascript" src="js/autocomplete.js"></script>
+        <script type="text/javascript" src="js/autocomplete.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+    </head>
+    <body>
+        <svg id="my_dataviz" width="400" height="300"></svg>
+
+        <div>
+            <div class="autocomplete-drop-down">
+                <div class="countries-input-container">
+                    <input class="countries-input" placeholder="Country" type="text">
+                    <div class="input-underline"></div>
+                    <span class="input-arrow">&#9662;</span>
+                </div>
+
+                <div class="countries-list-container">
+                    <ul class="countries-list">
+                        <li>&nbsp;</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <button class="btn green" style="width: 100%">Guess</button>
+            </div>
+        </div>
+
+        <script>
+         // The svg
+         const svg = d3.select("svg"),
+               width = +svg.attr("width"),
+               height = +svg.attr("height");
+
+         var COUNTRY_NAMES = [];
+         var GEOJSON = null;
+
+         class GameState {
+             start_country = "Ireland";
+             past_guesses = new Set();
+             last_guess = null;
+
+             constructor() {
+             }
+
+             get visible_countries() {
+                 var guessed_countries = COUNTRY_NAMES.filter(n => this.past_guesses.has(n));
+                 guessed_countries.push(this.start_country);
+                 return new Set(guessed_countries);
+             }
+
+             get missed_guesses() {
+                 return new Set(COUNTRY_NAMES.filter(n => !this.past_guesses.has(n)));
+             }
+
+             make_guess(guess) {
+                 if (COUNTRY_NAMES.includes(guess) && this.start_country != guess && !this.past_guesses.has(guess)) {
+                     console.log("Guessed: " + guess);
+                     this.last_guess = guess;
+                     this.past_guesses.add(guess);
+
+                     return true;
+                 }
+                 else {
+                     console.log("Country invalid or already guessed!");
+                     return false;
+                 }
+             }
+
+         }
+         var GAME_STATE = new GameState();
+
+         function load_country_data() {
+             COUNTRY_NAMES = GEOJSON.features.map(d => d.properties.NAME_LONG);
+             COUNTRY_NAMES.sort();
+         }
+
+         //Call back for when user selects an option
+         function onSelect(d) {
+             alert(d.State);
+         }
+
+         function create_searchbar() {
+             // document.addEventListener("DOMContentLoaded", () => {
+             var c = new AutocompleteDropDown(COUNTRY_NAMES);
+             // });
+         }
+
+         var last_projection = null;
+
+         function reload_map() {
+             var visible_countries = GAME_STATE.visible_countries;
+
+             var visible_countries_geojson = {
+                 type: "FeatureCollection",
+                 "features": GEOJSON.features.filter(d => {
+                     return visible_countries.has(d.properties.NAME_LONG);
+                 })
+             };
+             console.log(visible_countries_geojson);
+
+             const new_projection = d3.geoAzimuthalEquidistant()
+                                  .fitSize([width, height], visible_countries_geojson);
+
+             var path = d3.geoPath(new_projection);
+             console.log(path);
+             console.log(path);
+             console.log(path.centroid());
+
+             // Draw data for the first time.
+             if (last_projection == null) {
+
+                 svg.append('g')
+                    .selectAll("path")
+                    .data(visible_countries_geojson.features)
+                    .enter()
+                    .append("path")
+                    .style("fill", "blue")
+                    .style("stroke-width", "1")
+                    .style("stroke", "black")
+                    .attr('d', d3.geoPath().projection(new_projection));
+             }
+             // Otherwise, transition to this one
+             else {
+                 // Load new data
+                 svg.selectAll("*").remove();
+                 svg.append('g')
+                    .selectAll("path")
+                    .data(visible_countries_geojson.features)
+                    .enter()
+                    .append("path")
+                    .attr("fill", function (d) {
+                        // if it's the latest country to be guessed, make it a diff color...
+                        if (d.properties.NAME_LONG == GAME_STATE.last_guess) {
+                            return "red";
+                        }
+                        else {
+                            return "blue";
+                        }
+                    })
+                    .style("stroke-width", "1")
+                    .style("stroke", "black")
+                    .attr('d', d3.geoPath().projection(last_projection));
+
+                 // Then animate movement...
+                 svg.selectAll('path').interrupt().transition()
+                    .duration(750).ease(d3.easeCubicInOut)
+                    .attr('d', path);
+             }
+             last_projection = new_projection;
+         }
+
+         // Load external data and boot
+         // https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson
+         d3.json("ne_50m_admin_0_map_units.geojson").then(
+             function(geojson) {
+                 GEOJSON = geojson;
+                 load_country_data();
+
+                 create_searchbar();
+
+
+                 GAME_STATE.make_guess("France");
+                 reload_map();
+                 GAME_STATE.make_guess("Spain");
+                 reload_map();
+             }
+         );
+        </script>
+    </body>
+</html>
