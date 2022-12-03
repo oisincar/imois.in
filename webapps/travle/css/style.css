@@ -1,0 +1,197 @@
+/* ---------- Autocomplete dropdown  ----------------  */
+/* html { */
+/*   padding: 20px; */
+/*   font-family: roboto, helvetica, arial, sans-serif; */
+/*   font-size: 16px; */
+/* } */
+
+input {
+  font-size: 16px;
+  font-family: roboto, helvetica, arial, sans-serif;
+}
+
+.autocomplete-drop-down {
+  position: relative;
+  /* width: 30vw; */
+}
+
+.countries-input,
+.countries-list {
+  border: none;
+  box-sizing: border-box;
+  padding: 0px;
+  margin-top: 0px;
+  /* width: 30vw; */
+
+  align-content: middle;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 11.5em;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+}
+
+.countries-input-container {
+  height: 2.5rem;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.countries-input {
+  height: 2.5rem;
+  width: 100%;
+  padding: 1em 0.5em;
+  position: relative;
+  transition: outline 0.2s ease;
+  transition-delay: 0.2s;
+}
+.countries-input:focus + .input-underline {
+  transform: scaleY(0);
+}
+.countries-input:focus ~ .input-arrow {
+  transform: rotate(180deg);
+}
+
+.input-underline {
+  background: #000;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transform-origin: center bottom;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.input-arrow {
+  position: absolute;
+  right: 0.5em;
+  top: calc(50% - 0.5rem);
+  transition: transform 0.3s ease;
+}
+
+.countries-list-container {
+  box-shadow: 0 8px 15px 0 rgba(33, 33, 33, 0.2);
+  opacity: 0;
+  position: absolute;
+  transform: scaleY(0);
+  visibility: hidden;
+  transform-origin: center top;
+  transition: all 0.3s ease;
+  width: 100%;
+  z-index: 1;
+}
+.countries-list-container.visible {
+  opacity: 1;
+  transform: scaleY(1);
+  visibility: visible;
+}
+
+.country {
+  cursor: pointer;
+  padding: 0.5em 1em;
+  transition: background 0.5s ease;
+  width: 100%;
+  /* width: 30vw; */
+}
+.country:hover {
+  background: #CCC;
+}
+.country span {
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.country--abbreviation {
+  /* padding: 0 1em; */
+  /* width: 18%; */
+}
+
+.country--name {
+  width: 100%;
+}
+/* -------------------------------  */
+/* css for the shiny buttons */
+.btn {
+  cursor: pointer;
+  background: none;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 22px;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  display: inline-block;
+}
+
+.btn:hover {
+  cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), auto;
+}
+.blue {
+  color: #55acee;
+  border: 2px #55acee solid;
+}
+
+.blue:hover {
+  background-color: #55acee;
+  color: #fff
+}
+
+.green {
+  color: #2ecc71;
+  border: 2px #2ecc71 solid;
+}
+
+.green:hover {
+  color: #fff;
+  background-color: #2ecc71;
+}
+
+.red {
+  color: #e74c3c;
+  border: 2px #e74c3c solid;
+}
+
+.red:hover {
+  color: #fff;
+  background-color: #e74c3c;
+}
+
+.purple {
+  color: #9b59b6;
+  border: 2px #9b59b6 solid;
+}
+
+.purple:hover {
+  color: #fff;
+  background-color: #9b59b6;
+}
+
+.orange {
+  color: #e67e22;
+  border: 2px #e67e22 solid;
+}
+
+.orange:hover {
+  color: #fff;
+  background-color: #e67e22;
+}
+
+.yellow {
+  color: #f1c40f;
+  border: 2px #f1c40f solid;
+}
+
+.yellow:hover {
+  color: #fff;
+  background-color: #f1c40f;
+}
+
+.buttons {
+  padding-top: 30px;
+  text-align: center;
+}

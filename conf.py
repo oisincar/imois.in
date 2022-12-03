@@ -295,6 +295,8 @@ FILES_FOLDERS = {
     'webapps/crosswordle_redirect': 'games/crosswordle',
 
     'webapps/PuzzleKeyboard/designer': 'assets/js/kb-designer',
+
+    'webapps/travle': 'games/travle',
 }
 # Which means copy 'files' into 'output'
 
