@@ -128,9 +128,9 @@ input {
   display: inline-block;
 }
 
-.btn:hover {
-  cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), auto;
-}
+/* .btn:hover { */
+/*   cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), auto; */
+/* } */
 .blue {
   color: #55acee;
   border: 2px #55acee solid;
@@ -194,4 +194,35 @@ input {
 .buttons {
   padding-top: 30px;
   text-align: center;
+}
+
+
+/* Alert popup */
+.alert-container {
+  position: fixed;
+  top: 10vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alert {
+  pointer-events: none;
+  background-color: hsl(204, 7%, 85%);
+  padding: .75em;
+  border-radius: .25em;
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+  margin-bottom: .5em;
+}
+
+.alert:last-child {
+  margin-bottom: 0;
+}
+
+.alert.hide {
+  opacity: 0;
 }

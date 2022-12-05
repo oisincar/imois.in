@@ -106,9 +106,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org1626ffd" class="outline-2">
-<h2 id="org1626ffd">Intro</h2>
-<div class="outline-text-2" id="text-org1626ffd">
+        <div id="outline-container-org8ba683e" class="outline-2">
+<h2 id="org8ba683e">Intro</h2>
+<div class="outline-text-2" id="text-org8ba683e">
 <p>
 In this second section, I wanted to talk about functions… And how to take simple
 movements and build more complex animations from them. Be warned: <i>Here be graphs</i>.
@@ -126,9 +126,9 @@ source code in the inspector or find it on <a href="https://github.com/oisincar/
 </div>
 </div>
 
-<div id="outline-container-orgfb9776c" class="outline-2">
-<h2 id="orgfb9776c">Bouncing ball</h2>
-<div class="outline-text-2" id="text-orgfb9776c">
+<div id="outline-container-org6b04486" class="outline-2">
+<h2 id="org6b04486">Bouncing ball</h2>
+<div class="outline-text-2" id="text-org6b04486">
 <p>
 How to make this?
 </p>
@@ -161,40 +161,40 @@ In code this looks like:
 </p>
 <div class="highlight"><pre><span></span><span class="c1">// CONFIG:</span>
 <span class="c1">// 'scale in time', length of animation</span>
-<span class="k">const</span> <span class="kt">float</span> <span class="n">_duration</span> <span class="o">=</span> <span class="mf">5.0f</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">_duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0f</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// 'scale in space', distance ball moves</span>
-<span class="k">const</span> <span class="kt">float</span> <span class="n">_dist</span> <span class="o">=</span> <span class="mf">40.0f</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">_dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">40.0f</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// 'offset in space'</span>
-<span class="k">const</span> <span class="n">Vector2</span> <span class="n">_offset</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(..);</span>
+<span class="k">const</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(..);</span><span class="w"></span>
 
 <span class="c1">// STATE:</span>
-<span class="kt">float</span> <span class="n">_animationPerc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">Update</span><span class="p">(</span><span class="kt">float</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// dt is the change in time.</span>
-    <span class="c1">// UPDATE state:</span>
-    <span class="n">_animationPerc</span> <span class="o">=</span> <span class="p">(</span><span class="n">_animationPerc</span> <span class="o">+</span> <span class="n">dt</span><span class="o">/</span><span class="n">_duration</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="c1">// 1_|</span>
-    <span class="c1">//   | /| /| /| /|....</span>
-    <span class="c1">// 0_|/ |/ |/ |/ |</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// dt is the change in time.</span>
+<span class="w">    </span><span class="c1">// UPDATE state:</span>
+<span class="w">    </span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">/</span><span class="n">_duration</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 1_|</span>
+<span class="w">    </span><span class="c1">//   | /| /| /| /|....</span>
+<span class="w">    </span><span class="c1">// 0_|/ |/ |/ |/ |</span>
 
-    <span class="c1">// APPLY</span>
-    <span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">_offset</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">_animationPerc</span> <span class="o">*</span> <span class="n">_dist</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// APPLY</span>
+<span class="w">    </span><span class="n">ball</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_offset</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_dist</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 
 <p>
 The update line can be a bit confusing, but might make more sense when split up a bit more.
 </p>
-<div class="highlight"><pre><span></span><span class="n">_animationPerc</span> <span class="o">=</span> <span class="p">(</span><span class="n">_animationPerc</span> <span class="o">+</span> <span class="n">dt</span><span class="o">/</span><span class="n">_duration</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">/</span><span class="n">_duration</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// Equilivent to (all of):</span>
 <span class="c1">// The change in how far we are through the animation.</span>
-<span class="kt">float</span> <span class="n">dPerc</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">/</span> <span class="n">_duration</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">dPerc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">_duration</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// Added to _animationPerc</span>
-<span class="n">_animationPerc</span> <span class="o">+=</span> <span class="n">dPerc</span><span class="p">;</span>
+<span class="n">_animationPerc</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dPerc</span><span class="p">;</span><span class="w"></span>
 <span class="c1">// And wrap back to 0 if we're &gt; 1;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">_animationPerc</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">_animationPerc</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 
 <p>
@@ -211,7 +211,7 @@ lot of these animations can be thought of as the <b>Apply</b> function reshaping
 
 
 
-<div id="org750b17f" class="figure">
+<div id="org566ba37" class="figure">
 <p><img src="../../images/procedural_anim/animation_perc.png" alt="animation_perc.png"></p>
 <p><span class="figure-number">Figure 1: </span>The shape of _animationPerc over time, where d is the duration of the animation, makes a sawtooth shape.</p>
 </div>
@@ -223,7 +223,7 @@ then the y offset of the ball for that frame, as shown in the animation above.
 </p>
 
 
-<div id="org44ed7f5" class="figure">
+<div id="orgb0faa3b" class="figure">
 <p><img src="../../images/procedural_anim/animation_apply1.png" alt="animation_apply1.png"></p>
 <p><span class="figure-number">Figure 2: </span>Here, the input <b>State</b> (Blue), is scaled to give the ball's positional offset by the <b>Apply</b> function (Orange).</p>
 </div>
@@ -231,9 +231,9 @@ then the y offset of the ball for that frame, as shown in the animation above.
 </div>
 
 
-<div id="outline-container-orgbfa9d9b" class="outline-2">
-<h2 id="orgbfa9d9b">Different Applications (heh)</h2>
-<div class="outline-text-2" id="text-orgbfa9d9b">
+<div id="outline-container-org0563353" class="outline-2">
+<h2 id="org0563353">Different Applications (heh)</h2>
+<div class="outline-text-2" id="text-org0563353">
 <p>
 By just changing the <b>Apply</b> function here, we can get a variety of different
 movements. We can think of these movements as transformations of the origional
@@ -260,7 +260,7 @@ variable by that so it loops properly.
 In code, this is as easy as:
 </p>
 <div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
-<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="n">PI</span> <span class="o">*</span> <span class="n">_animationPerc</span><span class="p">);</span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="n">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_animationPerc</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 
 <p>
@@ -274,8 +274,8 @@ By doing this to both the x and y axis at the same time, offset by a bit, we can
 Which, again, in code is just:
 </p>
 <div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
-<span class="n">ball</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="n">PI</span> <span class="o">*</span> <span class="n">_animationPerc</span><span class="p">);</span>
-<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="n">PI</span> <span class="o">*</span> <span class="n">_animationPerc</span><span class="p">);</span>
+<span class="n">ball</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="n">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_animationPerc</span><span class="p">);</span><span class="w"></span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="n">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_animationPerc</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// NOTE Equilivent to: ball.y = sin(2 * Math.PI * _animationPerc + Math.PI);</span>
 </pre></div>
 
@@ -286,16 +286,16 @@ a way very similar to above ^. That's a whole different blog post though!
 </p>
 
 
-<div id="org37f5eb8" class="figure">
+<div id="org2dea393" class="figure">
 <p><img src="../../images/procedural_anim/1lissajous.gif" alt="1lissajous.gif" width="400px"></p>
 <p><span class="figure-number">Figure 3: </span>The different shapes that can be made by scaling the inputs to sin/cos into different ratios. If these were animated like the ball above, the ball would follow the shape.</p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org965e229" class="outline-2">
-<h2 id="org965e229">Zigzag</h2>
-<div class="outline-text-2" id="text-org965e229">
+<div id="outline-container-org5948b58" class="outline-2">
+<h2 id="org5948b58">Zigzag</h2>
+<div class="outline-text-2" id="text-org5948b58">
 <p>
 This is a slighly harder example for the idea of manipulating function shapes.
 </p>
@@ -305,7 +305,7 @@ We start off with our input shape as before… And keeping in mind our goal outp
 the animation above).
 </p>
 
-<div id="orgb0a955e" class="figure">
+<div id="org3dc3799" class="figure">
 <p><img src="../../images/procedural_anim/zigzag0.png" alt="zigzag0.png"></p>
 <p><span class="figure-number">Figure 4: </span>Input _animationPerc (Blue), compared to the shape we need (Orange).</p>
 </div>
@@ -316,20 +316,20 @@ up by 2 and moving it down by 1 (Orange). Then we can take the absolute value of
 this (Green).
 </p>
 
-<div id="org03d548a" class="figure">
+<div id="org3099b46" class="figure">
 <p><img src="../../images/procedural_anim/zigzag1.png" alt="zigzag1.png"></p>
 <p><span class="figure-number">Figure 5: </span>Input (Blue), scaled &amp; transformed (Orange), result (Green)</p>
 </div>
 
 <div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
-<span class="kt">float</span> <span class="n">zigzag</span> <span class="o">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">_animationPerc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">zigzag</span> <span class="o">*</span> <span class="n">_dist</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">zigzag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zigzag</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_dist</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
-<div id="outline-container-org58c58c2" class="outline-2">
-<h2 id="org58c58c2">Bouncing balls</h2>
-<div class="outline-text-2" id="text-org58c58c2">
+<div id="outline-container-orgf1897ab" class="outline-2">
+<h2 id="orgf1897ab">Bouncing balls</h2>
+<div class="outline-text-2" id="text-orgf1897ab">
 <p>
 In order to create a realistic bounce, we have to first construct the right
 shape function again. Without delving into the physics of it, we're looking for
@@ -337,7 +337,7 @@ a Parabola: Some function of \(t^2\).
 </p>
 
 
-<div id="org22ac3d6" class="figure">
+<div id="org8f63f56" class="figure">
 <p><img src="../../images/procedural_anim/bounce0.png" alt="bounce0.png"></p>
 <p><span class="figure-number">Figure 6: </span>Input (Blue), vs bounce shape (Orange)</p>
 </div>
@@ -351,15 +351,15 @@ extra transformation: 1-zigzag<sup>2</sup>.
     <canvas id="balls4" class="light_border" width="400" height="300"> Your browser sucks :c. </canvas><p><span class="figure-number">Anim 5:</span> Bouncing balls</p>
 </div>
 <script> new BouncingBalls('balls4', 4, 1); </script><div class="highlight"><pre><span></span><span class="c1">// APPLY</span>
-<span class="kt">float</span> <span class="n">zigzag</span> <span class="o">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">_animationPerc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">ball</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">zigzag</span><span class="o">*</span><span class="n">zigzag</span><span class="p">)</span> <span class="o">*</span> <span class="n">_dist</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">zigzag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">_animationPerc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">ball</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">zigzag</span><span class="o">*</span><span class="n">zigzag</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_dist</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgef7c59b" class="outline-2">
-<h2 id="orgef7c59b">More Ideas</h2>
-<div class="outline-text-2" id="text-orgef7c59b">
+<div id="outline-container-org5d46d18" class="outline-2">
+<h2 id="org5d46d18">More Ideas</h2>
+<div class="outline-text-2" id="text-org5d46d18">
 <p>
 We can clamp zigzag so it's 1 for some time, which means
 the ball will sit on the ground for a bit… By animating the scaling too, maybe this could
@@ -367,7 +367,7 @@ be an animation for a slime NPC?
 </p>
 
 
-<div id="orgbd2d55b" class="figure">
+<div id="orgb14508d" class="figure">
 <p><img src="../../images/procedural_anim/bounce1.png" alt="bounce1.png"></p>
 <p><span class="figure-number">Figure 7: </span>Basic zigzag curve (Blue), zigzag/0.8 and clamped between 0 and 1 (Orange), and finally the output shape - bouncing ball with a pause (Green).</p>
 </div>
@@ -391,9 +391,9 @@ value to each one! With some polish this could maybe make a kind of snake creatu
 </div>
 </div>
 
-<div id="outline-container-orgc65c1a7" class="outline-2">
-<h2 id="orgc65c1a7">Other applications</h2>
-<div class="outline-text-2" id="text-orgc65c1a7">
+<div id="outline-container-orgb1721b1" class="outline-2">
+<h2 id="orgb1721b1">Other applications</h2>
+<div class="outline-text-2" id="text-orgb1721b1">
 <p>
 While here, I've only done animations by moving things, it's also possible to
 animate rotations, shaders, skeletons, and more with exactly the same ideas.
@@ -406,7 +406,6 @@ interactive animations!!).
 </p>
 </div>
 </div>
-
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
