@@ -1,9 +1,54 @@
 'use strict';
 
-// The svg
-const map_svg = d3.select("svg"),
-      width = +map_svg.attr("width"),
-      height = +map_svg.attr("height");
+// Load and set up SVG for rendering map
+var width, height;
+
+// Make SVG responsive
+function responsivefy(svg) {
+    // get container + svg aspect ratio
+    var container = d3.select(svg.node().parentNode);
+        // width = parseInt(svg.style("width")),
+        // height = parseInt(svg.style("height")),
+    var aspect = 1.3;
+
+    var targetWidth = parseInt(container.style("width"));
+
+    width = targetWidth;
+    height = Math.round(targetWidth / aspect);
+
+    console.log(targetWidth);
+
+    svg.attr("width", width);
+    svg.attr("height", height);
+
+    // add viewBox and preserveAspectRatio properties,
+    // and call resize so that svg resizes on inital page load
+    svg.attr("viewBox", "0 0 " + width + " " + height)
+       .attr("perserveAspectRatio", "xMinYMid")
+       .call(resize);
+
+    // to register multiple listeners for same event type,
+    // you need to add namespace, i.e., 'click.foo'
+    // necessary if you call invoke this function for multiple svgs
+    // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+    d3.select(window).on("resize." + container.attr("id"), resize);
+
+    // get width of container and resize svg to fit it
+    function resize() {
+        var targetWidth = parseInt(container.style("width"));
+        svg.attr("width", targetWidth);
+        svg.attr("height", Math.round(targetWidth / aspect));
+    }
+    resize();
+}
+
+const map_svg = d3.select("#d3-map");
+
+map_svg.call(responsivefy);
+
+
+const jsConfetti = new JSConfetti();
+
 
 // Country ID -> GEOJSON data for that country (feature)
 var COUNTRY_ID_DATA_LOOKUP = {};
@@ -18,6 +63,7 @@ const alertContainer = document.querySelector("[data-alert-container]")
 
 class GameState {
     start_country = null;
+    target_country = null;
     highlighted_country = null;
 
     // Past guesses stored as IDs
@@ -26,7 +72,7 @@ class GameState {
     successful_guesses = [];
 
     get visible_countries() {
-        return [this.start_country].concat(this.successful_guesses);
+        return [this.start_country, this.target_country].concat(this.successful_guesses);
     }
 
     get last_guess() {
@@ -35,8 +81,9 @@ class GameState {
         return this.past_guess_ids[l-1];
     };
 
-    constructor(country) {
-        this.start_country = country;
+    constructor(start, target) {
+        this.start_country = start;
+        this.target_country = target;
         this.highlighted_country = this.start_country;
     }
 
@@ -44,10 +91,12 @@ class GameState {
         var country_lower = country_name.toLowerCase();
         if (country_lower in COUNTRY_NAME_ID_LOOKUP) {
             var id = COUNTRY_NAME_ID_LOOKUP[country_lower];
-            if (!this.successful_guesses.includes(id) && this.start_country != id) {
+            if (!this.successful_guesses.includes(id)
+                && this.start_country != id && this.target_country != id)
+            {
                 this.past_guess_ids.push(id);
 
-                // TODO: Determine if this country is adjacent to any others!
+                // TODO: Determine if this country is adjacent to any others?!
                 this.successful_guesses.push(id);
                 this.highlighted_country = id;
                 return true;
@@ -62,6 +111,77 @@ class GameState {
             return false;
         }
     }
+
+    get is_valid() {
+        var found_all = true;
+        for (const c of this.visible_countries) {
+            if (!(c in COUNTRY_ID_DATA_LOOKUP)) {
+                console.log("Could not find country ID: " + c);
+                found_all = false;
+            }
+        }
+        return found_all;
+    }
+
+    check_if_game_over() {
+        var perimeter = [this.start_country];
+
+        var visited = new Set();
+        var guessed_countries = new Set(this.visible_countries);
+
+        while (perimeter.length > 0) {
+            var elem = perimeter.pop();
+            if (visited.has(elem)) {
+                continue;
+            }
+
+            if (elem === this.target_country) {
+                return true;
+            }
+
+            visited.add(elem);
+
+            // Add adjacent, guessed countries to the periphery.
+            for (const neighbor of COUNTRY_ADJACENCY[elem]) {
+                if (guessed_countries.has(neighbor)) {
+                    perimeter.push(neighbor);
+                }
+            }
+        }
+
+        console.log("Could not find a path from start to end, but visited:", visited);
+
+        // We didn't find any path between start and end...
+        return false;
+    }
+}
+
+let has_warned_about_cookies = false;
+function warnAboutCookies() {
+    if (!has_warned_about_cookies) {
+        showAlert("This game requires cookies to save your progress. If you navigate away your progress will be lost!", 10000);
+
+        has_warned_about_cookies = true;
+    }
+}
+
+// TODO: Fixme
+function saveGameState() {
+    var data = {
+        "puzzle_number": puzzle_number,
+        "game_state": game.state,
+    };
+    if (typeof COOKIES_ACCEPTED !== 'undefined' && COOKIES_ACCEPTED) {
+        localStorage.setItem('crosswordle-game-state', JSON.stringify(data));
+    }
+    else {
+        warnAboutCookies();
+    }
+}
+
+// TODO: Fixme
+function saveWinLoss(game_id, guesses, did_win) {
+    // ...
 }
 
 function load_country_data(geojson, adjacency) {
@@ -113,6 +233,11 @@ function submit_current_guess() {
     if (GAME_STATE.make_guess(guess)) {
         console.log("Successfully guessed!")
 
+        console.log("Checking if game over!");
+        if (GAME_STATE.check_if_game_over()) {
+            win();
+        }
+
         // Unhighlight previous guess.
         remove_country_highlights();
         var id = COUNTRY_NAME_ID_LOOKUP[guess.toLowerCase()];
@@ -121,10 +246,56 @@ function submit_current_guess() {
         recenter_map();
 
         SEARCH_BAR.clear();
+
+        add_guess_to_guess_history(country_data.properties.NAME);
     }
     else {
         console.log("Guess failed");
     }
+}
+
+const allFlags = (
+    "🇩🇿🇦🇩🇦🇫🇦🇬🇦🇮🇦🇱🇦🇲🇦🇴🇦🇷🇦🇸🇦🇹🇦🇺🇦🇼🇦🇽🇦🇿🇧🇦🇧🇧🇧🇩🇧🇪🇧🇫🇧🇬"
+        + "🇧🇭🇧🇮🇧🇯🇧🇲🇧🇳🇧🇴🇧🇷🇧🇸🇧🇹🇧🇼🇧🇾🇧🇿🇨🇦🇨🇨🇨🇩🇨🇫🇨🇬🇨🇭🇨🇮🇨🇰🇨🇱"
+        + "🇨🇲🇨🇳🇨🇷🇨🇴🇨🇺🇨🇻🇨🇼🇨🇽🇨🇾🇨🇿🇩🇪🇩🇯🇩🇰🇩🇲🇩🇴🇪🇨🇸🇻🇪🇪🇪🇬🇪🇷🇪🇸"
+        + "🇪🇹🇪🇺🇫🇮🇫🇯🇫🇲🇫🇴🇫🇷🇬🇦🇬🇧🇬🇩🇬🇪🇬🇫🇬🇬🇬🇭🇬🇮🇬🇱🇬🇲🇬🇳🇬🇵🇬🇶🇬🇷"
+        + "🇬🇹🇬🇺🇬🇼🇬🇾🇭🇰🇭🇳🇭🇷🇭🇹🇭🇺🇮🇩🇮🇪🇮🇱🇮🇲🇮🇳🇮🇴🇮🇶🇮🇷🇮🇸🇮🇹🇯🇪🇯🇲"
+        + "🇯🇴🇯🇵🇰🇪🇰🇬🇰🇭🇰🇮🇰🇲🇰🇳🇰🇵🇰🇷🇰🇼🇰🇾🇰🇿🇱🇦🇱🇧🇱🇨🇱🇮🇱🇰🇱🇷🇱🇸🇱🇹"
+        + "🇱🇺🇱🇻🇱🇾🇲🇦🇲🇨🇲🇩🇲🇪🇲🇬🇲🇭🇲🇰🇲🇱🇲🇲🇲🇳🇲🇴🇲🇵🇲🇶🇲🇷🇲🇸🇲🇹🇲🇺🇲🇻"
+        + "🇲🇼🇲🇽🇲🇾🇲🇿🇳🇦🇳🇨🇳🇪🇳🇫🇳🇬🇳🇮🇳🇱🇳🇴🇳🇵🇳🇷🇳🇺🇳🇿🇴🇲🇵🇦🇵🇪🇵🇫🇵🇬"
+        + "🇵🇭🇵🇰🇵🇱🇵🇲🇵🇳🇵🇷🇵🇸🇵🇹🇵🇼🇵🇾🇶🇦🇷🇪🇷🇴🇷🇺🇷🇼🇼🇸🇸🇦🇸🇧🇷🇸🇸🇨🇸🇩"
+        + "🇸🇪🇸🇬🇸🇭🇻🇨🇸🇮🇸🇰🇸🇱🇸🇲🇸🇳🇸🇴🇸🇷🇸🇸🇸🇹🇸🇽🇸🇾🇸🇿🇹🇨🇹🇩🇹🇬🇹🇭🇹🇯"
+        + "🇹🇰🇹🇱🇹🇲🇹🇳🇹🇴🇹🇷🇹🇹🇹🇻🇹🇼🇹🇿🇺🇦🇺🇬🇦🇪🇺🇳🇺🇸🇺🇾🇺🇿🇻🇦🇻🇪🇻🇬🇻🇮"
+        + "🇻🇳🇻🇺🇼🇫🇽🇰🇾🇪🇾🇹🇿🇦🇿🇲🇿🇼")
+      .match(/.{1,4}/g)  // Each flag is 4 characters, so split into substrings of this length
+
+function win() {
+    jsConfetti.addConfetti({
+        emojis: allFlags,
+        confettiNumber: 40,
+    });
+
+    showAlert("GAME OVER!");
+
+    // jsConfetti.addConfetti({
+    //     emojis: ['🇦🇩'],
+    //     confettiNumber: 10,
+    // });
+    // jsConfetti.addConfetti({
+    //     emojis: ['🟨'],
+    //     confettiNumber: 5,
+    // });
+    jsConfetti.addConfetti();
+
+    // showResultsModal(1200);
+}
+
+
+var guess_history_div = document.getElementById("past-guesses");
+function add_guess_to_guess_history(country_name) {
+    var div_str = `<div class="row" data-value="${country_name}"<span">${country_name}</span></div>`;
+
+    guess_history_div.innerHTML += div_str;
 }
 
 var projection = null;
@@ -153,9 +324,10 @@ function load_map() {
 
     var graticule = d3.geoGraticule();
 
-    map_svg.attr("width", width)
-           .attr("height", height)
-           .attr("class", "map");
+    map_svg.attr("class", "map");
+//.attr("width", width)
+           // .attr("height", height)
+
 
     map_svg.append("defs").append("path")
            .datum({type: "Sphere"})
@@ -176,12 +348,6 @@ function load_map() {
            .attr("d", path);
 
     for (const country_data of visible_countries_geojson.features) {
-        // map.insert("path", ".graticule")
-        //    .datum(topojson.feature(world, world.objects.land))
-        //    .attr("class", "land")
-        //    .attr("d", path);
-        // console.log(visible_countries_geojson.features[j]);
-
         add_country_to_map(country_data);
     }
 }
@@ -246,10 +412,7 @@ function calculate_ideal_projection(geojson) {
 
     // Calculate target projection
     var target_projection = d3.geoAzimuthalEquidistant()
-                              // .scale(100) // TODO: Base on width/height vals
-                              // .translate([width / 2, height / 2])
                               .rotate([-p[0],-p[1]])
-                              // .fitSize([width, height], geojson);
                               .fitExtent([[m,m], [width-m, height-m]], geojson);
 
     return target_projection;
@@ -259,14 +422,10 @@ function recenter_map() {
     d3.transition()
       .duration(1250)
       .tween("rotate", function() {
-          // var id = d3.select(this).attr("data-country-id");
-          // var data = COUNTRY_ID_DATA_LOOKUP[id];
           var data = get_visible_countries_geojson();
 
           // Calculate target projection
           var target_projection = calculate_ideal_projection(data);
-
-          console.log("target_zoom", target_projection.scale());
 
           var r = d3.interpolate(projection.rotate(), target_projection.rotate());
           var s = d3.interpolate(projection.scale(), target_projection.scale());
@@ -291,6 +450,8 @@ function showAlert(message, duration=1000) {
     alertContainer.prepend(alert)
     if (duration == null) return
 
+    console.log("Showing alert:" + message);
+
     setTimeout(() => {
         alert.classList.add("hide")
         alert.addEventListener("transitionend", () => {
@@ -299,104 +460,47 @@ function showAlert(message, duration=1000) {
     }, duration)
 }
 
+var GAME_STATE = null;
 
-// var last_projection = null;
-// function reload_map() {
-//     var visible_countries = GAME_STATE.visible_countries;
+// Either load from web storage, or create gamestate based on cached routes.
+function load_game_state(routes) {
+    // TODO: Choose based on today's date...
+    var route = routes[314];
+    GAME_STATE = new GameState(route.start, route.target);
+}
 
-//     var visible_countries_geojson = {
-//         type: "FeatureCollection",
-//         "features": visible_countries.map(country_id => COUNTRY_ID_DATA_LOOKUP[country_id])
-//     };
-//     console.log(visible_countries_geojson);
+function load_top_text() {
+    var start = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME;
+    var target = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME;
 
-//     const new_projection = d3.geoAzimuthalEquidistant()
-//                              .rotate([-100, 0])
-//                              .fitSize([width, height], visible_countries_geojson);
-
-//     var path = d3.geoPath(new_projection);
-
-//     // Draw data for the first time.
-//     if (last_projection == null) {
-
-//         svg.append('g')
-//            .selectAll("path")
-//            .data(visible_countries_geojson.features)
-//            .enter()
-//            .append("path")
-//            .style("fill", "blue")
-//            .style("stroke-width", "1")
-//            .style("stroke", "black")
-//            .attr('d', d3.geoPath().projection(new_projection));
-//     }
-//     // Otherwise, transition to this one
-//     else {
-//         // Load new data
-//         svg.selectAll("*").remove();
-//         svg.append('g')
-//            .selectAll("path")
-//            .data(visible_countries_geojson.features)
-//            .enter()
-//            .append("path")
-//            .attr("fill", function (country) {
-//                // if it's the latest country to be guessed, make it a diff color...
-//                if (country.id == GAME_STATE.last_guess) {
-//                    return "red";
-//                }
-//                else {
-//                    return "blue";
-//                }
-//            })
-//            .style("stroke-width", "1")
-//            .style("stroke", "black")
-//            .attr('d', d3.geoPath().projection(last_projection));
-
-//         // Then animate movement...
-//         svg.selectAll('path').interrupt().transition()
-//            .duration(750).ease(d3.easeCubicInOut)
-//            .attr('d', path);
-//     }
-//     last_projection = new_projection;
-// }
-
-var GAME_STATE = new GameState("IRL");
+    var title = document.getElementById("title-text");
+    title.innerHTML = `<h2>Today, I'd like to go from <b>${start}</b> to <b>${target}</b>!</h2>`;
+}
 
 // Load external data and boot
-// https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson
-// d3.queue?? .json('country_adjacentcy.json')
-
-
 Promise.all([
     d3.json("data/ne_50m_admin_0_map_units.geojson"),
     d3.json("data/country_adjacency.json"),
+    d3.json("data/routes.json"),
 ]).then(
     function(data) {
         var geojson = data[0];
         var adjacency = data[1];
-        load_country_data(geojson, adjacency);
+        var routes = data[2];
 
+        load_country_data(geojson, adjacency);
         create_searchbar();
 
-        GAME_STATE.make_guess("France");
+        load_game_state(routes);
+
+        load_top_text();
+
+        if (!GAME_STATE.is_valid) {
+            console.log("ERROR, invalid game state");
+        }
         // GAME_STATE.make_guess("Spain");
         // GAME_STATE.make_guess("India");
         // GAME_STATE.make_guess("United States of America");
         load_map();
     }
 );
-
-
-// d3.json("data/ne_50m_admin_0_map_units.geojson").then(
-//     function(geojson) {
-//         load_country_data(geojson);
-
-//         create_searchbar();
-
-//         GAME_STATE.make_guess("France");
-//         GAME_STATE.make_guess("Spain");
-//         GAME_STATE.make_guess("India");
-//         // GAME_STATE.make_guess("United States of America");
-//         load_map();
-//         // reload_map();
-//     }
-// );

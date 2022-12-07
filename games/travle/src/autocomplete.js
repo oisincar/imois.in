@@ -96,6 +96,7 @@ class AutocompleteDropDown {
 
         var c = `${p1}<b>${p2}</b>${p3}`;
 
+        // TODO: This is wrong closing /li tag?
         return `<div class="country" data-value="${c}"<span class="country--name">${c}</span></li>`;
     }
 
