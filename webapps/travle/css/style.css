@@ -1,3 +1,13 @@
+
+body {
+    background-color: #121213
+}
+
+@font-face {
+  font-family: "color-emoji";
+  src: local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
+}
+
 /* ---------- Autocomplete dropdown  ----------------  */
 /* html { */
 /*   padding: 20px; */

@@ -77,7 +77,11 @@
 
             <div class="alert-container" data-alert-container></div>
 
-            <svg id="my_dataviz" width="800" height="600"></svg>
+            <div class="row" id="title-text">...</div>
+
+            <div id="viz">
+                <svg id="d3-map"></svg>
+            </div>
 
             <div>
                 <div class="autocomplete-drop-down">
@@ -98,7 +102,10 @@
                 </div>
             </div>
 
-            <script type="text/javascript" src="src/game.js"></script>
+            <!-- Past guesses -->
+            <div class="row" id="past-guesses">
+            </div>
+
         </div>
 
 
@@ -123,5 +130,7 @@
              }]
          });
         </script>
+
+        <script type="text/javascript" src="src/game.js"></script>
     </body>
 </html>
