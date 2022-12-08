@@ -254,6 +254,8 @@ function submit_current_guess() {
     }
 }
 
+// An array of all flags.
+// Each flag is 4 unicode characters, so split string into substrings of this length
 const allFlags = (
     "🇩🇿🇦🇩🇦🇫🇦🇬🇦🇮🇦🇱🇦🇲🇦🇴🇦🇷🇦🇸🇦🇹🇦🇺🇦🇼🇦🇽🇦🇿🇧🇦🇧🇧🇧🇩🇧🇪🇧🇫🇧🇬"
         + "🇧🇭🇧🇮🇧🇯🇧🇲🇧🇳🇧🇴🇧🇷🇧🇸🇧🇹🇧🇼🇧🇾🇧🇿🇨🇦🇨🇨🇨🇩🇨🇫🇨🇬🇨🇭🇨🇮🇨🇰🇨🇱"
@@ -267,7 +269,7 @@ const allFlags = (
         + "🇸🇪🇸🇬🇸🇭🇻🇨🇸🇮🇸🇰🇸🇱🇸🇲🇸🇳🇸🇴🇸🇷🇸🇸🇸🇹🇸🇽🇸🇾🇸🇿🇹🇨🇹🇩🇹🇬🇹🇭🇹🇯"
         + "🇹🇰🇹🇱🇹🇲🇹🇳🇹🇴🇹🇷🇹🇹🇹🇻🇹🇼🇹🇿🇺🇦🇺🇬🇦🇪🇺🇳🇺🇸🇺🇾🇺🇿🇻🇦🇻🇪🇻🇬🇻🇮"
         + "🇻🇳🇻🇺🇼🇫🇽🇰🇾🇪🇾🇹🇿🇦🇿🇲🇿🇼")
-      .match(/.{1,4}/g)  // Each flag is 4 characters, so split into substrings of this length
+      .match(/.{1,4}/g) // regex splitting magic
 
 function win() {
     jsConfetti.addConfetti({
@@ -277,14 +279,6 @@ function win() {
 
     showAlert("GAME OVER!");
 
-    // jsConfetti.addConfetti({
-    //     emojis: ['🇦🇩'],
-    //     confettiNumber: 10,
-    // });
-    // jsConfetti.addConfetti({
-    //     emojis: ['🟨'],
-    //     confettiNumber: 5,
-    // });
     jsConfetti.addConfetti();
 
     // showResultsModal(1200);
@@ -460,12 +454,19 @@ function showAlert(message, duration=1000) {
     }, duration)
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 var GAME_STATE = null;
 
 // Either load from web storage, or create gamestate based on cached routes.
 function load_game_state(routes) {
     // TODO: Choose based on today's date...
-    var route = routes[314];
+
+    // For testing... Randomly choose route!
+    var ix = getRandomInt(routes.length);
+    var route = routes[ix];
     GAME_STATE = new GameState(route.start, route.target);
 }
 
