@@ -1,6 +1,19 @@
-
+:root {
+  --border: #888;
+}
 body {
-    background-color: #121213
+  background-color: hsl(240, 3%, 7%);
+}
+
+#title-text {
+  color: hsl(200, 0%, 84%);
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+#d3-map {
+  border: 2px solid var(--border);
+  border-radius: 5px;
 }
 
 @font-face {
@@ -8,120 +21,50 @@ body {
   src: local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
 }
 
+.countries-guess-full {
+  font-size: 18px;
+  width: 100%;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  padding: 4px;
+  margin-top: 5px;
+
+  text-align: center;
+
+  background-color: hsl(240, 3%, 12%);
+  color: hsl(200, 0%, 84%);
+}
+
+.countries-guess-empty {
+  /* This is pretty dumb, but I didn't have a better way to match sizes :x */
+  height: 39px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: hsl(0, 0%, 38%);
+}
+
 /* ---------- Autocomplete dropdown  ----------------  */
-/* html { */
-/*   padding: 20px; */
-/*   font-family: roboto, helvetica, arial, sans-serif; */
-/*   font-size: 16px; */
-/* } */
 
-input {
-  font-size: 16px;
+#countries-input {
+  width: 100%;
+  font-size: 18px;
+  padding: 4px;
   font-family: roboto, helvetica, arial, sans-serif;
-}
-
-.autocomplete-drop-down {
-  position: relative;
-  /* width: 30vw; */
-}
-
-.countries-input,
-.countries-list {
-  border: none;
-  box-sizing: border-box;
-  padding: 0px;
-  margin-top: 0px;
-  /* width: 30vw; */
-
-  align-content: middle;
-  display: flex;
-  flex-wrap: wrap;
-  max-height: 11.5em;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  background-color: white;
-}
-
-.countries-input-container {
-  height: 2.5rem;
-  position: relative;
+  color: hsl(200, 0%, 84%);
+  background-color: hsl(0, 0%, 17%);
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.countries-input {
-  height: 2.5rem;
+.dropdown-menu {
   width: 100%;
-  padding: 1em 0.5em;
-  position: relative;
-  transition: outline 0.2s ease;
-  transition-delay: 0.2s;
-}
-.countries-input:focus + .input-underline {
-  transform: scaleY(0);
-}
-.countries-input:focus ~ .input-arrow {
-  transform: rotate(180deg);
+  max-height: 200px;
+  overflow-y: auto;
 }
 
-.input-underline {
-  background: #000;
-  bottom: 0;
-  content: "";
-  height: 2px;
-  left: 0;
-  position: absolute;
-  transform-origin: center bottom;
-  transition: transform 0.3s ease;
-  width: 100%;
-}
-
-.input-arrow {
-  position: absolute;
-  right: 0.5em;
-  top: calc(50% - 0.5rem);
-  transition: transform 0.3s ease;
-}
-
-.countries-list-container {
-  box-shadow: 0 8px 15px 0 rgba(33, 33, 33, 0.2);
-  opacity: 0;
-  position: absolute;
-  transform: scaleY(0);
-  visibility: hidden;
-  transform-origin: center top;
-  transition: all 0.3s ease;
-  width: 100%;
-  z-index: 1;
-}
-.countries-list-container.visible {
-  opacity: 1;
-  transform: scaleY(1);
-  visibility: visible;
-}
-
-.country {
-  cursor: pointer;
-  padding: 0.5em 1em;
-  transition: background 0.5s ease;
-  width: 100%;
-  /* width: 30vw; */
-}
-.country:hover {
-  background: #CCC;
-}
-.country span {
-  box-sizing: border-box;
-  display: inline-block;
-}
-
-.country--abbreviation {
-  /* padding: 0 1em; */
-  /* width: 18%; */
-}
-
-.country--name {
-  width: 100%;
-}
 /* -------------------------------  */
 /* css for the shiny buttons */
 .btn {

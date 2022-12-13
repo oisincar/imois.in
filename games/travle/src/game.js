@@ -3,49 +3,9 @@
 // Load and set up SVG for rendering map
 var width, height;
 
-// Make SVG responsive
-function responsivefy(svg) {
-    // get container + svg aspect ratio
-    var container = d3.select(svg.node().parentNode);
-        // width = parseInt(svg.style("width")),
-        // height = parseInt(svg.style("height")),
-    var aspect = 1.3;
-
-    var targetWidth = parseInt(container.style("width"));
-
-    width = targetWidth;
-    height = Math.round(targetWidth / aspect);
-
-    console.log(targetWidth);
-
-    svg.attr("width", width);
-    svg.attr("height", height);
-
-    // add viewBox and preserveAspectRatio properties,
-    // and call resize so that svg resizes on inital page load
-    svg.attr("viewBox", "0 0 " + width + " " + height)
-       .attr("perserveAspectRatio", "xMinYMid")
-       .call(resize);
-
-    // to register multiple listeners for same event type,
-    // you need to add namespace, i.e., 'click.foo'
-    // necessary if you call invoke this function for multiple svgs
-    // api docs: https://github.com/mbostock/d3/wiki/Selections#on
-    d3.select(window).on("resize." + container.attr("id"), resize);
-
-    // get width of container and resize svg to fit it
-    function resize() {
-        var targetWidth = parseInt(container.style("width"));
-        svg.attr("width", targetWidth);
-        svg.attr("height", Math.round(targetWidth / aspect));
-    }
-    resize();
-}
-
 const map_svg = d3.select("#d3-map");
 
-map_svg.call(responsivefy);
-
+// map_svg.call(responsivefy);
 
 const jsConfetti = new JSConfetti();
 
@@ -64,6 +24,7 @@ const alertContainer = document.querySelector("[data-alert-container]")
 class GameState {
     start_country = null;
     target_country = null;
+    shortest_solution = 0;
     highlighted_country = null;
 
     // Past guesses stored as IDs
@@ -81,9 +42,11 @@ class GameState {
         return this.past_guess_ids[l-1];
     };
 
-    constructor(start, target) {
+    constructor(start, target, shortest_solution) {
         this.start_country = start;
         this.target_country = target;
+        this.shortest_solution = shortest_solution;
+
         this.highlighted_country = this.start_country;
     }
 
@@ -156,6 +119,36 @@ class GameState {
     }
 }
 
+class PastGuessManager {
+
+    constructor(parentElement, numSections) {
+        this.parentElement = parentElement;
+
+        this.guessDomElements = [];
+        this.guessIx = 0;
+
+        for (var i = 0; i < numSections; i++) {
+            var a = document.createElement('div');
+            a.classList.add('countries-guess-empty');
+            this.parentElement.appendChild(a);
+
+            this.guessDomElements.push(a);
+        }
+    }
+
+    addGuess(countryName) {
+        if (this.guessIx > this.guessDomElements.length) {
+            console.log("Error: Out of guesses");
+        }
+
+        var elem = this.guessDomElements[this.guessIx];
+        elem.className = 'countries-guess-full';
+        elem.innerHTML = countryName;
+
+        this.guessIx++;
+    }
+}
+
 let has_warned_about_cookies = false;
 function warnAboutCookies() {
     if (!has_warned_about_cookies) {
@@ -216,8 +209,23 @@ function load_country_data(geojson, adjacency) {
 
 var SEARCH_BAR = null;
 function create_searchbar() {
-    SEARCH_BAR = new AutocompleteDropDown(COUNTRY_NAMES);
-    SEARCH_BAR.addSubmitListener((s) => submit_current_guess());
+    var field = document.getElementById("countries-input");
+
+    var data = COUNTRY_NAMES.map((name, ix) => {
+        return {"label": name, "value": ix }
+    });
+
+    SEARCH_BAR = new Autocomplete(field, {
+        data: data, //[{label: "I'm a label", value: 42}],
+        threshold: 1,
+        maximumItems: -1,
+        onSelectItem: ({label, value}) => {
+            console.log("user selected:", label, value);
+        },
+        onEnterSelection: () => {
+            submit_current_guess();
+        }
+    });
 
     // Also set up the button
     console.log(document);
@@ -228,7 +236,7 @@ function create_searchbar() {
 }
 
 function submit_current_guess() {
-    var guess = SEARCH_BAR.countriesInput.value;
+    var guess = SEARCH_BAR.value;
 
     if (GAME_STATE.make_guess(guess)) {
         console.log("Successfully guessed!")
@@ -239,15 +247,15 @@ function submit_current_guess() {
         }
 
         // Unhighlight previous guess.
-        remove_country_highlights();
+        map.remove_country_highlights();
         var id = COUNTRY_NAME_ID_LOOKUP[guess.toLowerCase()];
         var country_data = COUNTRY_ID_DATA_LOOKUP[id];
-        add_country_to_map(country_data);
-        recenter_map();
+        map.add_country_to_map(country_data);
+        map.recenter_map();
 
         SEARCH_BAR.clear();
 
-        add_guess_to_guess_history(country_data.properties.NAME);
+        guessManager.addGuess(country_data.properties.NAME);
     }
     else {
         console.log("Guess failed");
@@ -284,18 +292,6 @@ function win() {
     // showResultsModal(1200);
 }
 
-
-var guess_history_div = document.getElementById("past-guesses");
-function add_guess_to_guess_history(country_name) {
-    var div_str = `<div class="row" data-value="${country_name}"<span">${country_name}</span></div>`;
-
-    guess_history_div.innerHTML += div_str;
-}
-
-var projection = null;
-var path = null;
-var colors = { clickable: 'darkgrey', hover: 'grey', clicked: "red", clickhover: "darkred" };
-
 function get_visible_countries_geojson() {
     var data = GAME_STATE.visible_countries.map(country_id => COUNTRY_ID_DATA_LOOKUP[country_id]);
     return {
@@ -304,137 +300,17 @@ function get_visible_countries_geojson() {
     };
 }
 
+var map = null;
 function load_map() {
     var visible_countries_geojson = get_visible_countries_geojson();
     console.log(visible_countries_geojson);
-
-    // Focus on the highlighted country...
-    var country_data = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.highlighted_country];
-
-    projection = calculate_ideal_projection(visible_countries_geojson);
-
-    path = d3.geoPath()
-             .projection(projection);
-
-    var graticule = d3.geoGraticule();
-
-    map_svg.attr("class", "map");
-//.attr("width", width)
-           // .attr("height", height)
-
-
-    map_svg.append("defs").append("path")
-           .datum({type: "Sphere"})
-           .attr("id", "sphere")
-           .attr("d", path);
-
-    map_svg.append("use")
-           .attr("class", "stroke")
-           .attr("xlink:href", "#sphere");
-
-    map_svg.append("use")
-           .attr("class", "fill")
-           .attr("xlink:href", "#sphere");
-
-    map_svg.append("path")
-           .datum(graticule)
-           .attr("class", "graticule")
-           .attr("d", path);
-
-    for (const country_data of visible_countries_geojson.features) {
-        add_country_to_map(country_data);
-    }
+    map = new MapView("d3-map", visible_countries_geojson);
 }
 
-function add_country_to_map(country_data) {
-    console.log("Adding: " + country_data.id);
-    // Last country guessed is highlighted - which is also the first country when that's happening.
-    var color = country_data.id === GAME_STATE.highlighted_country ? colors.clicked : colors.clickable;
-
-    map_svg.insert("path", ".graticule")
-       .datum(country_data)
-       .attr("fill", color)
-       .attr("stroke", "#222")
-       .attr("d", path)
-       .attr("class", "clickable")
-       .attr("data-country-id", country_data.id)
-       // .on("click", function() {
-       //     d3.selectAll(".clicked")
-       //       .classed("clicked", false);
-       //       // .attr("fill", colors.clickable);
-       //     d3.select(this)
-       //       .classed("clicked", true);
-       //       // .attr("fill", colors.clicked);
-
-       //     d3.select(this).transition()
-       //       .duration(1250)
-       //       .tween("rotate", function() {
-       //           // var id = d3.select(this).attr("data-country-id");
-       //           // var data = COUNTRY_ID_DATA_LOOKUP[id];
-       //           var data = get_visible_countries_geojson();
-
-       //           var p = d3.geoCentroid(data);
-       //           var r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
-       //           return function (t) {
-       //               projection.rotate(r(t));
-       //               map_svg.selectAll("path").attr("d", path);
-       //           }
-       //       });
-       // })
-       // .on("mousemove", function() {
-       //     var c = d3.select(this);
-       //     // if (c.classed("clicked")) {
-       //     //     c.attr("fill", colors.clickhover);
-       //     // } else {
-       //     c.attr("fill", colors.hover);
-       //     // }
-       // })
-       // .on("mouseout", function() {
-       //     var c = d3.select(this);
-       //     // if (c.classed("clicked")) {
-       //     //     c.attr("fill", colors.clicked);
-       //     // } else {
-       //     d3.select(this).attr("fill", colors.clickable);
-       //     // }
-       // });
-}
-
-function calculate_ideal_projection(geojson) {
-    var p = d3.geoCentroid(geojson);
-
-    var m = width * 0.05;
-
-    // Calculate target projection
-    var target_projection = d3.geoAzimuthalEquidistant()
-                              .rotate([-p[0],-p[1]])
-                              .fitExtent([[m,m], [width-m, height-m]], geojson);
-
-    return target_projection;
-}
-
-function recenter_map() {
-    d3.transition()
-      .duration(1250)
-      .tween("rotate", function() {
-          var data = get_visible_countries_geojson();
-
-          // Calculate target projection
-          var target_projection = calculate_ideal_projection(data);
-
-          var r = d3.interpolate(projection.rotate(), target_projection.rotate());
-          var s = d3.interpolate(projection.scale(), target_projection.scale());
-          var o = d3.interpolate(projection.translate(), target_projection.translate());
-          return function (t) {
-              projection.rotate(r(t)).scale(s(t)).translate(o(t));
-              map_svg.selectAll("path").attr("d", path);
-          }
-      });
-}
-
-function remove_country_highlights() {
-    // Deselect clicked countries
-    d3.selectAll(".clickable")
-      .attr("fill", colors.clickable);
+var guessManager;
+function loadGuesses() {
+    var elem = document.getElementById("past-guesses");
+    guessManager = new PastGuessManager(elem, GAME_STATE.shortest_solution + 3);
 }
 
 function showAlert(message, duration=1000) {
@@ -464,10 +340,11 @@ var GAME_STATE = null;
 function load_game_state(routes) {
     // TODO: Choose based on today's date...
 
+    // var ix = 314; // Portugal <-> Austria
     // For testing... Randomly choose route!
     var ix = getRandomInt(routes.length);
     var route = routes[ix];
-    GAME_STATE = new GameState(route.start, route.target);
+    GAME_STATE = new GameState(route.start, route.target, route.dist);
 }
 
 function load_top_text() {
@@ -475,7 +352,9 @@ function load_top_text() {
     var target = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME;
 
     var title = document.getElementById("title-text");
-    title.innerHTML = `<h2>Today, I'd like to go from <b>${start}</b> to <b>${target}</b>!</h2>`;
+    title.innerHTML = `Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
+
+    fitty("#title-text");
 }
 
 // Load external data and boot
@@ -494,14 +373,13 @@ Promise.all([
 
         load_game_state(routes);
 
+        loadGuesses();
+
         load_top_text();
 
         if (!GAME_STATE.is_valid) {
             console.log("ERROR, invalid game state");
         }
-        // GAME_STATE.make_guess("Spain");
-        // GAME_STATE.make_guess("India");
-        // GAME_STATE.make_guess("United States of America");
         load_map();
     }
 );
