@@ -22,18 +22,34 @@ body {
 }
 
 .countries-guess-full {
-  font-size: 18px;
+  font-size: 18px;  /* Emoji font size, set here */
   width: 100%;
-  border: 2px solid var(--border);
-  border-radius: 5px;
-  padding: 4px;
   margin-top: 5px;
+  display: flex;
 
   text-align: center;
 
-  background-color: hsl(240, 3%, 12%);
   color: hsl(200, 0%, 84%);
 }
+
+.countries-guess-full div {
+  padding: 4px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  background-color: hsl(240, 3%, 12%);
+  flex: 1;
+}
+.countries-guess-full div:first-child {
+  margin-right: 3px;
+  flex: 3;
+
+  font-size: 18px;
+}
+
+/* .guess-text { */
+/* margin-right: 10px; */
+/* width: 60%; */
+/* } */
 
 .countries-guess-empty {
   /* This is pretty dumb, but I didn't have a better way to match sizes :x */
