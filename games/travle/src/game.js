@@ -32,6 +32,8 @@ class GameState {
     // Successful guesses (also IDs)
     successful_guesses = [];
 
+    guess_ratings = [];
+
     get visible_countries() {
         return [this.start_country, this.target_country].concat(this.successful_guesses);
     }
@@ -40,7 +42,13 @@ class GameState {
         var l = this.past_guess_ids.length;
         if (l == 0) return null;
         return this.past_guess_ids[l-1];
-    };
+    }
+
+    get last_rating() {
+        var l = this.guess_ratings.length;
+        if (l == 0) return null;
+        return this.guess_ratings[l-1];
+    }
 
     constructor(start, target, shortest_solution) {
         this.start_country = start;
@@ -51,6 +59,9 @@ class GameState {
     }
 
     make_guess(country_name) {
+        // Check how far from a solution we are now...
+        var distToSol = this.minimum_guesses_to_solve();
+
         var country_lower = country_name.toLowerCase();
         if (country_lower in COUNTRY_NAME_ID_LOOKUP) {
             var id = COUNTRY_NAME_ID_LOOKUP[country_lower];
@@ -62,7 +73,6 @@ class GameState {
                 // TODO: Determine if this country is adjacent to any others?!
                 this.successful_guesses.push(id);
                 this.highlighted_country = id;
-                return true;
             }
             else {
                 showAlert("Country already guessed: " + country_name);
@@ -73,6 +83,39 @@ class GameState {
             showAlert("Unknown country name: " + country_name);
             return false;
         }
+
+        // Rate this guess... Has this us get closer to a solution?
+        var guessRating;
+        var improvement = this.minimum_guesses_to_solve() - distToSol;
+        if (improvement == -1) {
+            guessRating = "✅";
+        }
+        else {
+            if (improvement != 0) {
+                console.log("ERROR: Guess made us worse? " + distToSol + " " + improvement);
+            }
+            // Check distance to go through the latest guess.
+            var dist = this.minimum_guesses_to_join(this.start_country, this.highlighted_country)
+                     + this.minimum_guesses_to_join(this.highlighted_country, this.target_country);
+
+            console.log("Prev dist", distToSol);
+            console.log("Distance via last guess is: ", dist);
+            if (isNaN(dist)) {
+                // No path through new guess... What'cha doin!
+                guessRating = "⬛";
+            }
+            else if (dist <= distToSol) {
+                // Path through this new guess isn't farther than what we had before.
+                guessRating = "🟧";
+            }
+            else {
+                // Path is further
+                guessRating = "🟥";
+            }
+        }
+        this.guess_ratings.push(guessRating);
+
+        return true;
     }
 
     get is_valid() {
@@ -84,6 +127,13 @@ class GameState {
             }
         }
         return found_all;
+    }
+
+    get_adjacent_countries(id) {
+        if (id in COUNTRY_ADJACENCY) {
+            return COUNTRY_ADJACENCY[id];
+        }
+        return [];
     }
 
     check_if_game_over() {
@@ -105,7 +155,7 @@ class GameState {
             visited.add(elem);
 
             // Add adjacent, guessed countries to the periphery.
-            for (const neighbor of COUNTRY_ADJACENCY[elem]) {
+            for (const neighbor of this.get_adjacent_countries(elem)) {
                 if (guessed_countries.has(neighbor)) {
                     perimeter.push(neighbor);
                 }
@@ -120,11 +170,11 @@ class GameState {
 
     // From the current game state, how many guesses required to solve the board
     minimum_guesses_to_solve() {
-        return this.minimum_guesses_to_join(this.start_country, this.end_country);
+        return this.minimum_guesses_to_join(this.start_country, this.target_country);
     }
 
     // From the current game state, how many guesses required to join these two countries.
-    minimum_guesses_to_join(start_country, end_country) {
+    minimum_guesses_to_join(start_country, target_country) {
         var perimiter = [start_country];
         var visited = new Set();
         var guessedCountries = new Set(this.visible_countries);
@@ -133,39 +183,45 @@ class GameState {
         // Floodfill from the start country, but when we hit
         // a country we've already guessed, immediately add those neighbours
         // as 'reachable' without an extra guess too.
-        var num_guesses = 0;
+        var numGuesses = 0;
         while (perimiter.length > 0) {
+            console.log(perimiter);
+
             var newPerimiter = [];
 
             while (perimiter.length > 0) {
                 var country = perimiter.pop();
                 if (visited.has(country)) continue;
+                visited.add(country);
 
-                if (country === end_country) { return num_guesses; }
+                if (country === target_country) {
+                    if (!guessedCountries.has(country)) {
+                        numGuesses += 1;
+                    }
+                    return numGuesses;
+                }
 
                 // If this country has already been guessed, then we can access
                 // neighbors for free.
                 // NOTE: There are some cases where a country will be pushed to both
                 // perimiter and newPerimiter (multiple times). Since we only visit
-                // a node the first time it occurs, this is fine.
+                // a node the first time it occurs in any list, this is fine.
                 if (guessedCountries.has(country)) {
-                    for (const neighbor of COUNTRY_ADJACENCY[elem]) {
+                    for (const neighbor of this.get_adjacent_countries(country)) {
                         perimiter.push(neighbor);
                     }
                 }
                 else {
-                    for (const neighbor of COUNTRY_ADJACENCY[elem]) {
+                    for (const neighbor of this.get_adjacent_countries(country)) {
                         newPerimiter.push(neighbor);
                     }
                 }
             }
-
-            console.log("Starting new loop!" + newPerimiter);
+            numGuesses += 1;
             perimiter = newPerimiter;
         }
-
         // No solution found!
-        return -1;
+        return NaN;
     }
 }
 
@@ -186,14 +242,14 @@ class PastGuessManager {
         }
     }
 
-    addGuess(countryName) {
+    addGuess(countryName, guessRating) {
         if (this.guessIx > this.guessDomElements.length) {
             console.log("Error: Out of guesses");
         }
 
         var elem = this.guessDomElements[this.guessIx];
         elem.className = 'countries-guess-full';
-        elem.innerHTML = countryName;
+        elem.innerHTML = `<div class="guess-text">${countryName}</div><div class="guess-emoji">${guessRating}</div>`;
 
         this.guessIx++;
     }
@@ -291,21 +347,21 @@ function submit_current_guess() {
     if (GAME_STATE.make_guess(guess)) {
         console.log("Successfully guessed!")
 
-        console.log("Checking if game over!");
-        if (GAME_STATE.check_if_game_over()) {
-            win();
-        }
-
         // Unhighlight previous guess.
         map.remove_country_highlights();
-        var id = COUNTRY_NAME_ID_LOOKUP[guess.toLowerCase()];
+        var id = GAME_STATE.last_guess;
         var country_data = COUNTRY_ID_DATA_LOOKUP[id];
         map.add_country_to_map(country_data);
         map.recenter_map();
 
         SEARCH_BAR.clear();
 
-        guessManager.addGuess(country_data.properties.NAME);
+        guessManager.addGuess(country_data.properties.NAME, GAME_STATE.last_rating);
+
+        console.log("Checking if game over!");
+        if (GAME_STATE.check_if_game_over()) {
+            win();
+        }
     }
     else {
         console.log("Guess failed");
