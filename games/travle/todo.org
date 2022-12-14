@@ -1,0 +1,4 @@
+#+title: TODO
+
+- When you click on countries on the map, it highlights that guess... And vice versa.
+- Separate out country graph & algorithms(?)

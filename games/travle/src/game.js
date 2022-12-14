@@ -117,6 +117,56 @@ class GameState {
         // We didn't find any path between start and end...
         return false;
     }
+
+    // From the current game state, how many guesses required to solve the board
+    minimum_guesses_to_solve() {
+        return this.minimum_guesses_to_join(this.start_country, this.end_country);
+    }
+
+    // From the current game state, how many guesses required to join these two countries.
+    minimum_guesses_to_join(start_country, end_country) {
+        var perimiter = [start_country];
+        var visited = new Set();
+        var guessedCountries = new Set(this.visible_countries);
+
+        // Each loop of this corresponds to one extra guess.
+        // Floodfill from the start country, but when we hit
+        // a country we've already guessed, immediately add those neighbours
+        // as 'reachable' without an extra guess too.
+        var num_guesses = 0;
+        while (perimiter.length > 0) {
+            var newPerimiter = [];
+
+            while (perimiter.length > 0) {
+                var country = perimiter.pop();
+                if (visited.has(country)) continue;
+
+                if (country === end_country) { return num_guesses; }
+
+                // If this country has already been guessed, then we can access
+                // neighbors for free.
+                // NOTE: There are some cases where a country will be pushed to both
+                // perimiter and newPerimiter (multiple times). Since we only visit
+                // a node the first time it occurs, this is fine.
+                if (guessedCountries.has(country)) {
+                    for (const neighbor of COUNTRY_ADJACENCY[elem]) {
+                        perimiter.push(neighbor);
+                    }
+                }
+                else {
+                    for (const neighbor of COUNTRY_ADJACENCY[elem]) {
+                        newPerimiter.push(neighbor);
+                    }
+                }
+            }
+
+            console.log("Starting new loop!" + newPerimiter);
+            perimiter = newPerimiter;
+        }
+
+        // No solution found!
+        return -1;
+    }
 }
 
 class PastGuessManager {
