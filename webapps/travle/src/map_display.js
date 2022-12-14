@@ -43,6 +43,21 @@ class MapView {
             .attr("class", "graticule")
             .attr("d", this.path);
 
+        // create a tooltip
+        this.tooltip = d3.select("#viz")
+                        .append("div")
+                        .attr("class", "tooltip")
+                        .style("opacity", 0)
+                        .style("transform", "translate(-50%, -100%)") // Center horiziontally
+                        .style("pointer-events", "none")        // Ignore mouse events
+                        .style("background-color", "white")
+                        .style("border", "solid")
+                        .style("border-width", "2px")
+                        .style("border-radius", "5px")
+                        .style("padding", "5px")
+                        .style("left", 50 + "px")
+                        .style("top", 50 + "px");
+
         for (const country_data of visible_countries_geojson.features) {
             this.add_country_to_map(country_data);
         }
@@ -53,6 +68,9 @@ class MapView {
         // Last country guessed is highlighted - which is also the first country when that's happening.
         var color = country_data.id === GAME_STATE.highlighted_country ? colors.clicked : colors.clickable;
 
+        var tooltip = this.tooltip;
+        var svg_map = this.map_svg;
+
         map_svg.insert("path", ".graticule")
                .datum(country_data)
                .attr("fill", color)
@@ -60,6 +78,74 @@ class MapView {
                .attr("d", this.path)
                .attr("class", "clickable")
                .attr("data-country-id", country_data.id)
+               .on("mouseover", function(event, d) {
+                   d3.select(this)
+                     .style("stroke", "white")
+                     .style("stroke-width", "3px");
+
+                   tooltip.style("opacity", 1);
+               })
+               .on("mousemove", function(event, d) {
+                   console.log(event);
+                   console.log(event.x, event.y);
+
+                   var e = d3.pointer(event, svg_map);
+                   console.log(e);
+
+                   tooltip
+                       .html(d.properties.NAME)
+                       // .html(d.properties.NAME)
+                       .style("left", e[0] + "px")
+                       .style("top", e[1] + "px");
+               })
+               .on("mouseleave", function(event, d) {
+                   d3.select(this)
+                     .style("stroke", "black")
+                     .style("stroke-width", "1px");
+
+                   tooltip.style("opacity", 0);
+               })
+
+               // .on("click", function() {
+               //     d3.selectAll(".clicked")
+               //       .classed("clicked", false);
+               //         .attr("fill", colors.clickable);
+               //     d3.select(this)
+               //       .classed("clicked", true);
+               //         .attr("fill", colors.clicked);
+
+               //     d3.select(this).transition()
+               //       .duration(1250)
+               //       .tween("rotate", function() {
+               //           var id = d3.select(this).attr("data-country-id");
+               //           var data = COUNTRY_ID_DATA_LOOKUP[id];
+               //           var data = get_visible_countries_geojson();
+
+               //           var p = d3.geoCentroid(data);
+               //           var r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
+               //           return function (t) {
+               //               projection.rotate(r(t));
+               //               map_svg.selectAll("path").attr("d", path);
+               //           }
+               //       });
+               // })
+               // .on("mousemove", function() {
+               //     var c = d3.select(this);
+               //     if (c.classed("clicked")) {
+               //         c.attr("fill", colors.clickhover);
+               //     } else {
+               //         c.attr("fill", colors.hover);
+               //     }
+               // })
+               // .on("mouseout", function() {
+               //     var c = d3.select(this);
+               //     if (c.classed("clicked")) {
+               //         c.attr("fill", colors.clicked);
+               //     } else {
+               //         d3.select(this).attr("fill", colors.clickable);
+               //     }
+               // });
+
         // .on("click", function() {
         //     d3.selectAll(".clicked")
         //       .classed("clicked", false);

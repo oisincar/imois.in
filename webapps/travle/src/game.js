@@ -177,7 +177,7 @@ function saveWinLoss(game_id, guesses, did_win) {
     // ...
 }
 
-function load_country_data(geojson, adjacency) {
+function loadCountryData(geojson, adjacency) {
     // console.log(geojson.features.map(c => [c.properties.NAME, c.properties.NAME_LONG, c.properties.NAME_]))
 
     // Change a couple names...
@@ -208,7 +208,7 @@ function load_country_data(geojson, adjacency) {
 }
 
 var SEARCH_BAR = null;
-function create_searchbar() {
+function createSearchbar() {
     var field = document.getElementById("countries-input");
 
     var data = COUNTRY_NAMES.map((name, ix) => {
@@ -337,7 +337,7 @@ function getRandomInt(max) {
 var GAME_STATE = null;
 
 // Either load from web storage, or create gamestate based on cached routes.
-function load_game_state(routes) {
+function loadGameState(routes) {
     // TODO: Choose based on today's date...
 
     // var ix = 314; // Portugal <-> Austria
@@ -368,10 +368,10 @@ Promise.all([
         var adjacency = data[1];
         var routes = data[2];
 
-        load_country_data(geojson, adjacency);
-        create_searchbar();
+        loadCountryData(geojson, adjacency);
+        createSearchbar();
 
-        load_game_state(routes);
+        loadGameState(routes);
 
         loadGuesses();
 
