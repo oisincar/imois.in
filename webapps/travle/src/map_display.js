@@ -86,15 +86,10 @@ class MapView {
                    tooltip.style("opacity", 1);
                })
                .on("mousemove", function(event, d) {
-                   console.log(event);
-                   console.log(event.x, event.y);
-
+                   // Find event position relative to the svg.
                    var e = d3.pointer(event, svg_map);
-                   console.log(e);
-
                    tooltip
                        .html(d.properties.NAME)
-                       // .html(d.properties.NAME)
                        .style("left", e[0] + "px")
                        .style("top", e[1] + "px");
                })
