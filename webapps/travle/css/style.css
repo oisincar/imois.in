@@ -83,7 +83,7 @@ body {
 
 /* -------------------------------  */
 /* css for the shiny buttons */
-.btn {
+.guess-btn {
   cursor: pointer;
   background: none;
   border-radius: 5px;
@@ -194,4 +194,60 @@ body {
 
 .alert.hide {
   opacity: 0;
+}
+
+/* ------- MODALS --------- */
+/* MODALS */
+.modal-content {
+  background: #2b2b2b;
+  color: white;
+}
+
+.modal-header {
+  border-bottom: 1px solid #5b5b5b;
+}
+.modal-footer {
+  border-top: 1px solid #5b5b5b;
+}
+
+.modal-header button {
+  color: white;
+}
+
+.modal-body .tile {
+  width: 2em;
+  /* background-color: hsl(240, 3%, 7%); */
+}
+.explanation-grid {
+  margin-bottom: 20px;
+}
+.explanation-grid div {
+  margin-top: 3px;
+}
+/* Center explanation text */
+.explanation-grid .row .col {
+    display: flex;
+    align-items: center;
+}
+
+.explanation-grid .row .big-text {
+  font-size: 2.5em;
+}
+
+.results-grid {
+  text-align: center;
+  margin-bottom: 36px;
+  width: 60%;
+}
+.statistics-text {
+  font-size: 23px;
+}
+.results-grid div {
+  padding: 0px;
+}
+.results-grid div div .num {
+  font-size: 30px;
+}
+.results-grid div div .txt {
+  font-size: 12px;
 }

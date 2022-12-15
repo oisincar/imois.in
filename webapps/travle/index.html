@@ -63,16 +63,114 @@
                 </div>
 
                 <form class="justify-content-end">
-                    <button onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
+                    <button type="button" onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
                         <span class="fa-solid fa-chart-simple"></span>
                     </button>
-                    <button class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
+                    <button type="button" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
                         <span class="fa-solid fa-question"></span>
                     </button>
                 </form>
             </div>
         </nav>
         <div class="container">
+
+            <!-- Explanation modal -->
+            <div class="modal fade" id="explanationModal" tabindex="-1" aria-labelledby="explanationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="explanationModalLabel">How to Play</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Guess countries until you've made a path from <b>start</b> to <b>end</b>! You can guess the countries in any order.
+                            </p>
+
+                            <p>
+                                After each guess you get an emoji signaling how much the computer liked it.
+                            </p>
+
+                            <div class="explanation-grid container">
+                                <div class="row">
+                                    <div class="big-text col-2">✅</div>
+                                    <div class="col"><span>Guess is <b>optimal</b>. You're one step closer to the solution.</span></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="big-text col-2">🟧</div>
+                                    <div class="col"><span>Guess is <b>pretty good</b>. You're in the ball park... Your guess isn't really a detour from where we're trying to go.</span></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="big-text col-2">🟥</div>
+                                    <div class="col"><span>Guess is <b>not great</b>. Your guess is a significant detour.</span></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="big-text col-2">⬛</div>
+                                    <div class="col"><span>There isn't even a way to get from your guess to the target country by land. Try again, please 🤦.</span></div>
+                                </div>
+                            </div>
+
+                            <p>Travle is made by me, Oisin Carroll. If you enjoyed the game it'd be awesome if you shared it!
+                                If you've any thoughts/improvements email me at
+                                <a href="mailto: hi@imois.in">hi@imois.in</a> or find me on Twitter <a href="https://twitter.com/onemoremoose">@onemoremoose</a>.
+                                Thanks for playing!
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Results modal -->
+            <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalTitle" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content results-modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="resultsModalTitle">You ?</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="resultsModalContent">
+
+                            <div class="results-grid container">
+                                <div class="row"><div class="col statistics-text">Statistics</div></div>
+                                <div class="row">
+                                    <div class="col-3"><div class="num" id="resultPlayed">0</div><div class="txt">Played</div></div>
+                                    <div class="col-3"><div class="num" id="resultWinPerc">0</div><div class="txt">Win %</div></div>
+                                    <div class="col-3"><div class="num" id="resultStreakCurrent">0</div><div class="txt">Current Streak</div></div>
+                                    <div class="col-3"><div class="num" id="resultStreakMax">0</div><div class="txt">Max Streak</div></div>
+                                </div>
+                            </div>
+
+                            <div id="resultsModalText">travle #?: ?? guesses</div>
+                            <p class="results-emoji-breakdown" id="resultsModalEmojis">
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary btn-lg invisible">
+                                Share <i class="fa-solid fa-share-nodes"></i>
+                            </button>
+                            <button type="button" id="resultsModelCopyButton" data-clipboard-text="SANtHO" class="btn btn-primary btn-lg invisible">
+                                Copy Results <i class="fas fa-clipboard"></i>
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Done</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
             <div class="row" style="justify-content: center">
                 <div class="col" style="max-width: 60vh">
                     <div class="alert-container" data-alert-container></div>
@@ -103,9 +201,9 @@
         <script type="text/javascript" src="src/fitty.js"></script>
 
         <!-- Glow Cookies v3.0.1 -->
-        <!-- <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
-             <script>
-             glowCookies.start('en', {
+        <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+        <script>
+         glowCookies.start('en', {
              style: 1,
              analytics: 'UA-143421297-1',
              bannerDescription: 'We use our own and third party cookies to store game data and analyize web traffic.',
@@ -114,12 +212,12 @@
 
              hideAfterClick: true,
              customScript: [{
-             type: 'custom',
-             position: 'body',
-             content: 'console.log("Cookies accepted!"); let COOKIES_ACCEPTED = true;',
+                 type: 'custom',
+                 position: 'body',
+                 content: 'console.log("Cookies accepted!"); let COOKIES_ACCEPTED = true;',
              }]
-             });
-             </script> -->
+         });
+        </script>
 
         <script type="text/javascript" src="src/map_display.js"></script>
         <script type="text/javascript" src="src/game.js"></script>
