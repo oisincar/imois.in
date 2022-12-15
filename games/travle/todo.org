@@ -1,4 +1,11 @@
 #+title: TODO
 
+* Core
+- Stats page (todo: emojis + share)
+
+* Misc
+- New name?? New logo??
+
+* Bonus
 - When you click on countries on the map, it highlights that guess... And vice versa.
 - Separate out country graph & algorithms(?)

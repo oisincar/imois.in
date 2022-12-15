@@ -21,7 +21,12 @@ var COUNTRY_ADJACENCY = null;
 
 const alertContainer = document.querySelector("[data-alert-container]")
 
+const GAMEPLAY_STATE_ONGOING = "ongoing";
+const GAMEPLAY_STATE_LOST = "lost";
+const GAMEPLAY_STATE_WON = "won";
+
 class GameState {
+    puzzle_ix = 0;
     start_country = null;
     target_country = null;
     shortest_solution = 0;
@@ -33,6 +38,8 @@ class GameState {
     successful_guesses = [];
 
     guess_ratings = [];
+
+    game_progress = GAMEPLAY_STATE_ONGOING;
 
     get visible_countries() {
         return [this.start_country, this.target_country].concat(this.successful_guesses);
@@ -50,7 +57,16 @@ class GameState {
         return this.guess_ratings[l-1];
     }
 
-    constructor(start, target, shortest_solution) {
+    get possible_guesses() {
+        return this.shortest_solution + 3;
+    }
+
+    get has_guesses_remaining() {
+        return this.past_guess_ids.length < this.possible_guesses;
+    }
+
+    constructor(puzzle_ix, start, target, shortest_solution) {
+        this.puzzle_ix = puzzle_ix;
         this.start_country = start;
         this.target_country = target;
         this.shortest_solution = shortest_solution;
@@ -59,6 +75,12 @@ class GameState {
     }
 
     make_guess(country_name) {
+        // Sanity check
+        if (this.game_progress !== GAMEPLAY_STATE_ONGOING) {
+            showAlert("GAME OVER");
+            return false;
+        }
+
         // Check how far from a solution we are now...
         var distToSol = this.minimum_guesses_to_solve();
 
@@ -115,6 +137,14 @@ class GameState {
         }
         this.guess_ratings.push(guessRating);
 
+        // Check if the game is over now :(
+        if (this.check_if_solved()) {
+            this.game_progress = GAMEPLAY_STATE_WON;
+        }
+        else if (!this.has_guesses_remaining) {
+            this.game_progress = GAMEPLAY_STATE_LOST;
+        }
+
         return true;
     }
 
@@ -136,7 +166,7 @@ class GameState {
         return [];
     }
 
-    check_if_game_over() {
+    check_if_solved() {
         var perimeter = [this.start_country];
 
         var visited = new Set();
@@ -256,33 +286,6 @@ class PastGuessManager {
 }
 
 let has_warned_about_cookies = false;
-function warnAboutCookies() {
-    if (!has_warned_about_cookies) {
-        showAlert("This game requires cookies to save your progress. If you navigate away your progress will be lost!", 10000);
-
-        has_warned_about_cookies = true;
-    }
-}
-
-// TODO: Fixme
-function saveGameState() {
-    var data = {
-        "puzzle_number": puzzle_number,
-        "game_state": game.state,
-    };
-    if (typeof COOKIES_ACCEPTED !== 'undefined' && COOKIES_ACCEPTED) {
-        localStorage.setItem('crosswordle-game-state', JSON.stringify(data));
-    }
-    else {
-        warnAboutCookies();
-    }
-}
-
-// TODO: Fixme
-function saveWinLoss(game_id, guesses, did_win) {
-    // ...
-}
-
 function loadCountryData(geojson, adjacency) {
     // console.log(geojson.features.map(c => [c.properties.NAME, c.properties.NAME_LONG, c.properties.NAME_]))
 
@@ -358,13 +361,15 @@ function submit_current_guess() {
 
         guessManager.addGuess(country_data.properties.NAME, GAME_STATE.last_rating);
 
-        console.log("Checking if game over!");
-        if (GAME_STATE.check_if_game_over()) {
-            win();
+        saveGameState();
+
+        if (GAME_STATE.game_progress !== GAMEPLAY_STATE_ONGOING) {
+            saveWinLoss(GAME_STATE.puzzle_ix,
+                        GAME_STATE.past_guess_ids.length,
+                        GAME_STATE.game_progress === GAMEPLAY_STATE_WON);
+
+            maybeShowEndGameUI();
         }
-    }
-    else {
-        console.log("Guess failed");
     }
 }
 
@@ -385,6 +390,16 @@ const allFlags = (
         + "🇻🇳🇻🇺🇼🇫🇽🇰🇾🇪🇾🇹🇿🇦🇿🇲🇿🇼")
       .match(/.{1,4}/g) // regex splitting magic
 
+
+function maybeShowEndGameUI() {
+    if (GAME_STATE.game_progress === GAMEPLAY_STATE_WON) {
+        win();
+    }
+    else if (GAME_STATE.game_progress === GAMEPLAY_STATE_LOST) {
+        lose();
+    }
+}
+
 function win() {
     jsConfetti.addConfetti({
         emojis: allFlags,
@@ -395,7 +410,76 @@ function win() {
 
     jsConfetti.addConfetti();
 
-    // showResultsModal(1200);
+    showResultsModal(1200);
+}
+
+function lose() {
+    showAlert("0 guesses remaining... :c");
+    showResultsModal(200);
+}
+
+function showResultsModal(delay) {
+    var title = document.getElementById("resultsModalTitle");
+
+    // Stats display
+    let past_games_str = localStorage.getItem('travle-past-games');
+    if (past_games_str) {
+        let past_games = JSON.parse(past_games_str);
+
+        document.getElementById("resultPlayed").textContent = past_games.games.length;
+        document.getElementById("resultWinPerc").textContent = Math.round(past_games.win_perc);
+        document.getElementById("resultStreakCurrent").textContent = past_games.current_streak;
+        document.getElementById("resultStreakMax").textContent = past_games.longest_streak;
+    }
+
+    // Game results
+
+    var txt = document.getElementById("resultsModalText");
+    var emojis = document.getElementById("resultsModalEmojis");
+    var copy_button = document.getElementById("resultsModelCopyButton");
+    var share_button = document.getElementById("resultsModelShareButton");
+    let modal = new bootstrap.Modal(document.getElementById('resultsModal'), {});
+
+    title.textContent = "Travle #" + GAME_STATE.puzzle_ix + ": ";
+
+    // Game hasn't finished
+    if (GAME_STATE.game_progress === GAMEPLAY_STATE_ONGOING) {
+        txt.textContent = "";
+        emojis.innerHTML = "";
+
+        // Hide share buttons
+        copy_button.classList.add('invisible');
+        share_button.classList.add('invisible');
+    }
+    else {
+        var did_win = (GAME_STATE.game_progress === GAMEPLAY_STATE_WON);
+
+        var num_guesses = GAME_STATE.past_guess_ids.length;
+        if (did_win) {
+            txt.textContent = num_guesses + " guesses";
+        }
+        else {
+            txt.textContent = num_guesses + "/?? guesses";
+        }
+
+        // let emojis_txt = game.getBoardBreakdown().join("<br>");
+        // if (!did_win) {
+        //     emojis_txt += "<br><br>";
+        //     emojis_txt += game.getSolutionBreakdown().join("<br>");
+        // }
+        // emojis.innerHTML = emojis_txt;
+
+        // Show share buttons
+        copy_button.classList.remove('invisible');
+        if (navigator.share)
+            share_button.classList.remove('invisible');
+    }
+
+    // Share
+
+    setTimeout(() => {
+        modal.show();
+    }, delay);
 }
 
 function get_visible_countries_geojson() {
@@ -407,7 +491,7 @@ function get_visible_countries_geojson() {
 }
 
 var map = null;
-function load_map() {
+function loadMap() {
     var visible_countries_geojson = get_visible_countries_geojson();
     console.log(visible_countries_geojson);
     map = new MapView("d3-map", visible_countries_geojson);
@@ -416,7 +500,13 @@ function load_map() {
 var guessManager;
 function loadGuesses() {
     var elem = document.getElementById("past-guesses");
-    guessManager = new PastGuessManager(elem, GAME_STATE.shortest_solution + 3);
+    guessManager = new PastGuessManager(elem, GAME_STATE.possible_guesses);
+    for (var i = 0; i < GAME_STATE.past_guess_ids.length; i++) {
+        var countryId = GAME_STATE.past_guess_ids[i];
+        var countryName = COUNTRY_ID_DATA_LOOKUP[countryId].properties.NAME;
+        var guessRating = GAME_STATE.guess_ratings[i];
+        guessManager.addGuess(countryName, guessRating);
+    }
 }
 
 function showAlert(message, duration=1000) {
@@ -443,17 +533,7 @@ function getRandomInt(max) {
 var GAME_STATE = null;
 
 // Either load from web storage, or create gamestate based on cached routes.
-function loadGameState(routes) {
-    // TODO: Choose based on today's date...
-
-    // var ix = 314; // Portugal <-> Austria
-    // For testing... Randomly choose route!
-    var ix = getRandomInt(routes.length);
-    var route = routes[ix];
-    GAME_STATE = new GameState(route.start, route.target, route.dist);
-}
-
-function load_top_text() {
+function loadTopText() {
     var start = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME;
     var target = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME;
 
@@ -463,8 +543,147 @@ function load_top_text() {
     fitty("#title-text");
 }
 
+// -------- Save/ Load game state ---------
+function getPuzzleNumber() {
+    // Crosswordle released 15th Dec 2022!
+    const dt = Date.now() - new Date(2022, 11, 15);
+    const dayOffset = dt / (1000 * 60 * 60 * 24)
+    return Math.floor(dayOffset + 1); // Puzzle #1 on 15th
+}
+
+function loadGameState(routes) {
+    // TODO: Choose based on today's date...
+    var ix = getPuzzleNumber();
+    console.log("Playing Travle #", ix);
+
+    // var ix = 314; //Portugal <-> Austria
+    // var ix = getRandomInt(routes.length);
+
+    let prev_gamestate_str = localStorage.getItem('travle-game-state');
+    console.log("last state:" + prev_gamestate_str);
+
+    var route = routes[ix];
+    GAME_STATE = new GameState(ix, route.start, route.target, route.dist);
+
+    if (prev_gamestate_str) {
+        let prev_gamestate = JSON.parse(prev_gamestate_str);
+        console.log(prev_gamestate_str);
+        console.log(prev_gamestate);
+
+        if (prev_gamestate.puzzle_ix == ix) {
+            console.log("Found save from today, loading!");
+
+            // Just do this a dumb way... Copy things from save into the new state
+            GAME_STATE.highlighted_country = prev_gamestate.highlighted_country;
+            GAME_STATE.past_guess_ids = prev_gamestate.past_guess_ids;
+            GAME_STATE.successful_guesses = prev_gamestate.successful_guesses;
+            GAME_STATE.guess_ratings = prev_gamestate.guess_ratings;
+            GAME_STATE.game_progress = prev_gamestate.game_progress;
+        }
+    }
+
+    // Show finishing UI if completed
+    maybeShowEndGameUI();
+}
+
+function saveGameState() {
+    if (typeof COOKIES_ACCEPTED !== 'undefined' && COOKIES_ACCEPTED) {
+        localStorage.setItem('travle-game-state', JSON.stringify(GAME_STATE));
+    }
+    else {
+        warnAboutCookies();
+    }
+}
+
+function saveWinLoss(game_id, guesses, did_win) {
+    // Data is stored like:
+    // {
+    //     last_game_id: ##,
+    //     current_streak: ##,
+    //     longest_streak: ##,
+    //     win_perc: ##,
+    //     games: [{game_id: ##, num_guesses: ##, won: true/false}],
+    // }
+
+    if (typeof COOKIES_ACCEPTED === 'undefined' || !COOKIES_ACCEPTED) {
+        warnAboutCookies();
+        return;
+    }
+
+    let past_games_str = localStorage.getItem('travle-past-games');
+    let past_games;
+    if (past_games_str)
+        past_games = JSON.parse(past_games_str);
+    else {
+        past_games = {
+            'last_game_id': -1,
+            'current_streak': 0,
+            'longest_streak': 0,
+            'win_perc': 0,
+            'games': [],
+        };
+    }
+
+    if (past_games.last_game_id >= game_id) {
+        console.log("Already saved...");
+    }
+    else {
+        let data = {
+            "game_id": game_id,
+            "guesses": guesses,
+            "won": did_win,
+        };
+        past_games.games.push(data);
+
+        // Update streaks...
+        if (past_games.last_game_id + 1 != game_id || !did_win) {
+            // Streak broken :c
+            past_games.current_streak = 0;
+        }
+
+        if (did_win) {
+            past_games.current_streak += 1;
+            if (past_games.current_streak > past_games.longest_streak) {
+                past_games.longest_streak = past_games.current_streak;
+            }
+        }
+
+        past_games.last_game_id = game_id;
+
+        // recalculate win%
+        let wins = 0;
+        for (var i = 0; i < past_games.games.length; i++) {
+            if (past_games.games[i].won) wins += 1;
+        }
+
+        past_games.win_perc = 100 * wins/past_games.games.length;
+
+        // Save it again!
+        localStorage.setItem('travle-past-games', JSON.stringify(past_games));
+        console.log("Saved: ", past_games);
+    }
+}
+
+function warnAboutCookies() {
+    if (!has_warned_about_cookies) {
+        showAlert("This game requires cookies to save your progress & streak. If you navigate away your progress will be lost!", 10000);
+
+        has_warned_about_cookies = true;
+    }
+}
+
+
+// Show user how to play if they haven't played before!
+if (!(localStorage.getItem('travle-past-games')
+      || localStorage.getItem('travle-game-state'))) {
+    let modal = new bootstrap.Modal(document.getElementById('explanationModal'), {});
+    modal.show();
+}
+
 // Load external data and boot
 Promise.all([
+    // TODO: Separate this out to speed page load.
+    // Note: Can't display countries til this arrives so... Maybe not too much improvement to make here.
     d3.json("data/ne_50m_admin_0_map_units.geojson"),
     d3.json("data/country_adjacency.json"),
     d3.json("data/routes.json"),
@@ -481,11 +700,11 @@ Promise.all([
 
         loadGuesses();
 
-        load_top_text();
+        loadTopText();
 
         if (!GAME_STATE.is_valid) {
             console.log("ERROR, invalid game state");
         }
-        load_map();
+        loadMap();
     }
 );
