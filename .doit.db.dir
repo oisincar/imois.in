@@ -292,7 +292,7 @@
 'copy_files:output/games/travle/css/style.css', (917504, 266)
 'copy_files:output/games/travle/src/d3.min.js', (920576, 261)
 'copy_files:output/games/travle/src/autocomplete.js', (921088, 278)
-'copy_files:output/games/travle/src/game.js', (921600, 263)
+'copy_files:output/games/travle/src/game.js', (921600, 262)
 'copy_files:output/games/travle/.ipynb_checkpoints/Untitled-checkpoint.ipynb', (922112, 326)
 'copy_files:output/games/travle/data/ne_50m_admin_0_map_units.geojson', (922624, 317)
 'copy_files:output/games/travle/create_country_graph.py', (923136, 284)
