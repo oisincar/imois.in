@@ -234,6 +234,10 @@ body {
   font-size: 2.5em;
 }
 
+.results-modal {
+    font-family: var(--bs-body-font-family);
+}
+
 .results-grid {
   text-align: center;
   margin-bottom: 36px;
@@ -250,4 +254,9 @@ body {
 }
 .results-grid div div .txt {
   font-size: 12px;
+}
+
+.results-emoji-breakdown {
+    font-family: color-emoji;
+    font-size: 2em;
 }
