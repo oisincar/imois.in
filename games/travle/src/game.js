@@ -756,10 +756,12 @@ function share() {
 
     var shareText = GAME_STATE.share_text;
 
+    var title = `Travle #${GAME_STATE.puzzle_ix}`;
+
     if (navigator.share) {
         navigator.share({
             "title": title,
-            "text": shareText, // TODO: Change to getShareText()
+            "text": shareText,
         })
                  .then(() => resultCallback('Shared!'))
                  .catch((error) => resultCallback('Sharing failed'));
