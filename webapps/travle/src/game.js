@@ -65,6 +65,26 @@ class GameState {
         return this.past_guess_ids.length < this.possible_guesses;
     }
 
+    get share_text() {
+        var baseText = `Travle #${this.puzzle_ix}: `;
+
+        var start_c = COUNTRY_ID_DATA_LOOKUP[this.start_country].properties.NAME;
+        var end_c = COUNTRY_ID_DATA_LOOKUP[this.target_country].properties.NAME;
+        var num_guesses = this.past_guess_ids.length;
+
+        if (this.game_progress == GAMEPLAY_STATE_LOST) {
+            var steps_left = this.minimum_guesses_to_solve();
+            var steps_txt = steps_left + " step" + (steps_left == 1 ? "" : "s")
+            baseText += `From ${start_c} I made it to ${steps_txt} from ${end_c}\n`;
+        }
+        else {
+            baseText += `I made it from ${start_c} to ${end_c} in ${this.past_guess_ids.length}/${this.possible_guesses} steps.\n`;
+        }
+        baseText += this.guess_ratings.join("") + "\n";
+        baseText += "imois.in/games/travle";
+        return baseText;
+    }
+
     constructor(puzzle_ix, start, target, shortest_solution) {
         this.puzzle_ix = puzzle_ix;
         this.start_country = start;
@@ -126,8 +146,8 @@ class GameState {
                 // No path through new guess... What'cha doin!
                 guessRating = "⬛";
             }
-            else if (dist <= distToSol) {
-                // Path through this new guess isn't farther than what we had before.
+            else if (dist <= distToSol + 1) {
+                // Path through this new guess isn't more than 1 farther than what we had before.
                 guessRating = "🟧";
             }
             else {
@@ -454,13 +474,23 @@ function showResultsModal(delay) {
     else {
         var did_win = (GAME_STATE.game_progress === GAMEPLAY_STATE_WON);
 
-        var num_guesses = GAME_STATE.past_guess_ids.length;
+        var start_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME;
+        var end_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME;
+
         if (did_win) {
-            txt.textContent = num_guesses + " guesses";
+            var num_steps = GAME_STATE.past_guess_ids.length;
+            txt.innerHTML = `Success! You got from ${start_c} to ${end_c} in <b>${num_steps} steps</b>.<br>`
+                + `The best possible solution was <b>${GAME_STATE.shortest_solution-1} steps</b>.<br>`
         }
         else {
-            txt.textContent = num_guesses + "/?? guesses";
+            var steps_left = GAME_STATE.minimum_guesses_to_solve();
+            var steps_txt = steps_left + " step" + (steps_left == 1 ? "" : "s")
+            txt.innerHTML = `So close. You were just <b>${steps_txt}</b> from ${end_c}.<br>`
+                + `The best possible solution was <b>${GAME_STATE.shortest_solution-1} steps</b>.<br>`;
         }
+        txt.innerHTML += "<br>Guess breakdown:";
+
+        emojis.innerHTML = GAME_STATE.guess_ratings.join("");
 
         // let emojis_txt = game.getBoardBreakdown().join("<br>");
         // if (!did_win) {
@@ -562,7 +592,7 @@ function loadGameState(routes) {
     let prev_gamestate_str = localStorage.getItem('travle-game-state');
     console.log("last state:" + prev_gamestate_str);
 
-    var route = routes[ix];
+    var route = routes[ix-1];
     GAME_STATE = new GameState(ix, route.start, route.target, route.dist);
 
     if (prev_gamestate_str) {
@@ -672,6 +702,77 @@ function warnAboutCookies() {
     }
 }
 
+var popover = null;
+function setupCopyShareButton() {
+    let a = document.getElementById('resultsModal');
+    let copyButton = document.getElementById('resultsModelCopyButton');
+
+    let clipboard = new ClipboardJS(copyButton, {
+        container: document.getElementById('resultsModal'),
+        text: function (trigger) {
+            return GAME_STATE.share_text;
+        },
+    });
+
+    clipboard.on('success', function (e) {
+        if (popover) popover.dispose();
+
+        popover = new bootstrap.Popover(copyButton, {
+            content: "Copied!",
+            placement: "top",
+            trigger: "hover",
+        });
+        popover.show();
+
+        // console.info('Action:', e.action);
+        // console.info('Text:', e.text);
+        // console.info('Trigger:', e.trigger);
+
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function (e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+}
+setupCopyShareButton();
+
+function share() {
+    console.log("share");
+    const shareButton = document.getElementById("resultsModelShareButton");
+
+    // Show a popover on the botton for whatever happens...
+    let resultCallback = (msg => {
+        if (popover) popover.dispose();
+
+        popover = new bootstrap.Popover(shareButton, {
+            content: msg,
+            placement: "top",
+            trigger: "hover",
+        });
+        popover.show();
+    });
+
+    var shareText = GAME_STATE.share_text;
+
+    if (navigator.share) {
+        navigator.share({
+            "title": title,
+            "text": shareText, // TODO: Change to getShareText()
+        })
+                 .then(() => resultCallback('Shared!'))
+                 .catch((error) => resultCallback('Sharing failed'));
+    }
+    else {
+        // Try copy to clipboard
+        navigator.clipboard.writeText(shareText).then(function() {
+            resultCallback('Copied!');
+        }, function() {
+            resultCallback('Copy failed');
+        });
+    }
+}
 
 // Show user how to play if they haven't played before!
 if (!(localStorage.getItem('travle-past-games')
