@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about hardware)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/hardware.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 03 Dec 2022 00:45:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Puzzle Keyboard: A 60% split acrylic mechanical keyboard</title><link>https://imois.in/posts/puzzle-keyboard/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="org0c96d50" class="figure"&gt;
-&lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/demo.svg" alt="demo.svg" class="org-svg" width="600px"&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Posts about hardware)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/hardware.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Sat, 17 Dec 2022 19:14:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Puzzle Keyboard: A 60% split acrylic mechanical keyboard</title><link>https://imois.in/posts/puzzle-keyboard/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="org0a10b63" class="figure"&gt;
+&lt;p&gt;&lt;object type="image/svg+xml" data="https://imois.in/images/puzzle-kb/demo.svg" class="org-svg" width="600px"&gt;
+Sorry, your browser does not support SVG.&lt;/object&gt;
+&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgafdb5fc" class="outline-2"&gt;
-&lt;h2 id="orgafdb5fc"&gt;The TL;DR&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgafdb5fc"&gt;
+&lt;div id="outline-container-orgeb0f58f" class="outline-2"&gt;
+&lt;h2 id="orgeb0f58f"&gt;TL;DR&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgeb0f58f"&gt;
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;The puzzle keyboard can be used as a &lt;b&gt;60% normal layout&lt;/b&gt; keyboard as well as a &lt;b&gt;split&lt;/b&gt; keyboard.&lt;/li&gt;
+&lt;li&gt;Can be used as a &lt;b&gt;60% normal layout&lt;/b&gt; keyboard as well as a &lt;b&gt;split&lt;/b&gt; keyboard.&lt;/li&gt;
 &lt;li&gt;It's designed to be lazer-cut in layered acrylic cheaply - no need for expensive metal plates, PCBs or other custom metal hardware.&lt;/li&gt;
-&lt;li&gt;Controversial: The 'b' key is on the opposite side! I've always hit that with my right hand, and I'm not going to start now…&lt;/li&gt;
-&lt;li&gt;No wasted &lt;span class="underline"&gt;space&lt;/span&gt; in the bottom row (pun intended, apologies). Lots of room for modifiers.&lt;/li&gt;
-&lt;li&gt;Hand wired so I can admire the pretty wire patterns while trying to avoid looking closely at the results my poor soldering skills.&lt;/li&gt;
+&lt;li&gt;Configurable: I wanted the 'b' key is on the opposite side, but you don't have to.&lt;/li&gt;
+&lt;li&gt;No wasted &lt;span class="underline"&gt;space&lt;/span&gt; in the bottom row (pun intended, apologies). Lots of room for modifiers and layer keys.&lt;/li&gt;
+&lt;li&gt;Hand wired so I can admire the pretty wire patterns (while ignoring some poor soldering).&lt;/li&gt;
+&lt;li&gt;Designed by a friend (who chose to remain unnamed) and myself! He wrote lots of the schematic generation code for a fully split keyboard, while I added in merge-again functionality.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;div id="orgdf6b9c4" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_split_clean.png" alt="kb_split_clean.png" width="600px"&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>hardware</category><guid>https://imois.in/posts/puzzle-keyboard/</guid><pubDate>Tue, 22 Nov 2022 00:34:02 GMT</pubDate></item></channel></rss>
+
+
+&lt;div id="org8763c5e" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_top_clean.png" alt="kb_top_clean.png" width="600px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div id="orgad9c78e" class="figure"&gt;
+&lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_underside_clean.png" alt="kb_underside_clean.png" width="600px"&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;div id="outline-container-org30f00eb" class="outline-2"&gt;
+&lt;h2 id="org30f00eb"&gt;Make your own!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org30f00eb"&gt;
+&lt;p&gt;
+First, create the &lt;a href="https://imois.in/pages/kb-generator"&gt;schematic to cut here&lt;/a&gt;, and cut it out of 4mm acrylic. Solder it, and install the firmware &lt;a href="https://github.com/oisincar/PuzzleKeyboard"&gt;from here!&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><category>hardware</category><guid>https://imois.in/posts/puzzle-keyboard/</guid><pubDate>Tue, 22 Nov 2022 00:34:02 GMT</pubDate></item></channel></rss>

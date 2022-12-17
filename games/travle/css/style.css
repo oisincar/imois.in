@@ -39,6 +39,8 @@ body {
   background-color: hsl(240, 3%, 12%);
   flex: 1;
 }
+
+/* "SOL","target_country":"COD" */
 .countries-guess-full div:first-child {
   margin-right: 3px;
   flex: 3;

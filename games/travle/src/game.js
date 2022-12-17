@@ -68,8 +68,8 @@ class GameState {
     get share_text() {
         var baseText = `Travle #${this.puzzle_ix}: `;
 
-        var start_c = COUNTRY_ID_DATA_LOOKUP[this.start_country].properties.NAME;
-        var end_c = COUNTRY_ID_DATA_LOOKUP[this.target_country].properties.NAME;
+        var start_c = COUNTRY_ID_DATA_LOOKUP[this.start_country].properties.NAME_EN;
+        var end_c = COUNTRY_ID_DATA_LOOKUP[this.target_country].properties.NAME_EN;
         var num_guesses = this.past_guess_ids.length;
 
         if (this.game_progress == GAMEPLAY_STATE_LOST) {
@@ -311,9 +311,6 @@ function loadCountryData(geojson, adjacency) {
 
     // Change a couple names...
     console.log("LOADING");
-    var to_change = {
-        // "Russian Federation": "Russia",
-    };
 
     for (const country of geojson.features) {
         // This seems to be unique for all countries/territories
@@ -321,14 +318,9 @@ function loadCountryData(geojson, adjacency) {
         // Store ID in a handy place.
         country.id = id;
 
-        if (country.properties.NAME in to_change) {
-            country.properties.NAME = to_change[country.properties.NAME];
-        }
-
         COUNTRY_ID_DATA_LOOKUP[id] = country;
-        COUNTRY_NAME_ID_LOOKUP[country.properties.NAME.toLowerCase()] = id;
-        COUNTRY_NAME_ID_LOOKUP[country.properties.NAME_LONG.toLowerCase()] = id;
-        COUNTRY_NAMES.push(country.properties.NAME);
+        COUNTRY_NAME_ID_LOOKUP[country.properties.NAME_EN.toLowerCase()] = id;
+        COUNTRY_NAMES.push(country.properties.NAME_EN);
     }
 
     COUNTRY_NAMES.sort();
@@ -349,7 +341,7 @@ function createSearchbar() {
         threshold: 1,
         maximumItems: -1,
         onSelectItem: ({label, value}) => {
-            console.log("user selected:", label, value);
+            field.focus();
         },
         onEnterSelection: () => {
             submit_current_guess();
@@ -365,7 +357,7 @@ function createSearchbar() {
 }
 
 function submit_current_guess() {
-    var guess = SEARCH_BAR.value;
+    var guess = SEARCH_BAR.value.trim();
 
     if (GAME_STATE.make_guess(guess)) {
         console.log("Successfully guessed!")
@@ -379,7 +371,7 @@ function submit_current_guess() {
 
         SEARCH_BAR.clear();
 
-        guessManager.addGuess(country_data.properties.NAME, GAME_STATE.last_rating);
+        guessManager.addGuess(country_data.properties.NAME_EN, GAME_STATE.last_rating);
 
         saveGameState();
 
@@ -474,8 +466,8 @@ function showResultsModal(delay) {
     else {
         var did_win = (GAME_STATE.game_progress === GAMEPLAY_STATE_WON);
 
-        var start_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME;
-        var end_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME;
+        var start_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME_EN;
+        var end_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME_EN;
 
         if (did_win) {
             var num_steps = GAME_STATE.past_guess_ids.length;
@@ -533,7 +525,7 @@ function loadGuesses() {
     guessManager = new PastGuessManager(elem, GAME_STATE.possible_guesses);
     for (var i = 0; i < GAME_STATE.past_guess_ids.length; i++) {
         var countryId = GAME_STATE.past_guess_ids[i];
-        var countryName = COUNTRY_ID_DATA_LOOKUP[countryId].properties.NAME;
+        var countryName = COUNTRY_ID_DATA_LOOKUP[countryId].properties.NAME_EN;
         var guessRating = GAME_STATE.guess_ratings[i];
         guessManager.addGuess(countryName, guessRating);
     }
@@ -564,8 +556,8 @@ var GAME_STATE = null;
 
 // Either load from web storage, or create gamestate based on cached routes.
 function loadTopText() {
-    var start = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME;
-    var target = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME;
+    var start = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME_EN;
+    var target = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME_EN;
 
     var title = document.getElementById("title-text");
     title.innerHTML = `Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
@@ -593,7 +585,8 @@ function loadGameState(routes) {
     console.log("last state:" + prev_gamestate_str);
 
     var route = routes[ix-1];
-    GAME_STATE = new GameState(ix, route.start, route.target, route.dist);
+    // GAME_STATE = new GameState(ix, route.start, route.target, route.dist);
+    GAME_STATE = new GameState(ix, "SOL", "COD", route.dist);
 
     if (prev_gamestate_str) {
         let prev_gamestate = JSON.parse(prev_gamestate_str);
@@ -787,7 +780,7 @@ if (!(localStorage.getItem('travle-past-games')
 Promise.all([
     // TODO: Separate this out to speed page load.
     // Note: Can't display countries til this arrives so... Maybe not too much improvement to make here.
-    d3.json("data/ne_50m_admin_0_map_units.geojson"),
+    d3.json("data/countries.geojson"),
     d3.json("data/country_adjacency.json"),
     d3.json("data/routes.json"),
 ]).then(
