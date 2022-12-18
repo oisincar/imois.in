@@ -89,7 +89,7 @@ class MapView {
                    // Find event position relative to the svg.
                    var e = d3.pointer(event, svg_map);
                    tooltip
-                       .html(d.properties.NAME_EN)
+                       .html(d.properties.NAME)
                        .style("left", e[0] + "px")
                        .style("top", e[1] + "px");
                })

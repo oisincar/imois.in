@@ -158,8 +158,7 @@ class Autocomplete {
                     });
                 }
 
-                this.renderIfNeeded();
-                // this.dropdown.hide();
+                this.dropdown.hide();
             })
         });
 
