@@ -144,7 +144,6 @@ class Autocomplete {
 
         var fuzzyResults = fuzzysort.go(lookup, this.options.data, {key:'label'});
 
-        // TODO: Untested!
         if (this.options.maximumItems > 0) {
             fuzzyResults = fuzzyResults.slice(0, this.options.maximumItems);
         }
