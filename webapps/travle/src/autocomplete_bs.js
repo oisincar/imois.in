@@ -1,4 +1,5 @@
-// import * as bootstrap from 'bootstrap'
+// NOTE: Now uses fuzzysort
+// https://github.com/farzher/fuzzysort
 
 const DEFAULTS = {
     threshold: 2,
@@ -56,7 +57,7 @@ class Autocomplete {
 
                 const firstChildVal = this.dropdown._menu.children[0]?.dataset.label
                 // If the searchbox exactly matches a country, then trigger onEnterSelection
-                if (firstChildVal.toLowerCase() === this.value.toLowerCase()) {
+                if (firstChildVal.toLowerCase() === this.value.toLowerCase().trim()) {
                     if (this.options.onEnterSelection) {
                         this.options.onEnterSelection();
                     }
@@ -91,33 +92,48 @@ class Autocomplete {
     }
 
     createItem(lookup, item) {
+        // let label;
+        // if (this.options.highlightTyped) {
+        //     const idx = removeDiacritics(item.label)
+        //           .toLowerCase()
+        //           .indexOf(removeDiacritics(lookup).toLowerCase());
+        //     const className = Array.isArray(this.options.highlightClass) ? this.options.highlightClass.join(' ')
+        //           : (typeof this.options.highlightClass == 'string' ? this.options.highlightClass : '');
+        //     label = item.label.substring(0, idx)
+        //         + `<span class="${className}">${item.label.substring(idx, idx + lookup.length)}</span>`
+        //         + item.label.substring(idx + lookup.length, item.label.length);
+        // } else {
+        //     label = item.label;
+        // }
+
+        // if (this.options.showValue) {
+        //     if (this.options.showValueBeforeLabel) {
+        //         label = `${item.value} ${label}`;
+        //     } else {
+        //         label += ` ${item.value}`;
+        //     }
+        // }
+
         let label;
         if (this.options.highlightTyped) {
-            const idx = removeDiacritics(item.label)
-                  .toLowerCase()
-                  .indexOf(removeDiacritics(lookup).toLowerCase());
             const className = Array.isArray(this.options.highlightClass) ? this.options.highlightClass.join(' ')
                   : (typeof this.options.highlightClass == 'string' ? this.options.highlightClass : '');
-            label = item.label.substring(0, idx)
-                + `<span class="${className}">${item.label.substring(idx, idx + lookup.length)}</span>`
-                + item.label.substring(idx + lookup.length, item.label.length);
+
+            // label = item.label.substring(0, idx)
+            //     + `<span class="${className}">${item.label.substring(idx, idx + lookup.length)}</span>`
+            //     + item.label.substring(idx + lookup.length, item.label.length);
+
+            label = fuzzysort.highlight(fuzzysort.single(lookup, item.label),
+                                        `<span class="${className}">`, '</span>');
         } else {
             label = item.label;
-        }
-
-        if (this.options.showValue) {
-            if (this.options.showValueBeforeLabel) {
-                label = `${item.value} ${label}`;
-            } else {
-                label += ` ${item.value}`;
-            }
         }
 
         return ce(`<button type="button" class="dropdown-item" data-label="${item.label}" data-value="${item.value}">${label}</button>`);
     }
 
     createItems() {
-        const lookup = this.field.value;
+        const lookup = this.field.value.trim();
         if (lookup.length < this.options.threshold) {
             this.dropdown.hide();
             return 0;
@@ -126,23 +142,33 @@ class Autocomplete {
         const items = this.field.nextSibling;
         items.innerHTML = '';
 
-        const keys = Object.keys(this.options.data);
+        var fuzzyResults = fuzzysort.go(lookup, this.options.data, {key:'label'});
 
-        let count = 0;
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i];
-            const entry = this.options.data[key];
-            const item = {
-                label: this.options.label ? entry[this.options.label] : key,
-                value: this.options.value ? entry[this.options.value] : entry
-            };
-
-            if (removeDiacritics(item.label).toLowerCase().indexOf(removeDiacritics(lookup).toLowerCase()) >= 0) {
-                items.appendChild(this.createItem(lookup, item));
-                if (this.options.maximumItems > 0 && ++count >= this.options.maximumItems)
-                    break;
-            }
+        // TODO: Untested!
+        if (this.options.maximumItems > 0) {
+            fuzzyResults = fuzzyResults.slice(0, this.options.maximumItems);
         }
+
+        for (const res of fuzzyResults) {
+            var item = res.obj;
+            items.appendChild(this.createItem(lookup, item));
+        }
+
+        // let count = 0;
+        // for (let i = 0; i < keys.length; i++) {
+        //     const key = keys[i];
+        //     const entry = this.options.data[key];
+        //     const item = {
+        //         label: this.options.label ? entry[this.options.label] : key,
+        //         value: this.options.value ? entry[this.options.value] : entry
+        //     };
+
+        //     if (removeDiacritics(item.label).toLowerCase().indexOf(removeDiacritics(lookup).toLowerCase()) >= 0) {
+        //         items.appendChild(this.createItem(lookup, item));
+        //         if (this.options.maximumItems > 0 && ++count >= this.options.maximumItems)
+        //             break;
+        //     }
+        // }
 
         this.field.nextSibling.querySelectorAll('.dropdown-item').forEach((item) => {
             item.addEventListener('click', (e) => {

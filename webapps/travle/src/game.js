@@ -339,12 +339,12 @@ function createSearchbar() {
     SEARCH_BAR = new Autocomplete(field, {
         data: data, //[{label: "I'm a label", value: 42}],
         threshold: 1,
-        maximumItems: -1,
+        maximumItems: 3,
         onSelectItem: ({label, value}) => {
             field.focus();
         },
         onEnterSelection: () => {
-            submit_current_guess();
+            submitCurrentGuess();
         }
     });
 
@@ -352,12 +352,14 @@ function createSearchbar() {
     console.log(document);
     var btn = document.getElementById("btn-guess");
     btn.addEventListener("click", function () {
-        submit_current_guess();
+        submitCurrentGuess();
     });
 }
 
-function submit_current_guess() {
+function submitCurrentGuess() {
     var guess = SEARCH_BAR.value.trim();
+    console.log(`>${guess}<`);
+
 
     if (GAME_STATE.make_guess(guess)) {
         console.log("Successfully guessed!")
@@ -577,6 +579,7 @@ function loadGameState(routes) {
     // TODO: Choose based on today's date...
     var ix = getPuzzleNumber();
     console.log("Playing Travle #", ix);
+    console.log(routes);
 
     // var ix = 314; //Portugal <-> Austria
     // var ix = getRandomInt(routes.length);
@@ -585,8 +588,7 @@ function loadGameState(routes) {
     console.log("last state:" + prev_gamestate_str);
 
     var route = routes[ix-1];
-    // GAME_STATE = new GameState(ix, route.start, route.target, route.dist);
-    GAME_STATE = new GameState(ix, "SOL", "COD", route.dist);
+    GAME_STATE = new GameState(ix, route.start, route.target, route.dist);
 
     if (prev_gamestate_str) {
         let prev_gamestate = JSON.parse(prev_gamestate_str);
