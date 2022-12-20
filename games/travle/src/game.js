@@ -307,11 +307,6 @@ class PastGuessManager {
 
 let has_warned_about_cookies = false;
 function loadCountryData(geojson, adjacency) {
-    // console.log(geojson.features.map(c => [c.properties.NAME, c.properties.NAME_LONG, c.properties.NAME_]))
-
-    // Change a couple names...
-    console.log("LOADING");
-
     for (const country of geojson.features) {
         // This seems to be unique for all countries/territories
         var id = country.properties.SU_A3;
@@ -506,7 +501,7 @@ function showResultsModal(delay) {
     }, delay);
 }
 
-function get_visible_countries_geojson() {
+function getVisibleCountriesGeojson() {
     var data = GAME_STATE.visible_countries.map(country_id => COUNTRY_ID_DATA_LOOKUP[country_id]);
     return {
         type: "FeatureCollection",
@@ -516,9 +511,7 @@ function get_visible_countries_geojson() {
 
 var map = null;
 function loadMap() {
-    var visible_countries_geojson = get_visible_countries_geojson();
-    console.log(visible_countries_geojson);
-    map = new MapView("d3-map", visible_countries_geojson);
+    map = new MapView("d3-map", getVisibleCountriesGeojson());
 }
 
 var guessManager;
@@ -777,6 +770,16 @@ if (!(localStorage.getItem('travle-past-games')
     let modal = new bootstrap.Modal(document.getElementById('explanationModal'), {});
     modal.show();
 }
+
+
+// TODO: Replace cookie solution with something better!
+// My understanding of GDPR is cookies/local data storage is allowed when it is
+// necessary to fulfil some basic expected functionality of the site.
+// In this case, saving and re-loading game state is pretty expected, and is very similar
+// to the example given by the regulation: Storing items in a cart.
+// Storing streaks etc is a little less straight forward but I feel it should be fine...
+// With this in mind... Just mark cookies as true to bypass my safety stuff...
+COOKIES_ACCEPTED = true;
 
 // Load external data and boot
 Promise.all([
