@@ -779,7 +779,7 @@ if (!(localStorage.getItem('travle-past-games')
 // to the example given by the regulation: Storing items in a cart.
 // Storing streaks etc is a little less straight forward but I feel it should be fine...
 // With this in mind... Just mark cookies as true to bypass my safety stuff...
-COOKIES_ACCEPTED = true;
+let COOKIES_ACCEPTED = true;
 
 // Load external data and boot
 Promise.all([
