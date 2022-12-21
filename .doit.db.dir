@@ -295,3 +295,4 @@
 'render_sources:output/pages/freelance/index.org', (359424, 245)
 'render_taxonomies:output/categories/index.html', (359936, 1495)
 'copy_assets:output/assets/css/baguetteBox.min.css', (361472, 415)
+'copy_files:output/games/travle/data/test2png.png', (361984, 275)
