@@ -11,6 +11,16 @@ body {
   margin-bottom: 0px;
 }
 
+
+.brand-text a {
+  color: hsl(200, 0%, 84%);
+  font-size: 1.5em;
+  text-shadow: 1px 1px 1px #457f87;
+  text-decoration: none;
+  outline: 0;
+}
+
+
 #d3-map {
   border: 2px solid var(--border);
   border-radius: 5px;
@@ -39,6 +49,8 @@ body {
   background-color: hsl(240, 3%, 12%);
   flex: 1;
 }
+
+/* "SOL","target_country":"COD" */
 .countries-guess-full div:first-child {
   margin-right: 3px;
   flex: 3;
