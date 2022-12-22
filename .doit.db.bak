@@ -16,7 +16,7 @@
 'copy_assets:output/assets/css/theme.css', (404992, 539)
 'copy_files:output/assets/js/procedural_animation/LightSwitch.js', (13824, 312)
 'render_posts:cache/posts/procedural-animation-2-functions.html', (14336, 428)
-'copy_files:output/games/travle/data/routes.json', (14848, 273)
+'copy_files:output/games/travle/data/routes.json', (14848, 274)
 'copy_files:output/assets/js/procedural_animation/Graph.js', (15360, 300)
 'scale_images:output/images/procedural_anim/zigzag0.png', (15872, 248)
 'render_taxonomies:output/categories/animation.xml', (16384, 1598)
