@@ -501,6 +501,7 @@ function showResultsModal(delay) {
     }, delay);
 }
 
+
 function getVisibleCountriesGeojson() {
     var data = GAME_STATE.visible_countries.map(country_id => COUNTRY_ID_DATA_LOOKUP[country_id]);
     return {
