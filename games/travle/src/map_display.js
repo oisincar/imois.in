@@ -120,7 +120,7 @@ class MapView {
         d3.transition()
           .duration(1250)
           .tween("rotate", function() {
-              var data = get_visible_countries_geojson();
+              var data = getVisibleCountriesGeojson();
 
               // Calculate target projection
               var target_projection = that.calculate_ideal_projection(data);
