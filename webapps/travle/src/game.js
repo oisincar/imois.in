@@ -25,6 +25,11 @@ const GAMEPLAY_STATE_ONGOING = "ongoing";
 const GAMEPLAY_STATE_LOST = "lost";
 const GAMEPLAY_STATE_WON = "won";
 
+const EMOJI_PERFECT = "✅";
+const EMOJI_GOOD = "🟧";
+const EMOJI_POOR = "🟥";
+const EMOJI_IMPOSSIBLE = "⬛";
+
 class GameState {
     puzzle_ix = 0;
     start_country = null;
@@ -130,7 +135,7 @@ class GameState {
         var guessRating;
         var improvement = this.minimum_guesses_to_solve() - distToSol;
         if (improvement == -1) {
-            guessRating = "✅";
+            guessRating = EMOJI_PERFECT;
         }
         else {
             if (improvement != 0) {
@@ -144,15 +149,15 @@ class GameState {
             console.log("Distance via last guess is: ", dist);
             if (isNaN(dist)) {
                 // No path through new guess... What'cha doin!
-                guessRating = "⬛";
+                guessRating = EMOJI_IMPOSSIBLE;
             }
             else if (dist <= distToSol + 1) {
                 // Path through this new guess isn't more than 1 farther than what we had before.
-                guessRating = "🟧";
+                guessRating = EMOJI_GOOD;
             }
             else {
                 // Path is further
-                guessRating = "🟥";
+                guessRating = EMOJI_POOR;
             }
         }
         this.guess_ratings.push(guessRating);
@@ -292,14 +297,34 @@ class PastGuessManager {
         }
     }
 
-    addGuess(countryName, guessRating) {
+    addGuess(countryName, guessRatingEmoji) {
         if (this.guessIx > this.guessDomElements.length) {
             console.log("Error: Out of guesses");
         }
 
-        var elem = this.guessDomElements[this.guessIx];
+        let elem = this.guessDomElements[this.guessIx];
         elem.className = 'countries-guess-full';
-        elem.innerHTML = `<div class="guess-text">${countryName}</div><div class="guess-emoji">${guessRating}</div>`;
+
+        let targetCountryName = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME_EN;
+
+        // Find title text for guessRating
+        let guessTitleText;
+        if (guessRatingEmoji === EMOJI_PERFECT) {
+            guessTitleText = "Perfect guess. This country is on the shortest route.";
+        }
+        else if (guessRatingEmoji === EMOJI_GOOD) {
+            guessTitleText = "Good guess. Not the shortest route, but it's not far off.";
+        }
+        else if (guessRatingEmoji === EMOJI_POOR) {
+            guessTitleText = "Bit of a detour from " + targetCountryName;
+        }
+        else if (guessRatingEmoji === EMOJI_IMPOSSIBLE) {
+            guessTitleText = "Big detour from " + targetCountryName;
+        }
+
+        elem.innerHTML =
+            `<div class="guess-text">${countryName}</div>`
+            + `<div title="${guessTitleText}" class="guess-emoji">${guessRatingEmoji}</div>`;
 
         this.guessIx++;
     }
@@ -334,7 +359,7 @@ function createSearchbar() {
     SEARCH_BAR = new Autocomplete(field, {
         data: data, //[{label: "I'm a label", value: 42}],
         threshold: 1,
-        maximumItems: 3,
+        maximumItems: -1,
         onSelectItem: ({label, value}) => {
             field.focus();
         },
@@ -442,7 +467,6 @@ function showResultsModal(delay) {
     }
 
     // Game results
-
     var txt = document.getElementById("resultsModalText");
     var emojis = document.getElementById("resultsModalEmojis");
     var copy_button = document.getElementById("resultsModelCopyButton");
@@ -481,13 +505,6 @@ function showResultsModal(delay) {
 
         emojis.innerHTML = GAME_STATE.guess_ratings.join("");
 
-        // let emojis_txt = game.getBoardBreakdown().join("<br>");
-        // if (!did_win) {
-        //     emojis_txt += "<br><br>";
-        //     emojis_txt += game.getSolutionBreakdown().join("<br>");
-        // }
-        // emojis.innerHTML = emojis_txt;
-
         // Show share buttons
         copy_button.classList.remove('invisible');
         if (navigator.share)
@@ -522,8 +539,8 @@ function loadGuesses() {
     for (var i = 0; i < GAME_STATE.past_guess_ids.length; i++) {
         var countryId = GAME_STATE.past_guess_ids[i];
         var countryName = COUNTRY_ID_DATA_LOOKUP[countryId].properties.NAME_EN;
-        var guessRating = GAME_STATE.guess_ratings[i];
-        guessManager.addGuess(countryName, guessRating);
+        var guessRatingEmoji = GAME_STATE.guess_ratings[i];
+        guessManager.addGuess(countryName, guessRatingEmoji);
     }
 }
 
