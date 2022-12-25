@@ -92,7 +92,9 @@
                         </div>
                         <div class="modal-body">
                             <p>
-                                Guess countries until you've made a path from <b>start</b> to <b>end</b>! You can guess the countries in any order. Compete to get the shortest possible path.
+                                Guess countries until you've made a path from <b>start</b> to <b>end</b>!
+                                You can guess the countries in any order.
+                                Try to get there in as few guesses as possible by land - sea travel doesn't count.
                             </p>
 
                             <p>
@@ -121,6 +123,8 @@
                                 </div>
                             </div>
 
+                            <p>A new Travle is released each night at midnight.</p>
+
                             <p>Travle is made by me, Oisin Carroll. If you enjoyed the game it'd be awesome if you shared it!
                                 If you've any thoughts/improvements email me at
                                 <a href="mailto: hi@imois.in">hi@imois.in</a> or find me on Twitter <a href="https://twitter.com/onemoremoose">@onemoremoose</a>.
@@ -133,7 +137,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Results modal -->
             <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalTitle" style="display: none;" aria-hidden="true">
@@ -156,8 +159,8 @@
                             </div>
 
                             <div id="resultsModalText">travle #?: ?? guesses</div>
-                            <p class="results-emoji-breakdown" id="resultsModalEmojis">
-                            </p>
+                            <p class="results-emoji-breakdown" id="resultsModalEmojis"></p>
+                            <div id="googleMapsLink"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary btn-lg invisible">

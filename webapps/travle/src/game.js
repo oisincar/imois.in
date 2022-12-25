@@ -278,6 +278,87 @@ class GameState {
         // No solution found!
         return NaN;
     }
+
+    dijkstras(start_country, target_country, use_guesses) {
+        // Map country id to distance from the start.
+        var dist = {};
+        // same, to prev country
+        var prev = {};
+        var visited = new Set();
+
+        var queue = [start_country];
+
+        // Countries we consider that we've already guessed.
+        var givenCountries = use_guesses ? new Set(this.visible_countries) : new Set();
+
+        while (queue.length > 0) {
+            // console.log(queue.map(c => COUNTRY_ID_DATA_LOOKUP[c].properties.NAME_EN));
+
+            var country = queue.shift();
+            if (visited.has(country)) continue;
+            visited.add(country);
+
+            if (country === target_country) {
+                break;
+            }
+
+            // If this country has already been guessed, then we can access
+            // neighbors for free.
+            for (const n of this.get_adjacent_countries(country)) {
+                if (!visited.has(n)) {
+
+                    if (prev[n] == null) {
+                        prev[n] = country;
+                    }
+
+                    // Ghetto-ist priority queue... Just prepend when there's a cost of 0.
+                    // This is (surprisingly) suffecient to guarante we hit all nodes in the correct order.
+                    // See: Equivariant property of this loop is that all nodes in the queue are either the
+                    // same distance as the currently explored node, or one further.
+                    if (givenCountries.has(n)) {
+                        queue.unshift(n);
+                    }
+                    else {
+                        queue.push(n);
+                    }
+
+                }
+            }
+        }
+
+        // Reconstruct!
+        var n = target_country;
+        var path = [];
+        while (n != null) {
+            path.push(n);
+            n = prev[n];
+        }
+        path = path.reverse();
+
+        if (path[0] !== start_country) {
+            return {
+                "path": null,
+                "guessesNeeded": null,
+                "cost": -1,
+            }
+        }
+
+        // Get path cost
+        var cost = 0;
+        var guessesNeeded = [];
+        for (const c of path) {
+            if (!givenCountries.has(c)) {
+                cost += 1;
+                guessesNeeded.push(c);
+            }
+        }
+
+        return {
+            "path": path,
+            "guessesNeeded": guessesNeeded,
+            "cost": cost,
+        };
+    }
 }
 
 class PastGuessManager {
@@ -468,7 +549,6 @@ function showResultsModal(delay) {
 
     // Game results
     var txt = document.getElementById("resultsModalText");
-    var emojis = document.getElementById("resultsModalEmojis");
     var copy_button = document.getElementById("resultsModelCopyButton");
     var share_button = document.getElementById("resultsModelShareButton");
     let modal = new bootstrap.Modal(document.getElementById('resultsModal'), {});
@@ -478,7 +558,6 @@ function showResultsModal(delay) {
     // Game hasn't finished
     if (GAME_STATE.game_progress === GAMEPLAY_STATE_ONGOING) {
         txt.textContent = "";
-        emojis.innerHTML = "";
 
         // Hide share buttons
         copy_button.classList.add('invisible');
@@ -490,20 +569,58 @@ function showResultsModal(delay) {
         var start_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.start_country].properties.NAME_EN;
         var end_c = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME_EN;
 
+        let resultsHTML;
+
+        let shouldShowOptimal = true;
+
+        let toHumanReadable = (c => COUNTRY_ID_DATA_LOOKUP[c].properties.NAME_EN);
+
         if (did_win) {
             var num_steps = GAME_STATE.past_guess_ids.length;
-            txt.innerHTML = `Success! You got from ${start_c} to ${end_c} in <b>${num_steps} steps</b>.<br>`
-                + `The best possible solution was <b>${GAME_STATE.shortest_solution-1} steps</b>.<br>`
+            var best_steps = GAME_STATE.shortest_solution - 1;
+
+            resultsHTML = `Success! You got from ${start_c} to ${end_c} in <b>${num_steps} guesses</b>.<br>`
+                + `The shortest solution was <b>${best_steps} guesses</b>.<br>`
+
+            if (num_steps == best_steps) {
+                shouldShowOptimal = false;
+            }
         }
         else {
             var steps_left = GAME_STATE.minimum_guesses_to_solve();
             var steps_txt = steps_left + " step" + (steps_left == 1 ? "" : "s")
-            txt.innerHTML = `So close. You were just <b>${steps_txt}</b> from ${end_c}.<br>`
-                + `The best possible solution was <b>${GAME_STATE.shortest_solution-1} steps</b>.<br>`;
-        }
-        txt.innerHTML += "<br>Guess breakdown:";
 
-        emojis.innerHTML = GAME_STATE.guess_ratings.join("");
+            var sol = GAME_STATE.dijkstras(GAME_STATE.start_country, GAME_STATE.target_country, true);
+            var missing_countries = sol.guessesNeeded.map(toHumanReadable).join(", ");
+            var country_txt = sol.guessesNeeded.length == 1 ? "country" : "countries";
+            resultsHTML = `So close. You were just <b>${steps_txt}</b> from ${end_c}.<br>`
+                + `Missing ${country_txt}🔎: ${missing_countries}.<br><br>`
+                + `The shortest solution was <b>${GAME_STATE.shortest_solution-1} guesses</b>.<br>`;
+        }
+
+        if (shouldShowOptimal) {
+            var best_sol = GAME_STATE.dijkstras(GAME_STATE.start_country, GAME_STATE.target_country, false);
+            resultsHTML += `${best_sol.path.map(toHumanReadable).join(" ➡️ ")}.<br>`;
+        }
+
+        // Emojis
+        resultsHTML += "<br>Guess breakdown:";
+        let emojisText = GAME_STATE.guess_ratings.join("");
+        resultsHTML += `<p class="results-emoji-breakdown" id="resultsModalEmojis">${emojisText}</p>`;
+
+        // Maps link
+        let mapsLink = generateGoogleMapsLink(
+            GAME_STATE.start_country,
+            GAME_STATE.target_country);
+        resultsHTML += `<a href=${mapsLink}>👀 ${start_c} to ${end_c} on Google Maps</a><br>`;
+
+        // Countdown until next travle!
+        var nextIx = GAME_STATE.puzzle_ix + 1;
+        resultsHTML += `<br><div>Travle #${nextIx} available in <b id='clock-time'></b>.</div>`;
+
+        txt.innerHTML = resultsHTML;
+
+        runCountdownTimer();
 
         // Show share buttons
         copy_button.classList.remove('invisible');
@@ -518,6 +635,56 @@ function showResultsModal(delay) {
     }, delay);
 }
 
+// If the countdown is already running, stop it.
+// Then update the countdown.
+let countdownInterval = null;
+function runCountdownTimer() {
+    if (countdownInterval != null) {
+        console.log("Clearing prev");
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+
+    // Update the count down every 1 second
+    let f = function() {
+        var now = new Date().getTime();
+
+        const secsPerDay = 60 * 60 * 24;
+        var secondsTilMidnight = secsPerDay - ((now/1000) % secsPerDay);
+
+        var hours = Math.floor(secondsTilMidnight / (60 * 60));
+        var minutes = Math.floor((secondsTilMidnight / 60) % 60);
+        var seconds = Math.floor(secondsTilMidnight % 60);
+
+        let showN = (n) => {
+            return n.toString().padStart(2, '0');
+        }
+
+        // Output the result in an element with id="demo"
+        var elem = document.getElementById("clock-time");
+        if (elem == null) {
+            console.log("Clearing");
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+        else {
+            elem.innerHTML = `${showN(hours)}:${showN(minutes)}:${showN(seconds)}`;
+        }
+    };
+    // Call immediately to get an initial result.
+    f();
+
+    countdownInterval = setInterval(f, 1000);
+}
+
+function generateGoogleMapsLink(startId, endId) {
+    let start = COUNTRY_ID_DATA_LOOKUP[startId].properties.NAME_EN;
+    start = encodeURIComponent(start);
+    let end = COUNTRY_ID_DATA_LOOKUP[endId].properties.NAME_EN;
+    end = encodeURIComponent(end);
+
+    return `https://www.google.com/maps/dir/${start}/${end}/`;
+}
 
 function getVisibleCountriesGeojson() {
     var data = GAME_STATE.visible_countries.map(country_id => COUNTRY_ID_DATA_LOOKUP[country_id]);
@@ -586,6 +753,16 @@ function getPuzzleNumber() {
     return Math.floor(dayOffset + 1); // Puzzle #1 on 15th
 }
 
+// Should probably do some proper testing... But this'll be fine for now...
+// function debugSanityCheckPathfinding(routes) {
+//     for (const r of routes) {
+//         var path1 = GAME_STATE.dijkstras(r.start, r.target, false);
+//         if (path1.cost != r.dist + 1) {
+//             console.log("ERROR computing distance!");
+//         }
+//     }
+// }
+
 function loadGameState(routes) {
     // TODO: Choose based on today's date...
     var ix = getPuzzleNumber();
@@ -617,6 +794,8 @@ function loadGameState(routes) {
             GAME_STATE.game_progress = prev_gamestate.game_progress;
         }
     }
+
+    // debugSanityCheckPathfinding(routes);
 
     // Show finishing UI if completed
     maybeShowEndGameUI();
