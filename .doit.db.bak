@@ -114,7 +114,7 @@
 'render_taxonomies:output/categories/gamedev/index.html', (152576, 4600)
 'render_taxonomies:output/categories/cat_interesting-thing/index.html', (157184, 2438)
 'copy_files:output/misc/secret_url_shhhHhHhhH/LizGL/Build/LizGL.framework.js', (159744, 337)
-'copy_files:output/games/travle/src/game.js', (160256, 263)
+'copy_files:output/games/travle/src/game.js', (160256, 262)
 'sitemap', (160768, 56)
 'scale_images:output/images/procedural_anim/bounce0.png', (161280, 248)
 'scale_images:output/images/chromatic_number/pineapplepen.jpg', (161792, 259)
