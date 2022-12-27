@@ -71,7 +71,7 @@ class GameState {
     }
 
     get share_text() {
-        var baseText = `Travle #${this.puzzle_ix}: `;
+        var baseText = `travle #${this.puzzle_ix}: `;
 
         var start_c = COUNTRY_ID_DATA_LOOKUP[this.start_country].properties.NAME_EN;
         var end_c = COUNTRY_ID_DATA_LOOKUP[this.target_country].properties.NAME_EN;
@@ -553,7 +553,7 @@ function showResultsModal(delay) {
     var share_button = document.getElementById("resultsModelShareButton");
     let modal = new bootstrap.Modal(document.getElementById('resultsModal'), {});
 
-    title.textContent = "Travle #" + GAME_STATE.puzzle_ix + ": ";
+    title.textContent = "travle #" + GAME_STATE.puzzle_ix;
 
     // Game hasn't finished
     if (GAME_STATE.game_progress === GAMEPLAY_STATE_ONGOING) {
@@ -616,7 +616,7 @@ function showResultsModal(delay) {
 
         // Countdown until next travle!
         var nextIx = GAME_STATE.puzzle_ix + 1;
-        resultsHTML += `<br><div>Travle #${nextIx} available in <b id='clock-time'></b>.</div>`;
+        resultsHTML += `<br><div>travle #${nextIx} available in <b id='clock-time'></b>.</div>`;
 
         txt.innerHTML = resultsHTML;
 
@@ -766,7 +766,7 @@ function getPuzzleNumber() {
 function loadGameState(routes) {
     // TODO: Choose based on today's date...
     var ix = getPuzzleNumber();
-    console.log("Playing Travle #", ix);
+    console.log("Playing travle #", ix);
     console.log(routes);
 
     // var ix = 314; //Portugal <-> Austria
@@ -941,7 +941,7 @@ function share() {
 
     var shareText = GAME_STATE.share_text;
 
-    var title = `Travle #${GAME_STATE.puzzle_ix}`;
+    var title = `travle #${GAME_STATE.puzzle_ix}`;
 
     if (navigator.share) {
         navigator.share({

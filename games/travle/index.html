@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Travle</title>
+        <title>travle</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -60,7 +60,12 @@
         <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
             <div class="container-fluid">
                 <div class="navbar-brand navbar-logo">
-                    Travle
+                    <div class="brand-text">
+                        <i class="fa-regular fa-compass"></i>
+                        <span>
+                            travle
+                        </span>
+                    </div>
                 </div>
                 <div class="brand">
                     <div class="brand-text">
@@ -71,6 +76,9 @@
                 </div>
 
                 <form class="justify-content-end">
+                    <button type="button" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#changelogModal">
+                        <span class="fa-solid fa-file-pen"></span>
+                    </button>
                     <button type="button" onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
                         <span class="fa-solid fa-chart-simple"></span>
                     </button>
@@ -81,6 +89,34 @@
             </div>
         </nav>
         <div class="container">
+
+            <div class="modal fade" id="changelogModal" tabindex="-1" aria-labelledby="changelogModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changelogModalLabel">Changelog</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>27 Dec 2022: Add changelog, improve logo.</li>
+                                <li>26 Dec 2022: Add shortest route, missing countries and next-travle countdown timer to results modal</li>
+                                <li>24 Dec 2022: <b>5000th player!</b></li>
+                                <li>21 Dec 2022: Fix errors with some country borders (Ukraine, Serbia). Game now follows ISO standard for valid countries/regions. Fix map recentering bug.</li>
+                                <li>21 Dec 2022: <b>1000th player!</b></li>
+                                <li>20 Dec 2022: Improve input - fuzzy searchable countries</li>
+                                <li>15 Dec 2022: <b>100th player!</b></li>
+                                <li>15 Dec 2022: Improve route generation alg</li>
+                                <li>14 Dec 2022: travle #1 released!</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Explanation modal -->
             <div class="modal fade" id="explanationModal" tabindex="-1" aria-labelledby="explanationModalLabel" aria-hidden="true">
@@ -123,9 +159,9 @@
                                 </div>
                             </div>
 
-                            <p>A new Travle is released each night at midnight.</p>
+                            <p>A new travle is released each night at midnight.</p>
 
-                            <p>Travle is made by me, Oisin Carroll. If you enjoyed the game it'd be awesome if you shared it!
+                            <p>travle is made by me, Oisin Carroll. If you enjoyed the game it'd be awesome if you shared it!
                                 If you've any thoughts/improvements email me at
                                 <a href="mailto: hi@imois.in">hi@imois.in</a> or find me on Twitter <a href="https://twitter.com/onemoremoose">@onemoremoose</a>.
                                 Thanks for playing!
@@ -143,6 +179,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content results-modal">
                         <div class="modal-header">
+                            <i class="fa-regular fa-compass" style="font-size:1.25em; padding-right: 5px;"></i>
                             <h5 class="modal-title" id="resultsModalTitle">You ?</h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>

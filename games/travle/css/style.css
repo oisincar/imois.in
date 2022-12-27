@@ -12,9 +12,17 @@ body {
 }
 
 
-.brand-text a {
+.brand-text {
   color: hsl(200, 0%, 84%);
   font-size: 1.5em;
+  text-shadow: 1px 1px 1px #457f87;
+  text-decoration: none;
+  outline: 0;
+}
+
+.brand-text a {
+  color: hsl(200, 0%, 84%);
+  font-size: 1em;
   text-shadow: 1px 1px 1px #457f87;
   text-decoration: none;
   outline: 0;
