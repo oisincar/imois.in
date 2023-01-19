@@ -108,9 +108,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org8ef5f84" class="outline-2">
-<h2 id="org8ef5f84">Intro</h2>
-<div class="outline-text-2" id="text-org8ef5f84">
+        <div id="outline-container-org264f391" class="outline-2">
+<h2 id="org264f391">Intro</h2>
+<div class="outline-text-2" id="text-org264f391">
 <p>
 This is the first in a 3 part series on procedural animation, all taken from a talk
 I gave in January of 2019. The posts ramp up in complexity, and I've tried to make
@@ -133,9 +133,9 @@ source code in the inspector or find it on <a href="https://github.com/oisincar/
 </div>
 </div>
 
-<div id="outline-container-orgc60bf89" class="outline-2">
-<h2 id="orgc60bf89">Differences vs traditional animation.</h2>
-<div class="outline-text-2" id="text-orgc60bf89">
+<div id="outline-container-org89c51fa" class="outline-2">
+<h2 id="org89c51fa">Differences vs traditional animation.</h2>
+<div class="outline-text-2" id="text-org89c51fa">
 <ul class="org-ul">
 <li>Advantages:
 <ul class="org-ul">
@@ -158,9 +158,9 @@ Simulate large numbers easily.</li>
 </div>
 </div>
 
-<div id="outline-container-orga27ed73" class="outline-2">
-<h2 id="orga27ed73">State, Update &amp; Apply</h2>
-<div class="outline-text-2" id="text-orga27ed73">
+<div id="outline-container-org8526097" class="outline-2">
+<h2 id="org8526097">State, Update &amp; Apply</h2>
+<div class="outline-text-2" id="text-org8526097">
 <p>
 This is the core of how I approach these animations. I find it's helpful to try
 and break down the system into 3 parts - State, Update, and Apply. These
@@ -203,9 +203,9 @@ Anyway… Lets look at an example!
 </div>
 </div>
 
-<div id="outline-container-org94521d4" class="outline-2">
-<h2 id="org94521d4">Example: Light</h2>
-<div class="outline-text-2" id="text-org94521d4">
+<div id="outline-container-orgb61deff" class="outline-2">
+<h2 id="orgb61deff">Example: Light</h2>
+<div class="outline-text-2" id="text-orgb61deff">
 <p>
 State machines are one of the simplest forms of procedural animation. The idea
 is there is a single 'state' we're in, and also a set of
@@ -233,7 +233,7 @@ probabilities.
 </p>
 
 
-<div id="org1551f50" class="figure">
+<div id="orgc796942" class="figure">
 <p><img src="../../images/procedural_anim/light_state.png" alt="light_state.png"></p>
 <p><span class="figure-number">Figure 1: </span>Light state diagram</p>
 </div>
@@ -247,22 +247,22 @@ frame, or leave the frame blank.
 Overall, our code looks like this…
 </p>
 <div class="highlight"><pre><span></span><span class="c1">// STATE</span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="kt">bool</span> <span class="n">_on</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// UPDATE:</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_on</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Random</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.98</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">	</span><span class="n">_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_on</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Random</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.93</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">	</span><span class="n">_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="kt">void</span> <span class="nf">Update</span><span class="p">(</span><span class="kt">float</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// UPDATE:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_on</span> <span class="o">&amp;&amp;</span> <span class="n">Random</span><span class="p">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mf">0.98</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">_on</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">_on</span> <span class="o">&amp;&amp;</span> <span class="n">Random</span><span class="p">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mf">0.93</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">_on</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// APPLY:</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_on</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">	</span><span class="c1">// Draw here!!</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+    <span class="c1">// APPLY:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_on</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// Draw here!!</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 <p>
@@ -270,6 +270,7 @@ Tune in next time for some more interesting examples!
 </p>
 </div>
 </div>
+
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
@@ -310,7 +311,7 @@ MathJax.Hub.Config({
                 </div>
             </div>
                 <div class="copyright">
-                    Contents © 2022         <a href="mailto:oisincar@gmail.com">Oisin Carroll</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    Contents © 2023         <a href="mailto:oisincar@gmail.com">Oisin Carroll</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
                     
                 </div>
            

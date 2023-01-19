@@ -108,15 +108,15 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org4c9556b" class="outline-2">
-<h2 id="org4c9556b">Introduction</h2>
-<div class="outline-text-2" id="text-org4c9556b">
+        <div id="outline-container-org0101e7e" class="outline-2">
+<h2 id="org0101e7e">Introduction</h2>
+<div class="outline-text-2" id="text-org0101e7e">
 <script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script><script src="../../assets/js/slapshot/slapshot_sdf_graph.js"></script><script src="../../assets/js/math/Vector.js"></script><p>
-Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced icehockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
+Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced ice hockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
 </p>
 
 
-<div id="orgfbdc7b7" class="figure">
+<div id="orgdb0d906" class="figure">
 <p><img src="../../images/slapshot/slapshot_bots_demo.gif" alt="slapshot_bots_demo.gif"></p>
 <p><span class="figure-number">Figure 1: </span>A some gameplay from a 2v2 game in slapshot. All players are bots.</p>
 </div>
@@ -126,7 +126,7 @@ This first part covers a novel method for how the bots handle spacial queries, a
 </p>
 
 <p>
-Something that came up repeatedly is 'how far is this point from the edge?'. I wanted to move bots away from the edges to put them in the action, and bots needed to know if the puck was near the edge so they could approach it correctly. Additionally, it was important to quickly check points were in bounds, so the bots weren't attempting to walk into the wall.
+Something that came up repeatedly is 'how far is this point from the edge?'. I wanted to move bots away from the edges to put them in the action, and bots needed to know if the puck was near the edge so they could approach it correctly. Additionally, it was important to quickly check if points were in bounds, so the bots weren't attempting to skate into the wall.
 </p>
 
 <p>
@@ -134,7 +134,7 @@ The problem surfaces again when considering more advanced behaviours: The bots s
 </p>
 
 <p>
-It's possible to use lots of raycasts to check for nearby obsticles, but this gets expensive. For predicting puck paths, the solution used by the open source <a href="https://rlbot.org">Rocket League Bots</a> I looked it is to use a full physics engine: Bullet, to occasionally simulate the ball path and interaction with objects. This is very accurate, but it's slow and complicated.
+It's possible to use lots of raycasts to check for nearby obstacles, but this gets expensive. For predicting puck paths, the solution used by the open source <a href="https://rlbot.org">Rocket League Bots</a> I looked at is to use a full physics engine: Bullet, to occasionally simulate the ball path and interaction with objects. This is very accurate, but it's slow and complicated.
 </p>
 
 <p>
@@ -143,9 +143,9 @@ Instead, I used an idea from graphics: Signed Distance Functions. It's much fast
 </div>
 </div>
 
-<div id="outline-container-orgbd86997" class="outline-2">
-<h2 id="orgbd86997">What is a Signed Distance Function?</h2>
-<div class="outline-text-2" id="text-orgbd86997">
+<div id="outline-container-org4011a4a" class="outline-2">
+<h2 id="org4011a4a">What is a Signed Distance Function?</h2>
+<div class="outline-text-2" id="text-org4011a4a">
 <p>
 The idea of a signed distance field is to provide a function \(f(\vec{p}) = d\) which gives the distance from some point \(p\) to a surface.
 </p>
@@ -216,11 +216,11 @@ v &amp;= \text{abs}(p) - \frac{b}{2} \\
 Or, more intuitively, written in GLSL:
 </p>
 
-<div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">sdf_box</span><span class="p">(</span><span class="n">in</span><span class="w"> </span><span class="n">vec2</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">vec2</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">vec2</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="n">b</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="kt">float</span> <span class="nf">sdf_box</span><span class="p">(</span><span class="n">in</span> <span class="n">vec2</span> <span class="n">p</span><span class="p">,</span> <span class="n">in</span> <span class="n">vec2</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">vec2</span> <span class="n">v</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span> <span class="o">+</span> <span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 
 <p>
@@ -270,9 +270,9 @@ It's worth noting SDFs work equally well in 3D as well as 2D. Inigo Quilez has c
 </div>
 </div>
 
-<div id="outline-container-org2217779" class="outline-2">
-<h2 id="org2217779">A Slapshot SDF:</h2>
-<div class="outline-text-2" id="text-org2217779">
+<div id="outline-container-org5e82427" class="outline-2">
+<h2 id="org5e82427">A Slapshot SDF:</h2>
+<div class="outline-text-2" id="text-org5e82427">
 <p>
 Onto something more useful… A signed distance function for the slapshot rink. This combines a rounded square for the outer perimiter with a capsule for each goal.
 </p>
@@ -296,16 +296,16 @@ this.graph = new SDFGraph(document.getElementById('mygraph3'),
                           164,
                           70);
 </script><p>
-The function is most positive near the center of the pitch - these are the points furthest from the edges of the rink. The function is 0 outside the outer perimiter, as well as inside the goals: We don't want bots pathing in there.
+The function is most positive near the center of the pitch - these are the points furthest from the edges of the rink. The function is 0 outside the outer perimeter, as well as inside the goals: We don't want bots pathing in there.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7b4279c" class="outline-2">
-<h2 id="org7b4279c">Gradients, normals and nearest points</h2>
-<div class="outline-text-2" id="text-org7b4279c">
+<div id="outline-container-org20b0898" class="outline-2">
+<h2 id="org20b0898">Gradients, normals and nearest points</h2>
+<div class="outline-text-2" id="text-org20b0898">
 <p>
-As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivitive of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
+As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivative of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
 </p>
 
 <p>
@@ -318,7 +318,7 @@ Which is essentially saying the gradient is a vector defined by the partial deri
 </p>
 
 <p>
-In some cases it's possbile to work these out emperically, but that's challenging for more complicated examples. Instead, we sample a couple of points nearby and calculate the gradient from those.
+In some cases it's possible to work these out mathematically, but that's challenging for more complicated examples. Instead, we sample a couple of points nearby and calculate the gradient from those.
 </p>
 
 <p>
@@ -336,14 +336,14 @@ Taking a smaller k theoretically gives more accurate results, but in reality you
 </p>
 
 <p>
-A nice property of this is that we can calculate surface normals and tangents for free. The normals are simply the gradient at some point on the surface, and the tangents are orthagonal to that. This is useful for calculating how to approach a puck near the edge, but in other cases it's useful for calculating lighting of objects for example.
+A nice property of this is that we can calculate surface normals and tangents for free. The normals are simply the gradient at some point on the surface, and the tangents are orthogonal to that. This is useful for calculating how to approach a puck near the edge, but in other cases it's useful for calculating lighting of objects for example.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org69d2fa2" class="outline-2">
-<h2 id="org69d2fa2">Nearest points</h2>
-<div class="outline-text-2" id="text-org69d2fa2">
+<div id="outline-container-org67b558c" class="outline-2">
+<h2 id="org67b558c">Nearest points</h2>
+<div class="outline-text-2" id="text-org67b558c">
 <p>
 What's the nearest point on a surface? It's simply the direction to the nearest point times the distance. We know both of those, so we can plug them in.
 </p>
@@ -356,15 +356,15 @@ What's the nearest point on a surface? It's simply the direction to the nearest 
 </div>
 </div>
 
-<div id="outline-container-org0a3b369" class="outline-2">
-<h2 id="org0a3b369">Ray intersection (raymarching)</h2>
-<div class="outline-text-2" id="text-org0a3b369">
+<div id="outline-container-org248ec29" class="outline-2">
+<h2 id="org248ec29">Ray intersection (raymarching)</h2>
+<div class="outline-text-2" id="text-org248ec29">
 <p>
 When does a ray first intersect with a SDF surface? One solution is raymarching, which is an itterative process. Given a ray origin and direction, you advance along the ray until you can't anymore (or you've reached a certain level af accuracy). How do you know how far along the ray you can advance? Well, there's one simple observation: The ray can't intersect at a point which is nearer than the nearest point on the surface, and we know the distance to the nearest point - just evaluate the SDF.
 </p>
 
 
-<div id="org65140f0" class="figure">
+<div id="org71ce031" class="figure">
 <p><img src="../../images/slapshot/sdf_raymarching.png" alt="sdf_raymarching.png" width="500px"></p>
 <p><span class="figure-number">Figure 2: </span>The calculation at each iteration of raymarching. Credit: Wikipedia.</p>
 </div>
@@ -375,11 +375,11 @@ Start off at a point: The ray origin, then evaluate the SDF. If the resulting di
 </div>
 </div>
 
-<div id="outline-container-orgee26451" class="outline-2">
-<h2 id="orgee26451">Puck physics</h2>
-<div class="outline-text-2" id="text-orgee26451">
+<div id="outline-container-org27ae312" class="outline-2">
+<h2 id="org27ae312">Puck physics</h2>
+<div class="outline-text-2" id="text-org27ae312">
 <p>
-Along with some simple physics (i.e. restution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
+Along with some simple physics (i.e. restitution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
 </p>
 
 <p>
@@ -392,16 +392,16 @@ This is all extremely fast in code: The bots can each calculate puck predictions
 </div>
 </div>
 
-<div id="outline-container-org3b2e940" class="outline-2">
-<h2 id="org3b2e940">Other uses for SDF</h2>
-<div class="outline-text-2" id="text-org3b2e940">
+<div id="outline-container-orgdffb6e3" class="outline-2">
+<h2 id="orgdffb6e3">Other uses for SDF</h2>
+<div class="outline-text-2" id="text-orgdffb6e3">
 <p>
 Having a quick way to query points is useful for other reasons, too…
 </p>
 </div>
-<div id="outline-container-org5f5ae65" class="outline-3">
-<h3 id="org5f5ae65">Randomness</h3>
-<div class="outline-text-3" id="text-org5f5ae65">
+<div id="outline-container-org5c7597e" class="outline-3">
+<h3 id="org5c7597e">Randomness</h3>
+<div class="outline-text-3" id="text-org5c7597e">
 <p>
 Sometimes it's useful to pick a random point in the pitch… Simple! Just loop until we find one. This succeeds on the first try a vast majority of times.
 </p>
@@ -420,19 +420,19 @@ Sometimes it's useful to pick a random point in the pitch… Simple! Just loop u
 </div>
 </div>
 
-<div id="outline-container-orgda05270" class="outline-3">
-<h3 id="orgda05270">Player posturing</h3>
-<div class="outline-text-3" id="text-orgda05270">
+<div id="outline-container-org007ff83" class="outline-3">
+<h3 id="org007ff83">Player posturing</h3>
+<div class="outline-text-3" id="text-org007ff83">
 <p>
 I might write a different post on this, but the bots use these distances to decide where they should stand.
 </p>
 
 <p>
-As a quick teaser… This shows 3 members of the red team (red dots, playing downward), and 3 members of the blue team (blue dots, playing upward). The puck (green dot) is being controled by a member of the blue team. The arrows show, if there was a 4th member of the red team standing somewhere on the pitch, which direction it would be moving in.
+As a quick teaser… This shows 3 members of the red team (red dots, playing downward), and 3 members of the blue team (blue dots, playing upward). The puck (green dot) is being controlled by a member of the blue team. The arrows show, if there was a 4th member of the red team standing somewhere on the pitch, which direction it would be moving in.
 </p>
 
 
-<div id="org4705072" class="figure">
+<div id="orgeee5827" class="figure">
 <p><img src="../../images/slapshot/bots_posturing.png" alt="bots_posturing.png" width="500px"></p>
 <p><span class="figure-number">Figure 3: </span>How a 4th member of the red team would move from it's current position.</p>
 </div>
@@ -444,14 +444,15 @@ For example, a member of the red team standing near the blue goal would be rapid
 </div>
 </div>
 
-<div id="outline-container-org0bef458" class="outline-2">
-<h2 id="org0bef458">Conclusion</h2>
-<div class="outline-text-2" id="text-org0bef458">
+<div id="outline-container-org753967b" class="outline-2">
+<h2 id="org753967b">Conclusion</h2>
+<div class="outline-text-2" id="text-org753967b">
 <p>
 This has been part 1 of a series talking about the bots in Slapshot: Rebound. There's lots more novel ideas in there I'd like to write about, so hopefully this was interesting!
 </p>
 </div>
 </div>
+
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
@@ -492,7 +493,7 @@ MathJax.Hub.Config({
                 </div>
             </div>
                 <div class="copyright">
-                    Contents © 2022         <a href="mailto:oisincar@gmail.com">Oisin Carroll</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    Contents © 2023         <a href="mailto:oisincar@gmail.com">Oisin Carroll</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
                     
                 </div>
            
