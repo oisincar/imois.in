@@ -105,6 +105,9 @@
 {"start": "GAB", "target": "TGO", "dist": 4},
 {"start": "UZB", "target": "KWT", "dist": 4},
 {"start": "SYR", "target": "MNE", "dist": 4},
+
+{"start": "PR1", "target": "LSO", "dist": 17},
+
 {"start": "TCD", "target": "LBN", "dist": 4},
 {"start": "AND", "target": "BLR", "dist": 4},
 {"start": "LTU", "target": "KOR", "dist": 3},

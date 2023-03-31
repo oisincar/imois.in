@@ -63,6 +63,10 @@ class GameState {
     }
 
     get possible_guesses() {
+        // April fools day special! Gets extra guesses...
+        if (this.shortest_solution > 10) {
+            return this.shortest_solution + 10;
+        }
         return this.shortest_solution + 3;
     }
 
@@ -116,8 +120,6 @@ class GameState {
                 && this.start_country != id && this.target_country != id)
             {
                 this.past_guess_ids.push(id);
-
-                // TODO: Determine if this country is adjacent to any others?!
                 this.successful_guesses.push(id);
                 this.highlighted_country = id;
             }
@@ -740,7 +742,14 @@ function loadTopText() {
     var target = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME_EN;
 
     var title = document.getElementById("title-text");
-    title.innerHTML = `Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
+
+    if (GAME_STATE.shortest_solution > 10) {
+        title.innerHTML = `Happy April Fools :). Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
+    }
+    else {
+        title.innerHTML = `Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
+    }
+
 
     fitty("#title-text");
 }
