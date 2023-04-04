@@ -46,15 +46,7 @@ class MapView {
         // create a tooltip
         this.tooltip = d3.select("#viz")
                         .append("div")
-                        .attr("class", "tooltip")
-                        .style("opacity", 0)
-                        .style("transform", "translate(-50%, -100%)") // Center horiziontally
-                        .style("pointer-events", "none")        // Ignore mouse events
-                        .style("background-color", "white")
-                        .style("border", "solid")
-                        .style("border-width", "2px")
-                        .style("border-radius", "5px")
-                        .style("padding", "5px")
+                        .attr("class", "map_tooltip")
                         .style("left", 50 + "px")
                         .style("top", 50 + "px");
 
