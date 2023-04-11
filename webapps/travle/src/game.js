@@ -637,6 +637,26 @@ function showResultsModal(delay) {
     }, delay);
 }
 
+function getTimeStrUntilTomorrow() {
+    var now = new Date();
+
+    var midnight = new Date(now)
+    midnight.setDate(now.getDate() + 1);
+    midnight.setHours(0, 0, 0, 0);
+
+    var secsTilMidnight = (midnight - now) / 1000;
+
+    let showN = (n) => {
+        return n.toString().padStart(2, '0');
+    }
+
+    let hours = Math.floor(secsTilMidnight / (60 * 60));
+    let minutes = Math.floor((secsTilMidnight / 60) % 60);
+    let seconds = Math.floor(secsTilMidnight % 60);
+
+    return `${showN(hours)}:${showN(minutes)}:${showN(seconds)}`;
+}
+
 // If the countdown is already running, stop it.
 // Then update the countdown.
 let countdownInterval = null;
@@ -649,28 +669,15 @@ function runCountdownTimer() {
 
     // Update the count down every 1 second
     let f = function() {
-        var now = new Date().getTime();
-
-        const secsPerDay = 60 * 60 * 24;
-        var secondsTilMidnight = secsPerDay - ((now/1000) % secsPerDay);
-
-        var hours = Math.floor(secondsTilMidnight / (60 * 60));
-        var minutes = Math.floor((secondsTilMidnight / 60) % 60);
-        var seconds = Math.floor(secondsTilMidnight % 60);
-
-        let showN = (n) => {
-            return n.toString().padStart(2, '0');
-        }
-
-        // Output the result in an element with id="demo"
         var elem = document.getElementById("clock-time");
-        if (elem == null) {
+        if (elem != null) {
+            var timeStr = getTimeStrUntilTomorrow();
+            elem.innerHTML = timeStr;
+        }
+        else {
             console.log("Clearing");
             clearInterval(countdownInterval);
             countdownInterval = null;
-        }
-        else {
-            elem.innerHTML = `${showN(hours)}:${showN(minutes)}:${showN(seconds)}`;
         }
     };
     // Call immediately to get an initial result.
@@ -756,10 +763,20 @@ function loadTopText() {
 
 // -------- Save/ Load game state ---------
 function getPuzzleNumber() {
-    // Crosswordle released 15th Dec 2022!
-    const dt = Date.now() - new Date(2022, 11, 15);
-    const dayOffset = dt / (1000 * 60 * 60 * 24)
-    return Math.floor(dayOffset + 1); // Puzzle #1 on 15th
+    var now = Date.now();
+    // Travle released 15th Dec 2022!
+    return Math.floor(daysBetween(new Date(2022, 11, 15), now)) + 1;
+}
+
+function treatAsUTC(date) {
+    var result = new Date(date);
+    result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+    return result;
+}
+
+function daysBetween(startDate, endDate) {
+    var millisecondsPerDay = 24 * 60 * 60 * 1000;
+    return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
 }
 
 // Should probably do some proper testing... But this'll be fine for now...
