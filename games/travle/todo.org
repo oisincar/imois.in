@@ -1,11 +1,43 @@
 #+title: TODO
 
-* Core
-- Stats page (todo: emojis + share)
 
-* Misc
-- New name?? New logo??
 
-* Bonus
-- When you click on countries on the map, it highlights that guess... And vice versa.
-- Separate out country graph & algorithms(?)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* V 2.0!
+
+** Backend
+- [X] New ruleset
+- [X] Write up rules page
+- [X] New country graph based on rules
+- [X] New puzzles (longer/ more variance in length)
+- [ ] Compress map WONTFIX
+
+** Frontend
+- [ ] Fix timezones
+  + [ ] Puzzle spawn
+  + [ ] Countdown to next puzzle
+
+- [ ] Rearrange UI:
+  + [ ] Put guess box at the top with text e.g. 'Guess 1/6'
+  + [ ] 2x.. rows of previous guesses w/ country, below
+- [ ] New colour scheme.
+  + [ ] Determine colours...
+  + [ ] Implement it
+
+** Bonus
+- [ ] Separate out country graph & algorithms(?)
+- [ ] When you click on countries on the map, it highlights that guess... And vice versa(?)
