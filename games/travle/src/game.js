@@ -757,7 +757,6 @@ function loadTopText() {
         title.innerHTML = `Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
     }
 
-
     fitty("#title-text");
 }
 
