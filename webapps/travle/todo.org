@@ -1,22 +1,5 @@
 #+title: TODO
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 * V 2.0!
 
 ** Backend
@@ -27,17 +10,30 @@
 - [ ] Compress map WONTFIX
 
 ** Frontend
-- [ ] Fix timezones
-  + [ ] Puzzle spawn
-  + [ ] Countdown to next puzzle
+- [X] Fix timezones
+  + [X] Puzzle spawn
+  + [X] Countdown to next puzzle
 
-- [ ] Rearrange UI:
-  + [ ] Put guess box at the top with text e.g. 'Guess 1/6'
-  + [ ] 2x.. rows of previous guesses w/ country, below
-- [ ] New colour scheme.
-  + [ ] Determine colours...
-  + [ ] Implement it
+- [X] Rearrange UI:
+  + [X] Put guess box at the top with text e.g. 'Guess 1/6'
+  + [X] 2x.. rows of previous guesses w/ country, below
+- [X] New colour scheme.
+  + [X] Determine colours...
+  + [X] Implement it
+
+- [X] Click past guesses to show/hide them.
+
+- [X] New rules for max guesses
+- [X] Include #travle in share text (and improve it)
+- [ ] Move changelog somewhere else...
+- [ ] Add toggle for dark/light theme
+- [ ] Pretty up the results screen
+  - [ ] Better HREF colours
+  - [ ] Just... It's kinda ugly? Improve layout?
+- [ ] Show missing countries on map after loss? (Show nearby countries anyway? (Russia is an issue))
 
 ** Bonus
 - [ ] Separate out country graph & algorithms(?)
-- [ ] When you click on countries on the map, it highlights that guess... And vice versa(?)
+- [ ] Multilingual support
+- [ ] Make the path shown in the end screen also use the smallest countries
+- [ ] Clarify in the end screen that the paths shown are only one of several possible paths.

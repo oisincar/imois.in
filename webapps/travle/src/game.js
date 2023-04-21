@@ -63,18 +63,43 @@ class GameState {
     }
 
     get possible_guesses() {
-        // April fools day special! Gets extra guesses...
-        if (this.shortest_solution > 10) {
-            return this.shortest_solution + 10;
+        var num_guesses = this.shortest_solution - 1;
+
+        if (num_guesses <= 3) {
+            return num_guesses + 3;
         }
-        return this.shortest_solution + 3;
+        else if (num_guesses <= 6) {
+            return num_guesses + 4;
+        }
+        else if (num_guesses <= 9) {
+            return num_guesses + 5;
+        }
+        else if (num_guesses <= 12) {
+            return num_guesses + 6;
+        }
+        else {
+            return num_guesses + 7;
+        }
     }
 
     get has_guesses_remaining() {
         return this.past_guess_ids.length < this.possible_guesses;
     }
 
+    // #travle #121 5/10
+    //
+    // imois.in/
+
     get share_text() {
+        var score = `${this.past_guess_ids.length}/${this.possible_guesses}`;
+        var baseText = `#travle #${this.puzzle_ix} ${score}\n`;
+        baseText += this.guess_ratings.join("") + "\n";
+        baseText += "imois.in/games/travle";
+
+        return baseText;
+    }
+
+    get share_text_old() {
         var baseText = `travle #${this.puzzle_ix}: `;
 
         var start_c = COUNTRY_ID_DATA_LOOKUP[this.start_country].properties.NAME_EN;
@@ -367,28 +392,23 @@ class PastGuessManager {
 
     constructor(parentElement, numSections) {
         this.parentElement = parentElement;
-
-        this.guessDomElements = [];
         this.guessIx = 0;
 
-        for (var i = 0; i < numSections; i++) {
-            var a = document.createElement('div');
-            a.classList.add('countries-guess-empty');
-            this.parentElement.appendChild(a);
+        // for (var i = 0; i < numSections; i++) {
+        //     var a = document.createElement('div');
+        //     a.classList.add('countries-guess-empty');
+        //     this.parentElement.appendChild(a);
 
-            this.guessDomElements.push(a);
-        }
+        //     this.guessDomElements.push(a);
+        // }
     }
 
-    addGuess(countryName, guessRatingEmoji) {
-        if (this.guessIx > this.guessDomElements.length) {
-            console.log("Error: Out of guesses");
-        }
+    addGuess(countryId, guessRatingEmoji) {
+        var elem = document.createElement('button');
+        elem.classList.add('past-guess');
+        this.parentElement.appendChild(elem);
 
-        let elem = this.guessDomElements[this.guessIx];
-        elem.className = 'countries-guess-full';
-
-        let targetCountryName = COUNTRY_ID_DATA_LOOKUP[GAME_STATE.target_country].properties.NAME_EN;
+        let countryName = COUNTRY_ID_DATA_LOOKUP[countryId].properties.NAME_EN;
 
         // Find title text for guessRating
         let guessTitleText;
@@ -399,17 +419,35 @@ class PastGuessManager {
             guessTitleText = "Good guess. Not the shortest route, but it's not far off.";
         }
         else if (guessRatingEmoji === EMOJI_POOR) {
-            guessTitleText = "Bit of a detour from " + targetCountryName;
+            guessTitleText = "Bit of a detour from " + countryName;
         }
         else if (guessRatingEmoji === EMOJI_IMPOSSIBLE) {
-            guessTitleText = "Big detour from " + targetCountryName;
+            guessTitleText = "Big detour from " + countryName;
         }
 
-        elem.innerHTML =
-            `<div class="guess-text">${countryName}</div>`
-            + `<div title="${guessTitleText}" class="guess-emoji">${guessRatingEmoji}</div>`;
-
         this.guessIx++;
+
+        elem.innerHTML =
+            (`<span class="align-middle ix">${this.guessIx}.</span>`
+             + `<span class="align-middle country">${countryName}</span>`
+             + `<span class="align-middle emoji" title="${guessTitleText}">${guessRatingEmoji}</span>`);
+
+        elem.addEventListener('click', (e) => {
+            console.log("Click " + countryId);
+            // this.classList += "test";
+            // console.log(this);
+            console.log(elem);
+            var now_hidden = map.toggle_visibility(countryId);
+            console.log(now_hidden);
+
+            if (now_hidden) {
+                elem.classList.add('past-guess-hidden');
+            }
+            else {
+                elem.classList.remove('past-guess-hidden');
+            }
+            console.log(elem);
+        });
     }
 }
 
@@ -417,7 +455,7 @@ let has_warned_about_cookies = false;
 function loadCountryData(geojson, adjacency) {
     for (const country of geojson.features) {
         // This seems to be unique for all countries/territories
-        var id = country.properties.SU_A3;
+        var id = country.properties.ID;
         // Store ID in a handy place.
         country.id = id;
 
@@ -432,6 +470,7 @@ function loadCountryData(geojson, adjacency) {
 }
 
 var SEARCH_BAR = null;
+var GUESS_BTN = null;
 function createSearchbar() {
     var field = document.getElementById("countries-input");
 
@@ -453,30 +492,55 @@ function createSearchbar() {
 
     // Also set up the button
     console.log(document);
-    var btn = document.getElementById("btn-guess");
-    btn.addEventListener("click", function () {
+    GUESS_BTN = document.getElementById("btn-guess");
+    GUESS_BTN.addEventListener("click", function () {
         submitCurrentGuess();
     });
+}
+
+function updateGuessButton() {
+    var current_guess_ix = GAME_STATE.past_guess_ids.length + 1;
+    var max_guesses = GAME_STATE.possible_guesses;
+
+    var should_disable = false;
+
+    if (current_guess_ix > max_guesses) {
+        // Game lost. Just show N/N
+        current_guess_ix = max_guesses;
+
+        should_disable = true;
+    }
+    else if (GAME_STATE.game_progress !== GAMEPLAY_STATE_ONGOING) {
+        // Game won(?): Show the last guess made.
+        current_guess_ix -= 1;
+
+        should_disable = true;
+    }
+
+    if (should_disable) {
+        GUESS_BTN.classList.add("disabled");
+    }
+
+    GUESS_BTN.textContent = `Guess (${current_guess_ix}/${max_guesses})`;
 }
 
 function submitCurrentGuess() {
     var guess = SEARCH_BAR.value.trim();
     console.log(`>${guess}<`);
 
-
     if (GAME_STATE.make_guess(guess)) {
         console.log("Successfully guessed!")
 
-        // Unhighlight previous guess.
-        map.remove_country_highlights();
         var id = GAME_STATE.last_guess;
-        var country_data = COUNTRY_ID_DATA_LOOKUP[id];
-        map.add_country_to_map(country_data);
+        map.add_country_to_map(id);
         map.recenter_map();
 
         SEARCH_BAR.clear();
 
-        guessManager.addGuess(country_data.properties.NAME_EN, GAME_STATE.last_rating);
+        updateGuessButton();
+
+        var country_data = COUNTRY_ID_DATA_LOOKUP[id];
+        guessManager.addGuess(id, GAME_STATE.last_rating);
 
         saveGameState();
 
@@ -510,9 +574,11 @@ const allFlags = (
 
 function maybeShowEndGameUI() {
     if (GAME_STATE.game_progress === GAMEPLAY_STATE_WON) {
+        // TODO: If game over, change to a 'dead' state?
         win();
     }
     else if (GAME_STATE.game_progress === GAMEPLAY_STATE_LOST) {
+        // TODO: If game over, change to a 'dead' state?
         lose();
     }
 }
@@ -527,7 +593,7 @@ function win() {
 
     jsConfetti.addConfetti();
 
-    showResultsModal(1200);
+    showResultsModal(2500);
 }
 
 function lose() {
@@ -695,18 +761,7 @@ function generateGoogleMapsLink(startId, endId) {
     return `https://www.google.com/maps/dir/${start}/${end}/`;
 }
 
-function getVisibleCountriesGeojson() {
-    var data = GAME_STATE.visible_countries.map(country_id => COUNTRY_ID_DATA_LOOKUP[country_id]);
-    return {
-        type: "FeatureCollection",
-        "features": data,
-    };
-}
-
 var map = null;
-function loadMap() {
-    map = new MapView("d3-map", getVisibleCountriesGeojson());
-}
 
 var guessManager;
 function loadGuesses() {
@@ -714,9 +769,9 @@ function loadGuesses() {
     guessManager = new PastGuessManager(elem, GAME_STATE.possible_guesses);
     for (var i = 0; i < GAME_STATE.past_guess_ids.length; i++) {
         var countryId = GAME_STATE.past_guess_ids[i];
-        var countryName = COUNTRY_ID_DATA_LOOKUP[countryId].properties.NAME_EN;
+        // var countryName = COUNTRY_ID_DATA_LOOKUP[countryId].properties.NAME_EN;
         var guessRatingEmoji = GAME_STATE.guess_ratings[i];
-        guessManager.addGuess(countryName, guessRatingEmoji);
+        guessManager.addGuess(countryId, guessRatingEmoji);
     }
 }
 
@@ -737,9 +792,9 @@ function showAlert(message, duration=1000) {
     }, duration)
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+// function getRandomInt(max) {
+//   return Math.floor(Math.random() * max);
+// }
 
 var GAME_STATE = null;
 
@@ -1025,9 +1080,18 @@ Promise.all([
 
         loadTopText();
 
+        updateGuessButton();
+
         if (!GAME_STATE.is_valid) {
             console.log("ERROR, invalid game state");
         }
-        loadMap();
+
+
+        // map = new MapView("d3-map", getVisibleCountriesGeojson());
+        map = new MapView(
+            "d3-map",
+            COUNTRY_ID_DATA_LOOKUP,
+            COUNTRY_ADJACENCY,
+            GAME_STATE);
     }
 );

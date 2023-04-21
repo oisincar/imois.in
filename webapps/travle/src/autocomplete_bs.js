@@ -22,7 +22,7 @@ class Autocomplete {
         field.setAttribute('data-bs-toggle', 'dropdown');
         field.classList.add('dropdown-toggle');
 
-        const dropdown = ce(`<div class="dropdown-menu dropdown-menu-dark"></div>`);
+        const dropdown = ce(`<div class="dropdown-menu"></div>`);
         if (this.options.dropdownClass)
             dropdown.classList.add(this.options.dropdownClass);
 
