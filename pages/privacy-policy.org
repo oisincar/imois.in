@@ -10,8 +10,6 @@
 .. nocomments: true
 #+END_COMMENT
 
-# #+TITLE: Privacy policy
-
 * Privacy Policy
 Last updated: April 11, 2023
 

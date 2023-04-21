@@ -221,7 +221,7 @@
 'copy_files:output/games/travle/data/CountryAdjacency.ipynb', (285184, 295)
 'robots_file:output/robots.txt', (285696, 136)
 'render_taxonomies:output/categories/juggling.xml', (286208, 598)
-'render_pages:output/pages/privacy-policy/index.html', (554496, 5319)
+'render_pages:output/pages/privacy-policy/index.html', (554496, 5320)
 'copy_files:output/games/travle/src/fitty.js', (292352, 264)
 'copy_files:output/assets/js/sudoku/pkg/README.md', (292864, 282)
 'render_pages:output/games/index.html', (412160, 5698)
