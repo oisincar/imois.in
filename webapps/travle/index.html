@@ -68,37 +68,52 @@
                         </span>
                     </div>
                 </div>
-                <div class="brand">
-                    <div class="brand-text">
-                        <a href="/games" title="im_oisin" rel="home">
-                            im_oisin
-                        </a>
-                    </div>
-                </div>
-
-                <form>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <button type="button" title="Toggle Color Mode" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-lg btn-outline-secondary nav-button dropdown-toggle">
-                                <i id="day-night-selector" class="fa-solid fa-moon"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" onclick="setLightMode()"><i class="fa-solid fa-sun"></i> Light Mode</a></li>
-                                <li><a class="dropdown-item" onclick="setDarkMode()"><i class="fa-solid fa-moon"></i> Dark Mode</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" title="Results" onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
-                                <span class="fa-solid fa-chart-simple"></span>
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" title="Info & How to Play" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
-                                <span class="fa-solid fa-question"></span>
-                            </button>
-                        </li>
+                <!-- <div class="brand">
+                     <div class="brand-text">
+                     <a href="/games" title="im_oisin" rel="home">
+                     im_oisin
+                     </a>
+                     </div>
+                     </div> -->
+                <form class="d-flex">
+                    <button type="button" title="Toggle Color Mode" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-lg btn-outline-secondary nav-button dropdown-toggle">
+                        <i id="day-night-selector" class="fa-solid fa-moon"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" onclick="setLightMode()"><i class="fa-solid fa-sun"></i> Light Mode</a></li>
+                        <li><a class="dropdown-item" onclick="setDarkMode()"><i class="fa-solid fa-moon"></i> Dark Mode</a></li>
                     </ul>
+                    <button type="button" title="Results" onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
+                        <span class="fa-solid fa-chart-simple"></span>
+                    </button>
+                    <button type="button" title="Info & How to Play" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
+                        <span class="fa-solid fa-question"></span>
+                    </button>
                 </form>
+                <!--
+                     <form>
+                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                     <li class="nav-item dropdown">
+                     <button type="button" title="Toggle Color Mode" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-lg btn-outline-secondary nav-button dropdown-toggle">
+                     <i id="day-night-selector" class="fa-solid fa-moon"></i>
+                     </button>
+                     <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" onclick="setLightMode()"><i class="fa-solid fa-sun"></i> Light Mode</a></li>
+                     <li><a class="dropdown-item" onclick="setDarkMode()"><i class="fa-solid fa-moon"></i> Dark Mode</a></li>
+                     </ul>
+                     </li>
+                     <li class="nav-item">
+                     <button type="button" title="Results" onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
+                     <span class="fa-solid fa-chart-simple"></span>
+                     </button>
+                     </li>
+                     <li class="nav-item">
+                     <button type="button" title="Info & How to Play" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
+                     <span class="fa-solid fa-question"></span>
+                     </button>
+                     </li>
+                     </ul>
+                     </form> -->
             </div>
         </nav>
 
