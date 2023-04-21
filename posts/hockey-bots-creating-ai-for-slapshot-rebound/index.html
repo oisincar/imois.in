@@ -98,9 +98,9 @@ Earlier in the year I developed the bots for Oddshot Games' title Slapshot Rebou
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgc72c640" class="outline-2">
-<h2 id="orgc72c640">Introduction</h2>
-<div class="outline-text-2" id="text-orgc72c640">
+        <div id="outline-container-org84e95cf" class="outline-2">
+<h2 id="org84e95cf">Introduction</h2>
+<div class="outline-text-2" id="text-org84e95cf">
 <p>
 Earlier in the year I developed the bots for Oddshot Games' title Slapshot Rebound. I've kindly been given permission to share some of the more interesting parts. This includes a new (afaik at least) method for performing spacial queries (e.g. distance to goal, direction to nearest wall, distance puck is from wall), as well as a novel architecture for game AI I found effective and more scaleable than state machines or behavior trees. If that sounds interesting… Stay tuned!
 </p>
@@ -119,17 +119,17 @@ I'm by no means an expert in the area, but I managed to adapt some interesting p
 </div>
 </div>
 
-<div id="outline-container-org9153d2e" class="outline-2">
-<h2 id="org9153d2e">Character movement (PD Controller)</h2>
-<div class="outline-text-2" id="text-org9153d2e">
+<div id="outline-container-orgbb0449f" class="outline-2">
+<h2 id="orgbb0449f">Character movement (PD Controller)</h2>
+<div class="outline-text-2" id="text-orgbb0449f">
 <p>
 Before working on the brain of the bots, it's nice to get a good foundation - give the bots good mechanics. This covers simple movement of the characters and control of the puck itself.
 </p>
 </div>
 
-<div id="outline-container-orga72aef5" class="outline-3">
-<h3 id="orga72aef5">Movement</h3>
-<div class="outline-text-3" id="text-orga72aef5">
+<div id="outline-container-orga2d32dd" class="outline-3">
+<h3 id="orga2d32dd">Movement</h3>
+<div class="outline-text-3" id="text-orga2d32dd">
 <p>
 We'd like to be able to move the character to any point on the pitch, without overshooting. Ideally the character moves smoothly as fast as possible - slowing to a stop on the target point.
 </p>
@@ -184,57 +184,56 @@ An extension of this - a PID controller introduces another 'integral' term to co
 </div>
 </div>
 
-<div id="outline-container-org4d9452b" class="outline-3">
-<h3 id="org4d9452b">Puck control</h3>
+<div id="outline-container-org9190531" class="outline-3">
+<h3 id="org9190531">Puck control</h3>
 </div>
 </div>
 
-<div id="outline-container-org00cd789" class="outline-2">
-<h2 id="org00cd789">Fast approximate spatial queries</h2>
-<div class="outline-text-2" id="text-org00cd789">
+<div id="outline-container-org5e7b2fa" class="outline-2">
+<h2 id="org5e7b2fa">Fast approximate spatial queries</h2>
+<div class="outline-text-2" id="text-org5e7b2fa">
 </div>
-<div id="outline-container-org4b2a7b6" class="outline-3">
-<h3 id="org4b2a7b6">Distances</h3>
+<div id="outline-container-org68d39b2" class="outline-3">
+<h3 id="org68d39b2">Distances</h3>
 </div>
-<div id="outline-container-org73b1933" class="outline-3">
-<h3 id="org73b1933">Gradients</h3>
+<div id="outline-container-orgcd0b038" class="outline-3">
+<h3 id="orgcd0b038">Gradients</h3>
 </div>
-<div id="outline-container-orgfcadf1e" class="outline-3">
-<h3 id="orgfcadf1e">Collisions</h3>
+<div id="outline-container-orgbd58870" class="outline-3">
+<h3 id="orgbd58870">Collisions</h3>
 </div>
-<div id="outline-container-org996040c" class="outline-3">
-<h3 id="org996040c">Fast puck predictions</h3>
+<div id="outline-container-org9e8e8bf" class="outline-3">
+<h3 id="org9e8e8bf">Fast puck predictions</h3>
 </div>
 </div>
 
-<div id="outline-container-orgba5bed3" class="outline-2">
-<h2 id="orgba5bed3">Behaviour state tree architecture</h2>
-<div class="outline-text-2" id="text-orgba5bed3">
+<div id="outline-container-orgba51df4" class="outline-2">
+<h2 id="orgba51df4">Behaviour state tree architecture</h2>
+<div class="outline-text-2" id="text-orgba51df4">
 <p>
 Creating complex game AI is hard. An ideal system has modular code that can be reused, it's easy to interpret and track down bugs, it's easy to test, it's scalable, and it's possible to write complex code.
 The AI for Slapshot had an additional constraint, it should play equally well with human and AI teammates.
 </p>
 </div>
 
-<div id="outline-container-orgcf6da6e" class="outline-3">
-<h3 id="orgcf6da6e">Why not a behaviour tree</h3>
+<div id="outline-container-orgb2e5331" class="outline-3">
+<h3 id="orgb2e5331">Why not a behaviour tree</h3>
 </div>
-<div id="outline-container-orgf9c4d45" class="outline-3">
-<h3 id="orgf9c4d45">Why not a state machine</h3>
+<div id="outline-container-org7f14168" class="outline-3">
+<h3 id="org7f14168">Why not a state machine</h3>
 </div>
-<div id="outline-container-org5ba03da" class="outline-3">
-<h3 id="org5ba03da">Best of both worlds!</h3>
+<div id="outline-container-org444a6e2" class="outline-3">
+<h3 id="org444a6e2">Best of both worlds!</h3>
 </div>
-</div>
-
-<div id="outline-container-org1db2a35" class="outline-2">
-<h2 id="org1db2a35">AI Test Framework</h2>
 </div>
 
-<div id="outline-container-orge6fc418" class="outline-2">
-<h2 id="orge6fc418">'Posture' behaviour</h2>
+<div id="outline-container-org7a8f3d8" class="outline-2">
+<h2 id="org7a8f3d8">AI Test Framework</h2>
 </div>
 
+<div id="outline-container-orgd74c2e4" class="outline-2">
+<h2 id="orgd74c2e4">'Posture' behaviour</h2>
+</div>
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">

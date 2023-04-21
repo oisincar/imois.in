@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>travle</title>
-        <meta name="description" content="">
+        <meta name="description" content="Travle: A daily game, get between countries in as few guesses as possible!">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- <script src="https://d3js.org/d3.v6.js"></script> -->
@@ -57,7 +57,8 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+
+        <nav class="navbar navbar-expand-sm">
             <div class="container-fluid">
                 <div class="navbar-brand navbar-logo">
                     <div class="brand-text">
@@ -75,77 +76,57 @@
                     </div>
                 </div>
 
-                <form class="justify-content-end">
-                    <button type="button" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#changelogModal">
-                        <span class="fa-solid fa-file-pen"></span>
-                    </button>
-                    <button type="button" onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
-                        <span class="fa-solid fa-chart-simple"></span>
-                    </button>
-                    <button type="button" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
-                        <span class="fa-solid fa-question"></span>
-                    </button>
+                <form>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <button type="button" title="Toggle Color Mode" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-lg btn-outline-secondary nav-button dropdown-toggle">
+                                <i id="day-night-selector" class="fa-solid fa-moon"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="setLightMode()"><i class="fa-solid fa-sun"></i> Light Mode</a></li>
+                                <li><a class="dropdown-item" onclick="setDarkMode()"><i class="fa-solid fa-moon"></i> Dark Mode</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" title="Results" onclick="showResultsModal(0)" class="btn btn-lg btn-outline-secondary nav-button">
+                                <span class="fa-solid fa-chart-simple"></span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" title="Info & How to Play" class="btn btn-lg btn-outline-secondary nav-button" data-bs-toggle="modal" data-bs-target="#explanationModal">
+                                <span class="fa-solid fa-question"></span>
+                            </button>
+                        </li>
+                    </ul>
                 </form>
             </div>
         </nav>
+
+
+
+
         <div class="container">
 
 
             <!-- travle 2.0 announcement -->
-            <!-- <div class="modal fade show" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel"> -->
-            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="changelogModalLabel">Updates!</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Thanks everyone for voting in the poll, and for your comments and suggestions (and for teaching me some interesting geography along the way)!
-                            Travle 2.0 is coming in the next week or so: Longer & more interesting routes, better UI, more consistant rules and more... Stay tuned!
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Ok</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Changelog -->
-            <div class="modal fade" id="changelogModal" tabindex="-1" aria-labelledby="changelogModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="changelogModalLabel">Changelog</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <ul>
-                                <li>11 Apr 2023: Fix timestamp bug due to daylight savings time, correct countdown timer.</li>
-                                <li>11 Apr 2023: Remove User Poll, Travle 2.0 in progress...</li>
-                                <li>04 Apr 2023: Update FAQ and add User Poll.</li>
-                                <li>30 Mar 2023: Pre-April fools day update :).</li>
-                                <li>19 Jan 2023: Improve puzzle generation.</li>
-                                <li>01 Jan 2023: <b>10,000th player!</b></li>
-                                <li>27 Dec 2022: Add changelog, improve logo.</li>
-                                <li>26 Dec 2022: Add shortest route, missing countries and next-travle countdown timer to results modal</li>
-                                <li>24 Dec 2022: <b>5000th player!</b></li>
-                                <li>21 Dec 2022: Fix errors with some country borders (Ukraine, Serbia). Game now follows ISO standard for valid countries/regions. Fix map recentering bug.</li>
-                                <li>21 Dec 2022: <b>1000th player!</b></li>
-                                <li>20 Dec 2022: Improve input - fuzzy searchable countries</li>
-                                <li>15 Dec 2022: <b>100th player!</b></li>
-                                <li>15 Dec 2022: Improve route generation alg</li>
-                                <li>14 Dec 2022: travle #1 released!</li>
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Ok</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <!-- <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel">
+                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                 <div class="modal-content">
+                 <div class="modal-header">
+                 <h5 class="modal-title" id="changelogModalLabel">Updates!</h5>
+                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body">
+                 Thanks everyone for voting in the poll, and for your comments and suggestions (and for teaching me some interesting geography along the way)!
+                 Travle 2.0 is coming in the next week or so: Longer & more interesting routes, better UI, more consistant rules and more... Stay tuned!
+                 </div>
+                 <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Done</button>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+            -->
 
             <!-- Explanation modal -->
             <div class="modal fade" id="explanationModal" tabindex="-1" aria-labelledby="explanationModalLabel" aria-hidden="true">
@@ -157,9 +138,12 @@
                         </div>
                         <div class="modal-body">
                             <p>
-                                Guess countries until you've made a path from <b>start</b> to <b>end</b>!
+                                Guess countries until you've made a path from <b style="color:var(--country-from)">start</b> to <b style="color:var(--country-to)">end</b>!
                                 You can guess the countries in any order.
-                                Try to get there in as few guesses as possible by land - sea travel doesn't count.
+                                Try to get there in as few guesses as possible.
+                            </p>
+                            <p>
+                                Guesses not connected to the <b style="color:var(--country-from)">start</b> are colored gray.
                             </p>
 
                             <p>
@@ -169,7 +153,7 @@
                             <div class="explanation-grid container">
                                 <div class="row">
                                     <div class="big-text col-2">✅</div>
-                                    <div class="col"><span>Guess is <b>optimal</b>! This country is on the shortest route from start to end.</span></div>
+                                    <div class="col"><span>Guess is <b>optimal</b>! You're one step closer.</span></div>
                                 </div>
 
                                 <div class="row">
@@ -188,102 +172,118 @@
                                 </div>
                             </div>
 
-                            <p>A new travle is released each night at midnight.</p>
+                            <p>A new travle is released each night at midnight, local time.</p>
 
-                            <div class="accordion accordion-flush bg-dark" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Why is X country a ✅/ 🟧/ 🟥/ ⬛ guess?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
+                            <!-- <div class="accordion accordion-flush" id="accordionExample">
+                                 <div class="accordion-item">
+                                 <h2 class="accordion-header" id="headingOne">
+                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                 Why is X country a ✅/ 🟧/ 🟥/ ⬛ guess?
+                                 </button>
+                                 </h2>
+                                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                 <div class="accordion-body">
+                                 The scoring is a little more complicated that explained above.
+                                 There is always a minimum number of guesses you are from completing a travle. This is what travle uses to determine guess 'quality'.
+                                 If you make a guess which decreases that number, the guess is marked ✅.
+                                 <br>
+                                 <br>
+                                 For example, to go from <b>Spain</b> to <b>Austria</b> you can go to <b>France</b>, then via any of <b>Germany</b>, <b>Switzerland</b> or <b>Italy</b>. You're 2 guesses from
+                                 the answer. If your first guess is <b>Germany</b>, you're now one guess from the answer - so <b>Germany</b> is marked ✅. If you then guess <b>Italy</b> - even
+                                 though that country was on the shortest path <i>to begin with</i>, you're still one guess away. Italy doesn't help you now, so it's
+                                 marked 🟧 instead.
+                                 <br>
+                                 <br>
+                                 🟧 means the path through the newly guessed country is a similar length to the shortest. In the previous example, after guessing
+                                 <b>Germany</b> and <b>Italy</b>, the shortest path is 1 guess. The shortest path which passes through <b>Italy</b> also only requires one additional guess.
+                                 Hence, it is marked orange. The rule allows a leeway of 1 extra guess too, so even <b>Slovakia</b> would still be marked 🟧 - the path via <b>Slovakia</b>
+                                 requires 2 additional guesses: <b>France</b> and <b>Poland</b>, which is just 1 more than the shortest path - which only requires <b>France</b>.
+                                 <br>
+                                 <br>
+                                 🟥 means the path through the newly guessed country is longer than the requirement above.
+                                 <br>
+                                 <br>
+                                 ⬛ means there is no path through the newly guessed country. This also means there is no path from the start or end point to the guessed country.
+                                 </div>
+                                 </div>
+                                 </div> -->
+                                <!-- <div class="accordion-item">
+                                     <h2 class="accordion-header" id="headingTwo">
+                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                     Why is 'Greenland' listed as a country?
+                                     </button>
+                                     </h2>
+                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                     <div class="accordion-body">
+                                     I've erred on the side of making more regions than less - I think this makes the game more interesting,
+                                     and avoids problems like <b>France</b> unintuitively connecting to <b>South America</b>: <b>French Guianna</b> is listed separately.
+                                     As a rule of thumb: Anywhere which has a unique ISO country code is listed as a separate region in travle.
+                                     </div>
+                                     </div>
+                                     </div>
+                                     <div class="accordion-item">
+                                     <h2 class="accordion-header" id="headingThree">
+                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                     What data did you use? How does pathfinding work?
+                                     </button>
+                                     </h2>
+                                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                     <div class="accordion-body">
+                                     The game uses map data from NaturalEarthData.com, namely the <a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/">50m Culture Vectors</a> dataset.
+                                     The map and country data is a combination of the Countries and Details datasets - along with a couple of fixes to e.g. reassign
+                                     Crimea back to Ukraine, and then remove unnecessary data.
+                                     <br><br>
+                                     The country adjacency graph is all pre-calculated and loaded as an adjacency list. The game does DFS to determine routes and path lengths while playing.
+                                     </div>
+                                     </div>
+                                     </div>
+                                     <div class="accordion-item">
+                                     <h2 class="accordion-header" id="headingFour">
+                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                     How do you create the routes?
+                                     </button>
+                                     </h2>
+                                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                     <div class="accordion-body">
+                                     Puzzles are generated automatically, and are randomly chosen for each day from a long list of possible routes. In each week, the same country
+                                     cannot show up twice as either a start/ end point or a country along the shortest path. This ensures travle takes you to different
+                                     places.
+                                     </div>
+                                     </div>
+                                     </div> -->
+                                <!-- <div class="accordion-item">
+                                     <h2 class="accordion-header" id="headingFour">
+                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                     Why is X country not the shape I expected
+                                     </button>
+                                     </h2>
+                                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                     <div class="accordion-body">
+                                     Puzzles are generated automatically, and are randomly chosen for each day from a long list of possible routes. In each week, the same country
+                                     cannot show up twice as either a start/ end point or a country along the shortest path. This ensures travle takes you to different
+                                     places.
+                                     </div>
+                                     </div>
+                                     </div>
+                                -->
+                            <!-- </div> -->
 
-                                            The scoring is a little more complicated that explained above.
-                                            There is always a minimum number of guesses you are from completing a travle. This is what travle uses to determine guess 'quality'.
-                                            If you make a guess which decreases that number, the guess is marked ✅.
-                                            <br>
-                                            <br>
-                                            For example, to go from <b>Spain</b> to <b>Austria</b> you can go to <b>France</b>, then via any of <b>Germany</b>, <b>Switzerland</b> or <b>Italy</b>. You're 2 guesses from
-                                            the answer. If your first guess is <b>Germany</b>, you're now one guess from the answer - so <b>Germany</b> is marked ✅. If you then guess <b>Italy</b> - even
-                                            though that country was on the shortest path <i>to begin with</i>, you're still one guess away. Italy doesn't help you now, so it's
-                                            marked 🟧 instead.
-                                            <br>
-                                            <br>
-                                            🟧 means the path through the newly guessed country is a similar length to the shortest. In the previous example, after guessing
-                                            <b>Germany</b> and <b>Italy</b>, the shortest path is 1 guess. The shortest path which passes through <b>Italy</b> also only requires one additional guess.
-                                            Hence, it is marked orange. The rule allows a leeway of 1 extra guess too, so even <b>Slovakia</b> would still be marked 🟧 - the path via <b>Slovakia</b>
-                                            requires 2 additional guesses: <b>France</b> and <b>Poland</b>, which is just 1 more than the shortest path - which only requires <b>France</b>.
-                                            <br>
-                                            <br>
-                                            🟥 means the path through the newly guessed country is longer than the requirement above.
-                                            <br>
-                                            <br>
-                                            ⬛ means there is no path through the newly guessed country. This also means there is no path from the start or end point to the guessed country.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Why is 'Greenland' listed as a country?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            I've erred on the side of making more regions than less - I think this makes the game more interesting,
-                                            and avoids problems like <b>France</b> unintuitively connecting to <b>South America</b>: <b>French Guianna</b> is listed separately.
-                                            As a rule: Anywhere which has a unique ISO country code is listed as a separate region in travle.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            What data did you use? How does pathfinding work?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            The game uses map data from NaturalEarthData.com, namely the <a href="https://www.naturalearthdata.com/downloads/50m-cultural-vectors/">50m Culture Vectors</a> dataset.
-                                            The map and country data is a combination of the Countries and Details datasets - along with a couple of fixes to e.g. reassign
-                                            Crimea back to Ukraine, and then remove unnecessary data.
-                                            <br><br>
-                                            The country adjacency graph is all pre-calculated and loaded as an adjacency list. The game does DFS to determine routes and path lengths while playing.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                            How do you create the routes?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            Puzzles are generated automatically, and are randomly chosen for each day from a long list of possible routes. In each week, the same country
-                                            cannot show up twice as either a start/ end point or a country along the shortest path. This ensures travle takes you to different
-                                            places.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-                            <p>travle is made by me, Oisin Carroll. If you enjoyed the game it'd be awesome if you shared it!
-                                If you've any thoughts/improvements email me at
-                                <a href="mailto: hi@imois.in">hi@imois.in</a> or find me on Twitter <a href="https://twitter.com/onemoremoose">@onemoremoose</a>.
-                                Thanks for playing!
+                            <p>
+                                travle uses: <a href="https://www.naturalearthdata.com/">Natural Earth</a> data,
+                                <a href="https://getbootstrap.com">Bootstrap v5.3</a> for layout and UI design,
+                                <a href="https://d3js.org/">d3.js</a> for map rendering,
+                                and colours based on <a href="https://github.com/sainnhe/gruvbox-material">Gruvbox Materal</a>.
                             </p>
+
+                            <!-- <p>travle is made by Oisin Carroll. If you enjoyed the game it'd be awesome if you shared it!
+                                 If you've any thoughts/improvements email me at
+                                 <a href="mailto: hi@imois.in">hi@imois.in</a> or find me on Twitter <a href="https://twitter.com/onemoremoose">@onemoremoose</a>.
+                                 Thanks for playing!
+                                 </p> -->
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Ok</button>
+                            <a href="extra_info.html"><button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">More Info & FAQ</button></a>
+                            <button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal">Done</button>
                         </div>
                     </div>
                 </div>
@@ -328,39 +328,36 @@
             </div>
 
 
-
-
-
-
-
-
+            <!-- Main ui elements -->
             <div class="row" style="justify-content: center">
                 <div class="col" style="max-width: 60vh">
                     <div class="alert-container" data-alert-container></div>
 
+                    <!-- Title -->
                     <div style="margin-bottom: 5px;"> <h2 id="title-text"></h2> </div>
 
+                    <!-- Map -->
                     <div id="viz">
                         <svg id="d3-map"></svg>
                     </div>
 
-                    <div id="past-guesses"></div>
-
-                    <div>
-                        <div class="autocomplete-drop-down dropup">
-                            <input id="countries-input" placeholder="Enter a country, territory..." type="text">
-                        </div>
-                        <div>
-                            <button id="btn-guess" class="btn green" style="width: 100%">Guess</button>
-                        </div>
+                    <!-- Guess box & button -->
+                    <div class="input-group mb-3 ui-padding autocomplete-drop-down dropup">
+                        <input type="text" id="countries-input" class="form-control input-lg"
+                               placeholder="Enter a country, territory..."
+                               aria-label="Recipient's username" aria-describedby="btn-guess">
+                        <button id="btn-guess" class="btn btn-outline-success btn-lg guess-button" type="button">Guess (1/12)</button>
                     </div>
 
+                    <h5>Past guesses (click to show/hide):</h5>
+                    <div id="past-guesses"></div>
                 </div>
             </div>
         </div>
 
+        <script type="text/javascript" src="src/light_dark.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
         <script type="text/javascript" src="src/fitty.js"></script>
 
@@ -388,11 +385,11 @@
         <script type="text/javascript" src="src/map_display.js"></script>
         <script type="text/javascript" src="src/game.js"></script>
 
-        <script>
-         window.onload = () => {
+        <!-- <script>
+             window.onload = () => {
              const myModal = new bootstrap.Modal('#updateModal');
              myModal.show();
-         }
-        </script>
+             }
+             </script> -->
     </body>
 </html>
