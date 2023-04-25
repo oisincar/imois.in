@@ -65,7 +65,7 @@
                         </div>
                         <div class="modal-body">
                             <ul>
-                                <li>25 Apr 2023: Improve share text, make game slightly easier (+1 guess), add FAQ to main UI screen</li>
+                                <li>25 Apr 2023: Improve share text, make game slightly easier (+1 guess), improve instructions and FAQ (Add connections 'mathematical definition')</li>
                                 <li>21 Apr 2023: Travle 2.0 release! New routes, themes, rules, FAQ & Info page, map view...!!!</li>
                                 <li>11 Apr 2023: Fix timestamp bug due to daylight savings time, correct countdown timer.</li>
                                 <li>11 Apr 2023: Remove User Poll, Travle 2.0 in progress...</li>
@@ -186,11 +186,29 @@
 
             <h1>Connections</h1>
             <p>
-                Travle's ruleset demands that players create a path from start to end that they could walk along without entering another country or the sea.
-                In special cases, to allow the inclusion of countries like Indonesia, an extra rule <i>'Island Hopping'</i> allows players to jump between the various islands that make it up. More info below.
+                Travle does not treat each country or region as one singular piece, and requires you to make a joined path from Start to End. These rules were voted on by the community, and are a change from Travle 1.0!
             </p>
             <p>
-                Connections are determined automatically based on adjacent countries from the Natural Earth geojson data, then tweaked manually according to the following rules.
+                The exact rules that cover all cases are:<br>
+                <b>Countries</b> and <b>Regions</b> in the game each consist of one or more disjoint <b>Areas</b>.
+
+                You may pass from one <b>Area</b> to another <b>Area</b> either if:
+                <ul>
+                    <li>(Adjacency): They are adjacent, or a bridge or tunnel connects them OR</li>
+                    <li>(Island Hopping): They both belong to the same <b>Country</b> or <b>Region</b> <i>and</i> all points along the shortest line segment which connects them doesn't pass nearer any other <b>Country</b> or <b>Region</b>.</li>
+                </ul>
+                <p>
+                    An example of the latter case is <b>Northern Ireland</b> and <b>United Kingdom (Mainland)</b> are two Areas in the <b>United Kingdom</b>.
+                    The shortest line between them only passes near the <b>United Kingdom</b>, hence they're connected.
+                    A counterexample would be <b>Kaliningrad Oblast</b> does not connect to <b>Russia</b>'s mainland: The line connecting them goes through Lithuania and Latvia too.
+                </p>
+                <p>
+                    You Win when you can pass from Start to End through only connected <b>Areas</b> which are within <b>Countries</b> or <b>Regions</b> you've guessed.
+                </p>
+            </p>
+
+            <p>
+                Connections are determined automatically based on adjacent countries from the Natural Earth geojson data. An exhaustive list of examples that affect gameplay are listed below.
             </p>
 
             <h2>Bridges & Tunnels</h2>
@@ -221,11 +239,8 @@
 
             <p>
                 Additionally, Travle allows Island Hopping:
-                Jump across (narrow-ish stretches) of water between parts of the same nation.
-            </p>
-
-            <p>
-                This section gives an exhaustive list of examples that affect gameplay. There are others, for example in the south of Chile, which don't create any new connections and are therefore not listed here.
+                Jump across (narrow-ish stretches) of water between parts of the same nation, as long as you don't go near any other countries while you do so.
+                There are other cases, for example in the south of Chile, which don't create any connections to new countries and are therefore not listed here.
             </p>
 
             <p>Island hopping is allowed in the following countries or regions:</p>
@@ -237,7 +252,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Croatia</td><td>Southern tip joins with the mainland, hence shares a border w/ Montenegro</td></tr>
+                    <tr><td>Croatia</td><td>Southern tip joins with the mainland (<a href="https://en.wikipedia.org/wiki/Pelje%C5%A1ac_Bridge">there is a bridge, too</a>), hence shares a border w/ Montenegro</td></tr>
                     <tr><td>Indonesia</td><td>Jump between islands</td></tr>
                     <tr><td>Malaysia</td><td>Jump between islands</td></tr>
                     <tr><td>Turkey</td><td>'Island hopping' over the Bosphorus</td></tr>
@@ -250,7 +265,7 @@
                 Each can Island Hop to Hans Island, which is a surprising land border between the two countries. <a href="https://en.wikipedia.org/wiki/Hans_Island">See here for more information</a>.
             </p>
             <p>
-                However - Island hopping does not apply to the following countries, which contain a disjoint part:
+                However - Island hopping does not apply to the following countries, which each fail the 'connecting line test':
             </p>
 
             <table class="table">
@@ -265,7 +280,7 @@
                     <tr><td>Azerbaijan</td><td>South west is disjoint, Azerbaijan therefore doesn't connect Turkey to Russia.</td></tr>
                     <tr><td>Palestine</td><td>Gaza Strip not considered connected to West Bank</td></tr>
                     <tr><td>Russia</td><td>Kaliningrad is disjoint. Russia doesn't connect e.g. Poland to [anything mainland russia touches]</td></tr>
-                    <tr><td>Spain</td><td>Mainland Spain does not connect to Morocco via Ceuta or Melilla</td></tr>
+                    <tr><td>Spain</td><td>Mainland Spain does not connect to Morocco via Ceuta or Melilla (the shortest line narrowly passes nearer Morocco in both cases)</td></tr>
                 </tbody>
             </table>
 
