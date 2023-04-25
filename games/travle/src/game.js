@@ -66,19 +66,19 @@ class GameState {
         var num_guesses = this.shortest_solution - 1;
 
         if (num_guesses <= 3) {
-            return num_guesses + 3;
-        }
-        else if (num_guesses <= 6) {
             return num_guesses + 4;
         }
-        else if (num_guesses <= 9) {
+        else if (num_guesses <= 6) {
             return num_guesses + 5;
         }
-        else if (num_guesses <= 12) {
+        else if (num_guesses <= 9) {
             return num_guesses + 6;
         }
-        else {
+        else if (num_guesses <= 12) {
             return num_guesses + 7;
+        }
+        else {
+            return num_guesses + 8;
         }
     }
 
@@ -86,15 +86,19 @@ class GameState {
         return this.past_guess_ids.length < this.possible_guesses;
     }
 
-    // #travle #121 5/10
-    //
-    // imois.in/
-
     get share_text() {
-        var score = `${this.past_guess_ids.length}/${this.possible_guesses}`;
-        var baseText = `#travle #${this.puzzle_ix} ${score}\n`;
+        var score_txt;
+        if (this.game_progress == GAMEPLAY_STATE_WON) {
+            score_txt = `(${this.past_guess_ids.length}/${this.possible_guesses})`;
+        }
+        else {
+            var steps_left = this.minimum_guesses_to_solve();
+            score_txt = `(?/${this.possible_guesses}) (${steps_left} away)`;
+        }
+
+        var baseText = `#travle #${this.puzzle_ix} ${score_txt}\n`;
         baseText += this.guess_ratings.join("") + "\n";
-        baseText += "imois.in/games/travle";
+        baseText += "https://imois.in/games/travle";
 
         return baseText;
     }

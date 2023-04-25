@@ -25,8 +25,20 @@
 
 - [X] New rules for max guesses
 - [X] Include #travle in share text (and improve it)
-- [ ] Move changelog somewhere else...
-- [ ] Add toggle for dark/light theme
+- [X] Move changelog somewhere else...
+- [X] Add toggle for dark/light theme
+
+- [ ] Add FAQ to bottom of main screen
+
+- [ ] Use country capitals to create path between countries in map/ end screen.
+
+- [X] Make it clear people who didn't win didn't in share text
+
+- [ ] Add 'hard mode' option to hide countries
+- [ ] Move light/ dark mode to settings menu w/ this^?
+
+- [ ] Progressive web app/ mobile app...?
+
 - [ ] Pretty up the results screen
   - [ ] Better HREF colours
   - [ ] Just... It's kinda ugly? Improve layout?
@@ -37,3 +49,19 @@
 - [ ] Multilingual support
 - [ ] Make the path shown in the end screen also use the smallest countries
 - [ ] Clarify in the end screen that the paths shown are only one of several possible paths.
+
+
+
+
+
+
+
+FAQ
+
+
+Do exclaves count? E.g. Kaliningrad Oblast, Ceuta or Melilla..?
+
+No! Travle requires you to name every country you pass through when going from A to B. This means Poland -> Russia -> China isn't a valid connection, as you can't teleport from Kaliningrad Oblast to mainland Russia.
+
+Travle also allows short, direct hops over water.
+A full list of special cases is available here.
