@@ -416,5 +416,24 @@
             <p> <b>On Android:</b> Tap the three-dot icon in the top right, then select 'Add to Home screen'. </p>
             <p> <b>On IOS:</b> Tap the Share button, then select 'Add to Home Screen'. </p>
         </div>
+
+        <!-- Glow Cookies v3.0.1 -->
+        <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.0.1/src/glowCookies.min.js"></script>
+        <script>
+         glowCookies.start('en', {
+             style: 1,
+             analytics: 'UA-143421297-1',
+             bannerDescription: 'We use our own and third party cookies to store game data and analyze web traffic.',
+             // facebookPixel: '990955817632355',
+             policyLink: '/pages/privacy-policy/',
+
+             hideAfterClick: true,
+             customScript: [{
+                 type: 'custom',
+                 position: 'body',
+                 // content: 'console.log("Cookies accepted!"); let COOKIES_ACCEPTED = true;',
+             }]
+         });
+        </script>
     </body>
 </html>
