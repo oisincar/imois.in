@@ -67,19 +67,20 @@
                             <ul>
                                 <li>25 Apr 2023: Improve share text, make game slightly easier (+1 guess), improve instructions and FAQ (Add connections 'mathematical definition')</li>
                                 <li>21 Apr 2023: Travle 2.0 release! New routes, themes, rules, FAQ & Info page, map view...!!!</li>
+                                <li>20 Apr 2023: <b>50,000th play!</b></li>
                                 <li>11 Apr 2023: Fix timestamp bug due to daylight savings time, correct countdown timer.</li>
                                 <li>11 Apr 2023: Remove User Poll, Travle 2.0 in progress...</li>
                                 <li>04 Apr 2023: Update FAQ and add User Poll.</li>
                                 <li>30 Mar 2023: Pre-April fools day update :).</li>
                                 <li>19 Jan 2023: Improve puzzle generation.</li>
-                                <li>01 Jan 2023: <b>10,000th player!</b></li>
+                                <li>01 Jan 2023: <b>10,000th play!</b></li>
                                 <li>27 Dec 2022: Add changelog, improve logo.</li>
                                 <li>26 Dec 2022: Add shortest route, missing countries and next-travle countdown timer to results modal</li>
-                                <li>24 Dec 2022: <b>5000th player!</b></li>
+                                <li>24 Dec 2022: <b>5000th play!</b></li>
                                 <li>21 Dec 2022: Fix errors with some country borders (Ukraine, Serbia). Game now follows ISO standard for valid countries/regions. Fix map recentering bug.</li>
-                                <li>21 Dec 2022: <b>1000th player!</b></li>
+                                <li>20 Dec 2022: <b>1000th play!</b></li>
                                 <li>20 Dec 2022: Improve input - fuzzy searchable countries</li>
-                                <li>15 Dec 2022: <b>100th player!</b></li>
+                                <li>15 Dec 2022: <b>100th play!</b></li>
                                 <li>15 Dec 2022: Improve route generation alg</li>
                                 <li>14 Dec 2022: travle #1 released!</li>
                             </ul>
@@ -123,6 +124,29 @@
             Antarctica, British Indian Ocean Territory, Falkland Islands, Israel, Kosovo, Palestine,
             Siachen Glacier, Western Sahara.</p>
 
+
+            <p>Travle includes some countries which aren't either aren't recognised by all major regions or have disputed borders. Below is a list of all countries who's status are disputed by 2 or more other regions:</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Åland</td></tr>
+                    <tr><td>Israel</td></tr>
+                    <tr><td>Kosovo</td></tr>
+                    <tr><td>Palestine</td></tr>
+                    <tr><td>Siachen Glacier</td></tr>
+                    <tr><td>Somaliland</td></tr>
+                    <tr><td>Taiwan</td></tr>
+                    <tr><td>Turkish Republic of Northern Cyprus</td></tr>
+                    <tr><td>Western Sahara</td></tr>
+                </tbody>
+            </table>
+
+            Travle also includes <b>Antarctica</b> and the <b>British Indian Ocean Territory</b>.
+
             <h2>Remote Territories</h2>
 
             Travle also splits some countries, especially those with remote territories, into separate regions:
@@ -136,24 +160,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>France</td>
-                        <td>France, Mayotte, Réunion, Martinique, Guadeloupe, French Guiana</td>
-                    </tr>
-                    <tr>
                         <td>Australian Indian Ocean Territories</td>
                         <td>Christmas Island, Cocos (Keeling) Islands</td>
+                    </tr>
+                    <tr>
+                        <td>France</td>
+                        <td>France, Mayotte, Réunion, Martinique, Guadeloupe, French Guiana</td>
                     </tr>
                     <tr>
                         <td>Netherlands</td>
                         <td>Netherlands, Caribbean Netherlands</td>
                     </tr>
                     <tr>
-                        <td>Norway</td>
-                        <td>Norway, Jan Mayen, Svalbard</td>
-                    </tr>
-                    <tr>
                         <td>New Zealand</td>
                         <td>New Zealand, Tokelau</td>
+                    </tr>
+                    <tr>
+                        <td>Norway</td>
+                        <td>Norway, Jan Mayen, Svalbard</td>
                     </tr>
                     <tr>
                         <td>Portugal</td>
@@ -161,6 +185,15 @@
                     </tr>
                 </tbody>
             </table>
+
+            <h2>Map Projection (Why does X look distorted?)</h2>
+            <p>
+                The Travle map uses a map projection which tries to minimize distortion on visible countries. It is much more accurate than a simple mercator map, or even viewing a globe - especially when there is a small part of the globe visible.
+                However, this means countries near the poles may not look how you're used to seeing them on a standard mercator map.
+            </p>
+            <p>
+                The Travle map uses a <b>geoAzimuthalEquidistant</b> map projection, where the center of the projection is the Geo-Centroid of all currently visible countries.
+            </p>
 
             <h2>Country & Region Borders</h2>
             <p>
@@ -181,6 +214,8 @@
             <p>
                 This has some impact on disputed regions, for example Western Sahara is only shown to have territory
                 to the west of the Berm wall, the east of which is <a href="https://en.wikipedia.org/wiki/Western_Sahara#Dispute">currently controlled by Morocco</a>.
+            </p>
+            <p>
                 The exception to this is Ukraine, which retains Crimea despite the current situation.
             </p>
 
@@ -252,7 +287,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Croatia</td><td>Southern tip joins with the mainland (<a href="https://en.wikipedia.org/wiki/Pelje%C5%A1ac_Bridge">there is a bridge, too</a>), hence shares a border w/ Montenegro</td></tr>
+                    <tr><td>Croatia</td><td>Southern tip joins with the mainland, hence shares a border w/ Montenegro. <a href="https://en.wikipedia.org/wiki/Pelješac_Bridge">There is also a bridge!</a></td></tr>
                     <tr><td>Indonesia</td><td>Jump between islands</td></tr>
                     <tr><td>Malaysia</td><td>Jump between islands</td></tr>
                     <tr><td>Turkey</td><td>'Island hopping' over the Bosphorus</td></tr>
@@ -345,7 +380,7 @@
                 </tbody>
             </table>
 
-            <p>For example, if the shortest path between two countries requires 6 guesses, the game will give you up to 6+4 = 10 guesses.</p>
+            <p>For example, if the shortest path between two countries requires 6 guesses, the game will give you up to 6+5 = 11 guesses.</p>
 
             <h2>Puzzle Scoring</h2>
 
