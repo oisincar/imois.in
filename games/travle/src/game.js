@@ -103,25 +103,25 @@ class GameState {
         return baseText;
     }
 
-    get share_text_old() {
-        var baseText = `travle #${this.puzzle_ix}: `;
+    // get share_text_old() {
+    //     var baseText = `travle #${this.puzzle_ix}: `;
 
-        var start_c = COUNTRY_ID_DATA_LOOKUP[this.start_country].properties.NAME_EN;
-        var end_c = COUNTRY_ID_DATA_LOOKUP[this.target_country].properties.NAME_EN;
-        var num_guesses = this.past_guess_ids.length;
+    //     var start_c = COUNTRY_ID_DATA_LOOKUP[this.start_country].properties.NAME_EN;
+    //     var end_c = COUNTRY_ID_DATA_LOOKUP[this.target_country].properties.NAME_EN;
+    //     var num_guesses = this.past_guess_ids.length;
 
-        if (this.game_progress == GAMEPLAY_STATE_LOST) {
-            var steps_left = this.minimum_guesses_to_solve();
-            var steps_txt = steps_left + " step" + (steps_left == 1 ? "" : "s")
-            baseText += `From ${start_c} I made it to ${steps_txt} from ${end_c}\n`;
-        }
-        else {
-            baseText += `I made it from ${start_c} to ${end_c} in ${this.past_guess_ids.length}/${this.possible_guesses} steps.\n`;
-        }
-        baseText += this.guess_ratings.join("") + "\n";
-        baseText += "imois.in/games/travle";
-        return baseText;
-    }
+    //     if (this.game_progress == GAMEPLAY_STATE_LOST) {
+    //         var steps_left = this.minimum_guesses_to_solve();
+    //         var steps_txt = steps_left + " step" + (steps_left == 1 ? "" : "s")
+    //         baseText += `From ${start_c} I made it to ${steps_txt} from ${end_c}\n`;
+    //     }
+    //     else {
+    //         baseText += `I made it from ${start_c} to ${end_c} in ${this.past_guess_ids.length}/${this.possible_guesses} steps.\n`;
+    //     }
+    //     baseText += this.guess_ratings.join("") + "\n";
+    //     baseText += "imois.in/games/travle";
+    //     return baseText;
+    // }
 
     constructor(puzzle_ix, start, target, shortest_solution) {
         this.puzzle_ix = puzzle_ix;
@@ -809,12 +809,7 @@ function loadTopText() {
 
     var title = document.getElementById("title-text");
 
-    if (GAME_STATE.shortest_solution > 10) {
-        title.innerHTML = `Happy April Fools :). Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
-    }
-    else {
-        title.innerHTML = `Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
-    }
+    title.innerHTML = `Today I'd like to go from <b>${start}</b> to <b>${target}</b>`;
 
     fitty("#title-text");
 }

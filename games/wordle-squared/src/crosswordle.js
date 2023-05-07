@@ -255,6 +255,7 @@ let clipboard = new ClipboardJS(document.getElementById('resultsModelCopyButton'
   },
 });
 
+// TODO: Show popover after clicking this... See: Travle
 clipboard.on('success', function (e) {
   console.info('Action:', e.action);
   console.info('Text:', e.text);

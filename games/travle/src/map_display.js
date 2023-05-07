@@ -43,8 +43,7 @@ class VisualCountry {
 }
 
 class MapView {
-    constructor(divName, countries_geojson, countries_connections, game_state)
-    {
+    constructor(divName, countries_geojson, countries_connections, game_state) {
         this.map_svg = d3.select("#"+divName);
         this.map_svg.call(responsivefy);
 
@@ -188,7 +187,6 @@ class MapView {
 
         this.added_countries.push(new VisualCountry(country_id, is_start, is_end));
 
-        console.log("Adding: " + country_id);
         var country_data = this.countries_geojson[country_id];
 
         var tooltip = this.tooltip;
@@ -236,8 +234,6 @@ class MapView {
         this.map_svg
             .select("#" + country_id)
             .attr("class", "country-connected");
-
-        // console.log("Anim to connected: " + country_id);
 
 
         setTimeout(() => {
@@ -298,14 +294,13 @@ function responsivefy(svg) {
     var container = d3.select(svg.node().parentNode);
         // width = parseInt(svg.style("width")),
         // height = parseInt(svg.style("height")),
-    var aspect = 1;
+    var aspect = 1.35;
+    console.log(aspect);
 
     var targetWidth = parseInt(container.style("width"));
 
     width = targetWidth;
     height = Math.round(targetWidth / aspect);
-
-    console.log(targetWidth);
 
     svg.attr("width", width);
     svg.attr("height", height);

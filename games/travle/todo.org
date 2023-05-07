@@ -9,6 +9,8 @@
 - [X] New puzzles (longer/ more variance in length)
 - [ ] Compress map WONTFIX
 
+- [ ] USA map!
+
 ** Frontend
 - [X] Fix timezones
   + [X] Puzzle spawn
@@ -34,15 +36,20 @@
 
 - [X] Make it clear people who didn't win didn't in share text
 
+*** Gameplay:
 - [ ] Add 'hard mode' option to hide countries
-- [ ] Move light/ dark mode to settings menu w/ this^?
+- [ ] Add button for hints?
 
 - [ ] Progressive web app/ mobile app...?
 
+*** UI
+- [ ] Move light/ dark mode to settings menu (w/ difficulty also)
 - [ ] Pretty up the results screen
   - [ ] Better HREF colours
   - [ ] Just... It's kinda ugly? Improve layout?
+
 - [ ] Show missing countries on map after loss? (Show nearby countries anyway? (Russia is an issue))
+  - I guess show them, but don't zoom the map to fit them in?
 
 ** Bonus
 - [ ] Separate out country graph & algorithms(?)
