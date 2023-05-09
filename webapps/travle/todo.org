@@ -36,8 +36,11 @@
 - [ ] Add 'hard mode' option to hide countries (or country names)
 
 - [ ] HINTS:
+  - [ ] Reveal one country outline
   - [ ] Reveal country outlines
-  - [ ] First letters of countries
+  - [ ] First letters of countries (after clicking on them?)
+
+- [ ] Endless mode
 
 - [ ] Progressive web app/ mobile app...?
 

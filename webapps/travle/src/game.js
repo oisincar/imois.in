@@ -37,6 +37,8 @@ class GameState {
     shortest_solution = 0;
     highlighted_country = null;
 
+    hints_data = [];
+
     // Past guesses stored as IDs
     past_guess_ids = [];
     // Successful guesses (also IDs)
@@ -60,6 +62,30 @@ class GameState {
         var l = this.guess_ratings.length;
         if (l == 0) return null;
         return this.guess_ratings[l-1];
+    }
+
+    get num_hints() {
+        return this.hints_data.length;
+    }
+    get show_initials() {
+        return (this.num_hints == 3);
+    }
+
+    get hint_outline_countries() {
+        // Get all countries outlines
+        var num_hints = this.num_hints;
+        var visible_outlines = [];
+        if (num_hints >= 2 || this.game_progress != GAMEPLAY_STATE_ONGOING) {
+            visible_outlines = Object.keys(COUNTRY_ID_DATA_LOOKUP);
+        }
+        else if (num_hints == 1) {
+            visible_outlines.push(this.hints_data[0].reveal_country);
+        }
+
+        var visible = new Set(this.visible_countries);
+        visible_outlines = visible_outlines.filter(c => !visible.has(c));
+
+        return visible_outlines;
     }
 
     get possible_guesses() {
@@ -89,7 +115,7 @@ class GameState {
     get share_text() {
         var score_txt;
         if (this.game_progress == GAMEPLAY_STATE_WON) {
-            score_txt = `(${this.past_guess_ids.length}/${this.possible_guesses})`;
+            score_txt = `(${this.past_guess_ids.length}/${this.possible_guesses}) (${this.num_hints} hints)`;
         }
         else {
             var steps_left = this.minimum_guesses_to_solve();
@@ -254,6 +280,35 @@ class GameState {
         return false;
     }
 
+    reveal_next_hint() {
+        // Reveal next country border
+        // Reveal all country borders
+        // Reveal country first letters
+
+        if (this.game_progress != GAMEPLAY_STATE_ONGOING) {
+            console.log("Game is over");
+            return;
+        }
+
+        var num_hints = this.hints_data.length;
+
+        if (num_hints == 0) {
+            // Find a country to reveal.
+            var path = this.dijkstras(this.start_country, this.target_country, true);
+            var revealed_country = path.guessesNeeded[0];
+            this.hints_data.push({"reveal_country": revealed_country});
+        }
+        else if (num_hints == 1) {
+            this.hints_data.push({"reveal_all": null});
+        }
+        else if (num_hints == 2) {
+            this.hints_data.push({"reveal_country_initials": null});
+        }
+        else {
+            console.log("Already revealed all hints");
+        }
+    }
+
     // From the current game state, how many guesses required to solve the board
     minimum_guesses_to_solve() {
         return this.minimum_guesses_to_join(this.start_country, this.target_country);
@@ -271,8 +326,6 @@ class GameState {
         // as 'reachable' without an extra guess too.
         var numGuesses = 0;
         while (perimiter.length > 0) {
-            console.log(perimiter);
-
             var newPerimiter = [];
 
             while (perimiter.length > 0) {
@@ -323,8 +376,6 @@ class GameState {
         var givenCountries = use_guesses ? new Set(this.visible_countries) : new Set();
 
         while (queue.length > 0) {
-            // console.log(queue.map(c => COUNTRY_ID_DATA_LOOKUP[c].properties.NAME_EN));
-
             var country = queue.shift();
             if (visited.has(country)) continue;
             visited.add(country);
@@ -437,12 +488,7 @@ class PastGuessManager {
              + `<span class="align-middle emoji" title="${guessTitleText}">${guessRatingEmoji}</span>`);
 
         elem.addEventListener('click', (e) => {
-            console.log("Click " + countryId);
-            // this.classList += "test";
-            // console.log(this);
-            console.log(elem);
             var now_hidden = map.toggle_visibility(countryId);
-            console.log(now_hidden);
 
             if (now_hidden) {
                 elem.classList.add('past-guess-hidden');
@@ -450,10 +496,10 @@ class PastGuessManager {
             else {
                 elem.classList.remove('past-guess-hidden');
             }
-            console.log(elem);
         });
     }
 }
+
 
 let has_warned_about_cookies = false;
 function loadCountryData(geojson, adjacency) {
@@ -483,7 +529,7 @@ function createSearchbar() {
     });
 
     SEARCH_BAR = new Autocomplete(field, {
-        data: data, //[{label: "I'm a label", value: 42}],
+        data: data,
         threshold: 1,
         maximumItems: -1,
         onSelectItem: ({label, value}) => {
@@ -495,11 +541,71 @@ function createSearchbar() {
     });
 
     // Also set up the button
-    console.log(document);
     GUESS_BTN = document.getElementById("btn-guess");
     GUESS_BTN.addEventListener("click", function () {
         submitCurrentGuess();
     });
+}
+
+var HINT_BUTTONS = null;
+var HINTS_TEXT = null;
+function initializeHintsUI() {
+    HINTS_TEXT = document.getElementById("hints-text");
+
+    HINT_BUTTONS = [
+        document.getElementById("hint-btn-1"),
+        document.getElementById("hint-btn-2"),
+        document.getElementById("hint-btn-3")];
+
+    HINT_BUTTONS.forEach(btn => {
+        btn.addEventListener("click", revealNextHint);
+    });
+
+    applyHints();
+    updateHintsUI();
+}
+
+function updateHintsUI() {
+    HINT_BUTTONS.forEach(btn => {
+        btn.classList.add("disabled");
+    });
+
+    var num_hints = GAME_STATE.num_hints;
+
+    // Only disable buttons while game is ongoing
+    if (GAME_STATE.game_progress !== GAMEPLAY_STATE_ONGOING
+        && num_hints < HINT_BUTTONS.length)
+    {
+        HINT_BUTTONS[num_hints].classList.remove("disabled");
+    }
+
+    HINTS_TEXT.textContent = `Get a hint (${num_hints}/3):`;
+}
+
+function revealNextHint() {
+    if (GAME_STATE.game_progress !== GAMEPLAY_STATE_ONGOING) {
+        return;
+    }
+
+    GAME_STATE.reveal_next_hint();
+    updateHintsUI();
+    saveGameState();
+
+    // Update map
+    GAME_STATE.hint_outline_countries.forEach(c_id => {
+        map.add_country_to_map(c_id, true);
+    });
+
+    if (GAME_STATE.show_initials) {
+        map.outline_text = "initials";
+    }
+}
+
+function applyHints() {
+    // Make sure the map view shows all hints!
+
+    // TODO: Filter for non-visible countries?
+    // .filter(c_id => (c_id));
 }
 
 function updateGuessButton() {
@@ -536,7 +642,7 @@ function submitCurrentGuess() {
         console.log("Successfully guessed!")
 
         var id = GAME_STATE.last_guess;
-        map.add_country_to_map(id);
+        map.add_country_to_map(id, false);
         map.recenter_map();
 
         SEARCH_BAR.clear();
@@ -593,6 +699,12 @@ function win() {
         confettiNumber: 40,
     });
 
+    // Show all countries
+    GAME_STATE.hint_outline_countries.forEach(c_id => {
+        map.add_country_to_map(c_id, true);
+    });
+    map.outline_text = "full";
+
     showAlert("GAME OVER!");
 
     jsConfetti.addConfetti();
@@ -602,6 +714,13 @@ function win() {
 
 function lose() {
     showAlert("0 guesses remaining... :c");
+
+    // Show all countries
+    GAME_STATE.hint_outline_countries.forEach(c_id => {
+        map.add_country_to_map(c_id, true);
+    });
+    map.outline_text = "full";
+
     showResultsModal(200);
 }
 
@@ -871,13 +990,12 @@ function loadGameState(routes) {
             GAME_STATE.successful_guesses = prev_gamestate.successful_guesses;
             GAME_STATE.guess_ratings = prev_gamestate.guess_ratings;
             GAME_STATE.game_progress = prev_gamestate.game_progress;
+            var hints = prev_gamestate.hints_data;
+            GAME_STATE.hints_data = hints == null ? [] : hints;
         }
     }
 
     // debugSanityCheckPathfinding(routes);
-
-    // Show finishing UI if completed
-    maybeShowEndGameUI();
 }
 
 function saveGameState() {
@@ -1081,6 +1199,8 @@ Promise.all([
 
         updateGuessButton();
 
+        initializeHintsUI();
+
         if (!GAME_STATE.is_valid) {
             console.log("ERROR, invalid game state");
         }
@@ -1092,5 +1212,8 @@ Promise.all([
             COUNTRY_ID_DATA_LOOKUP,
             COUNTRY_ADJACENCY,
             GAME_STATE);
+
+        // Show finishing UI if completed
+        maybeShowEndGameUI();
     }
 );

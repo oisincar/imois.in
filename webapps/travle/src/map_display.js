@@ -6,6 +6,7 @@ var colors = {
     disconnected_country: "var(--country-disconnected)",
     connected_country: "var(--country-connected)",
     country_border: "var(--bs-tertiary-bg)",
+    outline_country_border: "#777",
     highlighted_border: "var(--country-highlight-border)",
 };
 
@@ -33,11 +34,12 @@ var countries_connected_state = {
 // (Optional: Make sure not to cancel ongoing animations)
 
 class VisualCountry {
-    constructor(id, is_start, is_end) {
+    constructor(id, is_start, is_end, is_outline) {
         this.id = id;
         this.is_end = is_end;
         this.visually_connected = is_start;
 
+        this.is_outline = is_outline;
         this.is_hidden = false;
     }
 }
@@ -51,7 +53,7 @@ class MapView {
         this.countries_connections = countries_connections;
 
         // Everything's visible from the start, not going to hide things in GAMESTATE.
-        this.added_countries = [];
+        this.added_countries = {};
         // this.visible_countries_ids = [start_country_id, end_country_id].concat(guess_ids);
 
         // Create path and projection based on start/end countries.
@@ -95,7 +97,18 @@ class MapView {
                         .style("top", 50 + "px");
 
         for (const id of GAME_STATE.visible_countries) {
-            this.add_country_to_map(id);
+            this.add_country_to_map(id, false);
+        }
+        for (const id of GAME_STATE.hint_outline_countries) {
+            this.add_country_to_map(id, true);
+        }
+
+        this.outline_text = "none";  // {"none", "initials", "full"};
+        if (GAME_STATE.game_progress !== GAMEPLAY_STATE_ONGOING) {
+            this.outline_text = "full";
+        }
+        else if (GAME_STATE.show_initials) {
+            this.outline_text = "initials";
         }
 
         this.recenter_map();
@@ -103,14 +116,8 @@ class MapView {
 
     toggle_visibility(country_id) {
         // TODO: This is pretty dumb. Should be a lookup.
-        var country_data;
-        for (var i = 0; i < this.added_countries.length; i++) {
-            if (this.added_countries[i].id == country_id) {
-                country_data = this.added_countries[i];
-                this.added_countries[i].is_hidden = !country_data.is_hidden;
-                break;
-            }
-        }
+        var country_data = this.added_countries[country_id];
+        country_data.is_hidden = !country_data.is_hidden;
 
         // Show/ hide in map
         var region_class = "";
@@ -136,13 +143,14 @@ class MapView {
 
     touches_connected_country(country_id) {
         var connections = new Set(this.countries_connections[country_id]);
-        for (const country of this.added_countries) {
+        // for (const country of this.added_countries) {
+        for (const [c_id, country] of Object.entries(this.added_countries)) {
             // Check if it's already a connected country, too... Can touch itself, I guess..!
-            if (country.id == country_id && country.visually_connected) {
+            if (c_id == country_id && country.visually_connected) {
                 return true;
             }
             // Country is touching and connected to start
-            if (country.visually_connected && connections.has(country.id)) {
+            if (country.visually_connected && connections.has(c_id)) {
                 return true;
             }
         }
@@ -158,16 +166,25 @@ class MapView {
     }
 
     get_visible_countries_geojson() {
-        var data = map.added_countries
-                      .filter(c => !c.is_hidden)
-                      .map(c => this.countries_geojson[c.id]);
+        var data = Object.keys(this.added_countries)
+                         .filter(c_id => {
+                             var c = this.added_countries[c_id];
+                             return (!c.is_hidden && !c.is_outline);
+                         })
+                         .map(c_id => this.countries_geojson[c_id]);
         return {
             type: "FeatureCollection",
             "features": data,
         };
     }
 
-    add_country_to_map(country_id) {
+    add_country_to_map(country_id, is_outline) {
+        if (is_outline && country_id in this.added_countries) {
+            return;
+        }
+
+
+
 
         // Choose color (for now)
         var color;
@@ -185,47 +202,107 @@ class MapView {
             color = colors.disconnected_country;
         }
 
-        this.added_countries.push(new VisualCountry(country_id, is_start, is_end));
+        var css_class = "";
+        var stroke = colors.country_border;
+        var stroke_opacity = 1;
+        if (is_outline) {
+            css_class = "country-outline";
+            stroke = colors.outline_country_border;
+            stroke_opacity = 0.5;
+        }
 
-        var country_data = this.countries_geojson[country_id];
+        // Check if we've seen this country before!!
+        if (!(country_id in this.added_countries)) {
+            this.added_countries[country_id] = new VisualCountry(country_id, is_start, is_end, is_outline);
 
-        var tooltip = this.tooltip;
-        var map_svg = this.map_svg;
+            var country_data = this.countries_geojson[country_id];
 
-        this.map_svg
-            .insert("path", ".graticule")
-            .datum(country_data)
-            .attr("fill", color)
-            .attr("stroke", colors.country_border)
-            .attr("d", this.path)
-            .attr("class", "")
-            .attr("id", country_data.id)
-            .attr("data-country-id", country_data.id)
-            .on("mouseover", function(event, d) {
-                d3.select(this)
-                  .style("stroke", colors.highlighted_border)
-                  .style("stroke-width", "3px");
+            var that = this;
+            var tooltip = this.tooltip;
+            // var map_svg = this.map_svg;
+            var visual_country = this.added_countries[country_id];
 
-                tooltip.style("opacity", 1);
-            })
-            .on("mousemove", function(event, d) {
-                // Find event position relative to the svg.
-                var e = d3.pointer(event, map_svg);
-                tooltip
-                    .html(d.properties.NAME_EN)
-                    .style("left", e[0] + "px")
-                    .style("top", e[1] + "px");
-            })
-            .on("mouseleave", function(event, d) {
-                d3.select(this)
-                  .style("stroke", colors.country_border)
-                  .style("stroke-width", "1px");
+            this.map_svg
+                .insert("path", ".graticule")
+                .datum(country_data)
+                .attr("fill", color)
+                .attr("stroke", stroke)
+                .attr("stroke-opacity", stroke_opacity)
+                .attr("d", this.path)
+                .attr("class", css_class)
+                .attr("id", country_data.id)
+                .on("mouseover", function(event, d) {
+                    d3.select(this)
+                      .style("stroke", colors.highlighted_border)
+                      .style("stroke-width", "3px")
+                      .style("stroke-opacity", "1")
+                      .raise();
 
-                tooltip.style("opacity", 0);
-            });
+                    // Work out what text to show.
+                    var txt = "";
+                    if (!visual_country.is_outline || that.outline_text == "full") {
+                        txt = d.properties.NAME_EN;
+                    }
+                    // Outline
+                    else if (that.outline_text == "initials") {
+                        txt = d.properties.NAME_EN
+                               .split(" ")
+                               .map(s => s[0]+'&hellip; ')
+                               .join("");
+                    }
+                    else {
+                        txt = "?";
+                    }
+
+                    that.tooltip
+                        .style("opacity", 1)
+                        .html(txt)
+                })
+                .on("mousemove", function(event, d) {
+                    // Find event position relative to the svg.
+                    var e = d3.pointer(event, that.map_svg);
+                    // console.log(visual_country);
+                    var n = visual_country.is_outline ? "?" : d.properties.NAME_EN;
+
+                    that.tooltip
+                        // .html(n)
+                        .style("left", e[0] + "px")
+                        .style("top", e[1] + "px");
+                })
+                .on("mouseleave", function(event, d) {
+                    var c = d3.select(this);
+                    if (visual_country.is_outline) {
+                        c.style("stroke", colors.outline_country_border)
+                         .style("stroke-width", "1px")
+                         .style("stroke-opacity", ".5");
+                    }
+                    else {
+                        c.style("stroke", colors.country_border)
+                         .style("stroke-width", "1px")
+                    }
+
+                    that.tooltip.style("opacity", 0);
+                });
+        }
+        else {
+            if (!is_outline && this.added_countries[country_id].is_outline) {
+                console.log("Unveiling outline country!");
+
+                var visual_country = this.added_countries[country_id];
+                visual_country.is_outline = false;
+
+                this.map_svg
+                    .select("#" + country_id)
+                    .attr("fill", color)
+                    .attr("stroke", stroke)
+                    .attr("stroke-opacity", stroke_opacity)
+                    .attr("d", this.path)
+                    .attr("class", css_class);
+            }
+        }
 
         // If we're touching a connected country, then we should count as connected too!
-        if (!is_start && !is_end && this.touches_connected_country(country_id)) {
+        if (!is_start && !is_end && !is_outline && this.touches_connected_country(country_id)) {
             this.anim_to_connected(country_id);
         }
     }
@@ -237,17 +314,19 @@ class MapView {
 
 
         setTimeout(() => {
-            var connections = new Set(this.countries_connections[country_id]);
-            for (const country of this.added_countries) {
-                // Update our status, as we pass by...
-                if (country.id == country_id) {
-                    country.visually_connected = true;
-                }
-
-                // A country we're touching isn't visually connected... Yet!
-                // TODO: This animation could get triggered multiple times.
-                if (!country.visually_connected && !country.is_end && connections.has(country.id)) {
-                    this.anim_to_connected(country.id);
+            // Update our status
+            this.added_countries[country_id].visually_connected = true;
+            // Schedule an update for our neighbours
+            for (const c_id of this.countries_connections[country_id]) {
+                // We've added this country before...
+                if (c_id in this.added_countries) {
+                    var country = this.added_countries[c_id];
+                    if (!country.visually_connected
+                        && !country.is_end
+                        && !country.is_outline
+                       ) {
+                        this.anim_to_connected(c_id);
+                    }
                 }
             }
 
