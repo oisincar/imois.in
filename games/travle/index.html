@@ -167,6 +167,10 @@
                             </div>
 
                             <p>
+                                Share any questions or comments on <a href="https://www.reddit.com/r/travle_game/">Travle's new Subreddit: /r/travle_game</a>
+                            </p>
+
+                            <p>
                                 travle uses: <a href="https://www.naturalearthdata.com/">Natural Earth</a> data,
                                 <a href="https://getbootstrap.com">Bootstrap v5.3</a> for layout and UI design,
                                 <a href="https://d3js.org/">d3.js</a> for map rendering,
@@ -212,6 +216,34 @@
                             <div id="resultsModalText"></div>
                             <p class="results-emoji-breakdown" id="resultsModalEmojis"></p>
                             <div id="googleMapsLink"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary btn-lg invisible">
+                                Share
+                                <i class="fa-solid fa-share-nodes"></i>
+                            </button>
+                            <button type="button" id="resultsModelCopyButton" data-clipboard-text="SANtHO" class="btn btn-primary btn-lg invisible">
+                                Copy Results
+                                <i class="fas fa-clipboard"></i>
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">
+                                Done
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalTitle" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fa-regular fa-compass" style="font-size:1.25em; padding-right: 5px;"></i>
+                            <h5 class="modal-title">Update!</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="alertModalContent">
+                            Travle now has a subreddit! Post your struggles, questions and improvements to <a href="https://www.reddit.com/r/travle_game/">/r/travle_game</a>.
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="resultsModelShareButton" onclick="share()" class="btn btn-primary btn-lg invisible">
@@ -300,11 +332,18 @@
         <script type="text/javascript" src="src/map_display.js"></script>
         <script type="text/javascript" src="src/game.js"></script>
 
-        <!-- <script>
-             window.onload = () => {
-             const myModal = new bootstrap.Modal('#updateModal');
-             myModal.show();
+        <script>
+         var latest_msg = 1;
+
+         // Show the alert popup if the user hasn't seen this dialog before.
+         window.onload = () => {
+             if (localStorage.getItem('travle_latest_msg_ix') != latest_msg) {
+                 const myModal = new bootstrap.Modal('#alertModal');
+                 myModal.show();
+
+                 localStorage.setItem('travle_latest_msg_ix', latest_msg);
              }
-             </script> -->
+         }
+        </script>
     </body>
 </html>
