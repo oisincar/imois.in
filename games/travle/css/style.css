@@ -180,6 +180,8 @@
   /* --bs-btn-active-border-color: var(--success-button-outline-1); */
   /* --bs-btn-disabled-color: var(--success-button-outline); */
   /* --bs-btn-disabled-border-color: var(--success-button-outline); */
+  --bs-btn-disabled-color: var(--secondary-button-outline);
+  --bs-btn-disabled-border-color: var(--secondary-button-outline);
 }
 
 .btn-outline-secondary {
@@ -306,17 +308,26 @@
   font-size: 1.2em;
 }
 
-.countries-guess-empty {
-  /* This is pretty dumb, but I didn't have a better way to match sizes :x */
-  height: 39px;
-  width: 100%;
-  border-radius: 5px;
-  margin-top: 5px;
-  background-color: hsl(0, 0%, 38%);
-}
+/* .countries-guess-empty { */
+/*   /\* This is pretty dumb, but I didn't have a better way to match sizes :x *\/ */
+/*   height: 39px; */
+/*   width: 100%; */
+/*   border-radius: 5px; */
+/*   margin-top: 5px; */
+/*   background-color: hsl(0, 0%, 38%); */
+/* } */
 
 .ui-padding {
   padding-top: 9px;
+}
+
+#hints-buttons {
+padding-left: 25px;
+padding-right: 25px;
+margin-bottom: 15px;
+}
+#hints-buttons  * {
+  margin-top: 4px;
 }
 
 /* ---------- Autocomplete dropdown  ----------------  */
@@ -504,6 +515,10 @@
 
 .country-hidden {
   fill-opacity: 20%;
+}
+
+.country-outline {
+  fill-opacity: 0%;
 }
 
 @keyframes country-connect-anim {
