@@ -572,8 +572,8 @@ function updateHintsUI() {
 
     var num_hints = GAME_STATE.num_hints;
 
-    // Only disable buttons while game is ongoing
-    if (GAME_STATE.game_progress !== GAMEPLAY_STATE_ONGOING
+    // Only enable buttons while game is ongoing
+    if (GAME_STATE.game_progress === GAMEPLAY_STATE_ONGOING
         && num_hints < HINT_BUTTONS.length)
     {
         HINT_BUTTONS[num_hints].classList.remove("disabled");
