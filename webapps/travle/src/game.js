@@ -805,6 +805,7 @@ function showResultsModal(delay) {
             GAME_STATE.target_country);
         resultsHTML += `<a href=${mapsLink}>👀 ${start_c} to ${end_c} on Google Maps</a><br>`;
 
+
         // Countdown until next travle!
         var nextIx = GAME_STATE.puzzle_ix + 1;
         resultsHTML += `<br><div>travle #${nextIx} available in <b id='clock-time'></b>.</div>`;
