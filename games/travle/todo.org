@@ -32,21 +32,51 @@
 
 - [X] Make it clear people who didn't win didn't in share text
 
+
+*** Refactor
+- [ ] Use dijkstras for minimum_guesses_to_join and check_if_solved
+- [ ] Move UI globals into some class.
+  - Searchbar & guess btn:
+    - [ ] Constructor takes callback for making a guess.
+    - [ ] Set active/ inactive
+- [ ] Hints
+  - [ ] Set current hint ix, callback for enable hint.
+
+- [ ] Some saving things class, can be configured for endless mode.
+
+- [ ] Time utils class.
+
+- [ ] Move all the results modal stuff somewhere?
+
+*** Endless mode
+What should it do?
+
+- Keep playing...
+- Shows how long your current streak is.
+
+- Results page w/ info on all routes you did..?
+
+- Keep track of longest streak (run). Maybe possible to re-use some of the current results UI.
+
+- No hints?
+- Saves current route and progress.
+- Maybe fewer guesses? (not for now)
+
+
 *** Gameplay:
 - [ ] Add 'hard mode' option to hide countries (or country names)
 
-- [ ] HINTS:
-  - [ ] Reveal one country outline
-  - [ ] Reveal country outlines
-  - [ ] First letters of countries (after clicking on them?)
+- [X] HINTS:
+  - [X] Reveal one country outline
+  - [X] Reveal country outlines
+  - [X] First letters of countries (after clicking on them?)
 
-- [ ] Endless mode
+- [ ] Endless mode (training/ practice mode)
 
 - [ ] Progressive web app/ mobile app...?
 
 - [ ] 'Perfect Streak': Streak of perfect games (every guess on shortest route).
 
-- [ ] Training/ practice mode.
 
 
 *** UI
@@ -55,7 +85,11 @@
   - [ ] Better HREF colours
   - [ ] Just... It's kinda ugly? Improve layout?
 
-- [ ] Show missing countries on map after loss? (Show nearby countries anyway? (Russia is an issue))
+
+- [ ] Zoomable map
+
+
+- [X] Show missing countries on map after loss? (Show nearby countries anyway? (Russia is an issue))
   - I guess show them, but don't zoom the map to fit them in?
 
 

@@ -183,9 +183,6 @@ class MapView {
             return;
         }
 
-
-
-
         // Choose color (for now)
         var color;
         var is_start = false;
