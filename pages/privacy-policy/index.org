@@ -11,11 +11,13 @@
 #+END_COMMENT
 
 * Privacy Policy
-Last updated: May 12, 2023
+Last updated: April 11, 2023
 
-It's just [[https://policies.google.com/technologies/partner-sites][google analytics]] and google adsense. Analytics is only initialised if you choose to accept tracking info, and adsense will only serve personalized ads to those who accept the popup (in GDPR-compliant regions). No personally identifying information is stored by me, or accessed by me.
+Look... It's just [[https://policies.google.com/technologies/partner-sites][google analytics]]. It's only initialised if you choose to accept cookies. No personally identifying information is stored by me, or accessed by me.
 
 In addition, travle and wordle-squared each store a cookie which is used to keep track of your current streak and other past stats, as well as any ongoing game. As this is necessary for their function, (and isn't used to identify or track anyone) this is always enabled.
+
+Don't sue me plz, ty!
 
 * Contact
 If you have any questions about this Privacy Policy, you can contact me:
