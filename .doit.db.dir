@@ -338,7 +338,7 @@
 'copy_files:output/games/travle/index.css', (726528, 260)
 'copy_files:output/games/travle/data/countries/lang/country_names_SV.json', (727040, 322)
 'copy_files:output/games/travle/data/countries/travle_puzzle_lengths.png', (727552, 320)
-'copy_files:output/games/travle/bundle.js', (728064, 260)
+'copy_files:output/games/travle/bundle.js', (728064, 259)
 'copy_files:output/games/travle/data/countries/lang/country_names_EN.json', (728576, 322)
 'copy_files:output/games/travle/data/countries/lang/country_names_BN.json', (729088, 323)
 'copy_files:output/games/travle/data/countries/lang/country_names_ZH.json', (729600, 322)
