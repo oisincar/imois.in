@@ -479,7 +479,7 @@
 'copy_files:output/games/travle/locales/rus/zh.json', (811520, 279)
 'copy_files:output/games/travle/locales/usa/en.json', (812032, 278)
 'copy_files:output/games/travle/locales/ukr/es.json', (812544, 278)
-'copy_files:output/games/travle/data/gbr/regions.geojson', (813056, 288)
+'copy_files:output/games/travle/data/gbr/regions.geojson', (813056, 289)
 'copy_files:output/games/travle/data/irl/regions.geojson', (813568, 289)
 'copy_files:output/games/travle/locales/rus/ru.json', (814080, 279)
 'copy_files:output/games/travle/locales/irl/el.json', (814592, 279)
