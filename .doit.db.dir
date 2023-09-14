@@ -265,7 +265,7 @@
 'copy_files:output/games/crosswordle/index.html', (320000, 288)
 'render_posts:cache/posts/random-vectors-and-rotations-in-3d.html', (320512, 442)
 'render_pages:output/posts/random-vectors-and-rotations-in-3d/index.html', (902656, 6091)
-'copy_files:output/ads.txt', (326144, 234)
+'copy_files:output/ads.txt', (326144, 237)
 'scale_images:output/images/chromatic_number/pineapplepen.jpg', (326656, 260)
 'build_less', (327168, 56)
 'copy_assets:output/assets/js/html5.js', (554496, 554)
