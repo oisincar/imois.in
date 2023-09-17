@@ -281,6 +281,7 @@
 {"start": "HND", "target": "BRA", "dist": 5},
 {"start": "EGY", "target": "LIE", "dist": 8},
 {"start": "ALB", "target": "PRX", "dist": 7},
+{"start": "NLD", "target": "DNK", "avoid": ["DEU"], "dist": 10},
 {"start": "GNB", "target": "LSO", "dist": 10},
 {"start": "MRT", "target": "ERI", "dist": 4},
 {"start": "BGD", "target": "IDN", "dist": 4},
