@@ -100,9 +100,9 @@ MathJax.Hub.Config({
 
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgeb9bb08" class="outline-2">
-<h2 id="orgeb9bb08">Introduction</h2>
-<div class="outline-text-2" id="text-orgeb9bb08">
+        <div id="outline-container-orgd84eedc" class="outline-2">
+<h2 id="orgd84eedc">Introduction</h2>
+<div class="outline-text-2" id="text-orgd84eedc">
 <p>
 Projective Geometry is a field of mathematics most commonly used for anything to do with cameras - rendering, 3d reconstruction etc. I've only a weak knowledge of it, but this method of calculating the intersection of two lines falls out of the first chapter or two in a standard textbook. I found it very surprising, and hopefully you find it interesting, too!
 </p>
@@ -130,9 +130,9 @@ Let's start off by working out the inner cross products: <code>np.cross(s1, e1)<
 </p>
 </div>
 
-<div id="outline-container-orgba26517" class="outline-3">
-<h3 id="orgba26517">Points -&gt; Lines</h3>
-<div class="outline-text-3" id="text-orgba26517">
+<div id="outline-container-org857f3e1" class="outline-3">
+<h3 id="org857f3e1">Points -&gt; Lines</h3>
+<div class="outline-text-3" id="text-org857f3e1">
 <p>
 Here we'll show that these products calculate a line equation. Consider two points \(\vec{S}\) and \(\vec{E}\).
 </p>
@@ -184,9 +184,9 @@ Hence \(ax + by + c = 0\) is an equation of the line passing through \(\vec{S}\)
 </div>
 
 
-<div id="outline-container-orgbcf9799" class="outline-3">
-<h3 id="orgbcf9799">Lines -&gt; Intersection</h3>
-<div class="outline-text-3" id="text-orgbcf9799">
+<div id="outline-container-org739daf6" class="outline-3">
+<h3 id="org739daf6">Lines -&gt; Intersection</h3>
+<div class="outline-text-3" id="text-org739daf6">
 <p>
 The cross product of two line equations gives their intersection… Let's check.
 </p>
@@ -233,9 +233,9 @@ Hence \(P\) is an intersection of the lines (provided one exists)!
 </div>
 </div>
 
-<div id="outline-container-orge13d739" class="outline-3">
-<h3 id="orge13d739">Sample code in C#</h3>
-<div class="outline-text-3" id="text-orge13d739">
+<div id="outline-container-org0be9da7" class="outline-3">
+<h3 id="org0be9da7">Sample code in C#</h3>
+<div class="outline-text-3" id="text-org0be9da7">
 <p>
 This is a handy snippet to have for Unity. It's worth noting, however, that this isn't the most numerically stable or fastest way I'm sure. I use it because it's short, neat and I don't require any higher accuracy or speed from it.
 </p>
@@ -250,13 +250,13 @@ This is a handy snippet to have for Unity. It's worth noting, however, that this
     <span class="n">Vector3</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="na">Cross</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">sol</span><span class="p">.</span><span class="na">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">// No solution - result 'at infinity' in projective space.</span>
-	<span class="n">intersection</span> <span class="o">=</span> <span class="k">default</span><span class="p">(</span><span class="n">Vector2</span><span class="p">);</span>
-	<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="c1">// No solution - result 'at infinity' in projective space.</span>
+        <span class="n">intersection</span> <span class="o">=</span> <span class="k">default</span><span class="p">(</span><span class="n">Vector2</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
-	<span class="n">intersection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">sol</span><span class="p">.</span><span class="na">x</span><span class="o">/</span><span class="n">sol</span><span class="p">.</span><span class="na">z</span><span class="p">,</span> <span class="n">sol</span><span class="p">.</span><span class="na">y</span><span class="o">/</span><span class="n">sol</span><span class="p">.</span><span class="na">z</span><span class="p">);</span>
-	<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>  <span class="c1">//** See below!</span>
+        <span class="n">intersection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">sol</span><span class="p">.</span><span class="na">x</span><span class="o">/</span><span class="n">sol</span><span class="p">.</span><span class="na">z</span><span class="p">,</span> <span class="n">sol</span><span class="p">.</span><span class="na">y</span><span class="o">/</span><span class="n">sol</span><span class="p">.</span><span class="na">z</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>  <span class="c1">//** See below!</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -264,10 +264,10 @@ This is a handy snippet to have for Unity. It's worth noting, however, that this
 </div>
 
 
-<div id="outline-container-orgdcd3bd6" class="outline-3">
-<h3 id="orgdcd3bd6">A note on line <span class="underline">segments</span>
+<div id="outline-container-org730a40d" class="outline-3">
+<h3 id="org730a40d">A note on line <span class="underline">segments</span>
 </h3>
-<div class="outline-text-3" id="text-orgdcd3bd6">
+<div class="outline-text-3" id="text-org730a40d">
 <p>
 The previous examples only deal with the intersection of lines defined by two points on them. If you require intersection of two line <span class="underline">segments</span> defined by start and end points, you'll need an extra condition.
 Checking if the intersection is bounded in x and y by the ends of each line is sufficient - e.g.
