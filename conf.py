@@ -297,6 +297,7 @@ FILES_FOLDERS = {
     'webapps/PuzzleKeyboard/designer': 'assets/js/kb-designer',
 
     'webapps/travle': 'games/travle',
+    'webapps/travle_staging': 'games/travle_staging',
 }
 # Which means copy 'files' into 'output'
 
