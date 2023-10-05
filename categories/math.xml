@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2023 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Thu, 14 Sep 2023 15:27:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups</title><link>https://imois.in/posts/slapshot-sdf-physics/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgc3ad69a" class="outline-2"&gt;
-&lt;h2 id="orgc3ad69a"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc3ad69a"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin (Bits of math &amp; more theoritical stuff)</title><link>https://imois.in/</link><description></description><atom:link href="https://imois.in/categories/math.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2023 &lt;a href="mailto:oisincar@gmail.com"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 21 Aug 2023 18:02:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups</title><link>https://imois.in/posts/slapshot-sdf-physics/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgdc3eb55" class="outline-2"&gt;
+&lt;h2 id="orgdc3eb55"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdc3eb55"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/slapshot/slapshot_sdf_graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/math/Vector.js"&gt;&lt;/script&gt;&lt;p&gt;
 Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced ice hockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
 &lt;/p&gt;
 
 
-&lt;div id="org24fa5c1" class="figure"&gt;
+&lt;div id="orga4bc756" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/slapshot_bots_demo.gif" alt="slapshot_bots_demo.gif"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;A some gameplay from a 2v2 game in slapshot. All players are bots.&lt;/p&gt;
 &lt;/div&gt;
@@ -34,9 +34,9 @@ Instead, I used an idea from graphics: Signed Distance Functions. It's much fast
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgac9a152" class="outline-2"&gt;
-&lt;h2 id="orgac9a152"&gt;What is a Signed Distance Function?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgac9a152"&gt;
+&lt;div id="outline-container-org4fd449c" class="outline-2"&gt;
+&lt;h2 id="org4fd449c"&gt;What is a Signed Distance Function?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4fd449c"&gt;
 &lt;p&gt;
 The idea of a signed distance field is to provide a function \(f(\vec{p}) = d\) which gives the distance from some point \(p\) to a surface.
 &lt;/p&gt;
@@ -107,11 +107,11 @@ v &amp;amp;= \text{abs}(p) - \frac{b}{2} \\
 Or, more intuitively, written in GLSL:
 &lt;/p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;sdf_box&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="nf"&gt;sdf_box&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;vec2&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;vec2&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;vec2&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
@@ -161,9 +161,9 @@ It's worth noting SDFs work equally well in 3D as well as 2D. Inigo Quilez has c
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9cdf8a5" class="outline-2"&gt;
-&lt;h2 id="org9cdf8a5"&gt;A Slapshot SDF:&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9cdf8a5"&gt;
+&lt;div id="outline-container-org6e6cce5" class="outline-2"&gt;
+&lt;h2 id="org6e6cce5"&gt;A Slapshot SDF:&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6e6cce5"&gt;
 &lt;p&gt;
 Onto something more useful… A signed distance function for the slapshot rink. This combines a rounded square for the outer perimiter with a capsule for each goal.
 &lt;/p&gt;
@@ -192,9 +192,9 @@ The function is most positive near the center of the pitch - these are the point
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge2bd09f" class="outline-2"&gt;
-&lt;h2 id="orge2bd09f"&gt;Gradients, normals and nearest points&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge2bd09f"&gt;
+&lt;div id="outline-container-orgabd1c7e" class="outline-2"&gt;
+&lt;h2 id="orgabd1c7e"&gt;Gradients, normals and nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgabd1c7e"&gt;
 &lt;p&gt;
 As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivative of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
 &lt;/p&gt;
@@ -232,9 +232,9 @@ A nice property of this is that we can calculate surface normals and tangents fo
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3ad830b" class="outline-2"&gt;
-&lt;h2 id="org3ad830b"&gt;Nearest points&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3ad830b"&gt;
+&lt;div id="outline-container-org87588f2" class="outline-2"&gt;
+&lt;h2 id="org87588f2"&gt;Nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org87588f2"&gt;
 &lt;p&gt;
 What's the nearest point on a surface? It's simply the direction to the nearest point times the distance. We know both of those, so we can plug them in.
 &lt;/p&gt;
@@ -247,15 +247,15 @@ What's the nearest point on a surface? It's simply the direction to the nearest 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc2eb59f" class="outline-2"&gt;
-&lt;h2 id="orgc2eb59f"&gt;Ray intersection (raymarching)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc2eb59f"&gt;
+&lt;div id="outline-container-org441dcfa" class="outline-2"&gt;
+&lt;h2 id="org441dcfa"&gt;Ray intersection (raymarching)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org441dcfa"&gt;
 &lt;p&gt;
 When does a ray first intersect with a SDF surface? One solution is raymarching, which is an itterative process. Given a ray origin and direction, you advance along the ray until you can't anymore (or you've reached a certain level af accuracy). How do you know how far along the ray you can advance? Well, there's one simple observation: The ray can't intersect at a point which is nearer than the nearest point on the surface, and we know the distance to the nearest point - just evaluate the SDF.
 &lt;/p&gt;
 
 
-&lt;div id="orge39bf56" class="figure"&gt;
+&lt;div id="org86e7b6a" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/sdf_raymarching.png" alt="sdf_raymarching.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The calculation at each iteration of raymarching. Credit: Wikipedia.&lt;/p&gt;
 &lt;/div&gt;
@@ -266,9 +266,9 @@ Start off at a point: The ray origin, then evaluate the SDF. If the resulting di
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga7fc9c7" class="outline-2"&gt;
-&lt;h2 id="orga7fc9c7"&gt;Puck physics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga7fc9c7"&gt;
+&lt;div id="outline-container-orga9e2d39" class="outline-2"&gt;
+&lt;h2 id="orga9e2d39"&gt;Puck physics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga9e2d39"&gt;
 &lt;p&gt;
 Along with some simple physics (i.e. restitution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
 &lt;/p&gt;
@@ -283,16 +283,16 @@ This is all extremely fast in code: The bots can each calculate puck predictions
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org20b06ae" class="outline-2"&gt;
-&lt;h2 id="org20b06ae"&gt;Other uses for SDF&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org20b06ae"&gt;
+&lt;div id="outline-container-org69e897d" class="outline-2"&gt;
+&lt;h2 id="org69e897d"&gt;Other uses for SDF&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org69e897d"&gt;
 &lt;p&gt;
 Having a quick way to query points is useful for other reasons, too…
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org78be7b7" class="outline-3"&gt;
-&lt;h3 id="org78be7b7"&gt;Randomness&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org78be7b7"&gt;
+&lt;div id="outline-container-org54f979a" class="outline-3"&gt;
+&lt;h3 id="org54f979a"&gt;Randomness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org54f979a"&gt;
 &lt;p&gt;
 Sometimes it's useful to pick a random point in the pitch… Simple! Just loop until we find one. This succeeds on the first try a vast majority of times.
 &lt;/p&gt;
@@ -300,9 +300,9 @@ Sometimes it's useful to pick a random point in the pitch… Simple! Just loop u
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;public static Vector2 RandomPointInRink(float minDistToEdge=0) {
     Vector2 p;
     do {
-        p = new Vector2(
-            Random.Range(-Constants.PITCH_X_EXTENTS2, Constants.PITCH_X_EXTENTS2),
-            Random.Range(-Constants.PITCH_Y_EXTENTS2, Constants.PITCH_Y_EXTENTS2));
+	p = new Vector2(
+	    Random.Range(-Constants.PITCH_X_EXTENTS2, Constants.PITCH_X_EXTENTS2),
+	    Random.Range(-Constants.PITCH_Y_EXTENTS2, Constants.PITCH_Y_EXTENTS2));
     } while (DistanceToEdgeOfRink(p, minDistToEdge) &amp;lt; 0);
 
     return p;
@@ -311,9 +311,9 @@ Sometimes it's useful to pick a random point in the pitch… Simple! Just loop u
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org029cfbd" class="outline-3"&gt;
-&lt;h3 id="org029cfbd"&gt;Player posturing&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org029cfbd"&gt;
+&lt;div id="outline-container-org05cf951" class="outline-3"&gt;
+&lt;h3 id="org05cf951"&gt;Player posturing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org05cf951"&gt;
 &lt;p&gt;
 I might write a different post on this, but the bots use these distances to decide where they should stand.
 &lt;/p&gt;
@@ -323,7 +323,7 @@ As a quick teaser… This shows 3 members of the red team (red dots, playing dow
 &lt;/p&gt;
 
 
-&lt;div id="org14486a8" class="figure"&gt;
+&lt;div id="org11a6df8" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/bots_posturing.png" alt="bots_posturing.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How a 4th member of the red team would move from it's current position.&lt;/p&gt;
 &lt;/div&gt;
@@ -335,16 +335,17 @@ For example, a member of the red team standing near the blue goal would be rapid
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgedfb2b4" class="outline-2"&gt;
-&lt;h2 id="orgedfb2b4"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgedfb2b4"&gt;
+&lt;div id="outline-container-org0568a5e" class="outline-2"&gt;
+&lt;h2 id="org0568a5e"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0568a5e"&gt;
 &lt;p&gt;
 This has been part 1 of a series talking about the bots in Slapshot: Rebound. There's lots more novel ideas in there I'd like to write about, so hopefully this was interesting!
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/slapshot-sdf-physics/</guid><pubDate>Thu, 17 Nov 2022 18:05:31 GMT</pubDate></item><item><title>Line Intersections with Cross Products</title><link>https://imois.in/posts/line-intersections-with-cross-products/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgd84eedc" class="outline-2"&gt;
-&lt;h2 id="orgd84eedc"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd84eedc"&gt;
+&lt;/div&gt;
+</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/slapshot-sdf-physics/</guid><pubDate>Thu, 17 Nov 2022 18:05:31 GMT</pubDate></item><item><title>Line Intersections with Cross Products</title><link>https://imois.in/posts/line-intersections-with-cross-products/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgeb9bb08" class="outline-2"&gt;
+&lt;h2 id="orgeb9bb08"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgeb9bb08"&gt;
 &lt;p&gt;
 Projective Geometry is a field of mathematics most commonly used for anything to do with cameras - rendering, 3d reconstruction etc. I've only a weak knowledge of it, but this method of calculating the intersection of two lines falls out of the first chapter or two in a standard textbook. I found it very surprising, and hopefully you find it interesting, too!
 &lt;/p&gt;
@@ -372,9 +373,9 @@ Let's start off by working out the inner cross products: &lt;code&gt;np.cross(s1
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org857f3e1" class="outline-3"&gt;
-&lt;h3 id="org857f3e1"&gt;Points -&amp;gt; Lines&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org857f3e1"&gt;
+&lt;div id="outline-container-orgba26517" class="outline-3"&gt;
+&lt;h3 id="orgba26517"&gt;Points -&amp;gt; Lines&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgba26517"&gt;
 &lt;p&gt;
 Here we'll show that these products calculate a line equation. Consider two points \(\vec{S}\) and \(\vec{E}\).
 &lt;/p&gt;
@@ -426,9 +427,9 @@ Hence \(ax + by + c = 0\) is an equation of the line passing through \(\vec{S}\)
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org739daf6" class="outline-3"&gt;
-&lt;h3 id="org739daf6"&gt;Lines -&amp;gt; Intersection&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org739daf6"&gt;
+&lt;div id="outline-container-orgbcf9799" class="outline-3"&gt;
+&lt;h3 id="orgbcf9799"&gt;Lines -&amp;gt; Intersection&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgbcf9799"&gt;
 &lt;p&gt;
 The cross product of two line equations gives their intersection… Let's check.
 &lt;/p&gt;
@@ -475,9 +476,9 @@ Hence \(P\) is an intersection of the lines (provided one exists)!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0be9da7" class="outline-3"&gt;
-&lt;h3 id="org0be9da7"&gt;Sample code in C#&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0be9da7"&gt;
+&lt;div id="outline-container-orge13d739" class="outline-3"&gt;
+&lt;h3 id="orge13d739"&gt;Sample code in C#&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge13d739"&gt;
 &lt;p&gt;
 This is a handy snippet to have for Unity. It's worth noting, however, that this isn't the most numerically stable or fastest way I'm sure. I use it because it's short, neat and I don't require any higher accuracy or speed from it.
 &lt;/p&gt;
@@ -492,13 +493,13 @@ This is a handy snippet to have for Unity. It's worth noting, however, that this
     &lt;span class="n"&gt;Vector3&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Vector3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// No solution - result 'at infinity' in projective space.&lt;/span&gt;
-        &lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+	&lt;span class="c1"&gt;// No solution - result 'at infinity' in projective space.&lt;/span&gt;
+	&lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//** See below!&lt;/span&gt;
+	&lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//** See below!&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -506,10 +507,10 @@ This is a handy snippet to have for Unity. It's worth noting, however, that this
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org730a40d" class="outline-3"&gt;
-&lt;h3 id="org730a40d"&gt;A note on line &lt;span class="underline"&gt;segments&lt;/span&gt;
+&lt;div id="outline-container-orgdcd3bd6" class="outline-3"&gt;
+&lt;h3 id="orgdcd3bd6"&gt;A note on line &lt;span class="underline"&gt;segments&lt;/span&gt;
 &lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org730a40d"&gt;
+&lt;div class="outline-text-3" id="text-orgdcd3bd6"&gt;
 &lt;p&gt;
 The previous examples only deal with the intersection of lines defined by two points on them. If you require intersection of two line &lt;span class="underline"&gt;segments&lt;/span&gt; defined by start and end points, you'll need an extra condition.
 Checking if the intersection is bounded in x and y by the ends of each line is sufficient - e.g.
@@ -526,15 +527,15 @@ Checking if the intersection is bounded in x and y by the ends of each line is s
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/line-intersections-with-cross-products/</guid><pubDate>Sat, 21 May 2022 01:46:09 GMT</pubDate></item><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org54db375" class="outline-2"&gt;
-&lt;h2 id="org54db375"&gt;72 pencil sculpture&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org54db375"&gt;
+&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/line-intersections-with-cross-products/</guid><pubDate>Sat, 21 May 2022 01:46:09 GMT</pubDate></item><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org29feffd" class="outline-2"&gt;
+&lt;h2 id="org29feffd"&gt;72 pencil sculpture&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org29feffd"&gt;
 &lt;p&gt;
 The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture/pencils.html"&gt;George W. Hart&lt;/a&gt;, which features 72 pencils in a lattice.
 &lt;/p&gt;
 
 
-&lt;div id="org4dc766c" class="figure"&gt;
+&lt;div id="org0957004" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/72pencils.jpg" alt="72pencils.jpg" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Photo credit: George W. Hart&lt;/p&gt;
 &lt;/div&gt;
@@ -543,7 +544,7 @@ The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture
 It's also possible to make a 'filled' version, with a pencil in every possible location - this one was made by a friend of mine and rendered in blender.
 &lt;/p&gt;
 
-&lt;div id="org0046352" class="figure"&gt;
+&lt;div id="orgb8ec85f" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks.png" alt="sticks.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -553,9 +554,9 @@ We asked… what does the inside of this shape look like? Is it solid?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0f1f55b" class="outline-2"&gt;
-&lt;h2 id="org0f1f55b"&gt;It's not solid&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0f1f55b"&gt;
+&lt;div id="outline-container-orga469fe8" class="outline-2"&gt;
+&lt;h2 id="orga469fe8"&gt;It's not solid&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga469fe8"&gt;
 &lt;p&gt;
 There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get this number, we take all pencils to be infinite in length, and the pattern to repeat indefinitely in all directions. This shape is a small part of a repeating pattern.
 &lt;/p&gt;
@@ -564,7 +565,7 @@ There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get
 Take any axis, and overlay a triangular grid like this. The green boxes tile the shape perfectly, and are all identical. The orange triangles are equilateral and are also identical.
 &lt;/p&gt;
 
-&lt;div id="org365d3e4" class="figure"&gt;
+&lt;div id="orgce9629e" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag0.png" alt="sticks_diag0.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -573,7 +574,7 @@ Zooming in, we can consider the area made up by the pencils in this axis.
 &lt;/p&gt;
 
 
-&lt;div id="org8f83879" class="figure"&gt;
+&lt;div id="org35896b9" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag1.png" alt="sticks_diag1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -591,19 +592,20 @@ I.e. The pencils don't fill space in the middle, $1/4$th is air.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3f4e88a" class="outline-2"&gt;
-&lt;h2 id="org3f4e88a"&gt;The empty space&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3f4e88a"&gt;
+&lt;div id="outline-container-org2b02754" class="outline-2"&gt;
+&lt;h2 id="org2b02754"&gt;The empty space&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2b02754"&gt;
 &lt;p&gt;
 This what that looks like! It's a pretty neat geometric pattern.
 &lt;/p&gt;
 
 
-&lt;div id="org75ae7e1" class="figure"&gt;
+&lt;div id="orgb9b8f89" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/inside.png" alt="inside.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="The-What-of-the-What?"&gt;The What of the What?&lt;a class="anchor-link" href="https://imois.in/posts/the-chromatic-number-of-the-plane/#The-What-of-the-What?"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The Chromatic Number of the Plane, or &lt;a href="https://en.wikipedia.org/wiki/Hadwiger%E2%80%93Nelson_problem"&gt;Hadwiger-Nelson problem&lt;/a&gt; is a math problem originating in the 1950s, and one which remains unsolved. It came to my attention after a breakthrough by &lt;a href="https://arxiv.org/abs/1804.02385"&gt;Aubrey D.N.J. de Grey&lt;/a&gt; in 2018, and was subsequently the subject of &lt;a href="https://polymathprojects.org/2018/04/10/polymath-proposal-finding-simpler-unit-distance-graphs-of-chromatic-number-5/"&gt;Polymath Project 16&lt;/a&gt; - a collaborative effort from mathematicians from all over the world to improve upon this. I'll do my best to explain what all this means...&lt;/p&gt;
@@ -1394,7 +1396,7 @@ Wall time: 2min 58s
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/the-chromatic-number-of-the-plane/</guid><pubDate>Mon, 12 Apr 2021 21:52:03 GMT</pubDate></item><item><title>Random vectors and rotations in 3D</title><link>https://imois.in/posts/random-vectors-and-rotations-in-3d/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/the-chromatic-number-of-the-plane/</guid><pubDate>Mon, 12 Apr 2021 21:52:03 GMT</pubDate></item><item><title>Random vectors and rotations in 3D</title><link>https://imois.in/posts/random-vectors-and-rotations-in-3d/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Intro"&gt;Intro&lt;a class="anchor-link" href="https://imois.in/posts/random-vectors-and-rotations-in-3d/#Intro"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Generating truly random vectors, rotations, and more in 3 dimensions is possibly more challenging than you might think... Often the simple approach biases towards certain directions more than others.&lt;/p&gt;
@@ -1945,9 +1947,9 @@ $$g(V, \theta, \phi) = \frac{1}{2\pi^2}\sin^2{\frac{1}{2}V\sin{\theta}}$$&lt;p&g
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/random-vectors-and-rotations-in-3d/</guid><pubDate>Fri, 25 Sep 2020 15:50:23 GMT</pubDate></item><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgf96e571" class="outline-2"&gt;
-&lt;h2 id="orgf96e571"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf96e571"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/random-vectors-and-rotations-in-3d/</guid><pubDate>Fri, 25 Sep 2020 15:50:23 GMT</pubDate></item><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orge956bc0" class="outline-2"&gt;
+&lt;h2 id="orge956bc0"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge956bc0"&gt;
 &lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"&gt;&lt;/script&gt;&lt;p&gt;
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
@@ -2089,15 +2091,15 @@ We'll try to work out the ideal thickness of the coin in terms of it's radius (\
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgcca2188" class="outline-2"&gt;
-&lt;h2 id="orgcca2188"&gt;Coin thickness?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcca2188"&gt;
+&lt;div id="outline-container-orgc9d7a86" class="outline-2"&gt;
+&lt;h2 id="orgc9d7a86"&gt;Coin thickness?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc9d7a86"&gt;
 &lt;p&gt;
 Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
 &lt;/p&gt;
 
 
-&lt;div id="org52f6d12" class="figure"&gt;
+&lt;div id="org2a969e2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips.png" alt="baseline-flips.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.&lt;/p&gt;
 &lt;/div&gt;
@@ -2107,7 +2109,7 @@ Ok… Zoom and enhance! Running over 10x as many flips this time….
 &lt;/p&gt;
 
 
-&lt;div id="orgec16bcc" class="figure"&gt;
+&lt;div id="org5ea55d0" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The exact same as above, but over just thicknesses from 0.75r to 0.95r.&lt;/p&gt;
 &lt;/div&gt;
@@ -2118,9 +2120,9 @@ It seems our ideal coin has a thickness of \(0.85r\)! That's the point where the
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6b0c3a1" class="outline-2"&gt;
-&lt;h2 id="org6b0c3a1"&gt;Does the maths agree?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6b0c3a1"&gt;
+&lt;div id="outline-container-org42fc6ab" class="outline-2"&gt;
+&lt;h2 id="org42fc6ab"&gt;Does the maths agree?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org42fc6ab"&gt;
 &lt;p&gt;
 Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
 &lt;/p&gt;
@@ -2141,15 +2143,15 @@ And simulating it gives an answer of \(0.85r\)?? Right in the middle… The seco
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org282612c" class="outline-2"&gt;
-&lt;h2 id="org282612c"&gt;The end of the story?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org282612c"&gt;
+&lt;div id="outline-container-orgea90309" class="outline-2"&gt;
+&lt;h2 id="orgea90309"&gt;The end of the story?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgea90309"&gt;
 &lt;p&gt;
 So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
 &lt;/p&gt;
 
 
-&lt;div id="org4367f9c" class="figure"&gt;
+&lt;div id="org57b07e3" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).&lt;/p&gt;
 &lt;/div&gt;
@@ -2163,7 +2165,7 @@ What about the throw spin? Can you bias a 3 sided coin by throwing it with more 
 &lt;/p&gt;
 
 
-&lt;div id="org5bc07b8" class="figure"&gt;
+&lt;div id="org9ab2758" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;What's going on?? The chance of sides changes dramatically with increased spin on the coin.&lt;/p&gt;
 &lt;/div&gt;
@@ -2179,9 +2181,9 @@ Maybe this could be a useful trick… Get your friends to pick between heads/tai
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org95a6cf2" class="outline-2"&gt;
-&lt;h2 id="org95a6cf2"&gt;Disclaimer!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org95a6cf2"&gt;
+&lt;div id="outline-container-org5086a8b" class="outline-2"&gt;
+&lt;h2 id="org5086a8b"&gt;Disclaimer!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5086a8b"&gt;
 &lt;p&gt;
 The results on this page are only as good as the physics simulation is. This page uses &lt;a href="https://lo-th.github.io/Oimo.js/#basic"&gt;Oimo.js&lt;/a&gt; for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
 &lt;/p&gt;
@@ -2192,16 +2194,17 @@ Also, picking truly random rotations is &lt;i&gt;hard&lt;/i&gt;. &lt;a href="htt
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5228197" class="outline-2"&gt;
-&lt;h2 id="org5228197"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5228197"&gt;
+&lt;div id="outline-container-org495cf41" class="outline-2"&gt;
+&lt;h2 id="org495cf41"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org495cf41"&gt;
 &lt;p&gt;
 After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org304ff2e" class="outline-2"&gt;
-&lt;h2 id="org304ff2e"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org304ff2e"&gt;
+&lt;/div&gt;
+</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item><item><title>Properties of Lights Out: The Game.</title><link>https://imois.in/posts/the-properties-of-lights-out-the-game/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org433cc06" class="outline-2"&gt;
+&lt;h2 id="org433cc06"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org433cc06"&gt;
 &lt;p&gt;
 This game was sent to me by Lucy Deacon (Link to be added :P), who found it in &lt;a href="https://play.google.com/store/apps/details?id=name.boyle.chris.sgtpuzzles&amp;amp;hl=en_IE"&gt;Simon Tatham's Puzzles&lt;/a&gt;
 under the name 'Flip' around August of 2018. For the few months thereafter
@@ -2212,9 +2215,9 @@ boards. This post contains some of the stuff we managed to work out!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5ad7370" class="outline-2"&gt;
-&lt;h2 id="org5ad7370"&gt;The Game&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5ad7370"&gt;
+&lt;div id="outline-container-org37e5fc9" class="outline-2"&gt;
+&lt;h2 id="org37e5fc9"&gt;The Game&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org37e5fc9"&gt;
 &lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/utils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOut.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/lights_out/LightsOutState.js"&gt;&lt;/script&gt;&lt;p&gt;
 &lt;span class="underline"&gt;Lights Out&lt;/span&gt; is a game released by Tiger
 Electronics in 1995. You're given a 5x5 grid of lights, some illuminated and
@@ -2249,9 +2252,9 @@ and instantly know how to solve it or even if can be solved at all?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org84a141f" class="outline-2"&gt;
-&lt;h2 id="org84a141f"&gt;Impossible boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org84a141f"&gt;
+&lt;div id="outline-container-org6a01f95" class="outline-2"&gt;
+&lt;h2 id="org6a01f95"&gt;Impossible boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6a01f95"&gt;
 &lt;p&gt;
 First of all, not all boards are solvable. A 2x1 board, for example, will never
 let you click on only a single tile. If it starts with just one light on,
@@ -2272,9 +2275,9 @@ All other boards in this page are solvable though… So don't worry :P
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgee479f8" class="outline-2"&gt;
-&lt;h2 id="orgee479f8"&gt;State&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgee479f8"&gt;
+&lt;div id="outline-container-org2b76c7c" class="outline-2"&gt;
+&lt;h2 id="org2b76c7c"&gt;State&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2b76c7c"&gt;
 &lt;p&gt;
 The first thing to notice is that tapping on the same square twice is the same
 as not tapping at all, and also that the order you tap the squares doesn't make
@@ -2309,9 +2312,9 @@ We'd be able to solve the game.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf97afba" class="outline-2"&gt;
-&lt;h2 id="orgf97afba"&gt;Forward mapping&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf97afba"&gt;
+&lt;div id="outline-container-org7df908a" class="outline-2"&gt;
+&lt;h2 id="org7df908a"&gt;Forward mapping&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7df908a"&gt;
 &lt;p&gt;
 It's not too hard to do the reverse: I.e. take the tapped squares (red) and work out the
 corresponding board position. There's also only one mapping from this red
@@ -2373,9 +2376,9 @@ corresponding to every board state - and all board states are solvable.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdfd17db" class="outline-2"&gt;
-&lt;h2 id="orgdfd17db"&gt;Unsolvable boards?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdfd17db"&gt;
+&lt;div id="outline-container-org660d3b5" class="outline-2"&gt;
+&lt;h2 id="org660d3b5"&gt;Unsolvable boards?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org660d3b5"&gt;
 &lt;p&gt;
 If there is an unsolvable configuration of the board, i.e. a board state which
 has no taps that leaves all the lights off, then it must exist in the null space
@@ -2389,7 +2392,7 @@ always solvable, and which have many configurations that make them unsolvable.
 &lt;/p&gt;
 
 
-&lt;div id="orge506697" class="figure"&gt;
+&lt;div id="org9fa4cfe" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph20.png" alt="graph20.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;What board sizes are solvable? If a boardsize is solvable completely, it's corresponding square in coloured black. A board which is 'as unsolvable' as it's possible to be is white.&lt;/p&gt;
 &lt;/div&gt;
@@ -2403,9 +2406,9 @@ boards too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3d6bfde" class="outline-2"&gt;
-&lt;h2 id="org3d6bfde"&gt;Nullity?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3d6bfde"&gt;
+&lt;div id="outline-container-orgb81c79a" class="outline-2"&gt;
+&lt;h2 id="orgb81c79a"&gt;Nullity?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb81c79a"&gt;
 &lt;p&gt;
 It's interesting to mess around with one of the boards with maximum nullity.
 Here's a 4x4 board. It's far easier than others because if there is a solution
@@ -2433,9 +2436,9 @@ unsolvable ones.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org40b8c9b" class="outline-2"&gt;
-&lt;h2 id="org40b8c9b"&gt;'Cascading'&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org40b8c9b"&gt;
+&lt;div id="outline-container-org74a971c" class="outline-2"&gt;
+&lt;h2 id="org74a971c"&gt;'Cascading'&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org74a971c"&gt;
 &lt;p&gt;
 One (human) way of trying to solve a lights-out puzzle is to always try to
 click under any light. If you go through the board row-by-row downwards,
@@ -2532,9 +2535,9 @@ setupCascade(h, 100);
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org675f623" class="outline-2"&gt;
-&lt;h2 id="org675f623"&gt;Maximum nullity&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org675f623"&gt;
+&lt;div id="outline-container-orgdb54e77" class="outline-2"&gt;
+&lt;h2 id="orgdb54e77"&gt;Maximum nullity&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdb54e77"&gt;
 &lt;p&gt;
 An interesting result from this is there is a maximum nullity for any board.
 &lt;/p&gt;
@@ -2575,9 +2578,9 @@ nullity is \(min(m,n)\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4c6bdde" class="outline-2"&gt;
-&lt;h2 id="org4c6bdde"&gt;Bitops&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4c6bdde"&gt;
+&lt;div id="outline-container-org37b0b83" class="outline-2"&gt;
+&lt;h2 id="org37b0b83"&gt;Bitops&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org37b0b83"&gt;
 &lt;p&gt;
 In order to speed up calculating large boards, we wrote some Very Fast&lt;sup&gt;tm&lt;/sup&gt; c++
 matrix code, to perform all binary field arithmetic in parallel with bitops.
@@ -2608,9 +2611,9 @@ This allows us to perform up to 32 'clicks' at once, in very few bit operations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0f80ebc" class="outline-2"&gt;
-&lt;h2 id="org0f80ebc"&gt;Low memory cascade&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0f80ebc"&gt;
+&lt;div id="outline-container-org5504509" class="outline-2"&gt;
+&lt;h2 id="org5504509"&gt;Low memory cascade&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5504509"&gt;
 &lt;p&gt;
 Although this cascade is fast, it requires a lot of memory. In order to generate
 the matrix for, e.g. a \(4000 \times 4000\) board, it requires 4000 boards, or the
@@ -2640,9 +2643,9 @@ vs the pre-cascading programs and our initial python/numpy code too.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6be03b1" class="outline-2"&gt;
-&lt;h2 id="org6be03b1"&gt;Lots of boards&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6be03b1"&gt;
+&lt;div id="outline-container-orgeec83ca" class="outline-2"&gt;
+&lt;h2 id="orgeec83ca"&gt;Lots of boards&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgeec83ca"&gt;
 &lt;p&gt;
 In order to calculate nullity for a few million boards… We could compute
 the matrices for all boards of a certain width simultaneously. Cascade once,
@@ -2656,23 +2659,23 @@ optimizations.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org552f0c3" class="outline-2"&gt;
-&lt;h2 id="org552f0c3"&gt;Results!!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org552f0c3"&gt;
+&lt;div id="outline-container-org0a9f8c9" class="outline-2"&gt;
+&lt;h2 id="org0a9f8c9"&gt;Results!!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0a9f8c9"&gt;
 &lt;p&gt;
 The resulting images for different sizes.
 &lt;/p&gt;
 
 
-&lt;div id="orgd0dcfc1" class="figure"&gt;
+&lt;div id="org02331f4" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph128.png" alt="graph128.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="orgf6e34cf" class="figure"&gt;
+&lt;div id="orgfa5e9df" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph512.png" alt="graph512.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="org544fef2" class="figure"&gt;
+&lt;div id="org2fde257" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/lights_out/graph4096.png" alt="graph4096.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -2751,13 +2754,13 @@ These are all surprisingly structured! Often near 2&lt;sup&gt;n&lt;/sup&gt;-1 or
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org948b3f4" class="outline-2"&gt;
-&lt;h2 id="org948b3f4"&gt;Other…&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org948b3f4"&gt;
+&lt;div id="outline-container-org1bb3c4b" class="outline-2"&gt;
+&lt;h2 id="org1bb3c4b"&gt;Other…&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1bb3c4b"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org038a64b" class="outline-3"&gt;
-&lt;h3 id="org038a64b"&gt;Looping patterns?&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org038a64b"&gt;
+&lt;div id="outline-container-org1c75629" class="outline-3"&gt;
+&lt;h3 id="org1c75629"&gt;Looping patterns?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1c75629"&gt;
 &lt;p&gt;
 Since a cascade operation can be written as a matrix multiplication (if the
 board has width \(m\), the resulting cascade matrix is \(2m\times 2m\)), we can
@@ -2782,9 +2785,9 @@ Funnily, we both came up with this idea coincidentally within a few minutes of e
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3758ffb" class="outline-3"&gt;
-&lt;h3 id="org3758ffb"&gt;Sequences&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3758ffb"&gt;
+&lt;div id="outline-container-orga5c7605" class="outline-3"&gt;
+&lt;h3 id="orga5c7605"&gt;Sequences&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga5c7605"&gt;
 &lt;p&gt;
 Some board widths are surprisingly solvable/ unsolvable. We found boards of size
 (\(10 \times 31n-1\)) are all unsolvable (nullity of 10) to as high as we could
@@ -2797,9 +2800,9 @@ Several other widths are surprisingly solvable, 10 (other than above), 81, and m
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org10f750e" class="outline-3"&gt;
-&lt;h3 id="org10f750e"&gt;OEIS&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org10f750e"&gt;
+&lt;div id="outline-container-org9b666de" class="outline-3"&gt;
+&lt;h3 id="org9b666de"&gt;OEIS&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9b666de"&gt;
 &lt;p&gt;
 The Online Encyclopedia of Integer Sequences is a searchable database
 containing, well, integer sequences. After finishing up, we tried searching it
@@ -2816,9 +2819,9 @@ the OEIS sequence is 2363, while ours is ~4100.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcc40059" class="outline-2"&gt;
-&lt;h2 id="orgcc40059"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcc40059"&gt;
+&lt;div id="outline-container-org5833369" class="outline-2"&gt;
+&lt;h2 id="org5833369"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5833369"&gt;
 &lt;p&gt;
 I think we both agree we haven't completely figured out as much as we'd like…
 The patterns are still somewhat a mystery, even if we've found some logic in
@@ -2831,9 +2834,10 @@ on &lt;a href="https://github.com/oisincar/imois.in/tree/master/assets/js/lights
 that's written in english…).
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org4dade60" class="outline-2"&gt;
-&lt;h2 id="org4dade60"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4dade60"&gt;
+&lt;/div&gt;
+</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/the-properties-of-lights-out-the-game/</guid><pubDate>Thu, 19 Dec 2019 16:59:29 GMT</pubDate></item><item><title>Procedural Animation 3: Gradient Descent</title><link>https://imois.in/posts/procedural-animation-3-gradient-descent/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8c3b5b2" class="outline-2"&gt;
+&lt;h2 id="org8c3b5b2"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8c3b5b2"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/TouchUtils.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Global.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Arm.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/ArmCanvas.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/Graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/GradientDescent2Link.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/procedural_animation/TwoLinkArmAndGraph.js"&gt;&lt;/script&gt;&lt;p&gt;
 In this third and final section, we'll cover how to solve harder problems that don't
 necessarily have a single solution, or ones that have solutions that can't be
@@ -2857,9 +2861,9 @@ source code in the inspector or find it on &lt;a href="https://github.com/oisinc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf6beddd" class="outline-2"&gt;
-&lt;h2 id="orgf6beddd"&gt;What we'll make!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf6beddd"&gt;
+&lt;div id="outline-container-orga79f397" class="outline-2"&gt;
+&lt;h2 id="orga79f397"&gt;What we'll make!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga79f397"&gt;
 &lt;p&gt;
 These tenticles/ arms/ vines might make a fun enemy or background in a game, but
 also demonstrate an idea that can be used to solve all kinds of problems! The
@@ -2931,9 +2935,9 @@ var b = new GradientDescentLongChain('intro-demo-arms');
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org14b02a5" class="outline-2"&gt;
-&lt;h2 id="org14b02a5"&gt;The problem: Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org14b02a5"&gt;
+&lt;div id="outline-container-org731a329" class="outline-2"&gt;
+&lt;h2 id="org731a329"&gt;The problem: Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org731a329"&gt;
 &lt;p&gt;
 Generally, (and according to google) kinematics is a branch of mechanics that
 deals with the features or properties of the motion of an object. It's often
@@ -3025,9 +3029,9 @@ be pretty useful to have a way to solve it!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf92dfd5" class="outline-2"&gt;
-&lt;h2 id="orgf92dfd5"&gt;Simple arms in 2d&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf92dfd5"&gt;
+&lt;div id="outline-container-org652cc77" class="outline-2"&gt;
+&lt;h2 id="org652cc77"&gt;Simple arms in 2d&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org652cc77"&gt;
 &lt;p&gt;
 For the 2D case, and when there are only two joints in the arm, there are (usually) two solutions - an
 'elbows up' position, and an 'elbows down' one.
@@ -3058,9 +3062,9 @@ games is done.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2a02e44" class="outline-2"&gt;
-&lt;h2 id="org2a02e44"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2a02e44"&gt;
+&lt;div id="outline-container-org0138a2c" class="outline-2"&gt;
+&lt;h2 id="org0138a2c"&gt;Harder problems.. I.e. Arms with more joints..?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0138a2c"&gt;
 &lt;p&gt;
 It's not possible to solve harder problems using the same idea however, if you
 add an extra segment to the arm there suddenly isn't a way to find solutions
@@ -3087,9 +3091,9 @@ describe for arms with 2 joints… But the maths works for any number of joints.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4f9ac65" class="outline-2"&gt;
-&lt;h2 id="org4f9ac65"&gt;Forward Kinematics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4f9ac65"&gt;
+&lt;div id="outline-container-org89eca82" class="outline-2"&gt;
+&lt;h2 id="org89eca82"&gt;Forward Kinematics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org89eca82"&gt;
 &lt;p&gt;
 First, we need to work out where the end of our arm is… We write the angle at
 the shoulder as \(\alpha\), and at the elbow as \(\beta\). The length of the upper
@@ -3127,9 +3131,9 @@ Hand_y &amp;amp; = l1 * cos(\alpha) + l2 * cos(\beta - \alpha)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7735452" class="outline-2"&gt;
-&lt;h2 id="org7735452"&gt;Distance function&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7735452"&gt;
+&lt;div id="outline-container-org2f7b557" class="outline-2"&gt;
+&lt;h2 id="org2f7b557"&gt;Distance function&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2f7b557"&gt;
 &lt;p&gt;
 In order to perform gradient descent, we need a formula for the error we're
 trying to reduce. This is the distance from our hand to our target. Ideally, we
@@ -3226,9 +3230,9 @@ the angles there will bring our arm closest to our target ball.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org47ade41" class="outline-2"&gt;
-&lt;h2 id="org47ade41"&gt;Gradient Descent&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org47ade41"&gt;
+&lt;div id="outline-container-orgb5e781b" class="outline-2"&gt;
+&lt;h2 id="orgb5e781b"&gt;Gradient Descent&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb5e781b"&gt;
 &lt;p&gt;
 We can use the derivative of this distance function to improve our errors.
 First, write the distance corresponding to \(\alpha\) and \(\beta\) as \(Dist(\alpha, \beta)\).
@@ -3291,9 +3295,9 @@ The demos just perform this update once per frame, but it's easy to completely s
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6ed1a1d" class="outline-2"&gt;
-&lt;h2 id="org6ed1a1d"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6ed1a1d"&gt;
+&lt;div id="outline-container-org38aa544" class="outline-2"&gt;
+&lt;h2 id="org38aa544"&gt;Implementation &amp;amp; Extras&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org38aa544"&gt;
 &lt;p&gt;
 It might help to look through the source code for the animations (embedded into
 this page), or available &lt;a href="https://github.com/oisincar/imois.in/blob/master/assets/js/procedural_animation/Arm.js"&gt;here on Github&lt;/a&gt;. You're free to lift this for anything,
@@ -3324,9 +3328,10 @@ some core ideas and a light animation, or &lt;a href="https://imois.in/posts/pro
 ideas and shapes.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orga440b2f" class="outline-2"&gt;
-&lt;h2 id="orga440b2f"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga440b2f"&gt;
+&lt;/div&gt;
+</description><category>animation</category><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/procedural-animation-3-gradient-descent/</guid><pubDate>Tue, 26 Nov 2019 00:22:20 GMT</pubDate></item><item><title>Jack Boyce's Siteswap Questions</title><link>https://imois.in/posts/jack-boyces-siteswap-questions/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org7e806b5" class="outline-2"&gt;
+&lt;h2 id="org7e806b5"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7e806b5"&gt;
 &lt;p&gt;
 At EJC last year (2018), I came across Jack Boyce's siteswap questions, which
 can be found &lt;a href="http://www.juggling.org/help/siteswap/tests/test-boyce.html"&gt;HERE!&lt;/a&gt; I'd highly recommend giving them a go. They start off doable,
@@ -3347,9 +3352,9 @@ it up and posting it now… 9 months later.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7b74c99" class="outline-2"&gt;
-&lt;h2 id="org7b74c99"&gt;q1&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7b74c99"&gt;
+&lt;div id="outline-container-org392e484" class="outline-2"&gt;
+&lt;h2 id="org392e484"&gt;q1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org392e484"&gt;
 &lt;p&gt;
 &lt;i&gt;I am juggling \(868671\) with clubs (yeah, right).  How many do I have?&lt;/i&gt;
 &lt;/p&gt;
@@ -3358,8 +3363,8 @@ it up and posting it now… 9 months later.
 The number of objects in a given siteswap is just the average value, I.e. The
 sum of the numbers divided by the length.
 &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;let&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;`&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
@@ -3369,9 +3374,9 @@ Answer: 6
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgb931bd1" class="outline-2"&gt;
-&lt;h2 id="orgb931bd1"&gt;q2&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb931bd1"&gt;
+&lt;div id="outline-container-orgd64d8cb" class="outline-2"&gt;
+&lt;h2 id="orgd64d8cb"&gt;q2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd64d8cb"&gt;
 &lt;p&gt;
 &lt;i&gt;I have a bowling ball that I can only throw as a site swap '\(3\)' throw. Which&lt;/i&gt;
 &lt;i&gt;of the following patterns can I theoretically run, using the bowling ball in addition to 3 normal balls:&lt;/i&gt;
@@ -3394,9 +3399,9 @@ This is only c).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgad62fc0" class="outline-2"&gt;
-&lt;h2 id="orgad62fc0"&gt;q3&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgad62fc0"&gt;
+&lt;div id="outline-container-org85090b2" class="outline-2"&gt;
+&lt;h2 id="org85090b2"&gt;q3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org85090b2"&gt;
 &lt;p&gt;
 &lt;i&gt;You are doing a 4 ball fountain and decide you want to switch into&lt;/i&gt;
 &lt;i&gt;741, an excited state site swap.  You can't just start throwing:&lt;/i&gt;
@@ -3410,14 +3415,14 @@ A 4 ball base fountain occurs in the base state of 4 balls, which can be written
 as:
 &lt;/p&gt;
 
-&lt;pre class="example" id="org98ccf22"&gt;
+&lt;pre class="example" id="orge87ee87"&gt;
 4|xxxx
 &lt;/pre&gt;
 
 &lt;p&gt;
 741 occurs in state:
 &lt;/p&gt;
-&lt;pre class="example" id="org62d0cd0"&gt;
+&lt;pre class="example" id="org2fd8b7a"&gt;
 7|xx_x__x
 4|x_xx_x
 1|xxx_x
@@ -3430,9 +3435,9 @@ away from the base state.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfa7a568" class="outline-2"&gt;
-&lt;h2 id="orgfa7a568"&gt;q4&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgfa7a568"&gt;
+&lt;div id="outline-container-org6636e2f" class="outline-2"&gt;
+&lt;h2 id="org6636e2f"&gt;q4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6636e2f"&gt;
 &lt;p&gt;
 &lt;i&gt;You want to get back into the fountain, from 741.  What is the&lt;/i&gt;
 &lt;i&gt;shortest connecting (ending) sequence in this direction?&lt;/i&gt;
@@ -3452,9 +3457,9 @@ into and out of any siteswap must be, itself, a valid (ground state) pattern.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org12d8060" class="outline-2"&gt;
-&lt;h2 id="org12d8060"&gt;q5&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org12d8060"&gt;
+&lt;div id="outline-container-orgc61f92e" class="outline-2"&gt;
+&lt;h2 id="orgc61f92e"&gt;q5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc61f92e"&gt;
 &lt;p&gt;
 &lt;i&gt;Go from the 4 ball fountain to 714.  What are the shortest&lt;/i&gt;
 &lt;i&gt;connecting sequences (both directions)?&lt;/i&gt;
@@ -3465,7 +3470,7 @@ As before we can work out the state that 714 starts in.
 &lt;/p&gt;
 
 
-&lt;pre class="example" id="orge2852b3"&gt;
+&lt;pre class="example" id="org25d1178"&gt;
 7|x_xx__x
 1|xxx__x
 4|xx_xx
@@ -3481,7 +3486,7 @@ single throw, so lets look at transitions of length 2.
 &lt;p&gt;
 I.e. finding the throws a, b here:
 &lt;/p&gt;
-&lt;pre class="example" id="org12e5d2d"&gt;
+&lt;pre class="example" id="org9d1dc90"&gt;
 4|xxxx
 a|
 b|xx_xx
@@ -3498,9 +3503,9 @@ will work because \(552\) and \(642\) are valid siteswaps.
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org464a298" class="outline-2"&gt;
-&lt;h2 id="org464a298"&gt;q6&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org464a298"&gt;
+&lt;div id="outline-container-org10107b7" class="outline-2"&gt;
+&lt;h2 id="org10107b7"&gt;q6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org10107b7"&gt;
 &lt;p&gt;
 &lt;i&gt;You are already doing \(741\) and want to switch directly into \(714\).&lt;/i&gt;
 &lt;i&gt;What is the shortest sequence for doing so?  [You could just&lt;/i&gt;
@@ -3521,9 +3526,9 @@ an extra \(5\).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgecef617" class="outline-2"&gt;
-&lt;h2 id="orgecef617"&gt;q7&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgecef617"&gt;
+&lt;div id="outline-container-org1189a8f" class="outline-2"&gt;
+&lt;h2 id="org1189a8f"&gt;q7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1189a8f"&gt;
 &lt;p&gt;
 &lt;i&gt;Is the trick \(66671777161\) simple?  If not, which portion of the&lt;/i&gt;
 &lt;i&gt;pattern can be repeated within the larger trick?&lt;/i&gt;
@@ -3544,61 +3549,61 @@ follows by generating the table by hand. I'm too lazy to do this so I'll write a
 much longer program to do it instead… :thinking:
 &lt;/p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- Function mapping from current state to next state.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;-- E.g. throw "xxxx___" 5 gives "xxx_x__"&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="nf"&gt;throw&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;xs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sc"&gt;'x'&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kr"&gt;where&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;splitAt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"_"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;-- Function mapping from current state to next state.&lt;/span&gt;
+&lt;span class="c1"&gt;-- E.g. throw "xxxx___" 5 gives "xxx_x__"&lt;/span&gt;
+&lt;span class="nf"&gt;throw&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;xs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="sc"&gt;'x'&lt;/span&gt; &lt;span class="kt"&gt;:&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;
+    &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="kt"&gt;:&lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;splitAt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xs&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;"_"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c1"&gt;-- Juggle pattern 100 times, then take the next (length ss) state changes.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;-- This creates a list of maps between starting state&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;-- (say, xxxx___), throw (e.g. 5), and resulting state (xxx_x__)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="nf"&gt;grEdges&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;take&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;scanl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;nextEdge&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;[]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;emptyState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;repeat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kr"&gt;where&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;nextEdge&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;startState&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;endState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;endState&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;throw&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;endState&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;emptyState&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;replicate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maximum&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sc"&gt;'_'&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;-- Juggle pattern 100 times, then take the next (length ss) state changes.&lt;/span&gt;
+&lt;span class="c1"&gt;-- This creates a list of maps between starting state&lt;/span&gt;
+&lt;span class="c1"&gt;-- (say, xxxx___), throw (e.g. 5), and resulting state (xxx_x__)&lt;/span&gt;
+&lt;span class="nf"&gt;grEdges&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;drop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;scanl&lt;/span&gt; &lt;span class="n"&gt;nextEdge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;[]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;emptyState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;concat&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;repeat&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="n"&gt;nextEdge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;startState&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;endState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;endState&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;throw&lt;/span&gt; &lt;span class="n"&gt;endState&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="n"&gt;emptyState&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;replicate&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maximum&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="sc"&gt;'_'&lt;/span&gt;
 
-&lt;span class="c1"&gt;-- Print table for a given siteswap&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="nf"&gt;printTable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;putStrLn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unlines&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;showSt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grEdges&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kr"&gt;where&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;showSt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"|"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;-- Print table for a given siteswap&lt;/span&gt;
+&lt;span class="nf"&gt;printTable&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;putStrLn&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;unlines&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grEdges&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;"|"&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
 Then, we can get the tables for both siteswaps we're interested in.
 &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;printTable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;digitToInt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"66671777161"&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xxxxx__&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xxxx_x_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xxx_xx_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xx_xxx_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x_xxx_x&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xxxx_x_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xxx_x_x&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xx_x_xx&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x_x_xxx&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xx_xxx_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x_xxxx_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;printTable&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;digitToInt&lt;/span&gt; &lt;span class="s"&gt;"66671777161"&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxxxx__&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxxx_x_&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxx_xx_&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_xxx_&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_xxx_x&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxxx_x_&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxx_x_x&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_x_xx&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_x_xxx&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_xxx_&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_xxxx_&lt;/span&gt;
 
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;printTable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;digitToInt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"6316131"&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xxx___&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xx___x&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x_x_x_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xx_x__&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x_x__x&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xx__x_&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x_xx__&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;printTable&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;digitToInt&lt;/span&gt; &lt;span class="s"&gt;"6316131"&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xxx___&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx___x&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_x_x_&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx_x__&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_x__x&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;xx__x_&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;x_xx__&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org87cbbe0" class="outline-3"&gt;
-&lt;h3 id="org87cbbe0"&gt;66671777161&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org87cbbe0"&gt;
+&lt;div id="outline-container-org9a14822" class="outline-3"&gt;
+&lt;h3 id="org9a14822"&gt;66671777161&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9a14822"&gt;
 &lt;p&gt;
 Here, there are two states that occur more than once. I've marked the pairs here
 as a and b. This means you can juggle the patterns between the As (I.e. 6671,
 and 7771616), and Bs (717771, and 61666)
 &lt;/p&gt;
 
-&lt;pre class="example" id="orgb7bebbe"&gt;
+&lt;pre class="example" id="orge95caf9"&gt;
 1| xxxxx__
 6| xxxx_x_ A
 6| xxx_xx_
@@ -3614,13 +3619,13 @@ and 7771616), and Bs (717771, and 61666)
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org35ee04a" class="outline-3"&gt;
-&lt;h3 id="org35ee04a"&gt;6316131&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org35ee04a"&gt;
+&lt;div id="outline-container-org01f74d2" class="outline-3"&gt;
+&lt;h3 id="org01f74d2"&gt;6316131&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org01f74d2"&gt;
 &lt;p&gt;
 Here, this siteswap has no duplicated states, and is therefore prime.
 &lt;/p&gt;
-&lt;pre class="example" id="orgfb9221a"&gt;
+&lt;pre class="example" id="org9774560"&gt;
 1| xxx___
 6| xx___x
 3| x_x_x_
@@ -3636,14 +3641,14 @@ graphviz. This code prints into pretty much the Dot format used by graphviz, and
 resulting graphs are shown below.
 &lt;/p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;printGraph&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;putStrLn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unlines&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;showSt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grEdges&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kr"&gt;where&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;showSt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;startSt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;endSt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"  "&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;startSt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;" -&amp;gt; "&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;endSt&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;" [label=&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;]"&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;printGraph&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;putStrLn&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;unlines&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grEdges&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="kr"&gt;where&lt;/span&gt; &lt;span class="n"&gt;showSt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;startSt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;endSt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"  "&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;startSt&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;" -&amp;gt; "&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="n"&gt;endSt&lt;/span&gt;
+	  &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;" [label=&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;]"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 
-&lt;div id="orgc328a3f" class="figure"&gt;
+&lt;div id="orgc9235ef" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss1.png" alt="ss1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Siteswap map for 66671777161. We can see the two states we found (labeled A and B) before in the nodes with 2 input and output edges.&lt;/p&gt;
 &lt;/div&gt;
@@ -3654,7 +3659,7 @@ siteswap, which are (hopefully) just the 4 we found before. Pretty neat!
 &lt;/p&gt;
 
 
-&lt;div id="orgac987b1" class="figure"&gt;
+&lt;div id="org0b61a94" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/ss2.png" alt="ss2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;Siteswap map for 6316131&lt;/p&gt;
 &lt;/div&gt;
@@ -3666,9 +3671,9 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1b2332f" class="outline-2"&gt;
-&lt;h2 id="org1b2332f"&gt;q8&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1b2332f"&gt;
+&lt;div id="outline-container-org0545860" class="outline-2"&gt;
+&lt;h2 id="org0545860"&gt;q8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0545860"&gt;
 &lt;p&gt;
 &lt;i&gt;There is 1 ground state 5 ball trick of length 1 (5), 2 of length 2&lt;/i&gt;
 &lt;i&gt;(55, 64), 6 of length 3 (555, 564, 645, 663, 744, 753), 24 of length&lt;/i&gt;
@@ -3679,7 +3684,7 @@ As expected, \(6316131\) is prime so the graph is simply a loop with no repeated
 &lt;/p&gt;
 
 
-&lt;div id="orgfd0fe0c" class="figure"&gt;
+&lt;div id="org9b78025" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_1.png" alt="q8_1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;A continuous 5 ball cascade, breaking for a period 4 siteswap, before resuming.&lt;/p&gt;
 &lt;/div&gt;
@@ -3702,7 +3707,7 @@ the following 5 because they already have arrows connecting to them.
 &lt;/p&gt;
 
 
-&lt;div id="org67018c9" class="figure"&gt;
+&lt;div id="org9f4efca" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q8_2.png" alt="q8_2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;There are 4 possible values for a, shown in red.&lt;/p&gt;
 &lt;/div&gt;
@@ -3717,9 +3722,9 @@ of throws (until we start getting 0s… See next q).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9fc3345" class="outline-2"&gt;
-&lt;h2 id="org9fc3345"&gt;q9&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9fc3345"&gt;
+&lt;div id="outline-container-org928b085" class="outline-2"&gt;
+&lt;h2 id="org928b085"&gt;q9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org928b085"&gt;
 &lt;p&gt;
 &lt;i&gt;There are not 7! = 5040 ground state 5 ball patterns of length 7,&lt;/i&gt;
 &lt;i&gt;as the above pattern would suggest (the actual number is around&lt;/i&gt;
@@ -3745,7 +3750,7 @@ be directed.
 &lt;/p&gt;
 
 
-&lt;div id="org4e0cbd3" class="figure"&gt;
+&lt;div id="org89820f6" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_1.png" alt="q9_1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -3760,9 +3765,9 @@ Where this falls apart however is for longer sequences..
 &lt;/p&gt;
 
 
-&lt;div id="org87a54c7" class="figure"&gt;
+&lt;div id="orgc3b14c2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_2.png" alt="q9_2.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 5: &lt;/span&gt;f or g could be a 0, and so the arrows in blue may not be possible. This is the problem with our current method.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;f or g could be a 0, and so the arrows in blue may not be possible. This is the problem with our current method.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -3784,13 +3789,13 @@ Here's an example of this insertion… We can create all siteswaps with 0s
 similarly by adding gaps into siteswaps without 0s.
 &lt;/p&gt;
 
-&lt;div id="orgf604a05" class="figure"&gt;
+&lt;div id="orgd5cafd4" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_3.png" alt="q9_3.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="orgf9c86c6" class="figure"&gt;
+&lt;div id="org59a17a8" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_4.png" alt="q9_4.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 6: &lt;/span&gt;Siteswap 504 has exactly the same arrow placement as 33, but with an added 0. All siteswaps with 0s have exactly one siteswap without 0s they map to.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 8: &lt;/span&gt;Siteswap 504 has exactly the same arrow placement as 33, but with an added 0. All siteswaps with 0s have exactly one siteswap without 0s they map to.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -3805,9 +3810,9 @@ So with this in mind, we can calculate the total number of siteswaps of length
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfa117a1" class="outline-3"&gt;
-&lt;h3 id="orgfa117a1"&gt;Arrow permutations:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgfa117a1"&gt;
+&lt;div id="outline-container-org575231c" class="outline-3"&gt;
+&lt;h3 id="org575231c"&gt;Arrow permutations:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org575231c"&gt;
 &lt;p&gt;
 To work out the permutations of length l, we can use the method we had before.
 We go through the catches, and work out where the throw could've come from. Now
@@ -3821,9 +3826,9 @@ point.
 &lt;/p&gt;
 
 
-&lt;div id="org767b5fc" class="figure"&gt;
+&lt;div id="org7b8c8e3" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/siteswap_qs/q9_5.png" alt="q9_5.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 7: &lt;/span&gt;The n (n = 5 here) throws that could arrive at f. After picking the throw to arrive at f, we'll still have n choices for g - since f is now a possible source.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 9: &lt;/span&gt;The n (n = 5 here) throws that could arrive at f. After picking the throw to arrive at f, we'll still have n choices for g - since f is now a possible source.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -3856,9 +3861,9 @@ Since we already know how many ground state siteswaps there are for \(l &amp;lt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org929e154" class="outline-3"&gt;
-&lt;h3 id="org929e154"&gt;Gap insertion&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org929e154"&gt;
+&lt;div id="outline-container-org5c168b2" class="outline-3"&gt;
+&lt;h3 id="org5c168b2"&gt;Gap insertion&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5c168b2"&gt;
 &lt;p&gt;
 Given a siteswap of length \(l\) with no gaps, we're looking to insert them so as
 to end up with one of length \(L, L &amp;gt;= l\).
@@ -3878,9 +3883,9 @@ number of balls.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org83db1bb" class="outline-3"&gt;
-&lt;h3 id="org83db1bb"&gt;Putting it all together:&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org83db1bb"&gt;
+&lt;div id="outline-container-org9c90898" class="outline-3"&gt;
+&lt;h3 id="org9c90898"&gt;Putting it all together:&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9c90898"&gt;
 &lt;p&gt;
 Lets insert what we have into the equation.
 &lt;/p&gt;
@@ -3920,9 +3925,9 @@ length 7 there are:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3213c20" class="outline-3"&gt;
-&lt;h3 id="org3213c20"&gt;Simplify&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3213c20"&gt;
+&lt;div id="outline-container-org7b2d76a" class="outline-3"&gt;
+&lt;h3 id="org7b2d76a"&gt;Simplify&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7b2d76a"&gt;
 &lt;p&gt;
 We can simplify this formula a lot further! First taking \(n!\) out side the sum.
 &lt;/p&gt;
@@ -3979,4 +3984,5 @@ Which… FINALLY gives us the the answer! Phew!
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;
+</description><category>juggling</category><category>math</category><guid>https://imois.in/posts/jack-boyces-siteswap-questions/</guid><pubDate>Mon, 06 May 2019 18:47:08 GMT</pubDate></item></channel></rss>
