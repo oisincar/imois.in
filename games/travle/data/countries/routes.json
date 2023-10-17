@@ -311,7 +311,7 @@
 {"start": "SYR", "target": "GRC", "avoid": ["TUR"], "dist": 8},
 {"start": "LVA", "target": "IRL", "dist": 6},
 {"start": "SLE", "target": "SWZ", "dist": 9},
-{"start": "ETH", "target": "PSX", "dist": 4},
+{"start": "ETH", "target": "PSX", "dist": 3},
 {"start": "VAT", "target": "BIH", "dist": 4},
 {"start": "IND", "target": "DNK", "dist": 5},
 {"start": "KAS", "target": "QAT", "dist": 5},
