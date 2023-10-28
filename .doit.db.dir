@@ -1220,3 +1220,4 @@
 'copy_files:output/games/travle/assets/manifest.webmanifest', (1411584, 293)
 'copy_files:output/games/travle/assets/apple-touch-icon-57x57.png', (1412096, 305)
 'copy_files:output/games/travle/assets/apple-touch-icon-72x72.png', (1412608, 305)
+'copy_files:output/games/travle/data/countries/routes.e638abeea67e6ffaf3c6.json', (1413120, 335)
