@@ -7,8 +7,8 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "start_url": "/games/travle/index.html?launcher=homescreen",
-  "background_color": "#282828",
-  "theme_color": "#282828",
+  "background_color": "#32302f",
+  "theme_color": "#32302f",
   "icons": [
     {
       "src": "android-chrome-36x36.png",
