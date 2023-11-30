@@ -24,7 +24,7 @@ SITE_URL = "https://imois.in/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://imois.in/"
-BLOG_EMAIL = "oisincar@gmail.com"
+BLOG_EMAIL = "hi@imois.in"
 # BLOG_DESCRIPTION = "A home for my random programming & maths projects."  # (translatable)
 BLOG_DESCRIPTION = "Programming & Math 4 Fun"  # (translatable)
 
@@ -1440,7 +1440,7 @@ WARN_ABOUT_TAG_METADATA = False
 # It can be anything, data, functions, modules, etc.
 # GLOBAL_CONTEXT = {}
 GLOBAL_CONTEXT = {
-    'email': 'oisincar@gmail.com',
+    'email': BLOG_EMAIL,
     # 'twitter': 'lotabout',
     'github': 'oisincar',
 }

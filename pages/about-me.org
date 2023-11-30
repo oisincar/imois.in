@@ -19,14 +19,14 @@ work as a contract game-developer and try to balance up some other projects on t
 
 This site collects random projects I've been working on in my spare time.
 
-You may be interested in my  [[../pages/freelance/][Freelance Page]] too!
+You may be interested in my [[../pages/freelance/][Freelance Page]] too!
 
 ** Misc
-Other bits I've worked on/am working on include:
-- [[https://syze.ai/][*Syze.ai*]]: An AI-based startup aiming to reduce returns for online clothing stores.
+My main projects at the moment are:
+- [[https://imois.in/games/travle][*Travle*]]: A daily map game that challenges players to navigate from one country to another.
 - [[https://www.facebook.com/WizardLizardGame/][*WizardLizard*]]: A 3d puzzle game based on illusions, featuring a procedural lizard.
 
-[[../misc/resume.pdf][My CV]] is a bit outdated now but might be interesting!
+You might also want to check out [[../misc/resume.pdf][My CV!]]
 
 
 * Contact
