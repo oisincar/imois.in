@@ -13,12 +13,15 @@
 Since the start of 2022 I've been taking on occasional freelance work in game development! I've had the great opportunity to work on some really interesting problems with passionate and talented people.
 
 * What I've done!
-- *Phone game prototype: Fabrick Boy (2022)* :: I prototyped an iphone game for Wicked Alcamy, which included some interesting procedurally generated levels and gesture controls. (Unity3d, C#)
+- *Toxcitity Detection*: Researched and developed automated toxicity detection in voice chat (using openAI whisper) for [[https://dogelabsvr.com/][Doge Labs VR]].
+- *Phone game prototype: Fabrick Boy (2022)* :: I prototyped an iphone game for Wicked Alchemy, which included some interesting procedurally generated levels and gesture controls. (Unity3d, C#)
 - *Hockey game AI: Slapshot Rebound (2022)* :: I wrote the bots for [[https://store.steampowered.com/app/1173370/Slapshot_Rebound/][Slapshot Rebound]], a title by [[https://oddshot.gg/][Oddshot Games]]. This used some new techniques including fast approximate physics using signed distance fields, a custom behaviour/maneuver system, bot reaction times using predicted object locations, gradient descent-based positioning and more. These make bots which are good at the game, require very low computing power, and play (roughly) like humans do. I'm looking to write a paper on what I did, so if that sounds interesting, stay tuned! (Unity3d, C#, Python)
 - *Tool programming: My Familiar (2022)* :: I solved rendering (z-sort) issues for [[https://www.somethingclassic.net/][Something Classic Games]] on their title [[https://store.steampowered.com/app/1502750/My_Familiar/][My Familiar]]. This included writing some tools for level-designers to use, adding features to their asset importer, as well as documenting the issues for future reference (Unity3d, C#)
 - *Water Shader: TBA (2022)* :: I worked with [[https://stormcloak.games/blog][Stormcloak Games]] to develop a water shader for their physics-based title. The novel solution uses a procedurally generated tileset to render realtime seamless water caustics and animated edges over constantly changing blocks of water. (GLSL, Python)
 - *Shader & Editor work: TBA (2022)* :: I developed stylized comic-book shaders as well as a real-time spline-based house building system for LawnFlamingo for their upcoming game. (GLSL, Unity3d, C#)
 - *Shader, SDF effects: [[http://siliconsynapse.net/][Silicone Synapse]] (2017)* :: I developed some materials and visual effects for AlanJames Burns' VR art exhibit. These included morphing creatures using raymarching, procedural animated trees, and more.
+
+
 
 
 * If you're interested in hiring me...
