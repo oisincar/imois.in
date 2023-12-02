@@ -1991,3 +1991,8 @@
 'copy_files:output/games/travle_staging/data/fra/regions.d605e04a5ec568413c08.geojson', (1845248, 348)
 'copy_files:output/games/travle_staging/bundle.77af2d9e4b58c8b4013c.js', (1845760, 318)
 'copy_files:output/games/travle_staging/bundle.77af2d9e4b58c8b4013c.js.LICENSE.txt', (1846272, 340)
+'copy_files:output/games/travle/bundle.b5709417b5a61431086a.js', (1846784, 302)
+'copy_files:output/games/travle/bundle.77af2d9e4b58c8b4013c.js.LICENSE.txt', (1847296, 324)
+'copy_files:output/games/travle/styles.7c6c0bfee948d539a850.css', (1847808, 304)
+'copy_files:output/games/travle/bundle.b5709417b5a61431086a.js.LICENSE.txt', (1848320, 324)
+'copy_files:output/games/travle/bundle.77af2d9e4b58c8b4013c.js', (1848832, 302)
