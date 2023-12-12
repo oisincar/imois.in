@@ -1,0 +1,26 @@
+<!doctype html><html><head><title>Travle Streak Transfer</title></head><body>Streak transfer<script>// Function to filter and retrieve localStorage variables starting with 'travle'
+         function getTravleLocalStorage() {
+             let travleData = {}; // Dictionary to store the 'travle' variables
+
+             // Loop through localStorage items
+             for (let i = 0; i < localStorage.length; i++) {
+                 let key = localStorage.key(i);
+                 if (key.startsWith('travle')) {
+                     travleData[key] = localStorage.getItem(key);
+                 }
+             }
+
+             return JSON.stringify(travleData);
+         }
+
+         // Call the function to get 'travle' localStorage variables
+         let data = getTravleLocalStorage();
+         console.log(data);
+
+         // Check if the parent window exists
+         if (window.parent) {
+             // Send a message to the parent window
+             window.parent.postMessage(data, '*');
+         } else {
+             console.error("No parent window found!");
+         }</script></body></html>
