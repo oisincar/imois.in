@@ -95,7 +95,7 @@
  </url>
  <url>
   <loc>https://imois.in/games/travle/</loc>
-  <lastmod>2023-12-12T16:57:00Z</lastmod>
+  <lastmod>2023-12-12T17:21:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/games/travle/benelux/</loc>
@@ -179,7 +179,7 @@
  </url>
  <url>
   <loc>https://imois.in/games/travle_staging/</loc>
-  <lastmod>2023-12-04T21:46:00Z</lastmod>
+  <lastmod>2023-12-14T18:07:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/games/travle_staging/benelux/</loc>
@@ -203,7 +203,7 @@
  </url>
  <url>
   <loc>https://imois.in/games/travle_staging/extra_info.html</loc>
-  <lastmod>2023-12-04T21:44:00Z</lastmod>
+  <lastmod>2023-12-14T18:06:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/games/travle_staging/fra/</loc>
@@ -236,6 +236,10 @@
  <url>
   <loc>https://imois.in/games/travle_staging/mex/</loc>
   <lastmod>2023-12-04T21:46:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://imois.in/games/travle_staging/practice/</loc>
+  <lastmod>2023-12-14T18:07:00Z</lastmod>
  </url>
  <url>
   <loc>https://imois.in/games/travle_staging/prt/</loc>
