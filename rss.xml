@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>Programming &amp; Math 4 Fun</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2023 &lt;a href="mailto:hi@imois.in"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Mon, 04 Dec 2023 21:46:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Puzzle Keyboard: A 60% split acrylic mechanical keyboard</title><link>https://imois.in/posts/puzzle-keyboard/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="org89f6c48" class="figure"&gt;
-&lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/demo.svg" alt="demo.svg" class="org-svg" width="600px"&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>im_oisin</title><link>https://imois.in/</link><description>Programming &amp; Math 4 Fun</description><atom:link href="https://imois.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2023 &lt;a href="mailto:hi@imois.in"&gt;Oisin Carroll&lt;/a&gt; </copyright><lastBuildDate>Fri, 22 Dec 2023 00:15:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Puzzle Keyboard: A 60% split acrylic mechanical keyboard</title><link>https://imois.in/posts/puzzle-keyboard/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="org88459ff" class="figure"&gt;
+&lt;p&gt;&lt;object type="image/svg+xml" data="https://imois.in/images/puzzle-kb/demo.svg" class="org-svg" width="600px"&gt;
+Sorry, your browser does not support SVG.&lt;/object&gt;
+&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org72194b5" class="outline-2"&gt;
-&lt;h2 id="org72194b5"&gt;TL;DR&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org72194b5"&gt;
+&lt;div id="outline-container-orged482ae" class="outline-2"&gt;
+&lt;h2 id="orged482ae"&gt;TL;DR&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orged482ae"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Can be used as a &lt;b&gt;60% normal layout&lt;/b&gt; keyboard as well as a &lt;b&gt;split&lt;/b&gt; keyboard.&lt;/li&gt;
 &lt;li&gt;It's designed to be lazer-cut in layered acrylic cheaply - no need for expensive metal plates, PCBs or other custom metal hardware.&lt;/li&gt;
@@ -14,17 +16,17 @@
 &lt;li&gt;Hand wired so I can admire the pretty wire patterns (while ignoring some poor soldering).&lt;/li&gt;
 &lt;li&gt;Designed by a friend (who chose to remain unnamed) and myself! He wrote lots of the schematic generation code for a fully split keyboard, while I added in merge-again functionality.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div id="org7f0097a" class="figure"&gt;
+&lt;div id="orge12383e" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_split_clean.png" alt="kb_split_clean.png" width="600px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
 
-&lt;div id="org8151fae" class="figure"&gt;
+&lt;div id="org9964d8e" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_top_clean.png" alt="kb_top_clean.png" width="600px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
 
-&lt;div id="org67ffb2a" class="figure"&gt;
+&lt;div id="org3bcce14" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/puzzle-kb/kb_underside_clean.png" alt="kb_underside_clean.png" width="600px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -32,22 +34,23 @@
 
 
 
-&lt;div id="outline-container-org174da5b" class="outline-2"&gt;
-&lt;h2 id="org174da5b"&gt;Make your own!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org174da5b"&gt;
+&lt;div id="outline-container-org794de4f" class="outline-2"&gt;
+&lt;h2 id="org794de4f"&gt;Make your own!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org794de4f"&gt;
 &lt;p&gt;
 First, create the &lt;a href="https://imois.in/pages/kb-generator"&gt;schematic to cut here&lt;/a&gt;, and cut it out of 4mm acrylic. Solder it, and install the firmware &lt;a href="https://github.com/oisincar/PuzzleKeyboard"&gt;from here!&lt;/a&gt;
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>hardware</category><guid>https://imois.in/posts/puzzle-keyboard/</guid><pubDate>Tue, 22 Nov 2022 00:34:02 GMT</pubDate></item><item><title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups</title><link>https://imois.in/posts/slapshot-sdf-physics/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgd26ca6e" class="outline-2"&gt;
-&lt;h2 id="orgd26ca6e"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd26ca6e"&gt;
+&lt;/div&gt;
+</description><category>hardware</category><guid>https://imois.in/posts/puzzle-keyboard/</guid><pubDate>Tue, 22 Nov 2022 00:34:02 GMT</pubDate></item><item><title>Slapshot: Rebound Bots. Pt 1: Signed Distance Field Lookups</title><link>https://imois.in/posts/slapshot-sdf-physics/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgdc3eb55" class="outline-2"&gt;
+&lt;h2 id="orgdc3eb55"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdc3eb55"&gt;
 &lt;script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/slapshot/slapshot_sdf_graph.js"&gt;&lt;/script&gt;&lt;script src="https://imois.in/assets/js/math/Vector.js"&gt;&lt;/script&gt;&lt;p&gt;
 Earlier in the year I developed the AI for Slapshot: Rebound: A physics-based, surprisingly tricky and fast paced ice hockey game. The bots navigate the rink, pass and shoot. They have human-like reaction times, and can play together as a team or drop in as a replacement should a player disconnect in an online match. They also handily outplay me at the game, although that's not much of an achievement.
 &lt;/p&gt;
 
 
-&lt;div id="orga8425a6" class="figure"&gt;
+&lt;div id="orga4bc756" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/slapshot_bots_demo.gif" alt="slapshot_bots_demo.gif"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;A some gameplay from a 2v2 game in slapshot. All players are bots.&lt;/p&gt;
 &lt;/div&gt;
@@ -74,9 +77,9 @@ Instead, I used an idea from graphics: Signed Distance Functions. It's much fast
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb413f3b" class="outline-2"&gt;
-&lt;h2 id="orgb413f3b"&gt;What is a Signed Distance Function?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb413f3b"&gt;
+&lt;div id="outline-container-org4fd449c" class="outline-2"&gt;
+&lt;h2 id="org4fd449c"&gt;What is a Signed Distance Function?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4fd449c"&gt;
 &lt;p&gt;
 The idea of a signed distance field is to provide a function \(f(\vec{p}) = d\) which gives the distance from some point \(p\) to a surface.
 &lt;/p&gt;
@@ -147,11 +150,11 @@ v &amp;amp;= \text{abs}(p) - \frac{b}{2} \\
 Or, more intuitively, written in GLSL:
 &lt;/p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;sdf_box&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;vec2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="nf"&gt;sdf_box&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;vec2&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;vec2&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;vec2&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;
@@ -201,9 +204,9 @@ It's worth noting SDFs work equally well in 3D as well as 2D. Inigo Quilez has c
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org449aa41" class="outline-2"&gt;
-&lt;h2 id="org449aa41"&gt;A Slapshot SDF:&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org449aa41"&gt;
+&lt;div id="outline-container-org6e6cce5" class="outline-2"&gt;
+&lt;h2 id="org6e6cce5"&gt;A Slapshot SDF:&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6e6cce5"&gt;
 &lt;p&gt;
 Onto something more useful… A signed distance function for the slapshot rink. This combines a rounded square for the outer perimiter with a capsule for each goal.
 &lt;/p&gt;
@@ -232,9 +235,9 @@ The function is most positive near the center of the pitch - these are the point
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7a8869b" class="outline-2"&gt;
-&lt;h2 id="org7a8869b"&gt;Gradients, normals and nearest points&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7a8869b"&gt;
+&lt;div id="outline-container-orgabd1c7e" class="outline-2"&gt;
+&lt;h2 id="orgabd1c7e"&gt;Gradients, normals and nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgabd1c7e"&gt;
 &lt;p&gt;
 As we know, the SDF(p) gives the distance from p to some surface. What's less intuitive is that the derivative of the SDF gives the direction from p to that surface. If you're familiar with gradient descent - that's exactly what's going on here. We can follow the direction of the steepest slope to reach our surface.
 &lt;/p&gt;
@@ -272,9 +275,9 @@ A nice property of this is that we can calculate surface normals and tangents fo
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org73d7788" class="outline-2"&gt;
-&lt;h2 id="org73d7788"&gt;Nearest points&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org73d7788"&gt;
+&lt;div id="outline-container-org87588f2" class="outline-2"&gt;
+&lt;h2 id="org87588f2"&gt;Nearest points&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org87588f2"&gt;
 &lt;p&gt;
 What's the nearest point on a surface? It's simply the direction to the nearest point times the distance. We know both of those, so we can plug them in.
 &lt;/p&gt;
@@ -287,15 +290,15 @@ What's the nearest point on a surface? It's simply the direction to the nearest 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc6e7d92" class="outline-2"&gt;
-&lt;h2 id="orgc6e7d92"&gt;Ray intersection (raymarching)&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc6e7d92"&gt;
+&lt;div id="outline-container-org441dcfa" class="outline-2"&gt;
+&lt;h2 id="org441dcfa"&gt;Ray intersection (raymarching)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org441dcfa"&gt;
 &lt;p&gt;
 When does a ray first intersect with a SDF surface? One solution is raymarching, which is an itterative process. Given a ray origin and direction, you advance along the ray until you can't anymore (or you've reached a certain level af accuracy). How do you know how far along the ray you can advance? Well, there's one simple observation: The ray can't intersect at a point which is nearer than the nearest point on the surface, and we know the distance to the nearest point - just evaluate the SDF.
 &lt;/p&gt;
 
 
-&lt;div id="orgfc1fb9d" class="figure"&gt;
+&lt;div id="org86e7b6a" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/sdf_raymarching.png" alt="sdf_raymarching.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The calculation at each iteration of raymarching. Credit: Wikipedia.&lt;/p&gt;
 &lt;/div&gt;
@@ -306,9 +309,9 @@ Start off at a point: The ray origin, then evaluate the SDF. If the resulting di
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcc4eeee" class="outline-2"&gt;
-&lt;h2 id="orgcc4eeee"&gt;Puck physics&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcc4eeee"&gt;
+&lt;div id="outline-container-orga9e2d39" class="outline-2"&gt;
+&lt;h2 id="orga9e2d39"&gt;Puck physics&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga9e2d39"&gt;
 &lt;p&gt;
 Along with some simple physics (i.e. restitution and drag) calculations, raymarching is a fast way to calculate where the puck will be in a given amount of time. We use this to calculate where the puck will be some time in the future on each frame. The bots are only given previous predictions as input, which gives them an effective reaction time and makes them play much more human-like!
 &lt;/p&gt;
@@ -323,16 +326,16 @@ This is all extremely fast in code: The bots can each calculate puck predictions
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf63c8f8" class="outline-2"&gt;
-&lt;h2 id="orgf63c8f8"&gt;Other uses for SDF&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf63c8f8"&gt;
+&lt;div id="outline-container-org69e897d" class="outline-2"&gt;
+&lt;h2 id="org69e897d"&gt;Other uses for SDF&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org69e897d"&gt;
 &lt;p&gt;
 Having a quick way to query points is useful for other reasons, too…
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf239c60" class="outline-3"&gt;
-&lt;h3 id="orgf239c60"&gt;Randomness&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf239c60"&gt;
+&lt;div id="outline-container-org54f979a" class="outline-3"&gt;
+&lt;h3 id="org54f979a"&gt;Randomness&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org54f979a"&gt;
 &lt;p&gt;
 Sometimes it's useful to pick a random point in the pitch… Simple! Just loop until we find one. This succeeds on the first try a vast majority of times.
 &lt;/p&gt;
@@ -340,9 +343,9 @@ Sometimes it's useful to pick a random point in the pitch… Simple! Just loop u
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;public static Vector2 RandomPointInRink(float minDistToEdge=0) {
     Vector2 p;
     do {
-        p = new Vector2(
-            Random.Range(-Constants.PITCH_X_EXTENTS2, Constants.PITCH_X_EXTENTS2),
-            Random.Range(-Constants.PITCH_Y_EXTENTS2, Constants.PITCH_Y_EXTENTS2));
+	p = new Vector2(
+	    Random.Range(-Constants.PITCH_X_EXTENTS2, Constants.PITCH_X_EXTENTS2),
+	    Random.Range(-Constants.PITCH_Y_EXTENTS2, Constants.PITCH_Y_EXTENTS2));
     } while (DistanceToEdgeOfRink(p, minDistToEdge) &amp;lt; 0);
 
     return p;
@@ -351,9 +354,9 @@ Sometimes it's useful to pick a random point in the pitch… Simple! Just loop u
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0ba01ef" class="outline-3"&gt;
-&lt;h3 id="org0ba01ef"&gt;Player posturing&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0ba01ef"&gt;
+&lt;div id="outline-container-org05cf951" class="outline-3"&gt;
+&lt;h3 id="org05cf951"&gt;Player posturing&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org05cf951"&gt;
 &lt;p&gt;
 I might write a different post on this, but the bots use these distances to decide where they should stand.
 &lt;/p&gt;
@@ -363,7 +366,7 @@ As a quick teaser… This shows 3 members of the red team (red dots, playing dow
 &lt;/p&gt;
 
 
-&lt;div id="org825e4d7" class="figure"&gt;
+&lt;div id="org11a6df8" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/slapshot/bots_posturing.png" alt="bots_posturing.png" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How a 4th member of the red team would move from it's current position.&lt;/p&gt;
 &lt;/div&gt;
@@ -375,14 +378,15 @@ For example, a member of the red team standing near the blue goal would be rapid
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org377d1dc" class="outline-2"&gt;
-&lt;h2 id="org377d1dc"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org377d1dc"&gt;
+&lt;div id="outline-container-org0568a5e" class="outline-2"&gt;
+&lt;h2 id="org0568a5e"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0568a5e"&gt;
 &lt;p&gt;
 This has been part 1 of a series talking about the bots in Slapshot: Rebound. There's lots more novel ideas in there I'd like to write about, so hopefully this was interesting!
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/slapshot-sdf-physics/</guid><pubDate>Thu, 17 Nov 2022 18:05:31 GMT</pubDate></item><item><title>A Trie in Python in under 34 Lines*</title><link>https://imois.in/posts/python-trie/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+</description><category>gamedev</category><category>math</category><category>programming</category><guid>https://imois.in/posts/slapshot-sdf-physics/</guid><pubDate>Thu, 17 Nov 2022 18:05:31 GMT</pubDate></item><item><title>A Trie in Python in under 34 Lines*</title><link>https://imois.in/posts/python-trie/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;*: For core functionality, including pretty-printing code, it's 55 lines.&lt;/p&gt;
@@ -807,9 +811,9 @@ the: True
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>programming</category><guid>https://imois.in/posts/python-trie/</guid><pubDate>Sat, 21 May 2022 22:48:11 GMT</pubDate></item><item><title>Line Intersections with Cross Products</title><link>https://imois.in/posts/line-intersections-with-cross-products/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org26f4e17" class="outline-2"&gt;
-&lt;h2 id="org26f4e17"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org26f4e17"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>programming</category><guid>https://imois.in/posts/python-trie/</guid><pubDate>Sat, 21 May 2022 22:48:11 GMT</pubDate></item><item><title>Line Intersections with Cross Products</title><link>https://imois.in/posts/line-intersections-with-cross-products/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orgeb9bb08" class="outline-2"&gt;
+&lt;h2 id="orgeb9bb08"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgeb9bb08"&gt;
 &lt;p&gt;
 Projective Geometry is a field of mathematics most commonly used for anything to do with cameras - rendering, 3d reconstruction etc. I've only a weak knowledge of it, but this method of calculating the intersection of two lines falls out of the first chapter or two in a standard textbook. I found it very surprising, and hopefully you find it interesting, too!
 &lt;/p&gt;
@@ -837,9 +841,9 @@ Let's start off by working out the inner cross products: &lt;code&gt;np.cross(s1
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7854249" class="outline-3"&gt;
-&lt;h3 id="org7854249"&gt;Points -&amp;gt; Lines&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7854249"&gt;
+&lt;div id="outline-container-orgba26517" class="outline-3"&gt;
+&lt;h3 id="orgba26517"&gt;Points -&amp;gt; Lines&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgba26517"&gt;
 &lt;p&gt;
 Here we'll show that these products calculate a line equation. Consider two points \(\vec{S}\) and \(\vec{E}\).
 &lt;/p&gt;
@@ -891,9 +895,9 @@ Hence \(ax + by + c = 0\) is an equation of the line passing through \(\vec{S}\)
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org1003289" class="outline-3"&gt;
-&lt;h3 id="org1003289"&gt;Lines -&amp;gt; Intersection&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org1003289"&gt;
+&lt;div id="outline-container-orgbcf9799" class="outline-3"&gt;
+&lt;h3 id="orgbcf9799"&gt;Lines -&amp;gt; Intersection&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgbcf9799"&gt;
 &lt;p&gt;
 The cross product of two line equations gives their intersection… Let's check.
 &lt;/p&gt;
@@ -940,9 +944,9 @@ Hence \(P\) is an intersection of the lines (provided one exists)!
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orged7b156" class="outline-3"&gt;
-&lt;h3 id="orged7b156"&gt;Sample code in C#&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orged7b156"&gt;
+&lt;div id="outline-container-orge13d739" class="outline-3"&gt;
+&lt;h3 id="orge13d739"&gt;Sample code in C#&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge13d739"&gt;
 &lt;p&gt;
 This is a handy snippet to have for Unity. It's worth noting, however, that this isn't the most numerically stable or fastest way I'm sure. I use it because it's short, neat and I don't require any higher accuracy or speed from it.
 &lt;/p&gt;
@@ -957,13 +961,13 @@ This is a handy snippet to have for Unity. It's worth noting, however, that this
     &lt;span class="n"&gt;Vector3&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Vector3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Cross&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="c1"&gt;// No solution - result 'at infinity' in projective space.&lt;/span&gt;
-        &lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+	&lt;span class="c1"&gt;// No solution - result 'at infinity' in projective space.&lt;/span&gt;
+	&lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//** See below!&lt;/span&gt;
+	&lt;span class="n"&gt;intersection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Vector2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sol&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;z&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+	&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//** See below!&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -971,10 +975,10 @@ This is a handy snippet to have for Unity. It's worth noting, however, that this
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgc225634" class="outline-3"&gt;
-&lt;h3 id="orgc225634"&gt;A note on line &lt;span class="underline"&gt;segments&lt;/span&gt;
+&lt;div id="outline-container-orgdcd3bd6" class="outline-3"&gt;
+&lt;h3 id="orgdcd3bd6"&gt;A note on line &lt;span class="underline"&gt;segments&lt;/span&gt;
 &lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc225634"&gt;
+&lt;div class="outline-text-3" id="text-orgdcd3bd6"&gt;
 &lt;p&gt;
 The previous examples only deal with the intersection of lines defined by two points on them. If you require intersection of two line &lt;span class="underline"&gt;segments&lt;/span&gt; defined by start and end points, you'll need an extra condition.
 Checking if the intersection is bounded in x and y by the ends of each line is sufficient - e.g.
@@ -991,15 +995,15 @@ Checking if the intersection is bounded in x and y by the ends of each line is s
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/line-intersections-with-cross-products/</guid><pubDate>Sat, 21 May 2022 01:46:09 GMT</pubDate></item><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org8efc127" class="outline-2"&gt;
-&lt;h2 id="org8efc127"&gt;72 pencil sculpture&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8efc127"&gt;
+&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/line-intersections-with-cross-products/</guid><pubDate>Sat, 21 May 2022 01:46:09 GMT</pubDate></item><item><title>A tiny proof about some pencils</title><link>https://imois.in/posts/geometry-of-a-pencil-sculpture/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org29feffd" class="outline-2"&gt;
+&lt;h2 id="org29feffd"&gt;72 pencil sculpture&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org29feffd"&gt;
 &lt;p&gt;
 The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture/pencils.html"&gt;George W. Hart&lt;/a&gt;, which features 72 pencils in a lattice.
 &lt;/p&gt;
 
 
-&lt;div id="org1329dde" class="figure"&gt;
+&lt;div id="org0957004" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/72pencils.jpg" alt="72pencils.jpg" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;Photo credit: George W. Hart&lt;/p&gt;
 &lt;/div&gt;
@@ -1008,7 +1012,7 @@ The original 72 sculpture is by &lt;a href="https://www.georgehart.com/sculpture
 It's also possible to make a 'filled' version, with a pencil in every possible location - this one was made by a friend of mine and rendered in blender.
 &lt;/p&gt;
 
-&lt;div id="org3cfadad" class="figure"&gt;
+&lt;div id="orgb8ec85f" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks.png" alt="sticks.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -1018,9 +1022,9 @@ We asked… what does the inside of this shape look like? Is it solid?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge02a39c" class="outline-2"&gt;
-&lt;h2 id="orge02a39c"&gt;It's not solid&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge02a39c"&gt;
+&lt;div id="outline-container-orga469fe8" class="outline-2"&gt;
+&lt;h2 id="orga469fe8"&gt;It's not solid&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga469fe8"&gt;
 &lt;p&gt;
 There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get this number, we take all pencils to be infinite in length, and the pattern to repeat indefinitely in all directions. This shape is a small part of a repeating pattern.
 &lt;/p&gt;
@@ -1029,7 +1033,7 @@ There's a neat proof of what percentage of the middle is 'air' vs 'wood'. To get
 Take any axis, and overlay a triangular grid like this. The green boxes tile the shape perfectly, and are all identical. The orange triangles are equilateral and are also identical.
 &lt;/p&gt;
 
-&lt;div id="orgc6677bf" class="figure"&gt;
+&lt;div id="orgce9629e" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag0.png" alt="sticks_diag0.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -1038,7 +1042,7 @@ Zooming in, we can consider the area made up by the pencils in this axis.
 &lt;/p&gt;
 
 
-&lt;div id="org7ea7dc9" class="figure"&gt;
+&lt;div id="org35896b9" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/sticks_diag1.png" alt="sticks_diag1.png"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
@@ -1056,24 +1060,25 @@ I.e. The pencils don't fill space in the middle, $1/4$th is air.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcc70e73" class="outline-2"&gt;
-&lt;h2 id="orgcc70e73"&gt;The empty space&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcc70e73"&gt;
+&lt;div id="outline-container-org2b02754" class="outline-2"&gt;
+&lt;h2 id="org2b02754"&gt;The empty space&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2b02754"&gt;
 &lt;p&gt;
 This what that looks like! It's a pretty neat geometric pattern.
 &lt;/p&gt;
 
 
-&lt;div id="org2044bb4" class="figure"&gt;
+&lt;div id="orgb9b8f89" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/pencils/inside.png" alt="inside.png" width="500px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;
+</description><category>math</category><guid>https://imois.in/posts/geometry-of-a-pencil-sculpture/</guid><pubDate>Fri, 13 Aug 2021 16:55:00 GMT</pubDate></item><item><title>Fishbone Chair [Free Plans!]</title><link>https://imois.in/posts/fishbone-chair-free-plans/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;p&gt;
 Back in 2013 I designed and made this chair! It's a fishbone chair - quite the trend of the time, but there weren't any good designs available online. The chair can be cnc-milled out of a single standard sheet of 3/4" 8'x4' mdf or plywood, and slots together with no fastners or glue!
 &lt;/p&gt;
 
 
-&lt;div id="orgccad380" class="figure"&gt;
+&lt;div id="orga8dc0b2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair1.jpg" alt="chair1.jpg" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The chair, feat. a small paper model in the top left.&lt;/p&gt;
 &lt;/div&gt;
@@ -1083,7 +1088,7 @@ We've been using the chair for the past 8 years, and isn't showing any signs of 
 &lt;/p&gt;
 
 
-&lt;div id="orgbdbca14" class="figure"&gt;
+&lt;div id="orga7db8b2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair2.jpg" alt="chair2.jpg" width="500px"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;From the back. Each brace piece is unique.&lt;/p&gt;
 &lt;/div&gt;
@@ -1093,13 +1098,13 @@ I designed it in blender, taking a rough chair model and cutting slices into it.
 &lt;/p&gt;
 
 
-&lt;div id="org726ebee" class="figure"&gt;
+&lt;div id="orgfe05905" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair_model.jpg" alt="chair_model.jpg" width="400px"&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="org9caa934" class="figure"&gt;
+&lt;div id="org70c0e76" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/chair_cutout.jpg" alt="chair_cutout.jpg" width="400px"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;Pictures from the design - Top: Renders from blender. Bottom: A cardboard model cutout.&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;Pictures from the design - Top: Renders from blender. Bottom: A cardboard model cutout.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
@@ -1107,14 +1112,16 @@ While I'm sure it's possible to cut this out by hand, it's much easier to do it 
 &lt;/p&gt;
 
 
-&lt;div id="org962516b" class="figure"&gt;
-&lt;p&gt;&lt;img src="https://imois.in/images/fishbone_chair/fishbone_chair.svg" alt="fishbone_chair.svg" class="org-svg" width="400px" style="background:white"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;The pieces layed out for CNC cutting from an 8'x4' plywood sheet.&lt;/p&gt;
+&lt;div id="org3cebe5b" class="figure"&gt;
+&lt;p&gt;&lt;object type="image/svg+xml" data="https://imois.in/images/fishbone_chair/fishbone_chair.svg" class="org-svg" width="400px" style="background:white"&gt;
+Sorry, your browser does not support SVG.&lt;/object&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class="figure-number"&gt;Figure 5: &lt;/span&gt;The pieces layed out for CNC cutting from an 8'x4' plywood sheet.&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7f65e40" class="outline-2"&gt;
-&lt;h2 id="org7f65e40"&gt;Download!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7f65e40"&gt;
+&lt;div id="outline-container-orge617fe2" class="outline-2"&gt;
+&lt;h2 id="orge617fe2"&gt;Download!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge617fe2"&gt;
 &lt;p&gt;
 You can download the designs as &lt;a href="https://imois.in/images/fishbone_chair/fishbone_chair.svg"&gt;.SVG format&lt;/a&gt; (right-click &amp;gt; Save Link As) or &lt;a href="https://imois.in/misc/chair/fishbone_chair.dxf"&gt;.DXF format&lt;/a&gt;, which are both provided under a &lt;a href="https://creativecommons.org/licenses/by-nc/3.0/ie/"&gt;Creative Commons Attribution-NonCommercial License&lt;/a&gt;. That means you're free to make the chair as-is, or modify the designs… But you cannot sell them and give credit when they're used.
 &lt;/p&gt;
@@ -1123,9 +1130,10 @@ You can download the designs as &lt;a href="https://imois.in/images/fishbone_cha
 If you do decide to make one, it'd be great to hear from you!
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>woodworking</category><guid>https://imois.in/posts/fishbone-chair-free-plans/</guid><pubDate>Sat, 26 Jun 2021 23:41:12 GMT</pubDate></item><item><title>(Killer) Sudoku Solver</title><link>https://imois.in/posts/sudoku-solver/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org67b47d0" class="outline-2"&gt;
-&lt;h2 id="org67b47d0"&gt;(Killer) Sudoku Solver&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org67b47d0"&gt;
+&lt;/div&gt;
+</description><category>woodworking</category><guid>https://imois.in/posts/fishbone-chair-free-plans/</guid><pubDate>Sat, 26 Jun 2021 23:41:12 GMT</pubDate></item><item><title>(Killer) Sudoku Solver</title><link>https://imois.in/posts/sudoku-solver/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-org25d3f5a" class="outline-2"&gt;
+&lt;h2 id="org25d3f5a"&gt;(Killer) Sudoku Solver&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org25d3f5a"&gt;
 &lt;p&gt;
 A solver for killer and/or regular sudokus! It's written in rust and compiled to web assembly. It supports fixed digits and constraints on the sum of different cells.
 &lt;/p&gt;
@@ -1162,17 +1170,17 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 &lt;script type="module" src="https://imois.in/assets/js/sudoku/sudoku_board.js"&gt;&lt;/script&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org604542b" class="outline-3"&gt;
-&lt;h3 id="org604542b"&gt;Fixed digits&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org604542b"&gt;
+&lt;div id="outline-container-org4a6d8f3" class="outline-3"&gt;
+&lt;h3 id="org4a6d8f3"&gt;Fixed digits&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4a6d8f3"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;You can enter fixed digits by selecting the cell and entering a digit. You can enter more than one by click+draging or shift+clicking, and enter multiple digits at once.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgebf4eb1" class="outline-3"&gt;
-&lt;h3 id="orgebf4eb1"&gt;Sum constraints&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgebf4eb1"&gt;
+&lt;div id="outline-container-org7833e0a" class="outline-3"&gt;
+&lt;h3 id="org7833e0a"&gt;Sum constraints&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7833e0a"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Each cell has a corresponding index from \(0-81\). Constraints consist of any number of these indices and a sum they should make.&lt;/li&gt;
 &lt;li&gt;To create a new constraint: select the desired cells and click the '+' button at the bottom. This will create a new row. You can then modify the sum value itself by clicking on it.&lt;/li&gt;
@@ -1182,18 +1190,18 @@ Enter digits into the grid, or add some sum-rules; a collection of cells which m
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4531aba" class="outline-3"&gt;
-&lt;h3 id="org4531aba"&gt;Solving&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4531aba"&gt;
+&lt;div id="outline-container-orga6b7fb2" class="outline-3"&gt;
+&lt;h3 id="orga6b7fb2"&gt;Solving&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga6b7fb2"&gt;
 &lt;p&gt;
 Finally, when you have a board complete… Hit solve. The first solution found will be displayed, or a warning if no solution is possible.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2c9e636" class="outline-3"&gt;
-&lt;h3 id="org2c9e636"&gt;The solver itself&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2c9e636"&gt;
+&lt;div id="outline-container-orgea4ce6d" class="outline-3"&gt;
+&lt;h3 id="orgea4ce6d"&gt;The solver itself&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgea4ce6d"&gt;
 &lt;p&gt;
 The solver's been a learning exercise for rust and as such - the code isn't excellent. There are some neat tricks in it though!
 &lt;/p&gt;
@@ -1219,7 +1227,7 @@ It's lack of more complex solving techniques; hidden singles, naked pairs etc. m
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/sudoku-solver/</guid><pubDate>Wed, 16 Jun 2021 22:04:35 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;</description><category>gamedev</category><category>programming</category><guid>https://imois.in/posts/sudoku-solver/</guid><pubDate>Wed, 16 Jun 2021 22:04:35 GMT</pubDate></item><item><title>The Chromatic Number of the Plane</title><link>https://imois.in/posts/the-chromatic-number-of-the-plane/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="The-What-of-the-What?"&gt;The What of the What?&lt;a class="anchor-link" href="https://imois.in/posts/the-chromatic-number-of-the-plane/#The-What-of-the-What?"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The Chromatic Number of the Plane, or &lt;a href="https://en.wikipedia.org/wiki/Hadwiger%E2%80%93Nelson_problem"&gt;Hadwiger-Nelson problem&lt;/a&gt; is a math problem originating in the 1950s, and one which remains unsolved. It came to my attention after a breakthrough by &lt;a href="https://arxiv.org/abs/1804.02385"&gt;Aubrey D.N.J. de Grey&lt;/a&gt; in 2018, and was subsequently the subject of &lt;a href="https://polymathprojects.org/2018/04/10/polymath-proposal-finding-simpler-unit-distance-graphs-of-chromatic-number-5/"&gt;Polymath Project 16&lt;/a&gt; - a collaborative effort from mathematicians from all over the world to improve upon this. I'll do my best to explain what all this means...&lt;/p&gt;
@@ -2010,7 +2018,7 @@ Wall time: 2min 58s
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/the-chromatic-number-of-the-plane/</guid><pubDate>Mon, 12 Apr 2021 21:52:03 GMT</pubDate></item><item><title>Random vectors and rotations in 3D</title><link>https://imois.in/posts/random-vectors-and-rotations-in-3d/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/the-chromatic-number-of-the-plane/</guid><pubDate>Mon, 12 Apr 2021 21:52:03 GMT</pubDate></item><item><title>Random vectors and rotations in 3D</title><link>https://imois.in/posts/random-vectors-and-rotations-in-3d/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Intro"&gt;Intro&lt;a class="anchor-link" href="https://imois.in/posts/random-vectors-and-rotations-in-3d/#Intro"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Generating truly random vectors, rotations, and more in 3 dimensions is possibly more challenging than you might think... Often the simple approach biases towards certain directions more than others.&lt;/p&gt;
@@ -2561,9 +2569,9 @@ $$g(V, \theta, \phi) = \frac{1}{2\pi^2}\sin^2{\frac{1}{2}V\sin{\theta}}$$&lt;p&g
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/random-vectors-and-rotations-in-3d/</guid><pubDate>Fri, 25 Sep 2020 15:50:23 GMT</pubDate></item><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orged01387" class="outline-2"&gt;
-&lt;h2 id="orged01387"&gt;Intro&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orged01387"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/random-vectors-and-rotations-in-3d/</guid><pubDate>Fri, 25 Sep 2020 15:50:23 GMT</pubDate></item><item><title>Searching for a fair, 3-sided coin.</title><link>https://imois.in/posts/3-sided-coin/</link><dc:creator>Oisin Carroll</dc:creator><description>&lt;div id="outline-container-orge956bc0" class="outline-2"&gt;
+&lt;h2 id="orge956bc0"&gt;Intro&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge956bc0"&gt;
 &lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/oimo/1.0.9/oimo.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"&gt;&lt;/script&gt;&lt;p&gt;
 A coin effectively has 2 sides, heads or tails. Still, there's a chance — albeit small — that the coin can land on it's edge. This begs the question, how 'thick' should a coin be so that
 it has equal chances of landing on any of the 3 sides (Heads, Tails, or Edge).
@@ -2705,15 +2713,15 @@ We'll try to work out the ideal thickness of the coin in terms of it's radius (\
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orge6b15fb" class="outline-2"&gt;
-&lt;h2 id="orge6b15fb"&gt;Coin thickness?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge6b15fb"&gt;
+&lt;div id="outline-container-orgc9d7a86" class="outline-2"&gt;
+&lt;h2 id="orgc9d7a86"&gt;Coin thickness?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc9d7a86"&gt;
 &lt;p&gt;
 Well that's neat looking, but what does it tell us? Well, we can see how changing the thickness of a coin changes the number of heads, tails and sides rolled. The 'ideal' 3 sided coin has equal chance of each of these 3 things.
 &lt;/p&gt;
 
 
-&lt;div id="org69c0af2" class="figure"&gt;
+&lt;div id="org2a969e2" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips.png" alt="baseline-flips.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 1: &lt;/span&gt;The number of heads, tails and sides over 1000 flips with different coin thicknesses, black lines show 3rds. For all trials the coin restitution is kept at 0.15.&lt;/p&gt;
 &lt;/div&gt;
@@ -2723,7 +2731,7 @@ Ok… Zoom and enhance! Running over 10x as many flips this time….
 &lt;/p&gt;
 
 
-&lt;div id="orgf37ae95" class="figure"&gt;
+&lt;div id="org5ea55d0" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/baseline-flips-zoom.png" alt="baseline-flips-zoom.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 2: &lt;/span&gt;The exact same as above, but over just thicknesses from 0.75r to 0.95r.&lt;/p&gt;
 &lt;/div&gt;
@@ -2734,9 +2742,9 @@ It seems our ideal coin has a thickness of \(0.85r\)! That's the point where the
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org79c5b1f" class="outline-2"&gt;
-&lt;h2 id="org79c5b1f"&gt;Does the maths agree?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org79c5b1f"&gt;
+&lt;div id="outline-container-org42fc6ab" class="outline-2"&gt;
+&lt;h2 id="org42fc6ab"&gt;Does the maths agree?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org42fc6ab"&gt;
 &lt;p&gt;
 Matt Parker's video (linked above) essentially discusses two solutions, each providing slightly different answers.
 &lt;/p&gt;
@@ -2757,15 +2765,15 @@ And simulating it gives an answer of \(0.85r\)?? Right in the middle… The seco
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgafc49a0" class="outline-2"&gt;
-&lt;h2 id="orgafc49a0"&gt;The end of the story?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgafc49a0"&gt;
+&lt;div id="outline-container-orgea90309" class="outline-2"&gt;
+&lt;h2 id="orgea90309"&gt;The end of the story?&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgea90309"&gt;
 &lt;p&gt;
 So… we're done? The answer is \(0.85r\)? Not quite… There are a lot of other properties that go into a coin. All sides are identical on a regular die, and so we'd get a random result simply from a random starting rotation. This isn't true for our 3 sided coin however. Importantly, landing on the side of a coin leaves the center of gravity higher up. It could make sense that a coin which bounces around is more likely make it out of this 'local minima'… Lets test it!
 &lt;/p&gt;
 
 
-&lt;div id="org2cf6928" class="figure"&gt;
+&lt;div id="org57b07e3" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_bounce.png" alt="num_flips_bounce.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 3: &lt;/span&gt;How the bounciness of a coin affects the outcome. The thickness of these coins are kept the same at \(0.85r\).&lt;/p&gt;
 &lt;/div&gt;
@@ -2779,7 +2787,7 @@ What about the throw spin? Can you bias a 3 sided coin by throwing it with more 
 &lt;/p&gt;
 
 
-&lt;div id="org9f762b1" class="figure"&gt;
+&lt;div id="org9ab2758" class="figure"&gt;
 &lt;p&gt;&lt;img src="https://imois.in/images/learning-dice/num_flips_spin.png" alt="num_flips_spin.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="figure-number"&gt;Figure 4: &lt;/span&gt;What's going on?? The chance of sides changes dramatically with increased spin on the coin.&lt;/p&gt;
 &lt;/div&gt;
@@ -2795,9 +2803,9 @@ Maybe this could be a useful trick… Get your friends to pick between heads/tai
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc45cd9a" class="outline-2"&gt;
-&lt;h2 id="orgc45cd9a"&gt;Disclaimer!&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc45cd9a"&gt;
+&lt;div id="outline-container-org5086a8b" class="outline-2"&gt;
+&lt;h2 id="org5086a8b"&gt;Disclaimer!&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5086a8b"&gt;
 &lt;p&gt;
 The results on this page are only as good as the physics simulation is. This page uses &lt;a href="https://lo-th.github.io/Oimo.js/#basic"&gt;Oimo.js&lt;/a&gt; for physics, but more accurate results could likely be found using an offline and more advanced/complete engine like physx or bullet.
 &lt;/p&gt;
@@ -2808,11 +2816,12 @@ Also, picking truly random rotations is &lt;i&gt;hard&lt;/i&gt;. &lt;a href="htt
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbefd819" class="outline-2"&gt;
-&lt;h2 id="orgbefd819"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbefd819"&gt;
+&lt;div id="outline-container-org495cf41" class="outline-2"&gt;
+&lt;h2 id="org495cf41"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org495cf41"&gt;
 &lt;p&gt;
 After all, it doesn't seem possible to make an always-fair 3 sided coin! I hope you had fun making very thick, thin or very fast spinning coins at least…
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;
+</description><category>math</category><category>programming</category><guid>https://imois.in/posts/3-sided-coin/</guid><pubDate>Sun, 23 Aug 2020 21:30:01 GMT</pubDate></item></channel></rss>
