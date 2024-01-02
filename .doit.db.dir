@@ -241,7 +241,7 @@
 'render_posts:timeline_changes', (280576, 109)
 'render_taxonomies', (281088, 56)
 'render_taxonomies:output/categories/programming.xml', (281600, 4860)
-'sitemap:output/sitemapindex.xml', (286720, 255)
+'sitemap:output/sitemapindex.xml', (286720, 254)
 'render_posts:cache/pages/running.html', (287232, 350)
 'sitemap:output/sitemap.xml', (2045952, 15313)
 'render_pages:output/posts/procedural-animation-3-gradient-descent/index.html', (2081280, 6107)
