@@ -286,7 +286,7 @@ MathJax.Hub.Config({
 <p>There's a problem here; this method biases towards diagonal vectors. In the central plot, it seems like vectors near the axes are around 2/3rds as likely to be chosen as their diagonal counterparts. The difference is due to how these points are sampled - we take a random point in a cube and normalize it. There's far more 'space' along the diagonals, hence the skew.</p>
 <h3 id="Sampling-within-the-unit-circle">Sampling within the unit circle<a class="anchor-link" href="#Sampling-within-the-unit-circle">¶</a>
 </h3>
-<p>A simple way to fix it is to ignore points in this 'extra space', repeating until we have a point inside the unit circle instead.</p>
+<p>A simple way to fix it is to ignore points in this 'extra space', repeating until we have a point inside the unit circle instead. This is an example of the Ziggurat Algorithm <a href="https://en.wikipedia.org/wiki/Ziggurat_algorithm">https://en.wikipedia.org/wiki/Ziggurat_algorithm</a></p>
 
 </div>
 </div>
