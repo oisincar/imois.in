@@ -302,7 +302,7 @@
 'scale_images:output/images/pencils/inside.png', (364032, 230)
 'copy_files:output/games/travle/css/style.css', (364544, 267)
 'scale_images:output/images/puzzle-kb/demo.svg', (365056, 230)
-'copy_files:output/assets/js/sudoku/sudoku_board.js', (365568, 286)
+'copy_files:output/assets/js/sudoku/sudoku_board.js', (365568, 287)
 'copy_assets:output/assets/fonts/fontawesome-webfont.ttf', (366080, 307)
 'copy_files:output/games/travle/src/tmp_cdn/bootstrap.bundle.min.js', (562688, 305)
 'copy_files:output/games/travle/src/tmp_cdn/bootstrap.min.css', (563200, 294)
