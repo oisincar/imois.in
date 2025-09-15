@@ -201,17 +201,21 @@ class SudokuSolver {
                 rules: rules,
             };
 
-            console.log("Solving:", board);
-            let res = solve_board(board);
-            console.log(res);
+            try {
+                console.log("Solving:", board);
+                let res = solve_board(board);
 
-            if (res.length != 81) {
-                alert('No solution found :c');
+                if (res.length != 81) {
+                    alert('No solution found - could you have entered the board incorrectly?');
+                }
+                else {
+                    Array.from(res).forEach(function(c, ix) {
+                        parent.cells[ix].text(c);
+                    });
+                }
             }
-            else {
-                Array.from(res).forEach(function(c, ix) {
-                    parent.cells[ix].text(c);
-                });
+            catch (e) {
+                alert('No solution found (solver error) - could you have entered the board incorrectly?');
             }
         });
         // RESET!
